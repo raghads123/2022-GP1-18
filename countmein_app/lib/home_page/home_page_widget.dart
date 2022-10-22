@@ -17,7 +17,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -29,7 +29,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Align(
                     alignment: AlignmentDirectional(-0.02, -1.04),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 60, 20, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 20),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -65,7 +65,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -73,15 +73,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         alignment: AlignmentDirectional(-1, 0),
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 15, 0, 20),
+                              EdgeInsetsDirectional.fromSTEB(20, 15, 0, 25),
                           child: Text(
                             'Categories',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Playfair Display',
-                                      color: Color(0xFFFF5757),
-                                      fontSize: 12,
-                                    ),
+                            style: FlutterFlowTheme.of(context).title2.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xFF98254C),
+                                ),
                           ),
                         ),
                       ),
@@ -91,63 +89,119 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
-                              width: 150,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFFFAF1),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 30, 5, 30),
-                                child: Text(
-                                  '[Text]',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title1
-                                      .override(
-                                        fontFamily: 'Playfair Display',
-                                        color: Color(0xFF777373),
-                                        fontSize: 22,
-                                      ),
+                            InkWell(
+                              onTap: () async {
+                                context.pushNamed(
+                                  'Sessions',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.rightToLeft,
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 150,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFFAF1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 30, 5, 30),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'Sessions',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.rightToLeft,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Text(
+                                      'Sessions',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .title1
+                                          .override(
+                                            fontFamily: 'Playfair Display',
+                                            color: Color(0xFF777373),
+                                            fontSize: 22,
+                                          ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                            Container(
-                              width: 150,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFFFAF1),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 30, 5, 30),
-                                child: Text(
-                                  '[Text]',
-                                  textAlign: TextAlign.center,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title1
-                                      .override(
-                                        fontFamily: 'Playfair Display',
-                                        color: Color(0xFF777373),
-                                        fontSize: 22,
-                                      ),
+                            InkWell(
+                              onTap: () async {
+                                context.pushNamed(
+                                  'Workshops',
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType:
+                                          PageTransitionType.rightToLeft,
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: 150,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFFAF1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 30, 5, 30),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'Workshops',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.rightToLeft,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    child: Text(
+                                      'Workshops',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .title1
+                                          .override(
+                                            fontFamily: 'Playfair Display',
+                                            color: Color(0xFF777373),
+                                            fontSize: 22,
+                                          ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -158,63 +212,119 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: 150,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFFAF1),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 30, 5, 30),
-                              child: Text(
-                                '[Text]',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .title1
-                                    .override(
-                                      fontFamily: 'Playfair Display',
-                                      color: Color(0xFF777373),
-                                      fontSize: 22,
-                                    ),
+                          InkWell(
+                            onTap: () async {
+                              context.pushNamed(
+                                'Events',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFFAF1),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5, 30, 5, 30),
+                                child: InkWell(
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'Events',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.rightToLeft,
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    'Events',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title1
+                                        .override(
+                                          fontFamily: 'Playfair Display',
+                                          color: Color(0xFF777373),
+                                          fontSize: 22,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                          Container(
-                            width: 150,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFFAF1),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(5, 30, 5, 30),
-                              child: Text(
-                                '[Text]',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .title1
-                                    .override(
-                                      fontFamily: 'Playfair Display',
-                                      color: Color(0xFF777373),
-                                      fontSize: 22,
-                                    ),
+                          InkWell(
+                            onTap: () async {
+                              context.pushNamed(
+                                'Teams',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: 150,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFFFFAF1),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0, 2),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5, 30, 5, 30),
+                                child: InkWell(
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'Teams',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.rightToLeft,
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Text(
+                                    'Teams',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title1
+                                        .override(
+                                          fontFamily: 'Playfair Display',
+                                          color: Color(0xFF777373),
+                                          fontSize: 22,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),

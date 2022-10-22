@@ -106,6 +106,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Profile')
                   : ProfileWidget(),
+            ),
+            FFRoute(
+              name: 'Sessions',
+              path: 'sessions',
+              builder: (context, params) => SessionsWidget(),
+            ),
+            FFRoute(
+              name: 'Workshops',
+              path: 'workshops',
+              builder: (context, params) => WorkshopsWidget(),
+            ),
+            FFRoute(
+              name: 'Events',
+              path: 'events',
+              builder: (context, params) => EventsWidget(),
+            ),
+            FFRoute(
+              name: 'Teams',
+              path: 'teams',
+              builder: (context, params) => TeamsWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -14,6 +14,8 @@ class LogInWidget extends StatefulWidget {
 class _LogInWidgetState extends State<LogInWidget> {
   TextEditingController? textController1;
   TextEditingController? textController2;
+
+  late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -21,6 +23,7 @@ class _LogInWidgetState extends State<LogInWidget> {
     super.initState();
     textController1 = TextEditingController();
     textController2 = TextEditingController();
+    passwordVisibility = false;
   }
 
   @override
@@ -150,8 +153,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         ),
                                         style: GoogleFonts.getFont(
                                           'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .lineColor,
+                                          color: Color(0xFFA6A6A6),
                                           fontWeight: FontWeight.normal,
                                         ),
                                       ),
@@ -173,7 +175,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           20, 0, 20, 0),
                                       child: TextFormField(
                                         controller: textController2,
-                                        obscureText: false,
+                                        obscureText: !passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
                                           hintStyle: GoogleFonts.getFont(
@@ -226,11 +228,25 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
+                                          suffixIcon: InkWell(
+                                            onTap: () => setState(
+                                              () => passwordVisibility =
+                                                  !passwordVisibility,
+                                            ),
+                                            focusNode:
+                                                FocusNode(skipTraversal: true),
+                                            child: Icon(
+                                              passwordVisibility
+                                                  ? Icons.visibility_outlined
+                                                  : Icons
+                                                      .visibility_off_outlined,
+                                              size: 16,
+                                            ),
+                                          ),
                                         ),
                                         style: GoogleFonts.getFont(
                                           'Open Sans',
-                                          color: FlutterFlowTheme.of(context)
-                                              .lineColor,
+                                          color: Color(0xFFA6A6A6),
                                           fontWeight: FontWeight.normal,
                                         ),
                                       ),
@@ -265,11 +281,16 @@ class _LogInWidgetState extends State<LogInWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 20),
-                                  child: Text(
-                                    'New user? Sign Up',
-                                    style: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFFA6A6A6),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      context.pushNamed('SignUp');
+                                    },
+                                    child: Text(
+                                      'New user? Sign Up',
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFFA6A6A6),
+                                      ),
                                     ),
                                   ),
                                 ),

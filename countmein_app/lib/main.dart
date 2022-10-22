@@ -116,6 +116,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'MyActivites': MyActivitesWidget(),
+      'Profile': ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
@@ -147,6 +148,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'My Activites',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline_rounded,
+              size: 24,
+            ),
+            label: 'Profile',
             tooltip: '',
           )
         ],

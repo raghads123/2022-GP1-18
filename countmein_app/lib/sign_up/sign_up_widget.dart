@@ -257,8 +257,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .lineColor,
+                                            color: Color(0xFFA6A6A6),
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),
@@ -353,8 +352,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: FlutterFlowTheme.of(context)
-                                                .lineColor,
+                                            color: Color(0xFFA6A6A6),
                                             fontWeight: FontWeight.normal,
                                           ),
                                         ),

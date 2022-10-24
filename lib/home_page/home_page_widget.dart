@@ -29,18 +29,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   Align(
                     alignment: AlignmentDirectional(-0.02, -1.04),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 20),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 50, 20, 10),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 17),
-                            child: Image.asset(
-                              'assets/images/Screen_Shot_2022-10-20_at_1.42.56_AM-removebg-preview.png',
-                              width: 120,
-                              fit: BoxFit.cover,
-                            ),
+                          Image.asset(
+                            'assets/images/9hsjc_2.png',
+                            width: 160,
+                            height: 160,
+                            fit: BoxFit.contain,
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
@@ -69,19 +66,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1, 0),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 15, 0, 25),
-                          child: Text(
-                            'Categories',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context).title2.override(
-                                  fontFamily: 'Poppins',
-                                  color: Color(0xFF4899E1),
-                                ),
-                          ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 200, 44),
+                        child: Text(
+                          'Activities',
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFF1C8EC1),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                         ),
                       ),
                       Padding(
@@ -93,7 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             InkWell(
                               onTap: () async {
                                 context.pushNamed(
-                                  'Sessions',
+                                  'Courses',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -123,7 +119,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       context.pushNamed(
-                                        'Sessions',
+                                        'Courses',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -134,14 +130,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       );
                                     },
                                     child: Text(
-                                      'cours',
+                                      'Courses',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .title1
                                           .override(
                                             fontFamily: 'Playfair Display',
                                             color: Color(0xFF777373),
-                                            fontSize: 22,
+                                            fontSize: 19,
                                           ),
                                     ),
                                   ),
@@ -151,7 +147,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             InkWell(
                               onTap: () async {
                                 context.pushNamed(
-                                  'Workshops',
+                                  'Courses',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -199,7 +195,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           .override(
                                             fontFamily: 'Playfair Display',
                                             color: Color(0xFF777373),
-                                            fontSize: 22,
+                                            fontSize: 19,
                                           ),
                                     ),
                                   ),
@@ -216,7 +212,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           InkWell(
                             onTap: () async {
                               context.pushNamed(
-                                'Events',
+                                'Courses',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,
@@ -264,7 +260,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         .override(
                                           fontFamily: 'Playfair Display',
                                           color: Color(0xFF777373),
-                                          fontSize: 22,
+                                          fontSize: 19,
                                         ),
                                   ),
                                 ),
@@ -315,14 +311,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     );
                                   },
                                   child: Text(
-                                    'Oppotunities',
+                                    'Opportunities',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .title1
                                         .override(
                                           fontFamily: 'Playfair Display',
                                           color: Color(0xFF777373),
-                                          fontSize: 22,
+                                          fontSize: 19,
                                         ),
                                   ),
                                 ),

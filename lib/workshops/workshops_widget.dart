@@ -5,14 +5,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EventsWidget extends StatefulWidget {
-  const EventsWidget({Key? key}) : super(key: key);
+class WorkshopsWidget extends StatefulWidget {
+  const WorkshopsWidget({Key? key}) : super(key: key);
 
   @override
-  _EventsWidgetState createState() => _EventsWidgetState();
+  _WorkshopsWidgetState createState() => _WorkshopsWidgetState();
 }
 
-class _EventsWidgetState extends State<EventsWidget> {
+class _WorkshopsWidgetState extends State<WorkshopsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -35,13 +35,13 @@ class _EventsWidgetState extends State<EventsWidget> {
             ),
           );
         }
-        List<SessionsRecord> eventsSessionsRecordList = snapshot.data!;
+        List<SessionsRecord> workshopsSessionsRecordList = snapshot.data!;
         // Return an empty Container when the document does not exist.
         if (snapshot.data!.isEmpty) {
           return Container();
         }
-        final eventsSessionsRecord = eventsSessionsRecordList.isNotEmpty
-            ? eventsSessionsRecordList.first
+        final workshopsSessionsRecord = workshopsSessionsRecordList.isNotEmpty
+            ? workshopsSessionsRecordList.first
             : null;
         return Scaffold(
           key: scaffoldKey,
@@ -64,7 +64,7 @@ class _EventsWidgetState extends State<EventsWidget> {
               },
             ),
             title: Text(
-              'Events',
+              'Courses',
               style: FlutterFlowTheme.of(context).title2.override(
                     fontFamily: 'Poppins',
                     color: Color(0xFF777373),

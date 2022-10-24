@@ -65,8 +65,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                              child: Image.network(
-                                eventInfoEventsRecord!.eventsPhoto!,
+                              child: Image.asset(
+                                'assets/images/9hsjc_2.png',
                                 width: double.infinity,
                                 height: 300,
                                 fit: BoxFit.cover,
@@ -109,8 +109,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                         4, 4, 4, 4),
                                     child: Icon(
                                       Icons.arrow_back_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .tertiaryColor,
+                                      color: Color(0xFFFF5757),
                                       size: 24,
                                     ),
                                   ),
@@ -283,13 +282,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             options: FFButtonOptions(
                               width: 270,
                               height: 50,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
+                              color: Color(0x9DBDEEFD),
+                              textStyle: FlutterFlowTheme.of(context).subtitle1,
                               elevation: 2,
                               borderSide: BorderSide(
                                 color: Colors.transparent,

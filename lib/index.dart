@@ -6,8 +6,7 @@ export 'my_activites/my_activites_widget.dart' show MyActivitesWidget;
 export 'profile/profile_widget.dart' show ProfileWidget;
 export 'sessions/sessions_widget.dart' show SessionsWidget;
 export 'opportunities/opportunities_widget.dart' show OpportunitiesWidget;
-export 'sessioninfo/sessioninfo_widget.dart' show SessioninfoWidget;
 export 'events/events_widget.dart' show EventsWidget;
-export 'workshops/workshops_widget.dart' show WorkshopsWidget;
 export 'event_info/event_info_widget.dart' show EventInfoWidget;
-export 'workshops2/workshops2_widget.dart' show Workshops2Widget;
+export 'extracurricular_activities/extracurricular_activities_widget.dart'
+    show ExtracurricularActivitiesWidget;

@@ -123,27 +123,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => OpportunitiesWidget(),
             ),
             FFRoute(
-              name: 'sessioninfo',
-              path: 'sessioninfo',
-              requireAuth: true,
-              asyncParams: {
-                'sessionInfo': getDoc('sessions', SessionsRecord.serializer),
-              },
-              builder: (context, params) => SessioninfoWidget(
-                sessionInfo: params.getParam('sessionInfo', ParamType.Document),
-              ),
-            ),
-            FFRoute(
               name: 'Events',
               path: 'events',
               requireAuth: true,
               builder: (context, params) => EventsWidget(),
-            ),
-            FFRoute(
-              name: 'Workshops',
-              path: 'workshops',
-              requireAuth: true,
-              builder: (context, params) => WorkshopsWidget(),
             ),
             FFRoute(
               name: 'event_info',
@@ -157,10 +140,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'workshops2',
-              path: 'workshops2',
+              name: 'extracurricular_activities',
+              path: 'extracurricularActivities',
               requireAuth: true,
-              builder: (context, params) => Workshops2Widget(),
+              builder: (context, params) => ExtracurricularActivitiesWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

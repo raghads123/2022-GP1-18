@@ -95,6 +95,41 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
+              name: 'Courses',
+              path: 'courses',
+              requireAuth: true,
+              builder: (context, params) => CoursesWidget(),
+            ),
+            FFRoute(
+              name: 'Workshops',
+              path: 'workshops',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsWidget(),
+            ),
+            FFRoute(
+              name: 'Events',
+              path: 'events',
+              requireAuth: true,
+              builder: (context, params) => EventsWidget(),
+            ),
+            FFRoute(
+              name: 'Opportunities',
+              path: 'opportunities',
+              requireAuth: true,
+              builder: (context, params) => OpportunitiesWidget(),
+            ),
+            FFRoute(
+              name: 'event_info',
+              path: 'eventInfo',
+              requireAuth: true,
+              asyncParams: {
+                'eventInfo': getDoc('events', EventsRecord.serializer),
+              },
+              builder: (context, params) => EventInfoWidget(
+                eventInfo: params.getParam('eventInfo', ParamType.Document),
+              ),
+            ),
+            FFRoute(
               name: 'MyActivites',
               path: 'myActivites',
               requireAuth: true,
@@ -109,41 +144,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Profile')
                   : ProfileWidget(),
-            ),
-            FFRoute(
-              name: 'Sessions',
-              path: 'sessions',
-              requireAuth: true,
-              builder: (context, params) => SessionsWidget(),
-            ),
-            FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
-              requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
-            ),
-            FFRoute(
-              name: 'Events',
-              path: 'events',
-              requireAuth: true,
-              builder: (context, params) => EventsWidget(),
-            ),
-            FFRoute(
-              name: 'event_info',
-              path: 'eventInfo',
-              requireAuth: true,
-              asyncParams: {
-                'eventInfo': getDoc('events', EventsRecord.serializer),
-              },
-              builder: (context, params) => EventInfoWidget(
-                eventInfo: params.getParam('eventInfo', ParamType.Document),
-              ),
-            ),
-            FFRoute(
-              name: 'extracurricular_activities',
-              path: 'extracurricularActivities',
-              requireAuth: true,
-              builder: (context, params) => ExtracurricularActivitiesWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

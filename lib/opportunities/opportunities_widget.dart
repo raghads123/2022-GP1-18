@@ -28,17 +28,18 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
+          borderColor: FlutterFlowTheme.of(context).primaryBtnText,
           borderRadius: 30,
           borderWidth: 1,
           buttonSize: 60,
+          fillColor: FlutterFlowTheme.of(context).primaryBtnText,
           icon: Icon(
-            Icons.arrow_back,
+            Icons.chevron_left,
             color: Color(0xFF777373),
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            context.pop();
           },
         ),
         title: Text(
@@ -92,6 +93,9 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                           )
                         ],
                         borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Color(0xFFFF5757),
+                        ),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,

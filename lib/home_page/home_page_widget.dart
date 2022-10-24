@@ -93,7 +93,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             InkWell(
                               onTap: () async {
                                 context.pushNamed(
-                                  'extracurricular_activities',
+                                  'Sessions',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -134,7 +134,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       );
                                     },
                                     child: Text(
-                                      'courses',
+                                      'cours',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .title1
@@ -151,7 +151,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             InkWell(
                               onTap: () async {
                                 context.pushNamed(
-                                  'extracurricular_activities',
+                                  'Workshops',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -181,7 +181,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   child: InkWell(
                                     onTap: () async {
                                       context.pushNamed(
-                                        'extracurricular_activities',
+                                        'Workshops',
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -216,7 +216,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           InkWell(
                             onTap: () async {
                               context.pushNamed(
-                                'extracurricular_activities',
+                                'Events',
                                 extra: <String, dynamic>{
                                   kTransitionInfoKey: TransitionInfo(
                                     hasTransition: true,

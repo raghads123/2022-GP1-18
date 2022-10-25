@@ -131,7 +131,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   style: FlutterFlowTheme.of(context).title2,
                                 ),
                               ),
-                              if (eventInfoEventsRecord!.available == true)
+                              if (eventInfoEventsRecord.available == true)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       150, 0, 0, 0),
@@ -197,7 +197,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  eventInfoEventsRecord!.startDate!.toString(),
+                                  eventInfoEventsRecord.startDate!.toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -222,7 +222,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  eventInfoEventsRecord!.place!,
+                                  eventInfoEventsRecord.place!,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -262,7 +262,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    eventInfoEventsRecord!.eventDes!,
+                                    eventInfoEventsRecord.eventDes!,
                                     textAlign: TextAlign.start,
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,

@@ -8,6 +8,7 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(EventsRecord.serializer)
+      ..add(ExtraActRecord.serializer)
       ..add(OppRecord.serializer)
       ..add(SessionsRecord.serializer)
       ..add(UsersRecord.serializer)

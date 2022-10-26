@@ -127,14 +127,14 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Colors.white,
         selectedItemColor: Color(0xFF1C8EC1),
         unselectedItemColor: Color(0x8A000000),
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
-              size: 30,
+              size: 24,
             ),
             label: 'Home',
             tooltip: '',

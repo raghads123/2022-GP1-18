@@ -77,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
           routes: [
             FFRoute(
-              name: 'LogIn',
-              path: 'logIn',
-              builder: (context, params) => LogInWidget(),
-            ),
-            FFRoute(
               name: 'SignUp',
               path: 'signUp',
               builder: (context, params) => SignUpWidget(),
+            ),
+            FFRoute(
+              name: 'LogIn',
+              path: 'logIn',
+              builder: (context, params) => LogInWidget(),
             ),
             FFRoute(
               name: 'HomePage',
@@ -126,12 +126,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'extracurricularactivities',
               path: 'extracurricularactivities',
               requireAuth: true,
-              asyncParams: {
-                'actType': getDoc('extra_act', ExtraActRecord.serializer),
-              },
-              builder: (context, params) => ExtracurricularactivitiesWidget(
-                actType: params.getParam('actType', ParamType.Document),
-              ),
+              builder: (context, params) => ExtracurricularactivitiesWidget(),
             ),
             FFRoute(
               name: 'settingPreferences',

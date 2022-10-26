@@ -1,3 +1,18 @@
 {
-  "indexes": []
+  "indexes": [
+    {
+      "collectionGroup": "extra_act",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Act_type",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Sdate",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
 }

@@ -77,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
           routes: [
             FFRoute(
-              name: 'SignUp',
-              path: 'signUp',
-              builder: (context, params) => SignUpWidget(),
-            ),
-            FFRoute(
               name: 'LogIn',
               path: 'logIn',
               builder: (context, params) => LogInWidget(),
+            ),
+            FFRoute(
+              name: 'SignUp',
+              path: 'signUp',
+              builder: (context, params) => SignUpWidget(),
             ),
             FFRoute(
               name: 'HomePage',
@@ -95,39 +95,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
-              name: 'Courses',
-              path: 'courses',
+              name: 'event_info',
+              path: 'eventInfo',
               requireAuth: true,
-              builder: (context, params) => CoursesWidget(),
-            ),
-            FFRoute(
-              name: 'Workshops',
-              path: 'workshops',
-              requireAuth: true,
-              builder: (context, params) => WorkshopsWidget(),
-            ),
-            FFRoute(
-              name: 'Events',
-              path: 'events',
-              requireAuth: true,
-              builder: (context, params) => EventsWidget(),
+              builder: (context, params) => EventInfoWidget(),
             ),
             FFRoute(
               name: 'Opportunities',
               path: 'opportunities',
               requireAuth: true,
               builder: (context, params) => OpportunitiesWidget(),
-            ),
-            FFRoute(
-              name: 'event_info',
-              path: 'eventInfo',
-              requireAuth: true,
-              asyncParams: {
-                'eventInfo': getDoc('events', EventsRecord.serializer),
-              },
-              builder: (context, params) => EventInfoWidget(
-                eventInfo: params.getParam('eventInfo', ParamType.Document),
-              ),
             ),
             FFRoute(
               name: 'MyActivites',
@@ -144,6 +121,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Profile')
                   : ProfileWidget(),
+            ),
+            FFRoute(
+              name: 'extracurricularactivities',
+              path: 'extracurricularactivities',
+              requireAuth: true,
+              asyncParams: {
+                'actType': getDoc('extra_act', ExtraActRecord.serializer),
+              },
+              builder: (context, params) => ExtracurricularactivitiesWidget(
+                actType: params.getParam('actType', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'settingPreferences',
+              path: 'settingPreferences',
+              requireAuth: true,
+              builder: (context, params) => SettingPreferencesWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -1,3 +1,4 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -86,107 +87,134 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            InkWell(
-                              onTap: () async {
-                                context.pushNamed(
-                                  'Courses',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType:
-                                          PageTransitionType.rightToLeft,
+                            StreamBuilder<List<ExtraActRecord>>(
+                              stream: queryExtraActRecord(
+                                queryBuilder: (extraActRecord) =>
+                                    extraActRecord.orderBy('Sdate'),
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
                                     ),
+                                  );
+                                }
+                                List<ExtraActRecord>
+                                    containerExtraActRecordList =
+                                    snapshot.data!;
+                                // Return an empty Container when the document does not exist.
+                                if (snapshot.data!.isEmpty) {
+                                  return Container();
+                                }
+                                final containerExtraActRecord =
+                                    containerExtraActRecordList.isNotEmpty
+                                        ? containerExtraActRecordList.first
+                                        : null;
+                                return InkWell(
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'extracurricularactivities',
+                                      queryParams: {
+                                        'actType': serializeParam(
+                                          containerExtraActRecord,
+                                          ParamType.Document,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'actType': containerExtraActRecord,
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                              child: Container(
-                                width: 150,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFFFAF1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x33000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 30, 5, 30),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      context.pushNamed(
+                                  child: Container(
+                                    width: 150,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFFFFAF1),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 4,
+                                          color: Color(0x33000000),
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 30, 5, 30),
+                                      child: Text(
                                         'Courses',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.rightToLeft,
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    child: Text(
-                                      'Courses',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .title1
-                                          .override(
-                                            fontFamily: 'Playfair Display',
-                                            color: Color(0xFF777373),
-                                            fontSize: 19,
-                                          ),
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .title1
+                                            .override(
+                                              fontFamily: 'Playfair Display',
+                                              color: Color(0xFF777373),
+                                              fontSize: 19,
+                                            ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                context.pushNamed(
-                                  'Courses',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType:
-                                          PageTransitionType.rightToLeft,
-                                    ),
-                                  },
                                 );
                               },
-                              child: Container(
-                                width: 150,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFFFAF1),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x33000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 30, 5, 30),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'Workshops',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.rightToLeft,
-                                          ),
-                                        },
-                                      );
-                                    },
+                            ),
+                            StreamBuilder<List<ExtraActRecord>>(
+                              stream: queryExtraActRecord(
+                                queryBuilder: (extraActRecord) => extraActRecord
+                                    .where('Act_type', isEqualTo: 'workshope')
+                                    .orderBy('Sdate'),
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ExtraActRecord>
+                                    containerExtraActRecordList =
+                                    snapshot.data!;
+                                // Return an empty Container when the document does not exist.
+                                if (snapshot.data!.isEmpty) {
+                                  return Container();
+                                }
+                                final containerExtraActRecord =
+                                    containerExtraActRecordList.isNotEmpty
+                                        ? containerExtraActRecordList.first
+                                        : null;
+                                return Container(
+                                  width: 150,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFFFFAF1),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5, 30, 5, 30),
                                     child: Text(
                                       'Workshops',
                                       textAlign: TextAlign.center,
@@ -199,8 +227,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                );
+                              },
                             ),
                           ],
                         ),
@@ -209,49 +237,54 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          InkWell(
-                            onTap: () async {
-                              context.pushNamed(
-                                'Courses',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType:
-                                        PageTransitionType.rightToLeft,
+                          StreamBuilder<List<ExtraActRecord>>(
+                            stream: queryExtraActRecord(
+                              queryBuilder: (extraActRecord) => extraActRecord
+                                  .where('Act_type', isEqualTo: 'event')
+                                  .orderBy('Sdate'),
+                              singleRecord: true,
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: CircularProgressIndicator(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
                                   ),
-                                },
-                              );
-                            },
-                            child: Container(
-                              width: 150,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFFFAF1),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 30, 5, 30),
-                                child: InkWell(
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'Events',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.rightToLeft,
-                                        ),
-                                      },
-                                    );
-                                  },
+                                );
+                              }
+                              List<ExtraActRecord> containerExtraActRecordList =
+                                  snapshot.data!;
+                              // Return an empty Container when the document does not exist.
+                              if (snapshot.data!.isEmpty) {
+                                return Container();
+                              }
+                              final containerExtraActRecord =
+                                  containerExtraActRecordList.isNotEmpty
+                                      ? containerExtraActRecordList.first
+                                      : null;
+                              return Container(
+                                width: 150,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFFAF1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 30, 5, 30),
                                   child: Text(
                                     'Events',
                                     textAlign: TextAlign.center,
@@ -264,64 +297,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              context.pushNamed(
-                                'Opportunities',
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType:
-                                        PageTransitionType.rightToLeft,
-                                  ),
-                                },
                               );
                             },
-                            child: Container(
-                              width: 150,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFFFFAF1),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5, 30, 5, 30),
-                                child: InkWell(
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'Opportunities',
-                                      extra: <String, dynamic>{
-                                        kTransitionInfoKey: TransitionInfo(
-                                          hasTransition: true,
-                                          transitionType:
-                                              PageTransitionType.rightToLeft,
-                                        ),
-                                      },
-                                    );
-                                  },
-                                  child: Text(
-                                    'Opportunities',
-                                    textAlign: TextAlign.center,
-                                    style: FlutterFlowTheme.of(context)
-                                        .title1
-                                        .override(
-                                          fontFamily: 'Playfair Display',
-                                          color: Color(0xFF777373),
-                                          fontSize: 19,
-                                        ),
-                                  ),
-                                ),
+                          ),
+                          Container(
+                            width: 150,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFAF1),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 4,
+                                  color: Color(0x33000000),
+                                  offset: Offset(0, 2),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(5, 30, 5, 30),
+                              child: Text(
+                                'Opportunities',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .title1
+                                    .override(
+                                      fontFamily: 'Playfair Display',
+                                      color: Color(0xFF777373),
+                                      fontSize: 19,
+                                    ),
                               ),
                             ),
                           ),

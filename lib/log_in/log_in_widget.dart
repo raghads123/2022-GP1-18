@@ -290,22 +290,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 20),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      context.pushNamed('SignUp');
-                                    },
-                                    child: Text(
-                                      'New user? Sign Up',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFFA6A6A6),
-                                      ),
-                                    ),
-                                  ),
-                                ),
                                 InkWell(
                                   onTap: () async {
                                     if (emailController!.text.isEmpty) {
@@ -332,19 +316,45 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     ),
                                   ),
                                 ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 20),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      context.pushNamed('SignUp');
+                                    },
+                                    child: Text(
+                                      'New user? Sign Up',
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFFA6A6A6),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                              child: InkWell(
-                                onTap: () async {
-                                  context.pushNamed('HomePage');
-                                },
-                                child: Text(
-                                  'Homepage',
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                            FFButtonWidget(
+                              onPressed: () async {
+                                context.pushNamed('extracurricularactivities');
+                              },
+                              text: 'Button',
+                              options: FFButtonOptions(
+                                width: 130,
+                                height: 40,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
                                 ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                             ),
                           ],

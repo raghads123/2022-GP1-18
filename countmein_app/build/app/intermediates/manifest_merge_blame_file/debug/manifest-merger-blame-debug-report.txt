@@ -1,0 +1,313 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mycompany.countmein"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="31" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:4:4-65
+14-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:4:21-63
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:24:5-79
+15-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:24:22-76
+16
+17    <application
+17-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:7:4-61:19
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.6.0] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/ffa170e1659e3ee0300d2d5a1cf02a72/core-1.6.0/AndroidManifest.xml:24:18-86
+19        android:debuggable="true"
+20        android:icon="@mipmap/ic_launcher"
+20-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:10:9-43
+21        android:label="Count Me In"
+21-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:8:9-36
+22        android:requestLegacyExternalStorage="true" >
+22-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:11:9-52
+23        <activity
+23-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:13:9-51:20
+24            android:name="com.mycompany.countmein.MainActivity"
+24-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:14:13-41
+25            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+25-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:18:13-163
+26            android:exported="true"
+26-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:15:13-36
+27            android:hardwareAccelerated="true"
+27-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:19:13-47
+28            android:launchMode="singleTop"
+28-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:16:13-43
+29            android:theme="@style/LaunchTheme"
+29-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:17:13-47
+30            android:windowSoftInputMode="adjustResize" >
+30-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:20:13-55
+31
+32            <!--
+33                 Specifies an Android theme to apply to this Activity as soon as
+34                 the Android process has started. This theme is visible to the user
+35                 while the Flutter UI initializes. After that, this theme continues
+36                 to determine the Window background behind the Flutter UI.
+37            -->
+38            <meta-data
+38-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:25:13-28:17
+39                android:name="io.flutter.embedding.android.NormalTheme"
+39-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:26:15-70
+40                android:resource="@style/NormalTheme" />
+40-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:27:15-52
+41            <!--
+42                 Displays an Android View that continues showing the launch screen
+43                 Drawable until Flutter paints its first frame, then this splash
+44                 screen fades out. A splash screen is useful to avoid any visual
+45                 gap between the end of Android's launch screen and the painting of
+46                 Flutter's first frame.
+47            -->
+48            <meta-data
+48-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:34:13-37:17
+49                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+49-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:35:15-79
+50                android:resource="@drawable/launch_background" />
+50-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:36:15-61
+51
+52            <intent-filter>
+52-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:38:13-41:29
+53                <action android:name="android.intent.action.MAIN" />
+53-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:39:17-68
+53-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:39:25-66
+54
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:40:17-76
+55-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:40:27-74
+56            </intent-filter>
+57            <!-- Deep linking -->
+58            <meta-data
+58-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:43:13-90
+59                android:name="flutter_deeplinking_enabled"
+59-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:43:24-66
+60                android:value="true" />
+60-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:43:67-87
+61
+62            <intent-filter android:autoVerify="true" >
+62-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:44:13-49:29
+62-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:44:28-53
+63                <action android:name="android.intent.action.VIEW" />
+63-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:17-69
+63-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:25-66
+64
+65                <category android:name="android.intent.category.DEFAULT" />
+65-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:17-76
+65-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:27-73
+66                <category android:name="android.intent.category.BROWSABLE" />
+66-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:17-78
+66-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:27-75
+67
+68                <data
+68-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:17-81
+69                    android:host="countmein.com"
+69-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:50-78
+70                    android:scheme="countmein" />
+70-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:23-49
+71            </intent-filter>
+72        </activity>
+73
+74        <!--
+75             Don't delete the meta-data below.
+76             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+77        -->
+78        <meta-data
+78-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:55:9-57:33
+79            android:name="flutterEmbedding"
+79-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:56:13-44
+80            android:value="2" />
+80-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:57:13-30
+81
+82        <service
+82-->[:firebase_auth] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-12:19
+83            android:name="com.google.firebase.components.ComponentDiscoveryService"
+83-->[:firebase_auth] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:8:18-89
+84            android:directBootAware="true"
+84-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:35:13-43
+85            android:exported="false" >
+85-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:66:13-37
+86            <meta-data
+86-->[:firebase_auth] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+87                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+87-->[:firebase_auth] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+88                android:value="com.google.firebase.components.ComponentRegistrar" />
+88-->[:firebase_auth] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+89            <meta-data
+89-->[:cloud_firestore] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+90                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+90-->[:cloud_firestore] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-134
+91                android:value="com.google.firebase.components.ComponentRegistrar" />
+91-->[:cloud_firestore] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+92            <meta-data
+92-->[:firebase_core] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+93                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+93-->[:firebase_core] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+94                android:value="com.google.firebase.components.ComponentRegistrar" />
+94-->[:firebase_core] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+95            <meta-data
+95-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:67:13-69:85
+96                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+96-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:68:17-109
+97                android:value="com.google.firebase.components.ComponentRegistrar" />
+97-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:69:17-82
+98            <meta-data
+98-->[com.google.firebase:firebase-firestore:24.1.2] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/4fb5ec458a2dae72d94721609f0f29b0/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:20:13-22:85
+99                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+99-->[com.google.firebase:firebase-firestore:24.1.2] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/4fb5ec458a2dae72d94721609f0f29b0/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:21:17-111
+100                android:value="com.google.firebase.components.ComponentRegistrar" />
+100-->[com.google.firebase:firebase-firestore:24.1.2] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/4fb5ec458a2dae72d94721609f0f29b0/jetified-firebase-firestore-24.1.2/AndroidManifest.xml:22:17-82
+101        </service>
+102
+103        <activity
+103-->[:url_launcher_android] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+104            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+104-->[:url_launcher_android] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+105            android:exported="false"
+105-->[:url_launcher_android] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+106            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+106-->[:url_launcher_android] /Users/raghadalshamrani/Desktop/Graduation project/countmein_app/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+107
+108        <uses-library
+108-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+109            android:name="androidx.window.extensions"
+109-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+110            android:required="false" />
+110-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+111        <uses-library
+111-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+112            android:name="androidx.window.sidecar"
+112-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+113            android:required="false" />
+113-->[androidx.window:window:1.0.0-beta04] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/00195e664c043ec1c6cae52921304b8c/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+114
+115        <activity
+115-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:27:9-44:20
+116            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+116-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:28:13-80
+117            android:excludeFromRecents="true"
+117-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:29:13-46
+118            android:exported="true"
+118-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:30:13-36
+119            android:launchMode="singleTask"
+119-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:31:13-44
+120            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+120-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:32:13-72
+121            <intent-filter>
+121-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:33:13-43:29
+122                <action android:name="android.intent.action.VIEW" />
+122-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:17-69
+122-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:25-66
+123
+124                <category android:name="android.intent.category.DEFAULT" />
+124-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:17-76
+124-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:27-73
+125                <category android:name="android.intent.category.BROWSABLE" />
+125-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:17-78
+125-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:27-75
+126
+127                <data
+127-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:17-81
+128                    android:host="firebase.auth"
+128-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:50-78
+129                    android:path="/"
+130                    android:scheme="genericidp" />
+130-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:23-49
+131            </intent-filter>
+132        </activity>
+133        <activity
+133-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:45:9-62:20
+134            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+134-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:46:13-79
+135            android:excludeFromRecents="true"
+135-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:47:13-46
+136            android:exported="true"
+136-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:48:13-36
+137            android:launchMode="singleTask"
+137-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:49:13-44
+138            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+138-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:50:13-72
+139            <intent-filter>
+139-->[com.google.firebase:firebase-auth:21.0.5] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/f46146a770eac87b43c22f9e8df4bfa0/jetified-firebase-auth-21.0.5/AndroidManifest.xml:51:13-61:29
+140                <action android:name="android.intent.action.VIEW" />
+140-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:17-69
+140-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:45:25-66
+141
+142                <category android:name="android.intent.category.DEFAULT" />
+142-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:17-76
+142-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:46:27-73
+143                <category android:name="android.intent.category.BROWSABLE" />
+143-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:17-78
+143-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:47:27-75
+144
+145                <data
+145-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:17-81
+146                    android:host="firebase.auth"
+146-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:50-78
+147                    android:path="/"
+148                    android:scheme="recaptcha" />
+148-->/Users/raghadalshamrani/Desktop/Graduation project/countmein_app/android/app/src/main/AndroidManifest.xml:48:23-49
+149            </intent-filter>
+150        </activity>
+151
+152        <provider
+152-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:26:9-31:39
+153            android:name="com.google.firebase.provider.FirebaseInitProvider"
+153-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:27:13-77
+154            android:authorities="com.mycompany.countmein.firebaseinitprovider"
+154-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:28:13-72
+155            android:directBootAware="true"
+155-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:29:13-43
+156            android:exported="false"
+156-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:30:13-37
+157            android:initOrder="100" />
+157-->[com.google.firebase:firebase-common:20.1.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/fe6fb754da60a9ef2e2d611d00a222a9/jetified-firebase-common-20.1.1/AndroidManifest.xml:31:13-36
+158
+159        <activity
+159-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:23:9-27:75
+160            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+160-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:24:13-93
+161            android:excludeFromRecents="true"
+161-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:25:13-46
+162            android:exported="false"
+162-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:26:13-37
+163            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+163-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:27:13-72
+164        <!--
+165            Service handling Google Sign-In user revocation. For apps that do not integrate with
+166            Google Sign-In, this service will never be started.
+167        -->
+168        <service
+168-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:33:9-37:51
+169            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+169-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:34:13-89
+170            android:exported="true"
+170-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:35:13-36
+171            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+171-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:36:13-107
+172            android:visibleToInstantApps="true" />
+172-->[com.google.android.gms:play-services-auth:20.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/700cec0b5698c0e7437342291093c027/jetified-play-services-auth-20.0.1/AndroidManifest.xml:37:13-48
+173
+174        <activity
+174-->[com.google.android.gms:play-services-base:18.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/7ba56569a9efbc0fa9acacc5890907b8/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+175            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+175-->[com.google.android.gms:play-services-base:18.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/7ba56569a9efbc0fa9acacc5890907b8/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+176            android:exported="false"
+176-->[com.google.android.gms:play-services-base:18.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/7ba56569a9efbc0fa9acacc5890907b8/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+177            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+177-->[com.google.android.gms:play-services-base:18.0.1] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/7ba56569a9efbc0fa9acacc5890907b8/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+178
+179        <meta-data
+179-->[com.google.android.gms:play-services-basement:18.0.0] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/e41f70889c49c6a9c8f9330d7d80c5da/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+180            android:name="com.google.android.gms.version"
+180-->[com.google.android.gms:play-services-basement:18.0.0] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/e41f70889c49c6a9c8f9330d7d80c5da/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+181            android:value="@integer/google_play_services_version" />
+181-->[com.google.android.gms:play-services-basement:18.0.0] /Users/raghadalshamrani/.gradle/caches/transforms-2/files-2.1/e41f70889c49c6a9c8f9330d7d80c5da/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+182    </application>
+183
+184</manifest>

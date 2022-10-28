@@ -14,16 +14,22 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'display_name')
   String? get displayName;
 
-  @BuiltValueField(wireName: 'photo_url')
-  String? get photoUrl;
-
   String? get uid;
 
   @BuiltValueField(wireName: 'created_time')
   DateTime? get createdTime;
 
+  int? get level;
+
+  String? get college;
+
+  @BuiltValueField(wireName: 'photo_url')
+  String? get photoUrl;
+
   @BuiltValueField(wireName: 'phone_number')
   String? get phoneNumber;
+
+  String? get intrests;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -32,9 +38,12 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
     ..displayName = ''
-    ..photoUrl = ''
     ..uid = ''
-    ..phoneNumber = '';
+    ..level = 0
+    ..college = ''
+    ..photoUrl = ''
+    ..phoneNumber = ''
+    ..intrests = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -60,10 +69,13 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 Map<String, dynamic> createUsersRecordData({
   String? email,
   String? displayName,
-  String? photoUrl,
   String? uid,
   DateTime? createdTime,
+  int? level,
+  String? college,
+  String? photoUrl,
   String? phoneNumber,
+  String? intrests,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -71,10 +83,13 @@ Map<String, dynamic> createUsersRecordData({
       (u) => u
         ..email = email
         ..displayName = displayName
-        ..photoUrl = photoUrl
         ..uid = uid
         ..createdTime = createdTime
-        ..phoneNumber = phoneNumber,
+        ..level = level
+        ..college = college
+        ..photoUrl = photoUrl
+        ..phoneNumber = phoneNumber
+        ..intrests = intrests,
     ),
   );
 

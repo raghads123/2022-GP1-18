@@ -6,54 +6,56 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EventInfoWidget extends StatefulWidget {
-  const EventInfoWidget({
+class CourseInfoWidget extends StatefulWidget {
+  const CourseInfoWidget({
     Key? key,
-    this.eventid,
+    this.courseid,
   }) : super(key: key);
 
-  final String? eventid;
+  final String? courseid;
 
   @override
-  _EventInfoWidgetState createState() => _EventInfoWidgetState();
+  _CourseInfoWidgetState createState() => _CourseInfoWidgetState();
 }
 
-class _EventInfoWidgetState extends State<EventInfoWidget> {
+class _CourseInfoWidgetState extends State<CourseInfoWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ExtraActsRecord>>(
-      stream: queryExtraActsRecord(
-        queryBuilder: (extraActsRecord) =>
-            extraActsRecord.where('Act_name', isEqualTo: widget.eventid),
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      body: StreamBuilder<List<ExtraActsRecord>>(
+        stream: queryExtraActsRecord(
+          queryBuilder: (extraActsRecord) =>
+              extraActsRecord.where('Act_name', isEqualTo: widget.courseid),
+          singleRecord: true,
+        ),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                ),
               ),
-            ),
-          );
-        }
-        List<ExtraActsRecord> eventInfoExtraActsRecordList = snapshot.data!;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
-        final eventInfoExtraActsRecord = eventInfoExtraActsRecordList.isNotEmpty
-            ? eventInfoExtraActsRecordList.first
-            : null;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          body: SingleChildScrollView(
+            );
+          }
+          List<ExtraActsRecord> scrollingContainerExtraActsRecordList =
+              snapshot.data!;
+          // Return an empty Container when the document does not exist.
+          if (snapshot.data!.isEmpty) {
+            return Container();
+          }
+          final scrollingContainerExtraActsRecord =
+              scrollingContainerExtraActsRecordList.isNotEmpty
+                  ? scrollingContainerExtraActsRecordList.first
+                  : null;
+          return SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -69,7 +71,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                               child: Image.network(
-                                eventInfoExtraActsRecord!.actPic!,
+                                scrollingContainerExtraActsRecord!.actPic!,
                                 width: double.infinity,
                                 height: 300,
                                 fit: BoxFit.cover,
@@ -130,7 +132,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
-                                  eventInfoExtraActsRecord!.actName!,
+                                  scrollingContainerExtraActsRecord!.actName!,
                                   style: FlutterFlowTheme.of(context).title2,
                                 ),
                               ),
@@ -156,67 +158,65 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             ],
                           ),
                         ),
-                        Align(
-                          alignment: AlignmentDirectional(5.26, 1.1),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.schedule,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 20,
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                                child: Icon(
+                                  Icons.schedule,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 20,
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
-                                  child: Text(
-                                    dateTimeFormat('d/M H:mm',
-                                        eventInfoExtraActsRecord!.sdate!),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                child: Text(
+                                  dateTimeFormat(
+                                      'd/M h:mm a',
+                                      scrollingContainerExtraActsRecord!
+                                          .sdate!),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.location_on_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 20,
-                                  ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
+                                child: Icon(
+                                  Icons.location_on_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  size: 20,
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
-                                  child: Text(
-                                    eventInfoExtraActsRecord!.actLoc!,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                child: Text(
+                                  scrollingContainerExtraActsRecord!.actLoc!,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
@@ -238,8 +238,10 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  dateTimeFormat('d/M H:mm',
-                                      eventInfoExtraActsRecord!.edate!),
+                                  dateTimeFormat(
+                                      'd/M H:mm',
+                                      scrollingContainerExtraActsRecord!
+                                          .edate!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -264,7 +266,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  eventInfoExtraActsRecord!.numSeats!
+                                  scrollingContainerExtraActsRecord!.numSeats!
                                       .toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -288,7 +290,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Event Details',
+                                  'course Details',
                                   style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ),
@@ -305,7 +307,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    eventInfoExtraActsRecord!.actDec!,
+                                    scrollingContainerExtraActsRecord!.actDec!,
                                     textAlign: TextAlign.start,
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
@@ -341,9 +343,9 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                 ),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

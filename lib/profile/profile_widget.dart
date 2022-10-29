@@ -1,3 +1,4 @@
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -12,6 +13,7 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
+  String? dropDownValue;
   TextEditingController? textController1;
   TextEditingController? textController2;
   bool? switchListTileValue;
@@ -94,24 +96,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional(0, 0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: Container(
-                          width: 70,
-                          height: 70,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            'assets/images/albfo_3.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                       child: FFButtonWidget(
@@ -258,6 +242,30 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ],
                       ),
+                    ),
+                    FlutterFlowDropDown(
+                      options: [
+                        'College of Computer and Information Sciences',
+                        'College of Business Administration',
+                        'College of Medicine',
+                        'College of Law and Political Sciences'
+                      ],
+                      onChanged: (val) => setState(() => dropDownValue = val),
+                      width: 180,
+                      height: 50,
+                      textStyle:
+                          FlutterFlowTheme.of(context).bodyText1.override(
+                                fontFamily: 'Poppins',
+                                color: Colors.black,
+                              ),
+                      hintText: 'your college',
+                      fillColor: Colors.white,
+                      elevation: 2,
+                      borderColor: Colors.transparent,
+                      borderWidth: 0,
+                      borderRadius: 0,
+                      margin: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                      hidesUnderline: true,
                     ),
                     SwitchListTile.adaptive(
                       value: switchListTileValue ??= true,

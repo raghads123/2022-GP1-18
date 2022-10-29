@@ -1,8 +1,9 @@
-import '../flutter_flow/flutter_flow_drop_down.dart';
+import '../flutter_flow/flutter_flow_swipeable_stack.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 
 class SettingPreferencesWidget extends StatefulWidget {
   const SettingPreferencesWidget({Key? key}) : super(key: key);
@@ -13,8 +14,14 @@ class SettingPreferencesWidget extends StatefulWidget {
 }
 
 class _SettingPreferencesWidgetState extends State<SettingPreferencesWidget> {
-  String? dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  late SwipeableCardSectionController swipeableStackController;
+
+  @override
+  void initState() {
+    super.initState();
+    swipeableStackController = SwipeableCardSectionController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class _SettingPreferencesWidgetState extends State<SettingPreferencesWidget> {
         backgroundColor: Color(0xFFFF5757),
         automaticallyImplyLeading: false,
         title: Text(
-          'setting your preferences',
+          'what are your preferences?',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
                 color: Colors.white,
@@ -44,36 +51,29 @@ class _SettingPreferencesWidgetState extends State<SettingPreferencesWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Card(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Color(0xFFF5F5F5),
-                child: FlutterFlowDropDown(
-                  options: [
-                    'College of Computer and Information Sciences',
-                    'College of Business Administration',
-                    'College of Medicine',
-                    'College of Law and Political Sciences'
-                  ],
-                  onChanged: (val) => setState(() => dropDownValue = val),
-                  width: 180,
-                  height: 50,
-                  textStyle: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                      ),
-                  hintText: 'your college',
-                  fillColor: Colors.white,
-                  elevation: 2,
-                  borderColor: Colors.transparent,
-                  borderWidth: 0,
-                  borderRadius: 0,
-                  margin: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                  hidesUnderline: true,
+              Expanded(
+                child: FlutterFlowSwipeableStack(
+                  topCardHeightFraction: 0.72,
+                  middleCardHeightFraction: 0.68,
+                  botttomCardHeightFraction: 0.75,
+                  topCardWidthFraction: 0.9,
+                  middleCardWidthFraction: 0.85,
+                  botttomCardWidthFraction: 0.8,
+                  onSwipeFn: (index) async {
+                    swipeableStackController.triggerSwipeRight();
+                  },
+                  onLeftSwipe: (index) {},
+                  onRightSwipe: (index) {},
+                  onUpSwipe: (index) {},
+                  onDownSwipe: (index) {},
+                  itemBuilder: (context, index) {
+                    return [][index]();
+                  },
+                  itemCount: 0,
+                  controller: swipeableStackController,
+                  enableSwipeUp: false,
+                  enableSwipeDown: false,
                 ),
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [],
               ),
             ],
           ),

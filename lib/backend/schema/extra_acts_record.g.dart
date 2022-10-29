@@ -97,6 +97,14 @@ class _$ExtraActsRecordSerializer
         ..add('num_seats')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.enrolledBy;
+    if (value != null) {
+      result
+        ..add('enrolled_by')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -164,6 +172,12 @@ class _$ExtraActsRecordSerializer
           result.numSeats = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'enrolled_by':
+          result.enrolledBy.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -201,6 +215,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final int? numSeats;
   @override
+  final BuiltList<String>? enrolledBy;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ExtraActsRecord([void Function(ExtraActsRecordBuilder)? updates]) =>
@@ -218,6 +234,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actLoc,
       this.seats,
       this.numSeats,
+      this.enrolledBy,
       this.ffRef})
       : super._();
 
@@ -244,6 +261,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actLoc == other.actLoc &&
         seats == other.seats &&
         numSeats == other.numSeats &&
+        enrolledBy == other.enrolledBy &&
         ffRef == other.ffRef;
   }
 
@@ -259,17 +277,19 @@ class _$ExtraActsRecord extends ExtraActsRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, actType.hashCode),
-                                                actName.hashCode),
-                                            actDec.hashCode),
-                                        actPic.hashCode),
-                                    status.hashCode),
-                                category.hashCode),
-                            sdate.hashCode),
-                        edate.hashCode),
-                    actLoc.hashCode),
-                seats.hashCode),
-            numSeats.hashCode),
+                                            $jc(
+                                                $jc($jc(0, actType.hashCode),
+                                                    actName.hashCode),
+                                                actDec.hashCode),
+                                            actPic.hashCode),
+                                        status.hashCode),
+                                    category.hashCode),
+                                sdate.hashCode),
+                            edate.hashCode),
+                        actLoc.hashCode),
+                    seats.hashCode),
+                numSeats.hashCode),
+            enrolledBy.hashCode),
         ffRef.hashCode));
   }
 
@@ -287,6 +307,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actLoc', actLoc)
           ..add('seats', seats)
           ..add('numSeats', numSeats)
+          ..add('enrolledBy', enrolledBy)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -340,6 +361,12 @@ class ExtraActsRecordBuilder
   int? get numSeats => _$this._numSeats;
   set numSeats(int? numSeats) => _$this._numSeats = numSeats;
 
+  ListBuilder<String>? _enrolledBy;
+  ListBuilder<String> get enrolledBy =>
+      _$this._enrolledBy ??= new ListBuilder<String>();
+  set enrolledBy(ListBuilder<String>? enrolledBy) =>
+      _$this._enrolledBy = enrolledBy;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -362,6 +389,7 @@ class ExtraActsRecordBuilder
       _actLoc = $v.actLoc;
       _seats = $v.seats;
       _numSeats = $v.numSeats;
+      _enrolledBy = $v.enrolledBy?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -383,20 +411,34 @@ class ExtraActsRecordBuilder
   ExtraActsRecord build() => _build();
 
   _$ExtraActsRecord _build() {
-    final _$result = _$v ??
-        new _$ExtraActsRecord._(
-            actType: actType,
-            actName: actName,
-            actDec: actDec,
-            actPic: actPic,
-            status: status,
-            category: category,
-            sdate: sdate,
-            edate: edate,
-            actLoc: actLoc,
-            seats: seats,
-            numSeats: numSeats,
-            ffRef: ffRef);
+    _$ExtraActsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$ExtraActsRecord._(
+              actType: actType,
+              actName: actName,
+              actDec: actDec,
+              actPic: actPic,
+              status: status,
+              category: category,
+              sdate: sdate,
+              edate: edate,
+              actLoc: actLoc,
+              seats: seats,
+              numSeats: numSeats,
+              enrolledBy: _enrolledBy?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'enrolledBy';
+        _enrolledBy?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'ExtraActsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

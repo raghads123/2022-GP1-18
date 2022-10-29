@@ -141,19 +141,6 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(80, 0, 0, 0),
-                                                child: Text(
-                                                  listViewExtraActsRecord
-                                                      .actType!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                       ),
@@ -213,8 +200,10 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                listViewExtraActsRecord.sdate!
-                                                    .toString(),
+                                                dateTimeFormat(
+                                                    'd/M',
+                                                    listViewExtraActsRecord
+                                                        .sdate!),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .subtitle2
@@ -230,7 +219,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'Md',
+                                                    'd/M',
                                                     listViewExtraActsRecord
                                                         .edate!),
                                                 style: FlutterFlowTheme.of(
@@ -247,6 +236,10 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                             ),
                                             InkWell(
                                               onTap: () async {
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
                                                 context.pushNamed(
                                                   'course_info',
                                                   queryParams: {
@@ -274,18 +267,12 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                             ),
                                             InkWell(
                                               onTap: () async {
-                                                context.pushNamed(
-                                                  'event_info',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .rightToLeft,
-                                                    ),
-                                                  },
-                                                );
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
+                                                context
+                                                    .pushNamed('course_info');
                                               },
                                               child: Icon(
                                                 Icons

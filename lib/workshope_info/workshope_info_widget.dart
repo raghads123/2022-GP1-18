@@ -1,8 +1,10 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -105,8 +107,6 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color:
-                                        FlutterFlowTheme.of(context).black600,
                                     elevation: 3,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30),
@@ -141,7 +141,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      160, 0, 0, 0),
+                                      150, 0, 0, 5),
                                   child: FlutterFlowIconButton(
                                     borderColor: Colors.transparent,
                                     borderRadius: 30,
@@ -149,8 +149,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     buttonSize: 40,
                                     icon: Icon(
                                       Icons.notifications,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
+                                      color: Color(0xFF57636C),
                                       size: 30,
                                     ),
                                     onPressed: () {
@@ -197,7 +196,44 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 0, 0, 4),
+                                      10, 0, 0, 4),
+                                  child: Icon(
+                                    Icons.schedule,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    size: 20,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4, 0, 0, 0),
+                                  child: Text(
+                                    dateTimeFormat(
+                                        'd/M h:mm a',
+                                        scrollingContainerExtraActsRecord!
+                                            .edate!),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 4),
                                   child: Icon(
                                     Icons.location_on_sharp,
                                     color: FlutterFlowTheme.of(context)
@@ -229,60 +265,37 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.schedule,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 20,
+                                if (scrollingContainerExtraActsRecord!.seats ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 4),
+                                    child: Icon(
+                                      Icons.event_seat_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 20,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
-                                  child: Text(
-                                    dateTimeFormat(
-                                        'd/M h:mm a',
-                                        scrollingContainerExtraActsRecord!
-                                            .edate!),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                if (scrollingContainerExtraActsRecord!.seats ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 0, 0, 0),
+                                    child: Text(
+                                      scrollingContainerExtraActsRecord!
+                                          .numSeats!
+                                          .toString(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryColor,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.event_seat_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 20,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
-                                  child: Text(
-                                    scrollingContainerExtraActsRecord!.numSeats!
-                                        .toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
                               ],
                             ),
                           ),
@@ -330,16 +343,108 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                if (scrollingContainerExtraActsRecord!.seats!) {
+                                  if (scrollingContainerExtraActsRecord!
+                                          .numSeats ==
+                                      0) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title:
+                                              Text('No more seats available.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  } else {
+                                    if (scrollingContainerExtraActsRecord!
+                                        .enrolledBy!
+                                        .toList()
+                                        .contains(currentUserEmail)) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (alertDialogContext) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                'You are already enrolled'),
+                                            content: Text(
+                                                'navigate to your activities page to manage enrollment.'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      final extraActsUpdateData = {
+                                        'enrolled_by': FieldValue.arrayUnion(
+                                            [currentUserEmail]),
+                                        'num_seats': FieldValue.increment(-(1)),
+                                      };
+                                      await scrollingContainerExtraActsRecord!
+                                          .reference
+                                          .update(extraActsUpdateData);
+                                    }
+                                  }
+                                } else {
+                                  if (scrollingContainerExtraActsRecord!
+                                      .enrolledBy!
+                                      .toList()
+                                      .contains(currentUserEmail)) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title:
+                                              Text('You are already enrolled'),
+                                          content: Text(
+                                              'Navigate to your activities page to manage enrollment.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  } else {
+                                    final extraActsUpdateData = {
+                                      'enrolled_by': FieldValue.arrayUnion(
+                                          [currentUserEmail]),
+                                    };
+                                    await scrollingContainerExtraActsRecord!
+                                        .reference
+                                        .update(extraActsUpdateData);
+                                  }
+                                }
+
+                                context.pop();
                               },
                               text: 'take your place',
                               options: FFButtonOptions(
                                 width: 270,
                                 height: 50,
-                                color: Color(0x9DBDEEFD),
-                                textStyle:
-                                    FlutterFlowTheme.of(context).subtitle1,
+                                color: Color(0xE15BD85B),
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .subtitle1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Colors.white,
+                                    ),
                                 elevation: 2,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,

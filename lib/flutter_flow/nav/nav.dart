@@ -82,6 +82,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignUpWidget(),
             ),
             FFRoute(
+              name: 'LogIn',
+              path: 'logIn',
+              builder: (context, params) => LogInWidget(),
+            ),
+            FFRoute(
               name: 'settingPreferences',
               path: 'settingPreferences',
               requireAuth: true,
@@ -124,24 +129,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'event_info',
-              path: 'eventInfo',
-              requireAuth: true,
-              builder: (context, params) => EventInfoWidget(
-                eventid: params.getParam('eventid', ParamType.String),
-              ),
-            ),
-            FFRoute(
               name: 'events',
               path: 'events',
               requireAuth: true,
               builder: (context, params) => EventsWidget(),
             ),
             FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
+              name: 'event_info',
+              path: 'eventInfo',
               requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
+              builder: (context, params) => EventInfoWidget(
+                eventid: params.getParam('eventid', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'MyActivites',
@@ -152,6 +151,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : MyActivitesWidget(),
             ),
             FFRoute(
+              name: 'Opportunities',
+              path: 'opportunities',
+              requireAuth: true,
+              builder: (context, params) => OpportunitiesWidget(),
+            ),
+            FFRoute(
               name: 'Profile',
               path: 'profile',
               requireAuth: true,
@@ -160,21 +165,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : ProfileWidget(),
             ),
             FFRoute(
-              name: 'LogIn',
-              path: 'logIn',
-              builder: (context, params) => LogInWidget(),
-            ),
-            FFRoute(
               name: 'user_ratings',
               path: 'userRatings',
               requireAuth: true,
               builder: (context, params) => UserRatingsWidget(),
-            ),
-            FFRoute(
-              name: 'testform',
-              path: 'testform',
-              requireAuth: true,
-              builder: (context, params) => TestformWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

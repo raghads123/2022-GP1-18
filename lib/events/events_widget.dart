@@ -34,7 +34,18 @@ class _EventsWidgetState extends State<EventsWidget> {
             size: 30,
           ),
           onPressed: () async {
-            context.pop();
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
+            context.pushNamed(
+              'HomePage',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.leftToRight,
+                ),
+              },
+            );
           },
         ),
         title: Text(
@@ -141,19 +152,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                             ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(80, 0, 0, 0),
-                                                child: Text(
-                                                  listViewExtraActsRecord
-                                                      .actType!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                       ),
@@ -213,8 +211,10 @@ class _EventsWidgetState extends State<EventsWidget> {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                listViewExtraActsRecord.sdate!
-                                                    .toString(),
+                                                dateTimeFormat(
+                                                    'd/M',
+                                                    listViewExtraActsRecord
+                                                        .sdate!),
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .subtitle2
@@ -230,7 +230,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'Md',
+                                                    'd/M',
                                                     listViewExtraActsRecord
                                                         .edate!),
                                                 style: FlutterFlowTheme.of(

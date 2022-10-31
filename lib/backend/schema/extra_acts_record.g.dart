@@ -105,6 +105,22 @@ class _$ExtraActsRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.rateCr;
+    if (value != null) {
+      result
+        ..add('rate_cr')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.rateNum;
+    if (value != null) {
+      result
+        ..add('rate_num')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -178,6 +194,18 @@ class _$ExtraActsRecordSerializer
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
+        case 'rate_cr':
+          result.rateCr.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'rate_num':
+          result.rateNum.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -217,6 +245,10 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final BuiltList<String>? enrolledBy;
   @override
+  final BuiltList<String>? rateCr;
+  @override
+  final BuiltList<int>? rateNum;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ExtraActsRecord([void Function(ExtraActsRecordBuilder)? updates]) =>
@@ -235,6 +267,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.seats,
       this.numSeats,
       this.enrolledBy,
+      this.rateCr,
+      this.rateNum,
       this.ffRef})
       : super._();
 
@@ -262,6 +296,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         seats == other.seats &&
         numSeats == other.numSeats &&
         enrolledBy == other.enrolledBy &&
+        rateCr == other.rateCr &&
+        rateNum == other.rateNum &&
         ffRef == other.ffRef;
   }
 
@@ -278,18 +314,26 @@ class _$ExtraActsRecord extends ExtraActsRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, actType.hashCode),
-                                                    actName.hashCode),
-                                                actDec.hashCode),
-                                            actPic.hashCode),
-                                        status.hashCode),
-                                    category.hashCode),
-                                sdate.hashCode),
-                            edate.hashCode),
-                        actLoc.hashCode),
-                    seats.hashCode),
-                numSeats.hashCode),
-            enrolledBy.hashCode),
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(
+                                                                0,
+                                                                actType
+                                                                    .hashCode),
+                                                            actName.hashCode),
+                                                        actDec.hashCode),
+                                                    actPic.hashCode),
+                                                status.hashCode),
+                                            category.hashCode),
+                                        sdate.hashCode),
+                                    edate.hashCode),
+                                actLoc.hashCode),
+                            seats.hashCode),
+                        numSeats.hashCode),
+                    enrolledBy.hashCode),
+                rateCr.hashCode),
+            rateNum.hashCode),
         ffRef.hashCode));
   }
 
@@ -308,6 +352,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('seats', seats)
           ..add('numSeats', numSeats)
           ..add('enrolledBy', enrolledBy)
+          ..add('rateCr', rateCr)
+          ..add('rateNum', rateNum)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -367,6 +413,15 @@ class ExtraActsRecordBuilder
   set enrolledBy(ListBuilder<String>? enrolledBy) =>
       _$this._enrolledBy = enrolledBy;
 
+  ListBuilder<String>? _rateCr;
+  ListBuilder<String> get rateCr =>
+      _$this._rateCr ??= new ListBuilder<String>();
+  set rateCr(ListBuilder<String>? rateCr) => _$this._rateCr = rateCr;
+
+  ListBuilder<int>? _rateNum;
+  ListBuilder<int> get rateNum => _$this._rateNum ??= new ListBuilder<int>();
+  set rateNum(ListBuilder<int>? rateNum) => _$this._rateNum = rateNum;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -390,6 +445,8 @@ class ExtraActsRecordBuilder
       _seats = $v.seats;
       _numSeats = $v.numSeats;
       _enrolledBy = $v.enrolledBy?.toBuilder();
+      _rateCr = $v.rateCr?.toBuilder();
+      _rateNum = $v.rateNum?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -427,12 +484,18 @@ class ExtraActsRecordBuilder
               seats: seats,
               numSeats: numSeats,
               enrolledBy: _enrolledBy?.build(),
+              rateCr: _rateCr?.build(),
+              rateNum: _rateNum?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'enrolledBy';
         _enrolledBy?.build();
+        _$failedField = 'rateCr';
+        _rateCr?.build();
+        _$failedField = 'rateNum';
+        _rateNum?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ExtraActsRecord', _$failedField, e.toString());

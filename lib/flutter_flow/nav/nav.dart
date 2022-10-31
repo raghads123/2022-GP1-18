@@ -82,15 +82,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignUpWidget(),
             ),
             FFRoute(
+              name: 'SettingUpProfile',
+              path: 'settingUpProfile',
+              requireAuth: true,
+              builder: (context, params) => SettingUpProfileWidget(),
+            ),
+            FFRoute(
               name: 'LogIn',
               path: 'logIn',
               builder: (context, params) => LogInWidget(),
-            ),
-            FFRoute(
-              name: 'settingPreferences',
-              path: 'settingPreferences',
-              requireAuth: true,
-              builder: (context, params) => SettingPreferencesWidget(),
             ),
             FFRoute(
               name: 'HomePage',
@@ -143,18 +143,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'Opportunities',
+              path: 'opportunities',
+              requireAuth: true,
+              builder: (context, params) => OpportunitiesWidget(),
+            ),
+            FFRoute(
               name: 'MyActivites',
               path: 'myActivites',
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MyActivites')
                   : MyActivitesWidget(),
-            ),
-            FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
-              requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
             ),
             FFRoute(
               name: 'Profile',
@@ -165,10 +165,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : ProfileWidget(),
             ),
             FFRoute(
+              name: 'settingInterests',
+              path: 'settingInterests',
+              requireAuth: true,
+              builder: (context, params) => SettingInterestsWidget(),
+            ),
+            FFRoute(
               name: 'user_ratings',
               path: 'userRatings',
               requireAuth: true,
-              builder: (context, params) => UserRatingsWidget(),
+              builder: (context, params) => UserRatingsWidget(
+                actname: params.getParam('actname', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

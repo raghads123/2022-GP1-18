@@ -81,6 +81,14 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.rateCr;
+    if (value != null) {
+      result
+        ..add('rate_cr')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -139,6 +147,12 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.intrests = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'rate_cr':
+          result.rateCr.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -172,6 +186,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? intrests;
   @override
+  final BuiltList<String>? rateCr;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -187,6 +203,7 @@ class _$UsersRecord extends UsersRecord {
       this.photoUrl,
       this.phoneNumber,
       this.intrests,
+      this.rateCr,
       this.ffRef})
       : super._();
 
@@ -210,6 +227,7 @@ class _$UsersRecord extends UsersRecord {
         photoUrl == other.photoUrl &&
         phoneNumber == other.phoneNumber &&
         intrests == other.intrests &&
+        rateCr == other.rateCr &&
         ffRef == other.ffRef;
   }
 
@@ -223,15 +241,17 @@ class _$UsersRecord extends UsersRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, email.hashCode),
-                                        displayName.hashCode),
-                                    uid.hashCode),
-                                createdTime.hashCode),
-                            level.hashCode),
-                        college.hashCode),
-                    photoUrl.hashCode),
-                phoneNumber.hashCode),
-            intrests.hashCode),
+                                    $jc(
+                                        $jc($jc(0, email.hashCode),
+                                            displayName.hashCode),
+                                        uid.hashCode),
+                                    createdTime.hashCode),
+                                level.hashCode),
+                            college.hashCode),
+                        photoUrl.hashCode),
+                    phoneNumber.hashCode),
+                intrests.hashCode),
+            rateCr.hashCode),
         ffRef.hashCode));
   }
 
@@ -247,6 +267,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('photoUrl', photoUrl)
           ..add('phoneNumber', phoneNumber)
           ..add('intrests', intrests)
+          ..add('rateCr', rateCr)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -291,6 +312,11 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get intrests => _$this._intrests;
   set intrests(String? intrests) => _$this._intrests = intrests;
 
+  ListBuilder<String>? _rateCr;
+  ListBuilder<String> get rateCr =>
+      _$this._rateCr ??= new ListBuilder<String>();
+  set rateCr(ListBuilder<String>? rateCr) => _$this._rateCr = rateCr;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -311,6 +337,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _photoUrl = $v.photoUrl;
       _phoneNumber = $v.phoneNumber;
       _intrests = $v.intrests;
+      _rateCr = $v.rateCr?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -332,18 +359,32 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   UsersRecord build() => _build();
 
   _$UsersRecord _build() {
-    final _$result = _$v ??
-        new _$UsersRecord._(
-            email: email,
-            displayName: displayName,
-            uid: uid,
-            createdTime: createdTime,
-            level: level,
-            college: college,
-            photoUrl: photoUrl,
-            phoneNumber: phoneNumber,
-            intrests: intrests,
-            ffRef: ffRef);
+    _$UsersRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UsersRecord._(
+              email: email,
+              displayName: displayName,
+              uid: uid,
+              createdTime: createdTime,
+              level: level,
+              college: college,
+              photoUrl: photoUrl,
+              phoneNumber: phoneNumber,
+              intrests: intrests,
+              rateCr: _rateCr?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'rateCr';
+        _rateCr?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UsersRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

@@ -27,21 +27,6 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: FlutterFlowTheme.of(context).primaryBtnText,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          fillColor: FlutterFlowTheme.of(context).primaryBtnText,
-          icon: Icon(
-            Icons.chevron_left,
-            color: Color(0xFF777373),
-            size: 30,
-          ),
-          onPressed: () async {
-            context.pop();
-          },
-        ),
         title: Text(
           'Opportunities',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -50,7 +35,22 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: [
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.chevron_right_outlined,
+              color: FlutterFlowTheme.of(context).primaryText,
+              size: 30,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+        ],
         centerTitle: true,
         elevation: 2,
       ),
@@ -171,7 +171,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
-                                    text: 'apply',
+                                    text: 'تسجيل',
                                     options: FFButtonOptions(
                                       width: 100,
                                       height: 20,
@@ -306,7 +306,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
-                                    text: 'apply',
+                                    text: 'تسجيل',
                                     options: FFButtonOptions(
                                       width: 100,
                                       height: 20,

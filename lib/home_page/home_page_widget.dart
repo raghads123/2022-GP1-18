@@ -1,4 +1,3 @@
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -47,13 +46,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                 child: Text(
-                                  'Your place for finding activites.',
+                                  'مكانك لتجدي كل ماهو جديد ',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
-                                        fontFamily: 'Playfair Display',
+                                        fontFamily: 'Open Sans',
                                         color: Color(0xFF777373),
-                                        fontWeight: FontWeight.normal,
+                                        fontWeight: FontWeight.w900,
                                         fontStyle: FontStyle.italic,
                                       ),
                                 ),
@@ -73,9 +72,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 200, 44),
+                                EdgeInsetsDirectional.fromSTEB(200, 0, 0, 20),
                             child: Text(
-                              'Activities',
+                              'الأنشطة',
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -96,7 +95,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               children: [
                                 InkWell(
                                   onTap: () async {
-                                    context.pushNamed('courses');
+                                    context.pushNamed(
+                                      'courses',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.leftToRight,
+                                        ),
+                                      },
+                                    );
                                   },
                                   child: Container(
                                     width: 150,
@@ -116,7 +124,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5, 30, 5, 30),
                                       child: Text(
-                                        'Courses',
+                                        'الدورات',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .title1
@@ -131,7 +139,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                                 InkWell(
                                   onTap: () async {
-                                    context.pushNamed('workshops');
+                                    context.pushNamed(
+                                      'workshops',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.leftToRight,
+                                        ),
+                                      },
+                                    );
                                   },
                                   child: Container(
                                     width: 150,
@@ -151,7 +168,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5, 30, 5, 30),
                                       child: Text(
-                                        'Workshops',
+                                        'ورش العمل',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .title1
@@ -173,7 +190,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             children: [
                               InkWell(
                                 onTap: () async {
-                                  context.pushNamed('events');
+                                  context.pushNamed(
+                                    'events',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.leftToRight,
+                                      ),
+                                    },
+                                  );
                                 },
                                 child: Container(
                                   width: 150,
@@ -193,7 +219,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         5, 30, 5, 30),
                                     child: Text(
-                                      'Events',
+                                      'الفعاليات',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .title1
@@ -224,7 +250,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5, 30, 5, 30),
                                   child: Text(
-                                    'Opportunities',
+                                    'فرص',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .title1
@@ -243,20 +269,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                 ],
-              ),
-              FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 60,
-                icon: Icon(
-                  Icons.add,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 30,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
               ),
             ],
           ),

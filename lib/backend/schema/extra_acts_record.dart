@@ -44,6 +44,12 @@ abstract class ExtraActsRecord
   @BuiltValueField(wireName: 'enrolled_by')
   BuiltList<String>? get enrolledBy;
 
+  @BuiltValueField(wireName: 'rate_cr')
+  BuiltList<String>? get rateCr;
+
+  @BuiltValueField(wireName: 'rate_num')
+  BuiltList<int>? get rateNum;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -58,7 +64,9 @@ abstract class ExtraActsRecord
     ..actLoc = ''
     ..seats = false
     ..numSeats = 0
-    ..enrolledBy = ListBuilder();
+    ..enrolledBy = ListBuilder()
+    ..rateCr = ListBuilder()
+    ..rateNum = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('extra_acts');
@@ -109,7 +117,9 @@ Map<String, dynamic> createExtraActsRecordData({
         ..actLoc = actLoc
         ..seats = seats
         ..numSeats = numSeats
-        ..enrolledBy = null,
+        ..enrolledBy = null
+        ..rateCr = null
+        ..rateNum = null,
     ),
   );
 

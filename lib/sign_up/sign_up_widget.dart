@@ -98,7 +98,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             4, 0, 4, 15),
                                         child: Container(
                                           width: 300,
-                                          height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFE0E0E0),
                                             borderRadius:
@@ -120,10 +119,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               },
                                               obscureText: false,
                                               decoration: InputDecoration(
-                                                hintText: 'Email',
+                                                hintText: 'البريد الإلكتروني',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
-                                                  color: Color(0x7F455A64),
+                                                  color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                                 enabledBorder:
@@ -185,19 +184,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFFA6A6A6),
+                                                color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textAlign: TextAlign.end,
                                               validator: (val) {
                                                 if (val == null ||
                                                     val.isEmpty) {
-                                                  return 'Please enter email';
+                                                  return 'الرجاء إدخال البريد الإلكتروني';
                                                 }
 
                                                 if (!RegExp(
                                                         kTextValidatorEmailRegex)
                                                     .hasMatch(val)) {
-                                                  return 'Email format invalid';
+                                                  return 'الرجاء التأكد من صيغة البريد الإلكتروني';
                                                 }
                                                 return null;
                                               },
@@ -210,7 +210,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             4, 0, 4, 15),
                                         child: Container(
                                           width: 300,
-                                          height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFE0E0E0),
                                             borderRadius:
@@ -232,10 +231,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               },
                                               obscureText: !passwordVisibility,
                                               decoration: InputDecoration(
-                                                hintText: 'Password',
+                                                hintText: 'كلمة المرور',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
-                                                  color: Color(0x7F455A64),
+                                                  color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                                 enabledBorder:
@@ -307,30 +306,31 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                             .visibility_outlined
                                                         : Icons
                                                             .visibility_off_outlined,
-                                                    color: Color(0xFFA6A6A6),
+                                                    color: Color(0xFF95A1AC),
                                                     size: 16,
                                                   ),
                                                 ),
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFFA6A6A6),
+                                                color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textAlign: TextAlign.end,
                                               validator: (val) {
                                                 if (val == null ||
                                                     val.isEmpty) {
-                                                  return 'Please enter password';
+                                                  return 'الرجاء إدخال كلمة المرور';
                                                 }
 
                                                 if (val.length < 8) {
-                                                  return 'Password must be at least 8 characters';
+                                                  return 'كلمة المرور يجب أن حتوي على ٨ حروف على الأقل';
                                                 }
 
                                                 if (!RegExp(
                                                         r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
                                                     .hasMatch(val)) {
-                                                  return '1 uppercase - 1 lowercase - 1 number - 1 special \nMust have upper';
+                                                  return 'كلمة المرور يجب أن تحتوي على الأقل على: حرف كبير - حرف صغير - رقم - رمز';
                                                 }
                                                 return null;
                                               },
@@ -367,10 +367,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               obscureText:
                                                   !confirmpasswordVisibility,
                                               decoration: InputDecoration(
-                                                hintText: 'Confirm password',
+                                                hintText: 'تأكيد كلمة المرور',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
-                                                  color: Color(0x7F455A64),
+                                                  color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                                 enabledBorder:
@@ -442,24 +442,25 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                             .visibility_outlined
                                                         : Icons
                                                             .visibility_off_outlined,
-                                                    color: Color(0xFFA6A6A6),
+                                                    color: Color(0xFF95A1AC),
                                                     size: 16,
                                                   ),
                                                 ),
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFFA6A6A6),
+                                                color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textAlign: TextAlign.end,
                                               validator: (val) {
                                                 if (val == null ||
                                                     val.isEmpty) {
-                                                  return 'Please confirm password';
+                                                  return 'الرجاء تأكيد كلمة المرور';
                                                 }
 
                                                 if (val.length < 8) {
-                                                  return 'Please confirm password';
+                                                  return 'الرجاء تأكيد كلمة المرور';
                                                 }
 
                                                 return null;
@@ -477,6 +478,48 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 !formKey.currentState!
                                                     .validate()) {
                                               return;
+                                            }
+
+                                            if (passwordController!.text ==
+                                                confirmpasswordController!
+                                                    .text) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'يوجد حساب بهذا البريد ، حاولي تسجيل الدخول',
+                                                    style: GoogleFonts.getFont(
+                                                      'Open Sans',
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 6400),
+                                                  backgroundColor:
+                                                      Color(0xE1FF2323),
+                                                ),
+                                              );
+                                            } else {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'كلمة المرور لا تتطابق',
+                                                    style: GoogleFonts.getFont(
+                                                      'Open Sans',
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      Color(0xE1FF2323),
+                                                ),
+                                              );
                                             }
 
                                             GoRouter.of(context)
@@ -506,9 +549,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             }
 
                                             context.goNamedAuth(
-                                                'HomePage', mounted);
+                                              'SettingUpProfile',
+                                              mounted,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                ),
+                                              },
+                                            );
                                           },
-                                          text: 'Sign Up',
+                                          text: 'إنشاء حساب',
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
@@ -532,7 +585,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           context.goNamed('LogIn');
                                         },
                                         child: Text(
-                                          'Already have an account? Log In',
+                                          'تم إنشاء حساب مسبقاً؟تسجيل  الدخول',
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
                                             color: Color(0xFFA6A6A6),

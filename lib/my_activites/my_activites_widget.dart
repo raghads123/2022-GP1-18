@@ -23,18 +23,14 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
       key: scaffoldKey,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
         automaticallyImplyLeading: false,
         title: Text(
-          'My Activites',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Poppins',
-                color: Color(0xFF777373),
-                fontSize: 22,
-              ),
+          'أنشطتي',
+          style: FlutterFlowTheme.of(context).title2,
         ),
         actions: [],
-        centerTitle: false,
+        centerTitle: true,
         elevation: 2,
       ),
       body: SafeArea(
@@ -106,9 +102,12 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                             0, 8, 0, 8),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
                                           children: [
                                             Text(
                                               listViewExtraActsRecord.actName!,
+                                              textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .title3
@@ -131,7 +130,7 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                             Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 10, 10, 10),
+                                                    .fromSTEB(0, 0, 0, 5),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     if (listViewExtraActsRecord
@@ -165,7 +164,7 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                               extraActsUpdateData);
                                                     }
                                                   },
-                                                  text: 'Disenroll',
+                                                  text: 'إلغاء التسجيل',
                                                   options: FFButtonOptions(
                                                     width: 130,
                                                     height: 30,
@@ -188,6 +187,45 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                 ),
                                               ),
                                             ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            if (getCurrentTimestamp >=
+                                                listViewExtraActsRecord.edate!)
+                                              Expanded(
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                        'user_ratings');
+                                                  },
+                                                  text: 'قيمي النشاط',
+                                                  options: FFButtonOptions(
+                                                    width: 130,
+                                                    height: 30,
+                                                    color: Color(0xFF1C8EC1),
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: Colors.white,
+                                                        ),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                  ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       ),

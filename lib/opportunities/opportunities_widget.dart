@@ -461,7 +461,8 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                       text: 'تقديم',
                                       options: FFButtonOptions(
                                         width: double.infinity,
-                                        color: Color(0xE15BD85B),
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .subtitle2
                                             .override(

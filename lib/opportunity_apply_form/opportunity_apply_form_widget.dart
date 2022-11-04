@@ -558,7 +558,8 @@ class _OpportunityApplyFormWidgetState
                                           options: FFButtonOptions(
                                             width: 270,
                                             height: 50,
-                                            color: Color(0xE15BD85B),
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
                                             textStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .subtitle1

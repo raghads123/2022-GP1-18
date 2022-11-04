@@ -18,8 +18,22 @@ bool showSearchResult(
 }
 
 bool showSearchResultCourse(
-  String textSearchFor,
-  String textSearchIn,
+  String textSearchFor2,
+  String textSearchIn2,
 ) {
-  return textSearchIn.toLowerCase().contains(textSearchFor.toLowerCase());
+  return textSearchIn2.toLowerCase().contains(textSearchFor2.toLowerCase());
+}
+
+bool showSearchResultWorkshops(
+  String textSearchFor3,
+  String textSearchIn3,
+) {
+  return textSearchIn3.toLowerCase().contains(textSearchFor3.toLowerCase());
+}
+
+bool showSearchResultOp(
+  String textSearchFor4,
+  String textSearchIn4,
+) {
+  return textSearchIn4.toLowerCase().contains(textSearchFor4.toLowerCase());
 }

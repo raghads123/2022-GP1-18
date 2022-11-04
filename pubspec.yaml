@@ -40,7 +40,6 @@ dependencies:
   firebase_core_platform_interface: 4.4.3
   firebase_core_web: 1.6.6
   flutter_animate: 1.0.0
-  flutter_rating_bar: 4.0.1
   font_awesome_flutter: 10.1.0
   from_css_color: 2.0.0
   go_router: 3.1.0
@@ -55,7 +54,6 @@ dependencies:
   json_path: 0.4.1
   json_serializable: 6.3.1
   page_transition: 2.0.4
-  percent_indicator: 4.2.2
   plugin_platform_interface: 2.1.2
   rxdart: 0.27.4
   shared_preferences: 2.0.15

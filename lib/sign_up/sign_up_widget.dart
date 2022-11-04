@@ -343,7 +343,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             4, 0, 4, 15),
                                         child: Container(
                                           width: 300,
-                                          height: 50,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFE0E0E0),
                                             borderRadius:
@@ -480,28 +479,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               return;
                                             }
 
-                                            if (passwordController!.text ==
+                                            if (passwordController!.text !=
                                                 confirmpasswordController!
                                                     .text) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'يوجد حساب بهذا البريد ، حاولي تسجيل الدخول',
-                                                    style: GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                  duration: Duration(
-                                                      milliseconds: 6400),
-                                                  backgroundColor:
-                                                      Color(0xE1FF2323),
-                                                ),
-                                              );
-                                            } else {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -521,7 +501,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 ),
                                               );
                                             }
-
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
                                             if (passwordController?.text !=
@@ -585,7 +564,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           context.goNamed('LogIn');
                                         },
                                         child: Text(
-                                          'تم إنشاء حساب مسبقاً؟تسجيل  الدخول',
+                                          'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
                                             color: Color(0xFFA6A6A6),

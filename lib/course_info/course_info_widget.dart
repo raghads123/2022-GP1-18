@@ -347,20 +347,19 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                 if (scrollingContainerExtraActsRecord!
                                         .numSeats ==
                                     0) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('No more seats available.'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      );
-                                    },
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'جميع المقاعد محجوزة.',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBtnText,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      duration: Duration(milliseconds: 4000),
+                                      backgroundColor: Color(0xE1FF2323),
+                                    ),
                                   );
                                 } else {
                                   if (scrollingContainerExtraActsRecord!
@@ -371,15 +370,15 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title:
-                                              Text('You are already enrolled'),
+                                          title: Text(
+                                              'تم إلتحاقك بهذا النشاط مسبقاً.'),
                                           content: Text(
-                                              'navigate to your activities page to manage enrollment.'),
+                                              'توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: Text('Ok'),
+                                              child: Text('تم'),
                                             ),
                                           ],
                                         );
@@ -394,6 +393,22 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     await scrollingContainerExtraActsRecord!
                                         .reference
                                         .update(extraActsUpdateData);
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'تم إلتحاقك بهذا النشاط بنجاح.'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   }
                                 }
                               } else {
@@ -405,14 +420,15 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: Text('You are already enrolled'),
+                                        title: Text(
+                                            'تم إلتحاقك بهذا النشاط مسبقاً.'),
                                         content: Text(
-                                            'Navigate to your activities page to manage enrollment.'),
+                                            '.توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: Text('Ok'),
+                                            child: Text('تم'),
                                           ),
                                         ],
                                       );
@@ -426,10 +442,24 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                   await scrollingContainerExtraActsRecord!
                                       .reference
                                       .update(extraActsUpdateData);
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: Text(
+                                            'تم إلتحاقك بهذا النشاط بنجاح.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('تم'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
                                 }
                               }
-
-                              context.pop();
                             },
                             text: 'إلتحاق',
                             options: FFButtonOptions(

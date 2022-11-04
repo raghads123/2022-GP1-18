@@ -1,8 +1,11 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,9 +17,22 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
-  String? dropDownValue;
-  bool? switchListTileValue;
+  String? collegeValue;
+  TextEditingController? nameController;
+  String? levelValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +53,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             size: 22,
           ),
           onPressed: () async {
-            context.pushNamed('LogIn');
+            GoRouter.of(context).prepareAuthEvent();
+            await signOut();
+
+            context.goNamedAuth('SignUp', mounted);
           },
         ),
         title: Text(
@@ -75,100 +94,317 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   topRight: Radius.circular(0),
                 ),
               ),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [],
-                      ),
-                    ),
-                    FlutterFlowDropDown(
-                      options: [
-                        'College of Computer and Information Sciences',
-                        'College of Business Administration',
-                        'College of Medicine',
-                        'College of Law and Political Sciences'
-                      ],
-                      onChanged: (val) => setState(() => dropDownValue = val),
-                      width: 180,
-                      height: 50,
-                      textStyle:
-                          FlutterFlowTheme.of(context).bodyText1.override(
-                                fontFamily: 'Poppins',
-                                color: Colors.black,
+              child: Align(
+                alignment: AlignmentDirectional(0, -0.85),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 90),
+                  child: SingleChildScrollView(
+                    primary: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: AuthUserStreamWidget(
+                                  child: SelectionArea(
+                                      child: Text(
+                                    currentUserDisplayName,
+                                    textAlign: TextAlign.end,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 24,
+                                        ),
+                                  )),
+                                ),
                               ),
-                      hintText: 'your college',
-                      fillColor: Colors.white,
-                      elevation: 2,
-                      borderColor: Colors.transparent,
-                      borderWidth: 0,
-                      borderRadius: 0,
-                      margin: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                      hidesUnderline: true,
-                    ),
-                    SwitchListTile.adaptive(
-                      value: switchListTileValue ??= true,
-                      onChanged: (newValue) async {
-                        setState(() => switchListTileValue = newValue!);
-                      },
-                      title: Text(
-                        'Recieve Notifications',
-                        textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).subtitle2.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF090F13),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                              SelectionArea(
+                                  child: Text(
+                                '  مرحباً',
+                                textAlign: TextAlign.end,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 24,
+                                    ),
+                              )),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 30, 15),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                                child: SelectionArea(
+                                    child: Text(
+                                  'يمكنك تعديل معلوماتك الشخصية التالية:',
+                                  textAlign: TextAlign.end,
+                                  style: GoogleFonts.getFont(
+                                    'Merriweather',
+                                    color: Color(0xFF0184BD),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(4, 1, 4, 15),
+                          child: Container(
+                            width: 300,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFE0E0E0),
+                              borderRadius: BorderRadius.circular(25),
                             ),
-                      ),
-                      subtitle: Text(
-                        'Turn on notifications.',
-                        style: FlutterFlowTheme.of(context).bodyText2.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                              child: TextFormField(
+                                controller: nameController,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'الاسم',
+                                  hintStyle: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF565656),
+                                  ),
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  errorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                ),
+                                style: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF565656),
+                                ),
+                                textAlign: TextAlign.end,
+                              ),
                             ),
-                      ),
-                      tileColor: Colors.white,
-                      activeColor: Color(0xFFFF5757),
-                      activeTrackColor: Color(0xFFFF5757),
-                      dense: false,
-                      controlAffinity: ListTileControlAffinity.trailing,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                      child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button_Secondary pressed ...');
-                        },
-                        text: 'حفظ التغيرات',
-                        options: FFButtonOptions(
-                          width: 230,
-                          height: 50,
-                          color: Color(0xFFFF5757),
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyText2.override(
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
+                          child: Container(
+                            width: 300,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFE0E0E0),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: AuthUserStreamWidget(
+                              child: FlutterFlowDropDown(
+                                initialOption: collegeValue ??= valueOrDefault(
+                                    currentUserDocument?.college, ''),
+                                options: [
+                                  'كلية الآداب',
+                                  'كلية التربية',
+                                  'كلية اللغات والترجمة',
+                                  'كلية الهندسة',
+                                  'كلية العلوم',
+                                  'كلية علوم الحاسب والمعلومات',
+                                  'كلية العمارة والتخطيط',
+                                  'كلية إدارة الأعمال',
+                                  'كلية الطب',
+                                  'كلية طب الأسنان',
+                                  'كلية الصيدلة',
+                                  'كلية العلوم الطبية التطبيقية',
+                                  'كلية التمريض'
+                                ],
+                                onChanged: (val) =>
+                                    setState(() => collegeValue = val),
+                                width: 300,
+                                height: 50,
+                                textStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF565656),
+                                ),
+                                hintText:
+                                    'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
+                                fillColor: Color(0xFFE0E0E0),
+                                elevation: 2,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0,
+                                borderRadius: 0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12, 4, 12, 4),
+                                hidesUnderline: true,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
+                          child: Container(
+                            width: 300,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFE0E0E0),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: AuthUserStreamWidget(
+                              child: FlutterFlowDropDown(
+                                initialOption: levelValue ??= valueOrDefault(
+                                    currentUserDocument?.level, ''),
+                                options: [
+                                  'المستوى الأول',
+                                  'المستوى الثاني',
+                                  'المستوى الثالث',
+                                  'المستوى الرابع',
+                                  'المستوى الخامس',
+                                  'المستوى السادس',
+                                  'المستوى السابع',
+                                  'المستوى الثامن',
+                                  'المستوى التاسع',
+                                  'المستوى العاشر',
+                                  'المستوى الحادي عشر',
+                                  'المستوى الثاني عشر'
+                                ],
+                                onChanged: (val) =>
+                                    setState(() => levelValue = val),
+                                width: 300,
+                                height: 50,
+                                textStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF565656),
+                                ),
+                                hintText:
+                                    'المستوى ــــــــــــــــــــــــــــــــــــــــ',
+                                fillColor: Color(0xFFE0E0E0),
+                                elevation: 2,
+                                borderColor: Colors.transparent,
+                                borderWidth: 0,
+                                borderRadius: 0,
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    12, 4, 12, 4),
+                                hidesUnderline: true,
+                              ),
+                            ),
+                          ),
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            context.pushNamed('EditInterests');
+                          },
+                          text: 'تعديل الإهتمامات',
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 40,
+                            color: Color(0xFFFF5757),
+                            textStyle:
+                                FlutterFlowTheme.of(context).bodyText2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                    ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              final usersUpdateData = createUsersRecordData(
+                                displayName: nameController!.text,
+                                college: collegeValue,
+                                level: levelValue,
+                              );
+                              await currentUserReference!
+                                  .update(usersUpdateData);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'تم حفظ التغيرات بنجاح',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBtnText,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor: Color(0xE15BD85B),
+                                ),
+                              );
+                            },
+                            text: 'حفظ التغيرات',
+                            options: FFButtonOptions(
+                              width: 230,
+                              height: 50,
+                              color: Color(0xFFFF5757),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
                                     fontFamily: 'Lexend Deca',
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
-                          elevation: 3,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                              elevation: 3,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

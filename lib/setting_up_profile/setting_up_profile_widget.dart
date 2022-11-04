@@ -1,7 +1,14 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SettingUpProfileWidget extends StatefulWidget {
@@ -11,8 +18,96 @@ class SettingUpProfileWidget extends StatefulWidget {
   _SettingUpProfileWidgetState createState() => _SettingUpProfileWidgetState();
 }
 
-class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
+class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
+    with TickerProviderStateMixin {
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: Offset(0, 0),
+          end: Offset(0, -82),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeIn,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1200.ms,
+          duration: 600.ms,
+          begin: Offset(0, 0),
+          end: Offset(0, -82),
+        ),
+      ],
+    ),
+    'textOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeIn,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1300.ms,
+          duration: 600.ms,
+          begin: Offset(0, 0),
+          end: Offset(0, -82),
+        ),
+      ],
+    ),
+    'columnOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeIn,
+          delay: 400.ms,
+          duration: 600.ms,
+          begin: 0,
+          end: 1,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 1400.ms,
+          duration: 600.ms,
+          begin: Offset(0, 0),
+          end: Offset(0, -82),
+        ),
+      ],
+    ),
+  };
+  String? collegeValue;
+  TextEditingController? nameController;
+  String? levelValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +154,8 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                   'assets/images/9hsjc_2.png',
                                   width: 190,
                                   fit: BoxFit.cover,
-                                ),
+                                ).animateOnPageLoad(
+                                    animationsMap['imageOnPageLoadAnimation']!),
                                 SelectionArea(
                                     child: Text(
                                   '!اهلًا ِبك',
@@ -70,18 +166,24 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                         color: Color(0xFF0184BD),
                                         fontSize: 24,
                                       ),
-                                )),
-                                SelectionArea(
-                                    child: Text(
-                                  'ساعدينا بالتعرف عليك بشكلٍ أفضل',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF0184BD),
-                                        fontSize: 20,
-                                      ),
-                                )),
+                                )).animateOnPageLoad(
+                                    animationsMap['textOnPageLoadAnimation1']!),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
+                                  child: SelectionArea(
+                                      child: Text(
+                                    'ساعدينا بالتعرف عليك بشكلٍ أفضل',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF0184BD),
+                                          fontSize: 20,
+                                        ),
+                                  )).animateOnPageLoad(animationsMap[
+                                      'textOnPageLoadAnimation2']!),
+                                ),
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -96,18 +198,78 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                           borderRadius:
                                               BorderRadius.circular(25),
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 0, 4, 15),
-                                      child: Container(
-                                        width: 300,
-                                        height: 50,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFE0E0E0),
-                                          borderRadius:
-                                              BorderRadius.circular(25),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
+                                          child: TextFormField(
+                                            controller: nameController,
+                                            autofocus: true,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              hintText: 'الاسم',
+                                              hintStyle: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF565656),
+                                              ),
+                                              enabledBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              errorBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedErrorBorder:
+                                                  UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF565656),
+                                            ),
+                                            textAlign: TextAlign.end,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -121,6 +283,90 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                           color: Color(0xFFE0E0E0),
                                           borderRadius:
                                               BorderRadius.circular(25),
+                                        ),
+                                        child: FlutterFlowDropDown(
+                                          options: [
+                                            'كلية الآداب',
+                                            'كلية التربية',
+                                            'كلية اللغات والترجمة',
+                                            'كلية الهندسة',
+                                            'كلية العلوم',
+                                            'كلية علوم الحاسب والمعلومات',
+                                            'كلية العمارة والتخطيط',
+                                            'كلية إدارة الأعمال',
+                                            'كلية الطب',
+                                            'كلية طب الأسنان',
+                                            'كلية الصيدلة',
+                                            'كلية العلوم الطبية التطبيقية',
+                                            'كلية التمريض'
+                                          ],
+                                          onChanged: (val) => setState(
+                                              () => collegeValue = val),
+                                          width: 300,
+                                          height: 50,
+                                          textStyle: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF565656),
+                                          ),
+                                          hintText:
+                                              'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
+                                          fillColor: Color(0xFFE0E0E0),
+                                          elevation: 2,
+                                          borderColor: Colors.transparent,
+                                          borderWidth: 0,
+                                          borderRadius: 0,
+                                          margin:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          hidesUnderline: true,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          4, 0, 4, 15),
+                                      child: Container(
+                                        width: 300,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFE0E0E0),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        child: FlutterFlowDropDown(
+                                          options: [
+                                            'المستوى الأول',
+                                            'المستوى الثاني',
+                                            'المستوى الثالث',
+                                            'المستوى الرابع',
+                                            'المستوى الخامس',
+                                            'المستوى السادس',
+                                            'المستوى السابع',
+                                            'المستوى الثامن',
+                                            'المستوى التاسع',
+                                            'المستوى العاشر',
+                                            'المستوى الحادي عشر',
+                                            'المستوى الثاني عشر'
+                                          ],
+                                          onChanged: (val) =>
+                                              setState(() => levelValue = val),
+                                          width: 300,
+                                          height: 50,
+                                          textStyle: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF565656),
+                                          ),
+                                          hintText:
+                                              'المستوى ــــــــــــــــــــــــــــــــــــــــ',
+                                          fillColor: Color(0xFFE0E0E0),
+                                          elevation: 2,
+                                          borderColor: Colors.transparent,
+                                          borderWidth: 0,
+                                          borderRadius: 0,
+                                          margin:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          hidesUnderline: true,
                                         ),
                                       ),
                                     ),
@@ -128,10 +374,29 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 20),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          final usersUpdateData =
+                                              createUsersRecordData(
+                                            displayName: nameController!.text,
+                                            college: collegeValue,
+                                            level: levelValue,
+                                          );
+                                          await currentUserReference!
+                                              .update(usersUpdateData);
+
+                                          context.goNamed(
+                                            'Settinginterests2',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType.fade,
+                                              ),
+                                            },
+                                          );
                                         },
-                                        text: 'إنشاء حساب',
+                                        text: 'التالي',
                                         options: FFButtonOptions(
                                           width: 300,
                                           height: 50,
@@ -151,7 +416,8 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                       ),
                                     ),
                                   ],
-                                ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'columnOnPageLoadAnimation']!),
                               ],
                             ),
                           ),

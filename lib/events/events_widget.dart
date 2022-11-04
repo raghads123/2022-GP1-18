@@ -84,145 +84,148 @@ class _EventsWidgetState extends State<EventsWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      borderWidth: 1,
-                      buttonSize: 50,
-                      icon: Icon(
-                        Icons.search_rounded,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        size: 30,
-                      ),
-                      onPressed: () {
-                        print('IconButton pressed ...');
-                      },
-                    ),
-                    Container(
-                      width: 300,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4,
-                            color: Color(0x33000000),
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 22, 0),
-                        child: Autocomplete<String>(
-                          initialValue: TextEditingValue(),
-                          optionsBuilder: (textEditingValue) {
-                            if (textEditingValue.text == '') {
-                              return const Iterable<String>.empty();
-                            }
-                            return <String>[].where((option) {
-                              final lowercaseOption = option.toLowerCase();
-                              return lowercaseOption.contains(
-                                  textEditingValue.text.toLowerCase());
-                            });
-                          },
-                          optionsViewBuilder: (context, onSelected, options) {
-                            return AutocompleteOptionsList(
-                              textFieldKey: fieldSearchKey,
-                              textController: fieldSearchController!,
-                              options: options.toList(),
-                              onSelected: onSelected,
-                              textStyle: FlutterFlowTheme.of(context).bodyText1,
-                              textHighlightStyle: TextStyle(),
-                              elevation: 4,
-                              optionBackgroundColor:
-                                  FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                              optionHighlightColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              maxHeight: 200,
-                            );
-                          },
-                          onSelected: (String selection) {
-                            setState(
-                                () => fieldSearchSelectedOption = selection);
-                            FocusScope.of(context).unfocus();
-                          },
-                          fieldViewBuilder: (
-                            context,
-                            textEditingController,
-                            focusNode,
-                            onEditingComplete,
-                          ) {
-                            fieldSearchController = textEditingController;
-                            return TextFormField(
-                              key: fieldSearchKey,
-                              controller: textEditingController,
-                              focusNode: focusNode,
-                              onEditingComplete: onEditingComplete,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                'fieldSearchController',
-                                Duration(milliseconds: 500),
-                                () => setState(() {}),
-                              ),
-                              autofocus: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: 'ابحثِ هنا ..',
-                                hintStyle:
-                                    FlutterFlowTheme.of(context).bodyText2,
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: Color(0x33000000),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 22, 0),
+                            child: Autocomplete<String>(
+                              initialValue: TextEditingValue(),
+                              optionsBuilder: (textEditingValue) {
+                                if (textEditingValue.text == '') {
+                                  return const Iterable<String>.empty();
+                                }
+                                return <String>[].where((option) {
+                                  final lowercaseOption = option.toLowerCase();
+                                  return lowercaseOption.contains(
+                                      textEditingValue.text.toLowerCase());
+                                });
+                              },
+                              optionsViewBuilder:
+                                  (context, onSelected, options) {
+                                return AutocompleteOptionsList(
+                                  textFieldKey: fieldSearchKey,
+                                  textController: fieldSearchController!,
+                                  options: options.toList(),
+                                  onSelected: onSelected,
+                                  textStyle:
+                                      FlutterFlowTheme.of(context).bodyText1,
+                                  textHighlightStyle: TextStyle(),
+                                  elevation: 4,
+                                  optionBackgroundColor:
+                                      FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                  optionHighlightColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                  maxHeight: 200,
+                                );
+                              },
+                              onSelected: (String selection) {
+                                setState(() =>
+                                    fieldSearchSelectedOption = selection);
+                                FocusScope.of(context).unfocus();
+                              },
+                              fieldViewBuilder: (
+                                context,
+                                textEditingController,
+                                focusNode,
+                                onEditingComplete,
+                              ) {
+                                fieldSearchController = textEditingController;
+                                return TextFormField(
+                                  key: fieldSearchKey,
+                                  controller: textEditingController,
+                                  focusNode: focusNode,
+                                  onEditingComplete: onEditingComplete,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    'fieldSearchController',
+                                    Duration(milliseconds: 500),
+                                    () => setState(() {}),
                                   ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'ابحثِ هنا',
+                                    hintStyle:
+                                        FlutterFlowTheme.of(context).bodyText2,
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                errorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                                focusedErrorBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1,
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(4.0),
-                                    topRight: Radius.circular(4.0),
-                                  ),
-                                ),
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                              textAlign: TextAlign.end,
-                            );
-                          },
+                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  textAlign: TextAlign.end,
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: Icon(
+                          Icons.search,
+                          color: Color(0xFF777373),
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 PagedListView<DocumentSnapshot<Object?>?, ExtraActsRecord>(
                   pagingController: () {
@@ -458,7 +461,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'd/M',
+                                                    'MMMEd',
                                                     listViewExtraActsRecord
                                                         .edate!),
                                                 textAlign: TextAlign.end,
@@ -477,7 +480,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'd/M',
+                                                    'MMMEd',
                                                     listViewExtraActsRecord
                                                         .sdate!),
                                                 textAlign: TextAlign.end,

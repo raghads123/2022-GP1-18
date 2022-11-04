@@ -47,12 +47,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.level;
-    if (value != null) {
-      result
-        ..add('level')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.college;
     if (value != null) {
       result
@@ -79,15 +73,25 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
       result
         ..add('intrests')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.rateCr;
-    if (value != null) {
-      result
-        ..add('rate_cr')
-        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.level;
+    if (value != null) {
+      result
+        ..add('level')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.myIntrests;
+    if (value != null) {
+      result
+        ..add('myIntrests')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -127,10 +131,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.createdTime = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'level':
-          result.level = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'college':
           result.college = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -144,14 +144,21 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
               specifiedType: const FullType(String)) as String?;
           break;
         case 'intrests':
-          result.intrests = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'rate_cr':
-          result.rateCr.replace(serializers.deserialize(value,
+          result.intrests.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+        case 'level':
+          result.level = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'myIntrests':
+          result.myIntrests.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -176,17 +183,17 @@ class _$UsersRecord extends UsersRecord {
   @override
   final DateTime? createdTime;
   @override
-  final int? level;
-  @override
   final String? college;
   @override
   final String? photoUrl;
   @override
   final String? phoneNumber;
   @override
-  final String? intrests;
+  final BuiltList<String>? intrests;
   @override
-  final BuiltList<String>? rateCr;
+  final String? level;
+  @override
+  final BuiltList<DocumentReference<Object?>>? myIntrests;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -198,12 +205,12 @@ class _$UsersRecord extends UsersRecord {
       this.displayName,
       this.uid,
       this.createdTime,
-      this.level,
       this.college,
       this.photoUrl,
       this.phoneNumber,
       this.intrests,
-      this.rateCr,
+      this.level,
+      this.myIntrests,
       this.ffRef})
       : super._();
 
@@ -222,12 +229,12 @@ class _$UsersRecord extends UsersRecord {
         displayName == other.displayName &&
         uid == other.uid &&
         createdTime == other.createdTime &&
-        level == other.level &&
         college == other.college &&
         photoUrl == other.photoUrl &&
         phoneNumber == other.phoneNumber &&
         intrests == other.intrests &&
-        rateCr == other.rateCr &&
+        level == other.level &&
+        myIntrests == other.myIntrests &&
         ffRef == other.ffRef;
   }
 
@@ -246,12 +253,12 @@ class _$UsersRecord extends UsersRecord {
                                             displayName.hashCode),
                                         uid.hashCode),
                                     createdTime.hashCode),
-                                level.hashCode),
-                            college.hashCode),
-                        photoUrl.hashCode),
-                    phoneNumber.hashCode),
-                intrests.hashCode),
-            rateCr.hashCode),
+                                college.hashCode),
+                            photoUrl.hashCode),
+                        phoneNumber.hashCode),
+                    intrests.hashCode),
+                level.hashCode),
+            myIntrests.hashCode),
         ffRef.hashCode));
   }
 
@@ -262,12 +269,12 @@ class _$UsersRecord extends UsersRecord {
           ..add('displayName', displayName)
           ..add('uid', uid)
           ..add('createdTime', createdTime)
-          ..add('level', level)
           ..add('college', college)
           ..add('photoUrl', photoUrl)
           ..add('phoneNumber', phoneNumber)
           ..add('intrests', intrests)
-          ..add('rateCr', rateCr)
+          ..add('level', level)
+          ..add('myIntrests', myIntrests)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -292,10 +299,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   DateTime? get createdTime => _$this._createdTime;
   set createdTime(DateTime? createdTime) => _$this._createdTime = createdTime;
 
-  int? _level;
-  int? get level => _$this._level;
-  set level(int? level) => _$this._level = level;
-
   String? _college;
   String? get college => _$this._college;
   set college(String? college) => _$this._college = college;
@@ -308,14 +311,20 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get phoneNumber => _$this._phoneNumber;
   set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
-  String? _intrests;
-  String? get intrests => _$this._intrests;
-  set intrests(String? intrests) => _$this._intrests = intrests;
+  ListBuilder<String>? _intrests;
+  ListBuilder<String> get intrests =>
+      _$this._intrests ??= new ListBuilder<String>();
+  set intrests(ListBuilder<String>? intrests) => _$this._intrests = intrests;
 
-  ListBuilder<String>? _rateCr;
-  ListBuilder<String> get rateCr =>
-      _$this._rateCr ??= new ListBuilder<String>();
-  set rateCr(ListBuilder<String>? rateCr) => _$this._rateCr = rateCr;
+  String? _level;
+  String? get level => _$this._level;
+  set level(String? level) => _$this._level = level;
+
+  ListBuilder<DocumentReference<Object?>>? _myIntrests;
+  ListBuilder<DocumentReference<Object?>> get myIntrests =>
+      _$this._myIntrests ??= new ListBuilder<DocumentReference<Object?>>();
+  set myIntrests(ListBuilder<DocumentReference<Object?>>? myIntrests) =>
+      _$this._myIntrests = myIntrests;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -332,12 +341,12 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _displayName = $v.displayName;
       _uid = $v.uid;
       _createdTime = $v.createdTime;
-      _level = $v.level;
       _college = $v.college;
       _photoUrl = $v.photoUrl;
       _phoneNumber = $v.phoneNumber;
-      _intrests = $v.intrests;
-      _rateCr = $v.rateCr?.toBuilder();
+      _intrests = $v.intrests?.toBuilder();
+      _level = $v.level;
+      _myIntrests = $v.myIntrests?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -367,18 +376,21 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
               displayName: displayName,
               uid: uid,
               createdTime: createdTime,
-              level: level,
               college: college,
               photoUrl: photoUrl,
               phoneNumber: phoneNumber,
-              intrests: intrests,
-              rateCr: _rateCr?.build(),
+              intrests: _intrests?.build(),
+              level: level,
+              myIntrests: _myIntrests?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'rateCr';
-        _rateCr?.build();
+        _$failedField = 'intrests';
+        _intrests?.build();
+
+        _$failedField = 'myIntrests';
+        _myIntrests?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'UsersRecord', _$failedField, e.toString());

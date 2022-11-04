@@ -135,33 +135,144 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                   onPressed: () async {
                                                     if (listViewExtraActsRecord
                                                         .seats!) {
-                                                      final extraActsUpdateData =
-                                                          {
-                                                        'enrolled_by':
-                                                            FieldValue
-                                                                .arrayRemove([
-                                                          currentUserEmail
-                                                        ]),
-                                                        'num_seats': FieldValue
-                                                            .increment(1),
-                                                      };
-                                                      await listViewExtraActsRecord
-                                                          .reference
-                                                          .update(
-                                                              extraActsUpdateData);
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'هل تريدين إلغاء تسجيلك في هذا النشاط؟'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: Text(
+                                                                            'لا'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: Text(
+                                                                            'نعم'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                      if (confirmDialogResponse) {
+                                                        final extraActsUpdateData =
+                                                            {
+                                                          'enrolled_by':
+                                                              FieldValue
+                                                                  .arrayRemove([
+                                                            currentUserEmail
+                                                          ]),
+                                                          'num_seats':
+                                                              FieldValue
+                                                                  .increment(1),
+                                                        };
+                                                        await listViewExtraActsRecord
+                                                            .reference
+                                                            .update(
+                                                                extraActsUpdateData);
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'تم إلغاء تسجيلك بنجاح!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0xE15BD85B),
+                                                          ),
+                                                        );
+                                                      }
                                                     } else {
-                                                      final extraActsUpdateData =
-                                                          {
-                                                        'enrolled_by':
-                                                            FieldValue
-                                                                .arrayRemove([
-                                                          currentUserEmail
-                                                        ]),
-                                                      };
-                                                      await listViewExtraActsRecord
-                                                          .reference
-                                                          .update(
-                                                              extraActsUpdateData);
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'هل تريدين إلغاء تسجيلك في هذا النشاط؟'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: Text(
+                                                                            'لا'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: Text(
+                                                                            'نعم'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                      if (confirmDialogResponse) {
+                                                        final extraActsUpdateData =
+                                                            {
+                                                          'enrolled_by':
+                                                              FieldValue
+                                                                  .arrayRemove([
+                                                            currentUserEmail
+                                                          ]),
+                                                        };
+                                                        await listViewExtraActsRecord
+                                                            .reference
+                                                            .update(
+                                                                extraActsUpdateData);
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'تم إلغاء تسجيلك بنجاح!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0xE15BD85B),
+                                                          ),
+                                                        );
+                                                      }
                                                     }
                                                   },
                                                   text: 'إلغاء التسجيل',

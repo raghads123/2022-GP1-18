@@ -275,9 +275,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         return;
                                       }
 
-                                      context.goNamedAuth('HomePage', mounted);
+                                      setState(() => FFAppState().userSigned =
+                                          currentUserEmail);
+
+                                      context.pushNamedAuth(
+                                          'HomePage', mounted);
                                     },
-                                    text: 'تسجيل دخول',
+                                    text: 'تسجيل الدخول',
                                     options: FFButtonOptions(
                                       width: 300,
                                       height: 50,

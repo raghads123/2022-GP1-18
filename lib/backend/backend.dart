@@ -6,6 +6,9 @@ import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
 import 'schema/extra_acts_record.dart';
+import 'schema/opportunities_record.dart';
+import 'schema/category_interests_record.dart';
+import 'schema/category_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -15,6 +18,9 @@ export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
 export 'schema/extra_acts_record.dart';
+export 'schema/opportunities_record.dart';
+export 'schema/category_interests_record.dart';
+export 'schema/category_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -94,6 +100,133 @@ Future<FFFirestorePage<ExtraActsRecord>> queryExtraActsRecordPage({
     queryCollectionPage(
       ExtraActsRecord.collection,
       ExtraActsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query OpportunitiesRecords (as a Stream and as a Future).
+Stream<List<OpportunitiesRecord>> queryOpportunitiesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      OpportunitiesRecord.collection,
+      OpportunitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<OpportunitiesRecord>> queryOpportunitiesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      OpportunitiesRecord.collection,
+      OpportunitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<OpportunitiesRecord>> queryOpportunitiesRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      OpportunitiesRecord.collection,
+      OpportunitiesRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query CategoryInterestsRecords (as a Stream and as a Future).
+Stream<List<CategoryInterestsRecord>> queryCategoryInterestsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CategoryInterestsRecord.collection,
+      CategoryInterestsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CategoryInterestsRecord>> queryCategoryInterestsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CategoryInterestsRecord.collection,
+      CategoryInterestsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<CategoryInterestsRecord>>
+    queryCategoryInterestsRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          CategoryInterestsRecord.collection,
+          CategoryInterestsRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query CategoryRecords (as a Stream and as a Future).
+Stream<List<CategoryRecord>> queryCategoryRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CategoryRecord.collection,
+      CategoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CategoryRecord>> queryCategoryRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CategoryRecord.collection,
+      CategoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<CategoryRecord>> queryCategoryRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      CategoryRecord.collection,
+      CategoryRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

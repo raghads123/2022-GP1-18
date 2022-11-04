@@ -88,6 +88,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SettingUpProfileWidget(),
             ),
             FFRoute(
+              name: 'Settinginterests2',
+              path: 'settinginterests2',
+              requireAuth: true,
+              builder: (context, params) => Settinginterests2Widget(),
+            ),
+            FFRoute(
               name: 'LogIn',
               path: 'logIn',
               builder: (context, params) => LogInWidget(),
@@ -165,10 +171,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : ProfileWidget(),
             ),
             FFRoute(
-              name: 'settingInterests',
-              path: 'settingInterests',
+              name: 'opp_application_form',
+              path: 'oppApplicationForm',
               requireAuth: true,
-              builder: (context, params) => SettingInterestsWidget(),
+              builder: (context, params) => OppApplicationFormWidget(
+                oppName: params.getParam('oppName', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'EditInterests',
+              path: 'editInterests',
+              requireAuth: true,
+              builder: (context, params) => EditInterestsWidget(),
             ),
             FFRoute(
               name: 'user_ratings',
@@ -177,6 +191,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => UserRatingsWidget(
                 actname: params.getParam('actname', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'Opportunity_apply_form',
+              path: 'opportunityApplyForm',
+              requireAuth: true,
+              builder: (context, params) => OpportunityApplyFormWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

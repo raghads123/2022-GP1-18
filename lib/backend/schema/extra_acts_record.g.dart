@@ -56,13 +56,6 @@ class _$ExtraActsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.category;
-    if (value != null) {
-      result
-        ..add('category')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.sdate;
     if (value != null) {
       result
@@ -164,10 +157,6 @@ class _$ExtraActsRecordSerializer
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'category':
-          result.category = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'Sdate':
           result.sdate = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
@@ -231,8 +220,6 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final String? status;
   @override
-  final String? category;
-  @override
   final DateTime? sdate;
   @override
   final DateTime? edate;
@@ -260,7 +247,6 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actDec,
       this.actPic,
       this.status,
-      this.category,
       this.sdate,
       this.edate,
       this.actLoc,
@@ -289,7 +275,6 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actDec == other.actDec &&
         actPic == other.actPic &&
         status == other.status &&
-        category == other.category &&
         sdate == other.sdate &&
         edate == other.edate &&
         actLoc == other.actLoc &&
@@ -316,16 +301,12 @@ class _$ExtraActsRecord extends ExtraActsRecord {
                                             $jc(
                                                 $jc(
                                                     $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                0,
-                                                                actType
-                                                                    .hashCode),
-                                                            actName.hashCode),
-                                                        actDec.hashCode),
-                                                    actPic.hashCode),
-                                                status.hashCode),
-                                            category.hashCode),
+                                                        $jc(0,
+                                                            actType.hashCode),
+                                                        actName.hashCode),
+                                                    actDec.hashCode),
+                                                actPic.hashCode),
+                                            status.hashCode),
                                         sdate.hashCode),
                                     edate.hashCode),
                                 actLoc.hashCode),
@@ -345,7 +326,6 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actDec', actDec)
           ..add('actPic', actPic)
           ..add('status', status)
-          ..add('category', category)
           ..add('sdate', sdate)
           ..add('edate', edate)
           ..add('actLoc', actLoc)
@@ -382,10 +362,6 @@ class ExtraActsRecordBuilder
   String? _status;
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
-
-  String? _category;
-  String? get category => _$this._category;
-  set category(String? category) => _$this._category = category;
 
   DateTime? _sdate;
   DateTime? get sdate => _$this._sdate;
@@ -438,7 +414,6 @@ class ExtraActsRecordBuilder
       _actDec = $v.actDec;
       _actPic = $v.actPic;
       _status = $v.status;
-      _category = $v.category;
       _sdate = $v.sdate;
       _edate = $v.edate;
       _actLoc = $v.actLoc;
@@ -477,7 +452,6 @@ class ExtraActsRecordBuilder
               actDec: actDec,
               actPic: actPic,
               status: status,
-              category: category,
               sdate: sdate,
               edate: edate,
               actLoc: actLoc,

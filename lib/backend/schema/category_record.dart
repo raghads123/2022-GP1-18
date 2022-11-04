@@ -11,17 +11,14 @@ abstract class CategoryRecord
   static Serializer<CategoryRecord> get serializer =>
       _$categoryRecordSerializer;
 
-  String? get name;
-
-  String? get icon;
+  BuiltList<String>? get name;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
-  static void _initializeBuilder(CategoryRecordBuilder builder) => builder
-    ..name = ''
-    ..icon = '';
+  static void _initializeBuilder(CategoryRecordBuilder builder) =>
+      builder..name = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('category');
@@ -44,16 +41,11 @@ abstract class CategoryRecord
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
 
-Map<String, dynamic> createCategoryRecordData({
-  String? name,
-  String? icon,
-}) {
+Map<String, dynamic> createCategoryRecordData() {
   final firestoreData = serializers.toFirestore(
     CategoryRecord.serializer,
     CategoryRecord(
-      (c) => c
-        ..name = name
-        ..icon = icon,
+      (c) => c..name = null,
     ),
   );
 

@@ -55,11 +55,22 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
             buttonSize: 60,
             icon: Icon(
               Icons.chevron_right_outlined,
-              color: FlutterFlowTheme.of(context).primaryText,
+              color: Color(0xFF777373),
               size: 30,
             ),
             onPressed: () async {
-              context.pop();
+              if (Navigator.of(context).canPop()) {
+                context.pop();
+              }
+              context.pushNamed(
+                'HomePage',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.leftToRight,
+                  ),
+                },
+              );
             },
           ),
         ],
@@ -220,10 +231,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                   ),
                 ),
                 StreamBuilder<List<OpportunitiesRecord>>(
-                  stream: queryOpportunitiesRecord(
-                    queryBuilder: (opportunitiesRecord) =>
-                        opportunitiesRecord.orderBy('Edate'),
-                  ),
+                  stream: queryOpportunitiesRecord(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -250,245 +258,229 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                         return Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 8, 16, 12),
-                          child: StreamBuilder<List<OpportunitiesRecord>>(
-                            stream: queryOpportunitiesRecord(
-                              singleRecord: true,
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 9,
+                                  color: FlutterFlowTheme.of(context).gray600,
+                                  offset: Offset(0, 2),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50,
-                                    height: 50,
-                                    child: CircularProgressIndicator(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                    ),
-                                  ),
-                                );
-                              }
-                              List<OpportunitiesRecord>
-                                  carDetailsOpportunitiesRecordList =
-                                  snapshot.data!;
-                              // Return an empty Container when the document does not exist.
-                              if (snapshot.data!.isEmpty) {
-                                return Container();
-                              }
-                              final carDetailsOpportunitiesRecord =
-                                  carDetailsOpportunitiesRecordList.isNotEmpty
-                                      ? carDetailsOpportunitiesRecordList.first
-                                      : null;
-                              return Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x2B202529),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                    color: Color(0xFFFF5757),
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.35, 0),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  8, 0, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(16, 8, 16, 12),
-                                                  child: Container(
-                                                    width: double.infinity,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                          blurRadius: 4,
-                                                          color:
-                                                              Color(0x2B202529),
-                                                          offset: Offset(0, 2),
-                                                        )
-                                                      ],
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12),
-                                                    ),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(8,
-                                                                      0, 0, 0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                            child: Align(
+                              alignment: AlignmentDirectional(0.35, 0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8, 0, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(16, 8, 16, 12),
+                                              child: Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8, 0, 0, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8,
                                                                           4,
                                                                           0,
                                                                           4),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Text(
-                                                                        carDetailsOpportunitiesRecord!
-                                                                            .opProvider!,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText2
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: Color(0xFF57636C),
-                                                                              fontSize: 12,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            4,
-                                                                            0,
-                                                                            0),
-                                                                        child:
-                                                                            Text(
-                                                                          carDetailsOpportunitiesRecord!
-                                                                              .oppName!,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .subtitle1
-                                                                              .override(
-                                                                                fontFamily: 'Outfit',
-                                                                                color: Color(0xFF101213),
-                                                                                fontSize: 18,
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    listViewOpportunitiesRecord
+                                                                        .opProvider!,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Outfit',
+                                                                          color:
+                                                                              Color(0xFF57636C),
+                                                                          fontSize:
+                                                                              12,
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            4,
-                                                                            0,
-                                                                            0),
-                                                                        child:
-                                                                            Text(
-                                                                          carDetailsOpportunitiesRecord!
-                                                                              .opDesc!,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyText2
-                                                                              .override(
-                                                                                fontFamily: 'Outfit',
-                                                                                color: Color(0xFF57636C),
-                                                                                fontSize: 14,
-                                                                                fontWeight: FontWeight.normal,
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
                                                                   ),
-                                                                ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      listViewOpportunitiesRecord
+                                                                          .oppName!,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF101213),
+                                                                            fontSize:
+                                                                                18,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      listViewOpportunitiesRecord
+                                                                          .opDesc!,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF57636C),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                              ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .only(
-                                                                  bottomLeft: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                  bottomRight: Radius
-                                                                      .circular(
-                                                                          12),
-                                                                  topLeft: Radius
-                                                                      .circular(
-                                                                          0),
-                                                                  topRight: Radius
-                                                                      .circular(
-                                                                          12),
-                                                                ),
-                                                                child: Image
-                                                                    .network(
-                                                                  carDetailsOpportunitiesRecord!
-                                                                      .opProviderLogo!,
-                                                                  width: 160,
-                                                                  height: 100,
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                ),
-                                                              ),
-                                                            ],
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          12),
+                                                              topLeft: Radius
+                                                                  .circular(0),
+                                                              topRight: Radius
+                                                                  .circular(12),
+                                                            ),
+                                                            child:
+                                                                Image.network(
+                                                              listViewOpportunitiesRecord
+                                                                  .opProviderLogo!,
+                                                              width: 160,
+                                                              height: 100,
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                                'Opportunity_apply_form');
-                                          },
-                                          text: 'تقديم',
-                                          options: FFButtonOptions(
-                                            width: double.infinity,
-                                            color: Color(0xFFFF5757),
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Poppins',
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .platinum,
-                                                    ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
                                             ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
+                                    FFButtonWidget(
+                                      onPressed: () async {
+                                        if (Navigator.of(context).canPop()) {
+                                          context.pop();
+                                        }
+                                        context.pushNamed(
+                                          'Opportunity_apply_form',
+                                          queryParams: {
+                                            'opportunityID': serializeParam(
+                                              listViewOpportunitiesRecord
+                                                  .oppName,
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .leftToRight,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      text: 'تقديم',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        color: Color(0xE15BD85B),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            },
+                              ),
+                            ),
                           ),
                         );
                       },

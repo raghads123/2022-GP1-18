@@ -25,7 +25,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController();
+    nameController = TextEditingController(text: currentUserDisplayName);
   }
 
   @override
@@ -53,10 +53,57 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             size: 22,
           ),
           onPressed: () async {
-            GoRouter.of(context).prepareAuthEvent();
-            await signOut();
+            var confirmDialogResponse = await showDialog<bool>(
+                  context: context,
+                  builder: (alertDialogContext) {
+                    return AlertDialog(
+                      title: Text('هل تريدين تسجيل الخروج'),
+                      actions: [
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, false),
+                          child: Text('لا'),
+                        ),
+                        TextButton(
+                          onPressed: () =>
+                              Navigator.pop(alertDialogContext, true),
+                          child: Text('نعم'),
+                        ),
+                      ],
+                    );
+                  },
+                ) ??
+                false;
+            if (confirmDialogResponse) {
+              GoRouter.of(context).prepareAuthEvent();
+              await signOut();
 
-            context.goNamedAuth('SignUp', mounted);
+              context.goNamedAuth(
+                'LogIn',
+                mounted,
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'تم تسجيل خروجك بنجاح',
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).primaryBtnText,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  duration: Duration(milliseconds: 4000),
+                  backgroundColor: Color(0xE15BD85B),
+                ),
+              );
+            }
           },
         ),
         title: Text(
@@ -140,7 +187,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 30, 15),
+                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -163,6 +210,32 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 15, 20, 0),
+                                  child: SelectionArea(
+                                      child: Text(
+                                    'الاسم:',
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.getFont(
+                                      'Merriweather',
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(4, 1, 4, 15),
                           child: Container(
                             width: 300,
@@ -174,64 +247,91 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                              child: TextFormField(
-                                controller: nameController,
-                                autofocus: true,
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  hintText: 'الاسم',
-                                  hintStyle: GoogleFonts.getFont(
+                              child: AuthUserStreamWidget(
+                                child: TextFormField(
+                                  controller: nameController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'الاسم',
+                                    hintStyle: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: Color(0xFF565656),
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                  ),
+                                  style: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  errorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
-                                  focusedErrorBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1,
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(4.0),
-                                      topRight: Radius.circular(4.0),
-                                    ),
-                                  ),
+                                  textAlign: TextAlign.end,
                                 ),
-                                style: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color: Color(0xFF565656),
-                                ),
-                                textAlign: TextAlign.end,
                               ),
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 13, 20, 0),
+                                  child: SelectionArea(
+                                      child: Text(
+                                    'الكلية:',
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.getFont(
+                                      'Merriweather',
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
@@ -282,6 +382,32 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 hidesUnderline: true,
                               ),
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 15, 20, 0),
+                                  child: SelectionArea(
+                                      child: Text(
+                                    'المستوى:',
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.getFont(
+                                      'Merriweather',
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(

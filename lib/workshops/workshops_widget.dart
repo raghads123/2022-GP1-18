@@ -374,7 +374,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                           Expanded(
                                             child: Align(
                                               alignment:
-                                                  AlignmentDirectional(1.6, 0),
+                                                  AlignmentDirectional(1.4, 0),
                                               child: Text(
                                                 'تنتهي',
                                                 textAlign: TextAlign.end,

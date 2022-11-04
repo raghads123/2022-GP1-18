@@ -373,19 +373,23 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Expanded(
-                                            child: Text(
-                                              'تنتهي',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF777373),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
+                                            child: Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, 1.4),
+                                              child: Text(
+                                                'تنتهي',
+                                                textAlign: TextAlign.end,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xFF777373),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
+                                              ),
                                             ),
                                           ),
                                           Expanded(

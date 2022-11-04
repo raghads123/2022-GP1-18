@@ -31,8 +31,6 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get level;
 
-  BuiltList<DocumentReference>? get myIntrests;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -45,8 +43,7 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..photoUrl = ''
     ..phoneNumber = ''
     ..intrests = ListBuilder()
-    ..level = ''
-    ..myIntrests = ListBuilder();
+    ..level = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -91,8 +88,7 @@ Map<String, dynamic> createUsersRecordData({
         ..photoUrl = photoUrl
         ..phoneNumber = phoneNumber
         ..intrests = null
-        ..level = level
-        ..myIntrests = null,
+        ..level = level,
     ),
   );
 

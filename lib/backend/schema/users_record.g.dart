@@ -83,16 +83,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.myIntrests;
-    if (value != null) {
-      result
-        ..add('myIntrests')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(BuiltList, const [
-              const FullType(
-                  DocumentReference, const [const FullType.nullable(Object)])
-            ])));
-    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -153,13 +143,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.level = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'myIntrests':
-          result.myIntrests.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(
-                    DocumentReference, const [const FullType.nullable(Object)])
-              ]))! as BuiltList<Object?>);
-          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -193,8 +176,6 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? level;
   @override
-  final BuiltList<DocumentReference<Object?>>? myIntrests;
-  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -210,7 +191,6 @@ class _$UsersRecord extends UsersRecord {
       this.phoneNumber,
       this.intrests,
       this.level,
-      this.myIntrests,
       this.ffRef})
       : super._();
 
@@ -234,7 +214,6 @@ class _$UsersRecord extends UsersRecord {
         phoneNumber == other.phoneNumber &&
         intrests == other.intrests &&
         level == other.level &&
-        myIntrests == other.myIntrests &&
         ffRef == other.ffRef;
   }
 
@@ -248,17 +227,15 @@ class _$UsersRecord extends UsersRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            displayName.hashCode),
-                                        uid.hashCode),
-                                    createdTime.hashCode),
-                                college.hashCode),
-                            photoUrl.hashCode),
-                        phoneNumber.hashCode),
-                    intrests.hashCode),
-                level.hashCode),
-            myIntrests.hashCode),
+                                    $jc($jc(0, email.hashCode),
+                                        displayName.hashCode),
+                                    uid.hashCode),
+                                createdTime.hashCode),
+                            college.hashCode),
+                        photoUrl.hashCode),
+                    phoneNumber.hashCode),
+                intrests.hashCode),
+            level.hashCode),
         ffRef.hashCode));
   }
 
@@ -274,7 +251,6 @@ class _$UsersRecord extends UsersRecord {
           ..add('phoneNumber', phoneNumber)
           ..add('intrests', intrests)
           ..add('level', level)
-          ..add('myIntrests', myIntrests)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -320,12 +296,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get level => _$this._level;
   set level(String? level) => _$this._level = level;
 
-  ListBuilder<DocumentReference<Object?>>? _myIntrests;
-  ListBuilder<DocumentReference<Object?>> get myIntrests =>
-      _$this._myIntrests ??= new ListBuilder<DocumentReference<Object?>>();
-  set myIntrests(ListBuilder<DocumentReference<Object?>>? myIntrests) =>
-      _$this._myIntrests = myIntrests;
-
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -346,7 +316,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _phoneNumber = $v.phoneNumber;
       _intrests = $v.intrests?.toBuilder();
       _level = $v.level;
-      _myIntrests = $v.myIntrests?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -381,16 +350,12 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
               phoneNumber: phoneNumber,
               intrests: _intrests?.build(),
               level: level,
-              myIntrests: _myIntrests?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'intrests';
         _intrests?.build();
-
-        _$failedField = 'myIntrests';
-        _myIntrests?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'UsersRecord', _$failedField, e.toString());

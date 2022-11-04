@@ -7,7 +7,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/users_record.dart';
 import 'schema/extra_acts_record.dart';
 import 'schema/opportunities_record.dart';
-import 'schema/category_interests_record.dart';
 import 'schema/category_record.dart';
 import 'schema/serializers.dart';
 
@@ -19,7 +18,6 @@ export 'schema/serializers.dart';
 export 'schema/users_record.dart';
 export 'schema/extra_acts_record.dart';
 export 'schema/opportunities_record.dart';
-export 'schema/category_interests_record.dart';
 export 'schema/category_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
@@ -147,49 +145,6 @@ Future<FFFirestorePage<OpportunitiesRecord>> queryOpportunitiesRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
-
-/// Functions to query CategoryInterestsRecords (as a Stream and as a Future).
-Stream<List<CategoryInterestsRecord>> queryCategoryInterestsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      CategoryInterestsRecord.collection,
-      CategoryInterestsRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<CategoryInterestsRecord>> queryCategoryInterestsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      CategoryInterestsRecord.collection,
-      CategoryInterestsRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<CategoryInterestsRecord>>
-    queryCategoryInterestsRecordPage({
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-}) =>
-        queryCollectionPage(
-          CategoryInterestsRecord.collection,
-          CategoryInterestsRecord.serializer,
-          queryBuilder: queryBuilder,
-          nextPageMarker: nextPageMarker,
-          pageSize: pageSize,
-          isStream: isStream,
-        );
 
 /// Functions to query CategoryRecords (as a Stream and as a Future).
 Stream<List<CategoryRecord>> queryCategoryRecord({

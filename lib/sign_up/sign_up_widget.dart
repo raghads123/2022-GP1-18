@@ -330,7 +330,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 if (!RegExp(
                                                         r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
                                                     .hasMatch(val)) {
-                                                  return 'كلمة المرور يجب أن تحتوي على الأقل على: حرف كبير - حرف صغير - رقم - رمز';
+                                                  return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز (@\$!%*?&)';
                                                 }
                                                 return null;
                                               },

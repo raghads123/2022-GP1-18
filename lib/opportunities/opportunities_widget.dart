@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -271,115 +272,71 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                               ],
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Align(
-                              alignment: AlignmentDirectional(0.35, 0),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 8, 16, 12),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                ),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8, 0, 0, 0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Expanded(
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8,
-                                                                          4,
-                                                                          0,
-                                                                          4),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    listViewOpportunitiesRecord
-                                                                        .opProvider!,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          color:
-                                                                              Color(0xFF57636C),
-                                                                          fontSize:
-                                                                              12,
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                        ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
+                            child: Visibility(
+                              visible: functions.showSearchResultOp(
+                                  fieldSearchController!.text,
+                                  listViewOpportunitiesRecord.oppName!),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.35, 0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8, 0, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(16, 8, 16, 12),
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8, 0, 0, 0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
+                                                                            8,
                                                                             4,
                                                                             0,
-                                                                            0),
-                                                                    child: Text(
+                                                                            4),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
                                                                       listViewOpportunitiesRecord
-                                                                          .oppName!,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Outfit',
-                                                                            color:
-                                                                                Color(0xFF101213),
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            4,
-                                                                            0,
-                                                                            0),
-                                                                    child: Text(
-                                                                      listViewOpportunitiesRecord
-                                                                          .opDesc!,
+                                                                          .opProvider!,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyText2
@@ -389,96 +346,145 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                             color:
                                                                                 Color(0xFF57636C),
                                                                             fontSize:
-                                                                                14,
+                                                                                12,
                                                                             fontWeight:
                                                                                 FontWeight.normal,
                                                                           ),
                                                                     ),
-                                                                  ),
-                                                                ],
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Text(
+                                                                        listViewOpportunitiesRecord
+                                                                            .oppName!,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .subtitle1
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: Color(0xFF101213),
+                                                                              fontSize: 18,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              4,
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Text(
+                                                                        listViewOpportunitiesRecord
+                                                                            .opDesc!,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText2
+                                                                            .override(
+                                                                              fontFamily: 'Outfit',
+                                                                              color: Color(0xFF57636C),
+                                                                              fontSize: 14,
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          12),
-                                                              topLeft: Radius
-                                                                  .circular(0),
-                                                              topRight: Radius
-                                                                  .circular(12),
+                                                            ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .only(
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        0),
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            12),
+                                                                topLeft: Radius
+                                                                    .circular(
+                                                                        0),
+                                                                topRight: Radius
+                                                                    .circular(
+                                                                        12),
+                                                              ),
+                                                              child:
+                                                                  Image.network(
+                                                                listViewOpportunitiesRecord
+                                                                    .opProviderLogo!,
+                                                                width: 160,
+                                                                height: 100,
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
                                                             ),
-                                                            child:
-                                                                Image.network(
-                                                              listViewOpportunitiesRecord
-                                                                  .opProviderLogo!,
-                                                              width: 160,
-                                                              height: 100,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    FFButtonWidget(
-                                      onPressed: () async {
-                                        if (Navigator.of(context).canPop()) {
-                                          context.pop();
-                                        }
-                                        context.pushNamed(
-                                          'Opportunity_apply_form',
-                                          queryParams: {
-                                            'opportunityID': serializeParam(
-                                              listViewOpportunitiesRecord
-                                                  .oppName,
-                                              ParamType.String,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType: PageTransitionType
-                                                  .leftToRight,
-                                            ),
-                                          },
-                                        );
-                                      },
-                                      text: 'تقديم',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle2
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                            ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
+                                          ],
                                         ),
-                                        borderRadius: BorderRadius.circular(15),
                                       ),
-                                    ),
-                                  ],
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
+                                          context.pushNamed(
+                                            'Opportunity_apply_form',
+                                            queryParams: {
+                                              'opportunityID': serializeParam(
+                                                listViewOpportunitiesRecord
+                                                    .oppName,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .leftToRight,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        text: 'تقديم',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBtnText,
+                                              ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

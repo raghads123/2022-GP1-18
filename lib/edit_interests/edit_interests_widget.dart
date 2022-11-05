@@ -414,6 +414,9 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     FlutterFlowCheckboxGroup(
+                                      initiallySelected: containerUsersRecord!
+                                          .intrests!
+                                          .toList(),
                                       options:
                                           columnCategoryRecord!.name!.toList(),
                                       onChanged: (val) async {

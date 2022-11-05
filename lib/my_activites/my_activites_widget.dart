@@ -311,9 +311,8 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                 listViewExtraActsRecord.edate!)
                                               Expanded(
                                                 child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    context.pushNamed(
-                                                        'user_ratings');
+                                                  onPressed: () {
+                                                    print('Button pressed ...');
                                                   },
                                                   text: 'قيمي النشاط',
                                                   options: FFButtonOptions(

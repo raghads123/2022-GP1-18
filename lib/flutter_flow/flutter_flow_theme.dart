@@ -30,6 +30,7 @@ abstract class FlutterFlowTheme {
   late Color platinum;
   late Color ashGray;
   late Color darkSeaGreen;
+  late Color backgroundComponents;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -72,6 +73,7 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color platinum = Color(0xFFEBEBEB);
   late Color ashGray = Color(0xFFCAD2C5);
   late Color darkSeaGreen = Color(0xFF84A98C);
+  late Color backgroundComponents = Color(0xFF1D2428);
 }
 
 abstract class Typography {

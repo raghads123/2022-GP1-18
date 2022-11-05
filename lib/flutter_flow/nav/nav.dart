@@ -82,6 +82,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignUpWidget(),
             ),
             FFRoute(
+              name: 'SettingUpProfile',
+              path: 'settingUpProfile',
+              requireAuth: true,
+              builder: (context, params) => SettingUpProfileWidget(),
+            ),
+            FFRoute(
+              name: 'Settinginterests2',
+              path: 'settinginterests2',
+              requireAuth: true,
+              builder: (context, params) => Settinginterests2Widget(),
+            ),
+            FFRoute(
               name: 'LogIn',
               path: 'logIn',
               builder: (context, params) => LogInWidget(),
@@ -95,16 +107,61 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
+              name: 'courses',
+              path: 'courses',
+              requireAuth: true,
+              builder: (context, params) => CoursesWidget(),
+            ),
+            FFRoute(
+              name: 'course_info',
+              path: 'courseInfo',
+              requireAuth: true,
+              builder: (context, params) => CourseInfoWidget(
+                courseid: params.getParam('courseid', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'workshops',
+              path: 'workshops',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsWidget(),
+            ),
+            FFRoute(
+              name: 'workshope_info',
+              path: 'workshopeInfo',
+              requireAuth: true,
+              builder: (context, params) => WorkshopeInfoWidget(
+                workshopid: params.getParam('workshopid', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'events',
+              path: 'events',
+              requireAuth: true,
+              builder: (context, params) => EventsWidget(),
+            ),
+            FFRoute(
               name: 'event_info',
               path: 'eventInfo',
               requireAuth: true,
-              builder: (context, params) => EventInfoWidget(),
+              builder: (context, params) => EventInfoWidget(
+                eventid: params.getParam('eventid', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'Opportunities',
               path: 'opportunities',
               requireAuth: true,
               builder: (context, params) => OpportunitiesWidget(),
+            ),
+            FFRoute(
+              name: 'Opportunity_apply_form',
+              path: 'opportunityApplyForm',
+              requireAuth: true,
+              builder: (context, params) => OpportunityApplyFormWidget(
+                opportunityID:
+                    params.getParam('opportunityID', ParamType.String),
+              ),
             ),
             FFRoute(
               name: 'MyActivites',
@@ -123,16 +180,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : ProfileWidget(),
             ),
             FFRoute(
-              name: 'extracurricularactivities',
-              path: 'extracurricularactivities',
+              name: 'EditInterests',
+              path: 'editInterests',
               requireAuth: true,
-              builder: (context, params) => ExtracurricularactivitiesWidget(),
+              builder: (context, params) => EditInterestsWidget(),
             ),
             FFRoute(
-              name: 'settingPreferences',
-              path: 'settingPreferences',
+              name: 'user_ratings',
+              path: 'userRatings',
               requireAuth: true,
-              builder: (context, params) => SettingPreferencesWidget(),
+              builder: (context, params) => UserRatingsWidget(
+                actname: params.getParam('actname', ParamType.String),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

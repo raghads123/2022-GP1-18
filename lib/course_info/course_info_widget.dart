@@ -8,54 +8,56 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class EventInfoWidget extends StatefulWidget {
-  const EventInfoWidget({
+class CourseInfoWidget extends StatefulWidget {
+  const CourseInfoWidget({
     Key? key,
-    this.eventid,
+    this.courseid,
   }) : super(key: key);
 
-  final String? eventid;
+  final String? courseid;
 
   @override
-  _EventInfoWidgetState createState() => _EventInfoWidgetState();
+  _CourseInfoWidgetState createState() => _CourseInfoWidgetState();
 }
 
-class _EventInfoWidgetState extends State<EventInfoWidget> {
+class _CourseInfoWidgetState extends State<CourseInfoWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<ExtraActsRecord>>(
-      stream: queryExtraActsRecord(
-        queryBuilder: (extraActsRecord) =>
-            extraActsRecord.where('Act_name', isEqualTo: widget.eventid),
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      body: StreamBuilder<List<ExtraActsRecord>>(
+        stream: queryExtraActsRecord(
+          queryBuilder: (extraActsRecord) =>
+              extraActsRecord.where('Act_name', isEqualTo: widget.courseid),
+          singleRecord: true,
+        ),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                ),
               ),
-            ),
-          );
-        }
-        List<ExtraActsRecord> eventInfoExtraActsRecordList = snapshot.data!;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
-        final eventInfoExtraActsRecord = eventInfoExtraActsRecordList.isNotEmpty
-            ? eventInfoExtraActsRecordList.first
-            : null;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          body: SingleChildScrollView(
+            );
+          }
+          List<ExtraActsRecord> scrollingContainerExtraActsRecordList =
+              snapshot.data!;
+          // Return an empty Container when the document does not exist.
+          if (snapshot.data!.isEmpty) {
+            return Container();
+          }
+          final scrollingContainerExtraActsRecord =
+              scrollingContainerExtraActsRecordList.isNotEmpty
+                  ? scrollingContainerExtraActsRecordList.first
+                  : null;
+          return SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -71,24 +73,27 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                               child: Image.network(
-                                eventInfoExtraActsRecord!.actPic!,
+                                scrollingContainerExtraActsRecord!.actPic!,
                                 width: double.infinity,
                                 height: 300,
-                                fit: BoxFit.cover,
+                                fit: BoxFit.contain,
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 90,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xB3090F13),
-                                    Color(0x00090F13)
-                                  ],
-                                  stops: [0, 1],
-                                  begin: AlignmentDirectional(0, -1),
-                                  end: AlignmentDirectional(0, 1),
+                            Align(
+                              alignment: AlignmentDirectional(0, 0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 90,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xB3090F13),
+                                      Color(0x00090F13)
+                                    ],
+                                    stops: [0, 1],
+                                    begin: AlignmentDirectional(0, -1),
+                                    end: AlignmentDirectional(0, 1),
+                                  ),
                                 ),
                               ),
                             ),
@@ -102,7 +107,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
-                                    context.pushNamed('events');
+                                    context.pushNamed('courses');
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -154,7 +159,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 6, 0),
                                   child: Text(
-                                    eventInfoExtraActsRecord!.actName!,
+                                    scrollingContainerExtraActsRecord!.actName!,
                                     textAlign: TextAlign.end,
                                     style: FlutterFlowTheme.of(context).title2,
                                   ),
@@ -171,7 +176,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             children: [
                               Text(
                                 dateTimeFormat('d/M h:mm a',
-                                    eventInfoExtraActsRecord!.edate!),
+                                    scrollingContainerExtraActsRecord!.edate!),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -195,8 +200,10 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  dateTimeFormat('d/M h:mm a',
-                                      eventInfoExtraActsRecord!.sdate!),
+                                  dateTimeFormat(
+                                      'd/M h:mm a',
+                                      scrollingContainerExtraActsRecord!
+                                          .sdate!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -228,7 +235,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  eventInfoExtraActsRecord!.actLoc!,
+                                  scrollingContainerExtraActsRecord!.actLoc!,
                                   textAlign: TextAlign.end,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -259,20 +266,22 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              if (eventInfoExtraActsRecord!.seats ?? true)
-                                SelectionArea(
-                                    child: Text(
-                                  eventInfoExtraActsRecord!.numSeats!
+                              if (scrollingContainerExtraActsRecord!.seats ??
+                                  true)
+                                Text(
+                                  scrollingContainerExtraActsRecord!.numSeats!
                                       .toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: Color(0xFF2435D9),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
                                         fontWeight: FontWeight.w500,
                                       ),
-                                )),
-                              if (eventInfoExtraActsRecord!.seats ?? true)
+                                ),
+                              if (scrollingContainerExtraActsRecord!.seats ??
+                                  true)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 4),
@@ -296,13 +305,12 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'تفاصيل الفعالية',
+                                  'تفاصيل الدورة',
                                   textAlign: TextAlign.end,
                                   style: FlutterFlowTheme.of(context)
-                                      .title2
+                                      .bodyText2
                                       .override(
                                         fontFamily: 'Poppins',
-                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
@@ -314,13 +322,14 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    eventInfoExtraActsRecord!.actDec!,
+                                    scrollingContainerExtraActsRecord!.actDec!,
                                     textAlign: TextAlign.end,
                                     style:
                                         FlutterFlowTheme.of(context).bodyText1,
@@ -334,12 +343,14 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 40),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (eventInfoExtraActsRecord!.seats!) {
-                                if (eventInfoExtraActsRecord!.numSeats == 0) {
+                              if (scrollingContainerExtraActsRecord!.seats!) {
+                                if (scrollingContainerExtraActsRecord!
+                                        .numSeats ==
+                                    0) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        '.جميع المقاعد محجوزة',
+                                        'جميع المقاعد محجوزة.',
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBtnText,
@@ -351,7 +362,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     ),
                                   );
                                 } else {
-                                  if (eventInfoExtraActsRecord!.enrolledBy!
+                                  if (scrollingContainerExtraActsRecord!
+                                      .enrolledBy!
                                       .toList()
                                       .contains(currentUserEmail)) {
                                     await showDialog(
@@ -361,7 +373,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                           title: Text(
                                               'تم إلتحاقك بهذا النشاط مسبقاً.'),
                                           content: Text(
-                                              'توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل.'),
+                                              'توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -378,7 +390,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                           [currentUserEmail]),
                                       'num_seats': FieldValue.increment(-(1)),
                                     };
-                                    await eventInfoExtraActsRecord!.reference
+                                    await scrollingContainerExtraActsRecord!
+                                        .reference
                                         .update(extraActsUpdateData);
                                     await showDialog(
                                       context: context,
@@ -399,7 +412,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   }
                                 }
                               } else {
-                                if (eventInfoExtraActsRecord!.enrolledBy!
+                                if (scrollingContainerExtraActsRecord!
+                                    .enrolledBy!
                                     .toList()
                                     .contains(currentUserEmail)) {
                                   await showDialog(
@@ -409,7 +423,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                         title: Text(
                                             'تم إلتحاقك بهذا النشاط مسبقاً.'),
                                         content: Text(
-                                            'توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل.'),
+                                            '.توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
@@ -425,7 +439,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     'enrolled_by': FieldValue.arrayUnion(
                                         [currentUserEmail]),
                                   };
-                                  await eventInfoExtraActsRecord!.reference
+                                  await scrollingContainerExtraActsRecord!
+                                      .reference
                                       .update(extraActsUpdateData);
                                   await showDialog(
                                     context: context,
@@ -471,9 +486,9 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                 ),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

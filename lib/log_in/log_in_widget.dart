@@ -100,10 +100,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         controller: emailController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          hintText: 'Email',
+                                          hintText: 'البريد الإلكتروني',
                                           hintStyle: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0x7F455A64),
+                                            color: Color(0xFF565656),
                                             fontWeight: FontWeight.normal,
                                           ),
                                           enabledBorder: UnderlineInputBorder(
@@ -154,9 +154,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         ),
                                         style: GoogleFonts.getFont(
                                           'Open Sans',
-                                          color: Color(0xFFA6A6A6),
+                                          color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
+                                        textAlign: TextAlign.end,
                                       ),
                                     ),
                                   ),
@@ -178,10 +179,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         controller: passwordController,
                                         obscureText: !passwordVisibility,
                                         decoration: InputDecoration(
-                                          hintText: 'Password',
+                                          hintText: 'كلمة المرور',
                                           hintStyle: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0x7F455A64),
+                                            color: Color(0xFF565656),
                                             fontWeight: FontWeight.normal,
                                           ),
                                           enabledBorder: UnderlineInputBorder(
@@ -241,15 +242,19 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .grayIcon,
                                               size: 16,
                                             ),
                                           ),
                                         ),
                                         style: GoogleFonts.getFont(
                                           'Open Sans',
-                                          color: Color(0xFFA6A6A6),
+                                          color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
+                                        textAlign: TextAlign.end,
                                       ),
                                     ),
                                   ),
@@ -270,9 +275,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         return;
                                       }
 
-                                      context.goNamedAuth('HomePage', mounted);
+                                      setState(() => FFAppState().userSigned =
+                                          currentUserEmail);
+
+                                      context.pushNamedAuth(
+                                          'HomePage', mounted);
                                     },
-                                    text: 'Log In',
+                                    text: 'تسجيل الدخول',
                                     options: FFButtonOptions(
                                       width: 300,
                                       height: 50,
@@ -309,7 +318,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     );
                                   },
                                   child: Text(
-                                    'forget password?',
+                                    'استرجاع كلمة المرور؟',
                                     style: GoogleFonts.getFont(
                                       'Open Sans',
                                       color: Color(0xFFA6A6A6),
@@ -324,7 +333,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       context.pushNamed('SignUp');
                                     },
                                     child: Text(
-                                      'New user? Sign Up',
+                                      'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
                                       style: GoogleFonts.getFont(
                                         'Open Sans',
                                         color: Color(0xFFA6A6A6),

@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +67,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                 extra: <String, dynamic>{
                   kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
-                    transitionType: PageTransitionType.leftToRight,
+                    transitionType: PageTransitionType.rightToLeft,
                   ),
                 },
               );
@@ -372,27 +371,6 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                             ),
                                                                       ),
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              4,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Text(
-                                                                        listViewOpportunitiesRecord
-                                                                            .opDesc!,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText2
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: Color(0xFF57636C),
-                                                                              fontSize: 14,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                    ),
                                                                   ],
                                                                 ),
                                                               ),
@@ -428,59 +406,90 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                           ],
                                                         ),
                                                       ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -0.05, 0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      4, 0, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_left_rounded,
+                                                                color: Color(
+                                                                    0xFF777373),
+                                                                size: 24,
+                                                              ),
+                                                              InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  if (Navigator.of(
+                                                                          context)
+                                                                      .canPop()) {
+                                                                    context
+                                                                        .pop();
+                                                                  }
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'Opportunity_apply_form',
+                                                                    queryParams:
+                                                                        {
+                                                                      'opportunityID':
+                                                                          serializeParam(
+                                                                        listViewOpportunitiesRecord
+                                                                            .oppName,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                    extra: <
+                                                                        String,
+                                                                        dynamic>{
+                                                                      kTransitionInfoKey:
+                                                                          TransitionInfo(
+                                                                        hasTransition:
+                                                                            true,
+                                                                        transitionType:
+                                                                            PageTransitionType.leftToRight,
+                                                                      ),
+                                                                    },
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  'للمزيد',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Poppins',
+                                                                        color: Color(
+                                                                            0xFF777373),
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ],
-                                        ),
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          if (Navigator.of(context).canPop()) {
-                                            context.pop();
-                                          }
-                                          context.pushNamed(
-                                            'Opportunity_apply_form',
-                                            queryParams: {
-                                              'opportunityID': serializeParam(
-                                                listViewOpportunitiesRecord
-                                                    .oppName,
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .leftToRight,
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text: 'تقديم',
-                                        options: FFButtonOptions(
-                                          width: double.infinity,
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .subtitle2
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBtnText,
-                                              ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(15),
                                         ),
                                       ),
                                     ],

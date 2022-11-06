@@ -9,6 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CategoryRecord.serializer)
       ..add(ExtraActsRecord.serializer)
+      ..add(OppApplicationsRecord.serializer)
       ..add(OpportunitiesRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(

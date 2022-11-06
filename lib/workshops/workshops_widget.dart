@@ -69,7 +69,15 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
               if (Navigator.of(context).canPop()) {
                 context.pop();
               }
-              context.pushNamed('HomePage');
+              context.pushNamed(
+                'HomePage',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
+              );
             },
           ),
         ],
@@ -448,7 +456,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                 );
                                               },
                                               child: Text(
-                                                'المزيد',
+                                                'للمزيد',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1

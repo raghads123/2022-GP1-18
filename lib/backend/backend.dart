@@ -8,6 +8,7 @@ import 'schema/users_record.dart';
 import 'schema/extra_acts_record.dart';
 import 'schema/opportunities_record.dart';
 import 'schema/category_record.dart';
+import 'schema/opp_applications_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -19,6 +20,7 @@ export 'schema/users_record.dart';
 export 'schema/extra_acts_record.dart';
 export 'schema/opportunities_record.dart';
 export 'schema/category_record.dart';
+export 'schema/opp_applications_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -182,6 +184,48 @@ Future<FFFirestorePage<CategoryRecord>> queryCategoryRecordPage({
     queryCollectionPage(
       CategoryRecord.collection,
       CategoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query OppApplicationsRecords (as a Stream and as a Future).
+Stream<List<OppApplicationsRecord>> queryOppApplicationsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      OppApplicationsRecord.collection,
+      OppApplicationsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<OppApplicationsRecord>> queryOppApplicationsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      OppApplicationsRecord.collection,
+      OppApplicationsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<OppApplicationsRecord>> queryOppApplicationsRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      OppApplicationsRecord.collection,
+      OppApplicationsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

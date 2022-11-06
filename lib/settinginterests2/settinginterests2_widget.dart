@@ -203,8 +203,11 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                         width: double.infinity,
                                         height: 200,
                                         decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          border: Border.all(
+                                            color: Color(0xFF494646),
+                                          ),
                                         ),
                                         child:
                                             StreamBuilder<List<CategoryRecord>>(

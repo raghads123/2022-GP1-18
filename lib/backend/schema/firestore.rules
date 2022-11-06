@@ -28,5 +28,12 @@ service cloud.firestore {
       allow write: if true;
       allow delete: if true;
     }
+
+    match /opp_applications/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
   }
 }

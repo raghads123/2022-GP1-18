@@ -236,74 +236,56 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 1, 4, 15),
-                          child: Container(
-                            width: 300,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE0E0E0),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                              child: AuthUserStreamWidget(
-                                child: TextFormField(
-                                  controller: nameController,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: 'الاسم',
-                                    hintStyle: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFF565656),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    errorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                  ),
-                                  style: GoogleFonts.getFont(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                          child: AuthUserStreamWidget(
+                            child: Container(
+                              width: 300,
+                              child: TextFormField(
+                                controller: nameController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'الاسم',
+                                  hintStyle: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
-                                  textAlign: TextAlign.end,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  errorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  focusedErrorBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  filled: true,
+                                  fillColor: Color(0xFFE0E0E0),
                                 ),
+                                style: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF565656),
+                                ),
+                                textAlign: TextAlign.end,
                               ),
                             ),
                           ),
@@ -317,7 +299,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 13, 20, 0),
+                                      0, 0, 20, 0),
                                   child: SelectionArea(
                                       child: Text(
                                     'الكلية:',
@@ -334,54 +316,43 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
-                          child: Container(
+                        AuthUserStreamWidget(
+                          child: FlutterFlowDropDown(
+                            initialOption: collegeValue ??= valueOrDefault(
+                                currentUserDocument?.college, ''),
+                            options: [
+                              'كلية الآداب',
+                              'كلية التربية',
+                              'كلية اللغات والترجمة',
+                              'كلية الهندسة',
+                              'كلية العلوم',
+                              'كلية علوم الحاسب والمعلومات',
+                              'كلية العمارة والتخطيط',
+                              'كلية إدارة الأعمال',
+                              'كلية الطب',
+                              'كلية طب الأسنان',
+                              'كلية الصيدلة',
+                              'كلية العلوم الطبية التطبيقية',
+                              'كلية التمريض'
+                            ],
+                            onChanged: (val) =>
+                                setState(() => collegeValue = val),
                             width: 300,
                             height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE0E0E0),
-                              borderRadius: BorderRadius.circular(25),
+                            textStyle: GoogleFonts.getFont(
+                              'Open Sans',
+                              color: Color(0xFF565656),
                             ),
-                            child: AuthUserStreamWidget(
-                              child: FlutterFlowDropDown(
-                                initialOption: collegeValue ??= valueOrDefault(
-                                    currentUserDocument?.college, ''),
-                                options: [
-                                  'كلية الآداب',
-                                  'كلية التربية',
-                                  'كلية اللغات والترجمة',
-                                  'كلية الهندسة',
-                                  'كلية العلوم',
-                                  'كلية علوم الحاسب والمعلومات',
-                                  'كلية العمارة والتخطيط',
-                                  'كلية إدارة الأعمال',
-                                  'كلية الطب',
-                                  'كلية طب الأسنان',
-                                  'كلية الصيدلة',
-                                  'كلية العلوم الطبية التطبيقية',
-                                  'كلية التمريض'
-                                ],
-                                onChanged: (val) =>
-                                    setState(() => collegeValue = val),
-                                width: 300,
-                                height: 50,
-                                textStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color: Color(0xFF565656),
-                                ),
-                                hintText:
-                                    'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
-                                fillColor: Color(0xFFE0E0E0),
-                                elevation: 2,
-                                borderColor: Colors.transparent,
-                                borderWidth: 0,
-                                borderRadius: 0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    12, 4, 12, 4),
-                                hidesUnderline: true,
-                              ),
-                            ),
+                            hintText:
+                                'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
+                            fillColor: Color(0xFFE0E0E0),
+                            elevation: 2,
+                            borderColor: Colors.transparent,
+                            borderWidth: 0,
+                            borderRadius: 0,
+                            margin:
+                                EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                            hidesUnderline: true,
                           ),
                         ),
                         Padding(
@@ -411,74 +382,75 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
-                          child: Container(
-                            width: 300,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE0E0E0),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: AuthUserStreamWidget(
-                              child: FlutterFlowDropDown(
-                                initialOption: levelValue ??= valueOrDefault(
-                                    currentUserDocument?.level, ''),
-                                options: [
-                                  'المستوى الأول',
-                                  'المستوى الثاني',
-                                  'المستوى الثالث',
-                                  'المستوى الرابع',
-                                  'المستوى الخامس',
-                                  'المستوى السادس',
-                                  'المستوى السابع',
-                                  'المستوى الثامن',
-                                  'المستوى التاسع',
-                                  'المستوى العاشر',
-                                  'المستوى الحادي عشر',
-                                  'المستوى الثاني عشر'
-                                ],
-                                onChanged: (val) =>
-                                    setState(() => levelValue = val),
-                                width: 300,
-                                height: 50,
-                                textStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color: Color(0xFF565656),
-                                ),
-                                hintText:
-                                    'المستوى ــــــــــــــــــــــــــــــــــــــــ',
-                                fillColor: Color(0xFFE0E0E0),
-                                elevation: 2,
-                                borderColor: Colors.transparent,
-                                borderWidth: 0,
-                                borderRadius: 0,
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    12, 4, 12, 4),
-                                hidesUnderline: true,
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                          child: AuthUserStreamWidget(
+                            child: FlutterFlowDropDown(
+                              initialOption: levelValue ??= valueOrDefault(
+                                  currentUserDocument?.level, ''),
+                              options: [
+                                'المستوى الأول',
+                                'المستوى الثاني',
+                                'المستوى الثالث',
+                                'المستوى الرابع',
+                                'المستوى الخامس',
+                                'المستوى السادس',
+                                'المستوى السابع',
+                                'المستوى الثامن',
+                                'المستوى التاسع',
+                                'المستوى العاشر',
+                                'المستوى الحادي عشر',
+                                'المستوى الثاني عشر'
+                              ],
+                              onChanged: (val) =>
+                                  setState(() => levelValue = val),
+                              width: 300,
+                              height: 50,
+                              textStyle: GoogleFonts.getFont(
+                                'Open Sans',
+                                color: Color(0xFF565656),
                               ),
+                              hintText:
+                                  'المستوى ــــــــــــــــــــــــــــــــــــــــ',
+                              fillColor: Color(0xFFE0E0E0),
+                              elevation: 2,
+                              borderColor: Colors.transparent,
+                              borderWidth: 0,
+                              borderRadius: 0,
+                              margin:
+                                  EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                              hidesUnderline: true,
                             ),
                           ),
                         ),
-                        FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed('EditInterests');
-                          },
-                          text: 'تعديل الإهتمامات',
-                          options: FFButtonOptions(
-                            width: 130,
-                            height: 40,
-                            color: Color(0xFFFF5757),
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodyText2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                    ),
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed('EditInterests');
+                            },
+                            text: 'تعديل الإهتمامات',
+                            icon: Icon(
+                              Icons.edit_outlined,
+                              size: 15,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            options: FFButtonOptions(
+                              width: 300,
+                              height: 50,
+                              color: Color(0xFFE0E0E0),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                  ),
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            showLoadingIndicator: false,
                           ),
                         ),
                         Padding(

@@ -194,8 +194,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                        color: Color(0xFF0184BD),
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -204,8 +203,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       0, 0, 0, 4),
                                   child: Icon(
                                     Icons.schedule,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: Color(0xFF0184BD),
                                     size: 20,
                                   ),
                                 ),
@@ -221,8 +219,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                          color: Color(0xFF0184BD),
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -232,8 +229,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       0, 0, 0, 4),
                                   child: Icon(
                                     Icons.schedule,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: Color(0xFF0184BD),
                                     size: 20,
                                   ),
                                 ),
@@ -255,8 +251,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                          color: Color(0xFF0184BD),
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -266,8 +261,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       0, 0, 0, 4),
                                   child: Icon(
                                     Icons.location_on_sharp,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: Color(0xFF0184BD),
                                     size: 20,
                                   ),
                                 ),
@@ -291,8 +285,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
+                                          color: Color(0xFF0184BD),
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
@@ -303,8 +296,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                         0, 0, 0, 4),
                                     child: Icon(
                                       Icons.event_seat_rounded,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                      color: Color(0xFF0184BD),
                                       size: 20,
                                     ),
                                   ),

@@ -23,8 +23,8 @@ class OppapplicationformWidget extends StatefulWidget {
 
 class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
   String? skillValue;
-  TextEditingController? shortbioController;
   TextEditingController? userEmailController;
+  TextEditingController? shortbioController;
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -196,6 +196,35 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                             ),
                           ),
                         ),
+                        Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
+                            child: FlutterFlowDropDown(
+                              options: containerOpportunitiesRecord!.opSkills!
+                                  .toList()
+                                  .toList(),
+                              onChanged: (val) =>
+                                  setState(() => skillValue = val),
+                              width: 300,
+                              height: 50,
+                              textStyle: GoogleFonts.getFont(
+                                'Open Sans',
+                                color: Color(0xFF565656),
+                              ),
+                              hintText: 'حددي مهارتك______________________',
+                              fillColor: Color(0xFFE0E0E0),
+                              elevation: 2,
+                              borderColor: Colors.transparent,
+                              borderWidth: 0,
+                              borderRadius: 25,
+                              margin:
+                                  EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                              hidesUnderline: true,
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
                           child: Container(
@@ -215,48 +244,28 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     color: Color(0x00000000),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xE1FF2323),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xE1FF2323),
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(0),
-                                    bottomRight: Radius.circular(0),
-                                    topLeft: Radius.circular(25),
-                                    topRight: Radius.circular(25),
-                                  ),
+                                  borderRadius: BorderRadius.circular(25),
                                 ),
                                 filled: true,
                                 fillColor: Color(0xFFE0E0E0),
@@ -280,35 +289,6 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
 
                                 return null;
                               },
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
-                            child: FlutterFlowDropDown(
-                              options: containerOpportunitiesRecord!.opSkills!
-                                  .toList()
-                                  .toList(),
-                              onChanged: (val) =>
-                                  setState(() => skillValue = val),
-                              width: 300,
-                              height: 50,
-                              textStyle: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: Color(0xFF565656),
-                              ),
-                              hintText: 'حددي مهارتك______________________',
-                              fillColor: Color(0xFFE0E0E0),
-                              elevation: 2,
-                              borderColor: Colors.transparent,
-                              borderWidth: 0,
-                              borderRadius: 0,
-                              margin:
-                                  EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                              hidesUnderline: true,
                             ),
                           ),
                         ),

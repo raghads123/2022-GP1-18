@@ -95,14 +95,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 15),
+                                            20, 0, 20, 14),
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(
                                             controller: emailController,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: 'البريد الإلكتروني',
+                                              labelText: 'البريد الإلكتروني ',
                                               labelStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -173,7 +173,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 15),
+                                            20, 0, 20, 14),
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(
@@ -188,7 +188,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             },
                                             obscureText: !passwordVisibility,
                                             decoration: InputDecoration(
-                                              labelText: 'كلمة المرور',
+                                              labelText: 'كلمة المرور ',
                                               labelStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -280,7 +280,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 15),
+                                            20, 0, 20, 14),
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(
@@ -384,7 +384,31 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
+                                            45, 0, 45, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            SelectionArea(
+                                                child: Text(
+                                              'كلمة المرور يجب أن تتكون من:\n٨ خانات\nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية  \nإحدى الرموز: ! @ # ٪ & *\nرقم',
+                                              textAlign: TextAlign.end,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0xFF494646),
+                                                    fontWeight: FontWeight.w100,
+                                                  ),
+                                            )),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 2, 0, 2),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             if (formKey.currentState == null ||
@@ -473,17 +497,56 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () async {
-                                          context.goNamed('LogIn');
-                                        },
-                                        child: Text(
-                                          'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF494646),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 3, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                context.goNamed(
+                                                  'LogIn',
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .leftToRight,
+                                                    ),
+                                                  },
+                                                );
+                                              },
+                                              child: SelectionArea(
+                                                  child: Text(
+                                                ' تسجيل  الدخول',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFF494646),
+                                                        ),
+                                              )),
+                                            ),
                                           ),
-                                        ),
+                                          SelectionArea(
+                                              child: Text(
+                                            'تم إنشاء حساب مسبقاً؟  ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: Color(0xFF494646),
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          )),
+                                        ],
                                       ),
                                     ],
                                   ),

@@ -198,6 +198,8 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                   ),
                                   Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Container(
                                         width: double.infinity,
@@ -249,6 +251,8 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
                                                 children: [
                                                   FlutterFlowCheckboxGroup(
                                                     options:
@@ -274,11 +278,13 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                                           fontFamily: 'Poppins',
                                                           color:
                                                               Color(0xFF565656),
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
                                                     itemPadding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                10, 0, 0, 20),
+                                                                10, 0, 0, 18),
                                                     initialized:
                                                         checkboxGroupValues !=
                                                             null,

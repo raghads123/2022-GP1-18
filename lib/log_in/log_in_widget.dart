@@ -292,24 +292,45 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     style: GoogleFonts.getFont(
                                       'Open Sans',
                                       color: Color(0xFF494646),
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 20),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      context.pushNamed('SignUp');
-                                    },
-                                    child: Text(
-                                      'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF494646),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 4, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          context.pushNamed('SignUp');
+                                        },
+                                        child: SelectionArea(
+                                            child: Text(
+                                          'إنشاء حساب جديد',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF494646),
+                                              ),
+                                        )),
                                       ),
                                     ),
-                                  ),
+                                    SelectionArea(
+                                        child: Text(
+                                      'لم يسبق لك إنشاء حساب ؟',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF494646),
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    )),
+                                  ],
                                 ),
                               ],
                             ),

@@ -197,7 +197,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            hintText: 'الاسم',
+                                            hintText: 'الأسم',
                                             hintStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),
@@ -279,7 +279,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                         elevation: 2,
                                         borderColor: Colors.transparent,
                                         borderWidth: 0,
-                                        borderRadius: 0,
+                                        borderRadius: 25,
                                         margin: EdgeInsetsDirectional.fromSTEB(
                                             12, 4, 12, 4),
                                         hidesUnderline: true,
@@ -317,7 +317,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                         elevation: 2,
                                         borderColor: Colors.transparent,
                                         borderWidth: 0,
-                                        borderRadius: 0,
+                                        borderRadius: 25,
                                         margin: EdgeInsetsDirectional.fromSTEB(
                                             12, 4, 12, 4),
                                         hidesUnderline: true,

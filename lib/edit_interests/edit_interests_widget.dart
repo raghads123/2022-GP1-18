@@ -70,6 +70,9 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                   size: 30,
                 ),
                 onPressed: () async {
+                  if (Navigator.of(context).canPop()) {
+                    context.pop();
+                  }
                   context.pushNamed(
                     'Profile',
                     extra: <String, dynamic>{
@@ -308,7 +311,13 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                         .center,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1,
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      color: Color(
+                                                                          0xFF565656),
+                                                                    ),
                                                               )),
                                                             ),
                                                           ),
@@ -374,10 +383,16 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                 : null;
                         return Container(
                           width: double.infinity,
-                          height: 200,
+                          height: 500,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(0),
+                              bottomRight: Radius.circular(0),
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
                           ),
                           child: StreamBuilder<List<CategoryRecord>>(
                             stream: queryCategoryRecord(
@@ -441,6 +456,12 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                       itemPadding:
                                           EdgeInsetsDirectional.fromSTEB(
                                               10, 0, 0, 20),
+                                      checkboxBorderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(3),
+                                        topRight: Radius.circular(0),
+                                      ),
                                       initialized: checkboxGroupValues != null,
                                     ),
                                   ],

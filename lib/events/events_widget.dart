@@ -69,7 +69,15 @@ class _EventsWidgetState extends State<EventsWidget> {
               if (Navigator.of(context).canPop()) {
                 context.pop();
               }
-              context.pushNamed('HomePage');
+              context.pushNamed(
+                'HomePage',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
+              );
             },
           ),
         ],
@@ -375,7 +383,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                           Expanded(
                                             child: Align(
                                               alignment:
-                                                  AlignmentDirectional(0, 1.4),
+                                                  AlignmentDirectional(1.4, 0),
                                               child: Text(
                                                 'تنتهي',
                                                 textAlign: TextAlign.end,
@@ -427,6 +435,10 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             ),
                                             InkWell(
                                               onTap: () async {
+                                                if (Navigator.of(context)
+                                                    .canPop()) {
+                                                  context.pop();
+                                                }
                                                 context.pushNamed(
                                                   'event_info',
                                                   queryParams: {
@@ -448,7 +460,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                 );
                                               },
                                               child: Text(
-                                                'المزيد',
+                                                'للمزيد',
                                                 textAlign: TextAlign.end,
                                                 style:
                                                     FlutterFlowTheme.of(context)

@@ -107,7 +107,16 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
-                                    context.pushNamed('courses');
+                                    context.pushNamed(
+                                      'courses',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.rightToLeft,
+                                        ),
+                                      },
+                                    );
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -175,7 +184,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                dateTimeFormat('d/M h:mm a',
+                                dateTimeFormat('M/d h:mm a',
                                     scrollingContainerExtraActsRecord!.edate!),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -201,7 +210,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   dateTimeFormat(
-                                      'd/M h:mm a',
+                                      'M/d h:mm a',
                                       scrollingContainerExtraActsRecord!
                                           .sdate!),
                                   style: FlutterFlowTheme.of(context)
@@ -460,6 +469,8 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                   );
                                 }
                               }
+
+                              context.pushNamed('MyActivites');
                             },
                             text: 'إلتحاق',
                             options: FFButtonOptions(

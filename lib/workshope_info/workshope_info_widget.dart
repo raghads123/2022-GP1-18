@@ -105,7 +105,16 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
-                                      context.pushNamed('workshops');
+                                      context.pushNamed(
+                                        'workshops',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.rightToLeft,
+                                          ),
+                                        },
+                                      );
                                     },
                                     child: Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -178,7 +187,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                               children: [
                                 Text(
                                   dateTimeFormat(
-                                      'd/M h:mm a',
+                                      'M/d h:mm a',
                                       scrollingContainerExtraActsRecord!
                                           .edate!),
                                   style: FlutterFlowTheme.of(context)
@@ -205,7 +214,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       4, 0, 0, 0),
                                   child: Text(
                                     dateTimeFormat(
-                                        'd/M h:mm a',
+                                        'M/d h:mm a',
                                         scrollingContainerExtraActsRecord!
                                             .sdate!),
                                     style: FlutterFlowTheme.of(context)
@@ -469,6 +478,8 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     );
                                   }
                                 }
+
+                                context.pushNamed('MyActivites');
                               },
                               text: 'إلتحاق',
                               options: FFButtonOptions(

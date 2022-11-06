@@ -234,7 +234,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  context.pushNamed('Opportunities');
+                                  context.pushNamed(
+                                    'Opportunities',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.leftToRight,
+                                      ),
+                                    },
+                                  );
                                 },
                                 child: Container(
                                   width: 150,

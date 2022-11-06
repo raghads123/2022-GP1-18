@@ -102,7 +102,16 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
-                                    context.pushNamed('events');
+                                    context.pushNamed(
+                                      'events',
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.rightToLeft,
+                                        ),
+                                      },
+                                    );
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -170,7 +179,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                dateTimeFormat('d/M h:mm a',
+                                dateTimeFormat('M/d h:mm a',
                                     eventInfoExtraActsRecord!.edate!),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -195,7 +204,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  dateTimeFormat('d/M h:mm a',
+                                  dateTimeFormat('M/d h:mm a',
                                       eventInfoExtraActsRecord!.sdate!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
@@ -445,6 +454,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   );
                                 }
                               }
+
+                              context.pushNamed('MyActivites');
                             },
                             text: 'إلتحاق',
                             options: FFButtonOptions(

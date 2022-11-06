@@ -26,7 +26,8 @@ class _$CategoryRecordSerializer
       result
         ..add('name')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -52,8 +53,10 @@ class _$CategoryRecordSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.name.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -70,7 +73,7 @@ class _$CategoryRecordSerializer
 
 class _$CategoryRecord extends CategoryRecord {
   @override
-  final String? name;
+  final BuiltList<String>? name;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -113,9 +116,9 @@ class CategoryRecordBuilder
     implements Builder<CategoryRecord, CategoryRecordBuilder> {
   _$CategoryRecord? _$v;
 
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
+  ListBuilder<String>? _name;
+  ListBuilder<String> get name => _$this._name ??= new ListBuilder<String>();
+  set name(ListBuilder<String>? name) => _$this._name = name;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -128,7 +131,7 @@ class CategoryRecordBuilder
   CategoryRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _name = $v.name;
+      _name = $v.name?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -150,7 +153,21 @@ class CategoryRecordBuilder
   CategoryRecord build() => _build();
 
   _$CategoryRecord _build() {
-    final _$result = _$v ?? new _$CategoryRecord._(name: name, ffRef: ffRef);
+    _$CategoryRecord _$result;
+    try {
+      _$result =
+          _$v ?? new _$CategoryRecord._(name: _name?.build(), ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'name';
+        _name?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CategoryRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

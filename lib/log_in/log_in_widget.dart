@@ -85,177 +85,147 @@ class _LogInWidgetState extends State<LogInWidget> {
                               children: [
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 4, 15),
+                                      20, 0, 20, 15),
                                   child: Container(
                                     width: 300,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFE0E0E0),
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 0, 20, 0),
-                                      child: TextFormField(
-                                        controller: emailController,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          hintText: 'البريد الإلكتروني',
-                                          hintStyle: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF565656),
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          errorBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedErrorBorder:
-                                              UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                        ),
-                                        style: GoogleFonts.getFont(
+                                    child: TextFormField(
+                                      controller: emailController,
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'البريد الإلكتروني',
+                                        labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
-                                        textAlign: TextAlign.end,
+                                        hintText: 'example@email.com',
+                                        hintStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xE1FF2323),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xE1FF2323),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        filled: true,
+                                        fillColor: Color(0xFFE0E0E0),
                                       ),
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      textAlign: TextAlign.end,
                                     ),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 4, 15),
+                                      20, 0, 20, 15),
                                   child: Container(
                                     width: 300,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFE0E0E0),
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 0, 20, 0),
-                                      child: TextFormField(
-                                        controller: passwordController,
-                                        obscureText: !passwordVisibility,
-                                        decoration: InputDecoration(
-                                          hintText: 'كلمة المرور',
-                                          hintStyle: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF565656),
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          errorBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          focusedErrorBorder:
-                                              UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(4.0),
-                                              topRight: Radius.circular(4.0),
-                                            ),
-                                          ),
-                                          suffixIcon: InkWell(
-                                            onTap: () => setState(
-                                              () => passwordVisibility =
-                                                  !passwordVisibility,
-                                            ),
-                                            focusNode:
-                                                FocusNode(skipTraversal: true),
-                                            child: Icon(
-                                              passwordVisibility
-                                                  ? Icons.visibility_outlined
-                                                  : Icons
-                                                      .visibility_off_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .grayIcon,
-                                              size: 16,
-                                            ),
-                                          ),
-                                        ),
-                                        style: GoogleFonts.getFont(
+                                    child: TextFormField(
+                                      controller: passwordController,
+                                      obscureText: !passwordVisibility,
+                                      decoration: InputDecoration(
+                                        labelText: 'كلمة المرور',
+                                        labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
-                                        textAlign: TextAlign.end,
+                                        hintText: 'ادخلي كلمة المرور',
+                                        hintStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xE1FF2323),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xE1FF2323),
+                                            width: 1,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        filled: true,
+                                        fillColor: Color(0xFFE0E0E0),
+                                        suffixIcon: InkWell(
+                                          onTap: () => setState(
+                                            () => passwordVisibility =
+                                                !passwordVisibility,
+                                          ),
+                                          focusNode:
+                                              FocusNode(skipTraversal: true),
+                                          child: Icon(
+                                            passwordVisibility
+                                                ? Icons.visibility_outlined
+                                                : Icons.visibility_off_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .grayIcon,
+                                            size: 16,
+                                          ),
+                                        ),
                                       ),
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      textAlign: TextAlign.end,
                                     ),
                                   ),
                                 ),
@@ -321,7 +291,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     'استرجاع كلمة المرور؟',
                                     style: GoogleFonts.getFont(
                                       'Open Sans',
-                                      color: Color(0xFFA6A6A6),
+                                      color: Color(0xFF494646),
                                     ),
                                   ),
                                 ),
@@ -336,7 +306,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
                                       style: GoogleFonts.getFont(
                                         'Open Sans',
-                                        color: Color(0xFFA6A6A6),
+                                        color: Color(0xFF494646),
                                       ),
                                     ),
                                   ),

@@ -78,228 +78,234 @@ class _OpportunityApplyFormWidgetState
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 130, 0, 0),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 15),
-                                          child: Image.network(
-                                            containerOpportunitiesRecord!
-                                                .opProviderLogo!,
-                                            width: 130,
-                                            fit: BoxFit.contain,
+                          child: SingleChildScrollView(
+                            primary: false,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 130, 0, 0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 15),
+                                            child: Image.network(
+                                              containerOpportunitiesRecord!
+                                                  .opProviderLogo!,
+                                              width: 130,
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 15),
+                                                  child: SelectionArea(
+                                                      child: Text(
+                                                    containerOpportunitiesRecord!
+                                                        .oppName!,
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFF0184BD),
+                                                        ),
+                                                  )),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 15),
                                                 child: SelectionArea(
                                                     child: Text(
-                                                  containerOpportunitiesRecord!
-                                                      .oppName!,
-                                                  textAlign: TextAlign.center,
+                                                  'تقدم فرصة',
+                                                  textAlign: TextAlign.end,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .title1
+                                                      .bodyText1
                                                       .override(
                                                         fontFamily: 'Poppins',
                                                         color:
-                                                            Color(0xFF0184BD),
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
                                                       ),
                                                 )),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 15),
-                                              child: SelectionArea(
-                                                  child: Text(
-                                                'تقدم فرصة',
-                                                textAlign: TextAlign.end,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                        ),
-                                              )),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 15, 15),
-                                              child: SelectionArea(
-                                                  child: Text(
-                                                containerOpportunitiesRecord!
-                                                    .opProvider!,
-                                                textAlign: TextAlign.end,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                        ),
-                                              )),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 15, 15),
-                                              child: SelectionArea(
-                                                  child: Text(
-                                                'تفاصيل الفرصة:',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText2,
-                                              )),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
+                                              Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 15, 15),
                                                 child: SelectionArea(
                                                     child: Text(
                                                   containerOpportunitiesRecord!
-                                                      .opDesc!,
+                                                      .opProvider!,
                                                   textAlign: TextAlign.end,
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyText2
+                                                      .bodyText1
                                                       .override(
-                                                        fontFamily: 'Open Sans',
+                                                        fontFamily: 'Poppins',
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .black600,
-                                                        fontSize: 16,
+                                                                .alternate,
                                                       ),
                                                 )),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 15, 0, 0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              if (containerOpportunitiesRecord!
-                                                  .appliedBy!
-                                                  .toList()
-                                                  .contains(currentUserEmail)) {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          '.لقد تم تقديمك على هذه الفرصة مسبقاً'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 15, 15),
+                                                child: SelectionArea(
+                                                    child: Text(
+                                                  'تفاصيل الفرصة:',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText2,
+                                                )),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 15, 15),
+                                                  child: SelectionArea(
+                                                      child: Text(
+                                                    containerOpportunitiesRecord!
+                                                        .opDesc!,
+                                                    textAlign: TextAlign.end,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText2
+                                                        .override(
+                                                          fontFamily:
+                                                              'Open Sans',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .black600,
+                                                          fontSize: 16,
                                                         ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              } else {
-                                                showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: Container(
-                                                        height: 400,
-                                                        child:
-                                                            OppapplicationformWidget(
-                                                          oppappform:
-                                                              containerOpportunitiesRecord!
-                                                                  .oppName,
+                                                  )),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 15, 0, 0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                if (containerOpportunitiesRecord!
+                                                    .appliedBy!
+                                                    .toList()
+                                                    .contains(
+                                                        currentUserEmail)) {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text(
+                                                            '.لقد تم تقديمك على هذه الفرصة مسبقاً'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('تم'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                } else {
+                                                  showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return Padding(
+                                                        padding: MediaQuery.of(
+                                                                context)
+                                                            .viewInsets,
+                                                        child: Container(
+                                                          height: 400,
+                                                          child:
+                                                              OppapplicationformWidget(
+                                                            oppappform:
+                                                                containerOpportunitiesRecord!
+                                                                    .oppName,
+                                                          ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              }
-                                            },
-                                            text: 'تقديم',
-                                            options: FFButtonOptions(
-                                              width: 270,
-                                              height: 50,
-                                              color: Color(0xFF1C8EC1),
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color: Colors.white,
-                                                      ),
-                                              elevation: 2,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      setState(() {}));
+                                                }
+                                              },
+                                              text: 'تقديم',
+                                              options: FFButtonOptions(
+                                                width: 270,
+                                                height: 50,
+                                                color: Color(0xFF1C8EC1),
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle1
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: Colors.white,
+                                                        ),
+                                                elevation: 2,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       },

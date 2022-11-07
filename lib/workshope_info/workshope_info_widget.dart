@@ -132,7 +132,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             4, 4, 4, 4),
                                         child: Icon(
-                                          Icons.arrow_forward_rounded,
+                                          Icons.arrow_back_rounded,
                                           color: Color(0xFFFF5757),
                                           size: 24,
                                         ),
@@ -207,7 +207,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     dateTimeFormat(
                                         'M/d h:mm a',
                                         scrollingContainerExtraActsRecord!
-                                            .edate!),
+                                            .sdate!),
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -234,7 +234,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     dateTimeFormat(
                                         'M/d h:mm a',
                                         scrollingContainerExtraActsRecord!
-                                            .sdate!),
+                                            .edate!),
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
@@ -344,14 +344,17 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 4),
-                                  child: Text(
-                                    scrollingContainerExtraActsRecord!.actDec!,
-                                    textAlign: TextAlign.end,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 4),
+                                    child: Text(
+                                      scrollingContainerExtraActsRecord!
+                                          .actDec!,
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
                                   ),
                                 ),
                               ],

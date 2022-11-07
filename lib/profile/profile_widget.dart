@@ -156,7 +156,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: AuthUserStreamWidget(
@@ -286,7 +286,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   'Open Sans',
                                   color: Color(0xFF565656),
                                 ),
-                                textAlign: TextAlign.end,
+                                textAlign: TextAlign.start,
                               ),
                             ),
                           ),

@@ -123,7 +123,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           4, 4, 4, 4),
                                       child: Icon(
-                                        Icons.arrow_forward_rounded,
+                                        Icons.arrow_back_rounded,
                                         color: Color(0xFFFF5757),
                                         size: 24,
                                       ),
@@ -192,7 +192,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
                                 child: Text(
                                   dateTimeFormat('M/d h:mm a',
-                                      eventInfoExtraActsRecord!.edate!),
+                                      eventInfoExtraActsRecord!.sdate!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -216,7 +216,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
                                 child: Text(
                                   dateTimeFormat('M/d h:mm a',
-                                      eventInfoExtraActsRecord!.sdate!),
+                                      eventInfoExtraActsRecord!.edate!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -321,13 +321,16 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  eventInfoExtraActsRecord!.actDec!,
-                                  textAlign: TextAlign.end,
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 4, 0, 4),
+                                  child: Text(
+                                    eventInfoExtraActsRecord!.actDec!,
+                                    textAlign: TextAlign.start,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
+                                  ),
                                 ),
                               ),
                             ],

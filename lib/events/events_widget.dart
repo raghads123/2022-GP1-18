@@ -52,7 +52,7 @@ class _EventsWidgetState extends State<EventsWidget> {
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.chevron_right,
+            Icons.chevron_left,
             color: Color(0xFF777373),
             size: 30,
           ),
@@ -503,7 +503,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                               ),
                                             ),
                                             Icon(
-                                              Icons.keyboard_arrow_left_rounded,
+                                              Icons.chevron_right_rounded,
                                               color: Color(0xFF777373),
                                               size: 24,
                                             ),

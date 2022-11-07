@@ -271,7 +271,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               if (!RegExp(
                                                       r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
                                                   .hasMatch(val)) {
-                                                return 'إلزامي: حرف كبير\nحرف صغير\nرقم\n إحدى رموز: ! @ # % &';
+                                                return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز @!%*?&';
                                               }
                                               return null;
                                             },
@@ -304,18 +304,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               hintText: 'ادخلي كلمة المرور',
-                                              helperText:
-                                                  'كلمة المرور يجب أن تحتوي على الأقل على:'
-                                                  '\n'
-                                                  '* ٨ خانات'
-                                                  '\n'
-                                                  '* حرف كبير باللغة الإنجليزية'
-                                                  '\n'
-                                                  '* حرف صغير باللغة الإنجليزية'
-                                                  '\n'
-                                                  '* إحدى الرموز: ! @ # & %'
-                                                  '\n'
-                                                  '* رقم',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),

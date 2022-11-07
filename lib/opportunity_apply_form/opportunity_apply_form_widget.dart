@@ -343,7 +343,7 @@ class _OpportunityApplyFormWidgetState
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                       child: Icon(
-                        Icons.arrow_forward_rounded,
+                        Icons.arrow_back_rounded,
                         color: Color(0xFFFF5757),
                         size: 24,
                       ),

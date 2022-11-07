@@ -192,7 +192,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                 fontWeight: FontWeight.normal,
                                 fontSize: 16,
                               ),
-                              textAlign: TextAlign.start,
+                              textAlign: TextAlign.end,
                             ),
                           ),
                         ),

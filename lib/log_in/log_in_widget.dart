@@ -89,7 +89,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   child: Container(
                                     width: 300,
                                     child: TextFormField(
-                                      textAlign: TextAlign.start,
                                       controller: emailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -145,6 +144,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         color: Color(0xFF565656),
                                         fontWeight: FontWeight.normal,
                                       ),
+                                      textAlign: TextAlign.start,
                                     ),
                                   ),
                                 ),

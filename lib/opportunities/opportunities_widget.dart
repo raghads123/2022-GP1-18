@@ -39,6 +39,31 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.chevron_left,
+            color: Color(0xFF777373),
+            size: 30,
+          ),
+          onPressed: () async {
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
+            context.pushNamed(
+              'HomePage',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.rightToLeft,
+                ),
+              },
+            );
+          },
+        ),
         title: Text(
           'الفرص',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -47,33 +72,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                 fontSize: 22,
               ),
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.chevron_right_outlined,
-              color: Color(0xFF777373),
-              size: 30,
-            ),
-            onPressed: () async {
-              if (Navigator.of(context).canPop()) {
-                context.pop();
-              }
-              context.pushNamed(
-                'HomePage',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.rightToLeft,
-                  ),
-                },
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -475,7 +474,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                               ),
                                                               Icon(
                                                                 Icons
-                                                                    .keyboard_arrow_left_rounded,
+                                                                    .chevron_right_rounded,
                                                                 color: Color(
                                                                     0xFF777373),
                                                                 size: 24,

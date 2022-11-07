@@ -155,7 +155,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               color: Color(0xFF565656),
                                               fontWeight: FontWeight.normal,
                                             ),
-                                            textAlign: TextAlign.end,
+                                            textAlign: TextAlign.start,
                                             validator: (val) {
                                               if (val == null || val.isEmpty) {
                                                 return 'الرجاء إدخال البريد الإلكتروني';
@@ -258,7 +258,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               color: Color(0xFF565656),
                                               fontWeight: FontWeight.normal,
                                             ),
-                                            textAlign: TextAlign.end,
+                                            textAlign: TextAlign.start,
                                             validator: (val) {
                                               if (val == null || val.isEmpty) {
                                                 return 'الرجاء إدخال كلمة المرور';
@@ -271,7 +271,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               if (!RegExp(
                                                       r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
                                                   .hasMatch(val)) {
-                                                return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز @!%*?&';
+                                                return 'إلزامي: حرف كبير\nحرف صغير\nرقم\n إحدى رموز: ! @ # % &';
                                               }
                                               return null;
                                             },
@@ -304,6 +304,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               hintText: 'ادخلي كلمة المرور',
+                                              helperText:
+                                                  'كلمة المرور يجب أن تحتوي على الأقل على:'
+                                                  '\n'
+                                                  '* ٨ خانات'
+                                                  '\n'
+                                                  '* حرف كبير باللغة الإنجليزية'
+                                                  '\n'
+                                                  '* حرف صغير باللغة الإنجليزية'
+                                                  '\n'
+                                                  '* إحدى الرموز: ! @ # & %'
+                                                  '\n'
+                                                  '* رقم',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -367,7 +379,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               color: Color(0xFF565656),
                                               fontWeight: FontWeight.normal,
                                             ),
-                                            textAlign: TextAlign.end,
+                                            textAlign: TextAlign.start,
                                             validator: (val) {
                                               if (val == null || val.isEmpty) {
                                                 return 'الرجاء تأكيد كلمة المرور';
@@ -380,30 +392,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               return null;
                                             },
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            45, 0, 45, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            SelectionArea(
-                                                child: Text(
-                                              'كلمة المرور يجب أن تتكون من:\n٨ خانات\nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية  \nإحدى الرموز: ! @ # ٪ *& \nرقم',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFF494646),
-                                                    fontWeight: FontWeight.w100,
-                                                  ),
-                                            )),
-                                          ],
                                         ),
                                       ),
                                       Padding(

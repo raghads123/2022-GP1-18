@@ -172,7 +172,7 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                                       .max,
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
-                                                                      .end,
+                                                                      .start,
                                                               children: [
                                                                 Text(
                                                                   listViewOpportunitiesRecord
@@ -211,22 +211,24 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                                       .max,
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
-                                                                      .end,
+                                                                      .start,
                                                               children: [
                                                                 SelectionArea(
                                                                     child: Text(
-                                                                  columnOppApplicationsRecord!
-                                                                      .status!,
+                                                                  'حالة التقديم',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1,
+                                                                      .subtitle1,
                                                                 )),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
                                                                           60,
+                                                                          0,
+                                                                          0,
                                                                           0),
                                                                   child: Icon(
                                                                     Icons
@@ -238,10 +240,11 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                                 ),
                                                                 SelectionArea(
                                                                     child: Text(
-                                                                  'حالة التقديم',
+                                                                  columnOppApplicationsRecord!
+                                                                      .status!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .subtitle1,
+                                                                      .bodyText1,
                                                                 )),
                                                               ],
                                                             ),
@@ -340,7 +343,7 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                               MainAxisSize.max,
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .end,
+                                                                  .start,
                                                           children: [
                                                             Text(
                                                               listViewExtraActsRecord

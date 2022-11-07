@@ -181,14 +181,15 @@ class _OpportunityApplyFormWidgetState
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.start,
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 15, 15),
+                                                    .fromSTEB(15, 0, 15, 15),
                                                 child: SelectionArea(
                                                     child: Text(
                                                   'تفاصيل الفرصة:',
+                                                  textAlign: TextAlign.start,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText2,
@@ -199,17 +200,17 @@ class _OpportunityApplyFormWidgetState
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                                MainAxisAlignment.start,
                                             children: [
                                               Expanded(
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 15, 15),
+                                                      .fromSTEB(15, 0, 15, 15),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     containerOpportunitiesRecord!
                                                         .opDesc!,
-                                                    textAlign: TextAlign.end,
+                                                    textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText2
@@ -315,7 +316,7 @@ class _OpportunityApplyFormWidgetState
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(1, -1),
+              alignment: AlignmentDirectional(-1, -1),
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 16),
                 child: InkWell(

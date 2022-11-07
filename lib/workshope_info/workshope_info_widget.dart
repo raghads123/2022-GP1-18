@@ -70,33 +70,39 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                         children: [
                           Stack(
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                                child: Image.network(
-                                  scrollingContainerExtraActsRecord!.actPic!,
-                                  width: double.infinity,
-                                  height: 300,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 90,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xB3090F13),
-                                      Color(0x00090F13)
-                                    ],
-                                    stops: [0, 1],
-                                    begin: AlignmentDirectional(0, -1),
-                                    end: AlignmentDirectional(0, 1),
+                              Align(
+                                alignment: AlignmentDirectional(0, -4.18),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 50),
+                                  child: Image.network(
+                                    scrollingContainerExtraActsRecord!.actPic!,
+                                    width: double.infinity,
+                                    height: 300,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.95, 0),
+                                alignment: AlignmentDirectional(0, -0.8),
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 90,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xB3090F13),
+                                        Color(0x00090F13)
+                                      ],
+                                      stops: [0, 1],
+                                      begin: AlignmentDirectional(0, -1),
+                                      end: AlignmentDirectional(0, 1),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(-1, 0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 40, 16, 16),
@@ -144,6 +150,19 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 6, 0),
+                                    child: Text(
+                                      scrollingContainerExtraActsRecord!
+                                          .actName!,
+                                      textAlign: TextAlign.start,
+                                      style:
+                                          FlutterFlowTheme.of(context).title2,
+                                    ),
+                                  ),
+                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 7),
@@ -162,19 +181,6 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     },
                                   ),
                                 ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 6, 0),
-                                    child: Text(
-                                      scrollingContainerExtraActsRecord!
-                                          .actName!,
-                                      textAlign: TextAlign.end,
-                                      style:
-                                          FlutterFlowTheme.of(context).title2,
-                                    ),
-                                  ),
-                                ),
                               ],
                             ),
                           ),
@@ -183,20 +189,34 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(
-                                  dateTimeFormat(
-                                      'M/d h:mm a',
-                                      scrollingContainerExtraActsRecord!
-                                          .edate!),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF0184BD),
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 4),
+                                  child: Icon(
+                                    Icons.schedule,
+                                    color: Color(0xFF0184BD),
+                                    size: 20,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 4, 0),
+                                  child: Text(
+                                    dateTimeFormat(
+                                        'M/d h:mm a',
+                                        scrollingContainerExtraActsRecord!
+                                            .edate!),
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF0184BD),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -209,12 +229,13 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 0, 0, 0),
+                                      0, 0, 4, 0),
                                   child: Text(
                                     dateTimeFormat(
                                         'M/d h:mm a',
                                         scrollingContainerExtraActsRecord!
                                             .sdate!),
+                                    textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -222,15 +243,6 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                           color: Color(0xFF0184BD),
                                           fontWeight: FontWeight.w500,
                                         ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.schedule,
-                                    color: Color(0xFF0184BD),
-                                    size: 20,
                                   ),
                                 ),
                               ],
@@ -241,21 +253,8 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    scrollingContainerExtraActsRecord!.actLoc!,
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFF0184BD),
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
-                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 4),
@@ -265,6 +264,17 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     size: 20,
                                   ),
                                 ),
+                                Text(
+                                  scrollingContainerExtraActsRecord!.actLoc!,
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF0184BD),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
                               ],
                             ),
                           ),
@@ -273,8 +283,19 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                 EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
+                                if (scrollingContainerExtraActsRecord!.seats ??
+                                    true)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 4),
+                                    child: Icon(
+                                      Icons.event_seat_rounded,
+                                      color: Color(0xFF0184BD),
+                                      size: 20,
+                                    ),
+                                  ),
                                 if (scrollingContainerExtraActsRecord!.seats ??
                                     true)
                                   Text(
@@ -289,17 +310,6 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                if (scrollingContainerExtraActsRecord!.seats ??
-                                    true)
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 4),
-                                    child: Icon(
-                                      Icons.event_seat_rounded,
-                                      color: Color(0xFF0184BD),
-                                      size: 20,
-                                    ),
-                                  ),
                               ],
                             ),
                           ),
@@ -310,17 +320,19 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 4),
-                                  child: Text(
-                                    'تفاصيل ورشة العمل',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 4),
+                                    child: Text(
+                                      'تفاصيل ورشة العمل',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -332,17 +344,14 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 4),
-                                    child: Text(
-                                      scrollingContainerExtraActsRecord!
-                                          .actDec!,
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
-                                    ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 4, 0, 4),
+                                  child: Text(
+                                    scrollingContainerExtraActsRecord!.actDec!,
+                                    textAlign: TextAlign.end,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 ),
                               ],

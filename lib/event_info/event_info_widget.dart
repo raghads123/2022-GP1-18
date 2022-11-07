@@ -93,7 +93,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.95, 0),
+                              alignment: AlignmentDirectional(-1, 0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 40, 16, 16),
@@ -140,6 +140,17 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 6, 0),
+                                  child: Text(
+                                    eventInfoExtraActsRecord!.actName!,
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context).title2,
+                                  ),
+                                ),
+                              ),
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 7),
@@ -158,17 +169,6 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   },
                                 ),
                               ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 6, 0),
-                                  child: Text(
-                                    eventInfoExtraActsRecord!.actName!,
-                                    textAlign: TextAlign.end,
-                                    style: FlutterFlowTheme.of(context).title2,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -176,18 +176,31 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                dateTimeFormat('M/d h:mm a',
-                                    eventInfoExtraActsRecord!.edate!),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: Color(0xFF0184BD),
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                                child: Icon(
+                                  Icons.schedule,
+                                  color: Color(0xFF0184BD),
+                                  size: 20,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+                                child: Text(
+                                  dateTimeFormat('M/d h:mm a',
+                                      eventInfoExtraActsRecord!.edate!),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF0184BD),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
                               ),
                               Padding(
                                 padding:
@@ -200,7 +213,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
                                 child: Text(
                                   dateTimeFormat('M/d h:mm a',
                                       eventInfoExtraActsRecord!.sdate!),
@@ -213,15 +226,6 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                       ),
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Icon(
-                                  Icons.schedule,
-                                  color: Color(0xFF0184BD),
-                                  size: 20,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -229,21 +233,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Text(
-                                  eventInfoExtraActsRecord!.actLoc!,
-                                  textAlign: TextAlign.end,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF0184BD),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ),
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
@@ -253,6 +244,17 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   size: 20,
                                 ),
                               ),
+                              Text(
+                                eventInfoExtraActsRecord!.actLoc!,
+                                textAlign: TextAlign.end,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      color: Color(0xFF0184BD),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
                             ],
                           ),
                         ),
@@ -260,8 +262,18 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              if (eventInfoExtraActsRecord!.seats ?? true)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 4),
+                                  child: Icon(
+                                    Icons.event_seat_rounded,
+                                    color: Color(0xFF0184BD),
+                                    size: 20,
+                                  ),
+                                ),
                               if (eventInfoExtraActsRecord!.seats ?? true)
                                 SelectionArea(
                                     child: Text(
@@ -275,16 +287,6 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                 )),
-                              if (eventInfoExtraActsRecord!.seats ?? true)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 4),
-                                  child: Icon(
-                                    Icons.event_seat_rounded,
-                                    color: Color(0xFF0184BD),
-                                    size: 20,
-                                  ),
-                                ),
                             ],
                           ),
                         ),
@@ -294,19 +296,21 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  'تفاصيل الفعالية',
-                                  textAlign: TextAlign.end,
-                                  style: FlutterFlowTheme.of(context)
-                                      .title2
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 4, 0, 4),
+                                  child: Text(
+                                    'تفاصيل الفعالية',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .title2
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -317,16 +321,13 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 4),
-                                  child: Text(
-                                    eventInfoExtraActsRecord!.actDec!,
-                                    textAlign: TextAlign.end,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                  ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
+                                child: Text(
+                                  eventInfoExtraActsRecord!.actDec!,
+                                  textAlign: TextAlign.end,
+                                  style: FlutterFlowTheme.of(context).bodyText1,
                                 ),
                               ),
                             ],

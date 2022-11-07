@@ -46,6 +46,31 @@ class _EventsWidgetState extends State<EventsWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.chevron_right,
+            color: Color(0xFF777373),
+            size: 30,
+          ),
+          onPressed: () async {
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
+            context.pushNamed(
+              'HomePage',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.rightToLeft,
+                ),
+              },
+            );
+          },
+        ),
         title: Text(
           'الفعاليات',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -54,33 +79,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                 fontSize: 22,
               ),
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.chevron_right,
-              color: Color(0xFF777373),
-              size: 30,
-            ),
-            onPressed: () async {
-              if (Navigator.of(context).canPop()) {
-                context.pop();
-              }
-              context.pushNamed(
-                'HomePage',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.rightToLeft,
-                  ),
-                },
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -98,6 +97,14 @@ class _EventsWidgetState extends State<EventsWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: Icon(
+                          Icons.search,
+                          color: Color(0xFF777373),
+                          size: 20,
+                        ),
+                      ),
                       Expanded(
                         child: Container(
                           height: 35,
@@ -115,7 +122,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 22, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -217,19 +224,11 @@ class _EventsWidgetState extends State<EventsWidget> {
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.start,
                                 );
                               },
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                        child: Icon(
-                          Icons.search,
-                          color: Color(0xFF777373),
-                          size: 20,
                         ),
                       ),
                     ],
@@ -358,7 +357,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Text(
                                               listViewExtraActsRecord.actName!,
@@ -378,15 +377,27 @@ class _EventsWidgetState extends State<EventsWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.start,
                                         children: [
+                                          Text(
+                                            'تبدأ',
+                                            textAlign: TextAlign.end,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF777373),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
                                           Expanded(
-                                            child: Align(
-                                              alignment:
-                                                  AlignmentDirectional(1.4, 0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(120, 0, 0, 0),
                                               child: Text(
                                                 'تنتهي',
-                                                textAlign: TextAlign.end,
+                                                textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyText1
@@ -400,22 +411,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                               ),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Text(
-                                              'تبدأ',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF777373),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                       Padding(
@@ -424,14 +419,47 @@ class _EventsWidgetState extends State<EventsWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.end,
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Icon(
-                                              Icons.keyboard_arrow_left_rounded,
-                                              color: Color(0xFF777373),
-                                              size: 24,
+                                            Expanded(
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .sdate!),
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Roboto Mono',
+                                                      color: Color(0xFF1C8EC1),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .edate!),
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Roboto Mono',
+                                                      color: Color(0xFF1C8EC1),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                              ),
                                             ),
                                             InkWell(
                                               onTap: () async {
@@ -474,43 +502,10 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                         ),
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .edate!),
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .sdate!),
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
+                                            Icon(
+                                              Icons.keyboard_arrow_left_rounded,
+                                              color: Color(0xFF777373),
+                                              size: 24,
                                             ),
                                           ],
                                         ),

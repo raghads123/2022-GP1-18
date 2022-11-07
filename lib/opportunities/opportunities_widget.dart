@@ -110,7 +110,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -421,15 +421,8 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                     .max,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .start,
+                                                                    .end,
                                                             children: [
-                                                              Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_left_rounded,
-                                                                color: Color(
-                                                                    0xFF777373),
-                                                                size: 24,
-                                                              ),
                                                               InkWell(
                                                                 onTap:
                                                                     () async {
@@ -479,6 +472,13 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                             FontWeight.normal,
                                                                       ),
                                                                 ),
+                                                              ),
+                                                              Icon(
+                                                                Icons
+                                                                    .keyboard_arrow_left_rounded,
+                                                                color: Color(
+                                                                    0xFF777373),
+                                                                size: 24,
                                                               ),
                                                             ],
                                                           ),

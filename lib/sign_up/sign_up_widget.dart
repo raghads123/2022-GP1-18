@@ -485,15 +485,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () async {
-                                          context.goNamed('LogIn');
-                                        },
-                                        child: Text(
-                                          'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF494646),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 5, 0, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.goNamed('LogIn');
+                                          },
+                                          child: Text(
+                                            'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF494646),
+                                            ),
                                           ),
                                         ),
                                       ),

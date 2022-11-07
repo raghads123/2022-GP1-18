@@ -120,10 +120,10 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                         child: Text(
-                          'Create Note',
+                          'عبي نموذج التقديم أدناه',
                           style: FlutterFlowTheme.of(context).title2.override(
                                 fontFamily: 'Outfit',
-                                color: Color(0xFF101213),
+                                color: FlutterFlowTheme.of(context).alternate,
                                 fontSize: 22,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -213,7 +213,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                 'Open Sans',
                                 color: Color(0xFF565656),
                               ),
-                              hintText: 'حددي مهارتك______________________',
+                              hintText: 'حددي مهارتك',
                               fillColor: Color(0xFFE0E0E0),
                               elevation: 2,
                               borderColor: Colors.transparent,

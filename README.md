@@ -20,7 +20,7 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 This command creates the generated files that parse each Record from Firestore into a schema object.
 
 ### Getting started continued:
-To run this application on Visual Studion code download all files in one folder > open vscode > open folder (then choose the folder you just made) > navigate to main.dart file and then run 
+To run this application on Visual Studion code download all files (in "main" branch) in one folder > open vscode > open folder (then choose the folder you just made) > navigate to main.dart file and then run 
 
 To download this application on your android phone:
 Use app-release.apk

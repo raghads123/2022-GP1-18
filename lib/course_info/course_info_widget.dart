@@ -461,14 +461,12 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                   );
                                 }
                               }
-
-                              context.pushNamed('MyActivites');
                             },
                             text: 'إلتحاق',
                             options: FFButtonOptions(
                               width: 270,
                               height: 50,
-                              color: Color(0xE15BD85B),
+                              color: Color(0xFF1C8EC1),
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle1
                                   .override(

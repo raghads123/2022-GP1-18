@@ -280,7 +280,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 0, 20, 14),
+                                            20, 0, 20, 1),
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(
@@ -392,7 +392,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           children: [
                                             SelectionArea(
                                                 child: Text(
-                                              'كلمة المرور يجب أن تتكون من:\n٨ خانات\nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية  \nإحدى الرموز: ! @ # ٪ & *\nرقم',
+                                              'كلمة المرور يجب أن تتكون من:\n٨ خانات\nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية  \nإحدى الرموز: ! @ # ٪ *& \nرقم',
                                               textAlign: TextAlign.end,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -497,56 +497,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                         ),
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 3, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                context.goNamed(
-                                                  'LogIn',
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .leftToRight,
-                                                    ),
-                                                  },
-                                                );
-                                              },
-                                              child: SelectionArea(
-                                                  child: Text(
-                                                ' تسجيل  الدخول',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF494646),
-                                                        ),
-                                              )),
-                                            ),
+                                      InkWell(
+                                        onTap: () async {
+                                          context.goNamed('LogIn');
+                                        },
+                                        child: Text(
+                                          'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF494646),
                                           ),
-                                          SelectionArea(
-                                              child: Text(
-                                            'تم إنشاء حساب مسبقاً؟  ',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0xFF494646),
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          )),
-                                        ],
+                                        ),
                                       ),
                                     ],
                                   ),

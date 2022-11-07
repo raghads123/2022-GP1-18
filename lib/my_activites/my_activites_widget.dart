@@ -545,20 +545,9 @@ class _MyActivitesWidgetState extends State<MyActivitesWidget> {
                                                                 child:
                                                                     FFButtonWidget(
                                                                   onPressed:
-                                                                      () async {
-                                                                    context
-                                                                        .pushNamed(
-                                                                      'user_ratings',
-                                                                      queryParams:
-                                                                          {
-                                                                        'actname':
-                                                                            serializeParam(
-                                                                          '',
-                                                                          ParamType
-                                                                              .String,
-                                                                        ),
-                                                                      }.withoutNulls,
-                                                                    );
+                                                                      () {
+                                                                    print(
+                                                                        'Button pressed ...');
                                                                   },
                                                                   text:
                                                                       'قيمي النشاط',

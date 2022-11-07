@@ -61,7 +61,6 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        flex: 3,
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 180, 0, 0),
                           child: Container(
@@ -71,161 +70,168 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Image.asset(
-                                  'assets/images/9hsjc_2.png',
-                                  width: 190,
-                                  fit: BoxFit.cover,
-                                ),
-                                SelectionArea(
-                                    child: Text(
-                                  '!اهلًا ِبك',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF0184BD),
-                                        fontSize: 24,
-                                      ),
-                                )),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 2),
-                                  child: SelectionArea(
+                            child: SingleChildScrollView(
+                              primary: false,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/9hsjc_2.png',
+                                    width: 190,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SelectionArea(
                                       child: Text(
-                                    'حددي إهتماماتك',
+                                    '!اهلًا ِبك',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF0184BD),
-                                          fontSize: 20,
+                                          fontSize: 24,
                                         ),
                                   )),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    border: Border.all(
-                                      color: Color(0xFF494646),
-                                    ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 2),
+                                    child: SelectionArea(
+                                        child: Text(
+                                      'حددي إهتماماتك',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF0184BD),
+                                            fontSize: 20,
+                                          ),
+                                    )),
                                   ),
-                                  child: StreamBuilder<List<CategoryRecord>>(
-                                    stream: queryCategoryRecord(
-                                      singleRecord: true,
+                                  Container(
+                                    width: double.infinity,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(
+                                        color: Color(0xFF494646),
+                                      ),
                                     ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: CircularProgressIndicator(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                    child: StreamBuilder<List<CategoryRecord>>(
+                                      stream: queryCategoryRecord(
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                              ),
                                             ),
+                                          );
+                                        }
+                                        List<CategoryRecord>
+                                            columnCategoryRecordList =
+                                            snapshot.data!;
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data!.isEmpty) {
+                                          return Container();
+                                        }
+                                        final columnCategoryRecord =
+                                            columnCategoryRecordList.isNotEmpty
+                                                ? columnCategoryRecordList.first
+                                                : null;
+                                        return SingleChildScrollView(
+                                          primary: false,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FlutterFlowCheckboxGroup(
+                                                options: columnCategoryRecord!
+                                                    .name!
+                                                    .toList(),
+                                                onChanged: (val) => setState(
+                                                    () => checkboxGroupValues =
+                                                        val),
+                                                activeColor: Color(0x00000000),
+                                                checkColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                checkboxBorderColor:
+                                                    Color(0xFF95A1AC),
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title3
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFF565656),
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                itemPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(10, 0, 0, 18),
+                                                initialized:
+                                                    checkboxGroupValues != null,
+                                              ),
+                                            ],
                                           ),
                                         );
-                                      }
-                                      List<CategoryRecord>
-                                          columnCategoryRecordList =
-                                          snapshot.data!;
-                                      // Return an empty Container when the document does not exist.
-                                      if (snapshot.data!.isEmpty) {
-                                        return Container();
-                                      }
-                                      final columnCategoryRecord =
-                                          columnCategoryRecordList.isNotEmpty
-                                              ? columnCategoryRecordList.first
-                                              : null;
-                                      return SingleChildScrollView(
-                                        primary: false,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            FlutterFlowCheckboxGroup(
-                                              options: columnCategoryRecord!
-                                                  .name!
-                                                  .toList(),
-                                              onChanged: (val) => setState(() =>
-                                                  checkboxGroupValues = val),
-                                              activeColor: Color(0x00000000),
-                                              checkColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              checkboxBorderColor:
-                                                  Color(0xFF95A1AC),
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .title3
-                                                  .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFF565656),
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                              itemPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 0, 0, 18),
-                                              initialized:
-                                                  checkboxGroupValues != null,
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 25, 0, 0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      final usersUpdateData = {
-                                        'intrests': checkboxGroupValues,
-                                      };
-                                      await currentUserReference!
-                                          .update(usersUpdateData);
-
-                                      context.goNamed(
-                                        'HomePage',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    text: 'إنهاء',
-                                    options: FFButtonOptions(
-                                      width: 300,
-                                      height: 50,
-                                      color: Color(0xFFFF5757),
-                                      textStyle: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFFFFFAF1),
-                                        fontSize: 16,
-                                      ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      },
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 25, 0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        final usersUpdateData = {
+                                          'intrests': checkboxGroupValues,
+                                        };
+                                        await currentUserReference!
+                                            .update(usersUpdateData);
+
+                                        context.goNamed(
+                                          'HomePage',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      text: 'إنهاء',
+                                      options: FFButtonOptions(
+                                        width: 300,
+                                        height: 50,
+                                        color: Color(0xFFFF5757),
+                                        textStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFFFFFAF1),
+                                          fontSize: 16,
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

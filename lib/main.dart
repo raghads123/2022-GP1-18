@@ -113,9 +113,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Profile': ProfileWidget(),
-      'MyActivites': MyActivitesWidget(),
       'HomePage': HomePageWidget(),
+      'MyActivites': MyActivitesWidget(),
+      'Profile': ProfileWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
@@ -135,10 +135,10 @@ class _NavBarPageState extends State<NavBarPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.person_outline_rounded,
+              Icons.home_outlined,
               size: 24,
             ),
-            label: 'حسابي',
+            label: 'الرئيسية',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -151,10 +151,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home_outlined,
+              Icons.person_outline_rounded,
               size: 24,
             ),
-            label: 'الرئيسية',
+            label: 'حسابي',
             tooltip: '',
           )
         ],

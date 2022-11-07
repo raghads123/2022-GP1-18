@@ -42,70 +42,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.logout,
-            color: Color(0xFFFF5757),
-            size: 22,
-          ),
-          onPressed: () async {
-            var confirmDialogResponse = await showDialog<bool>(
-                  context: context,
-                  builder: (alertDialogContext) {
-                    return AlertDialog(
-                      title: Text('هل تريدين تسجيل الخروج'),
-                      actions: [
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, false),
-                          child: Text('لا'),
-                        ),
-                        TextButton(
-                          onPressed: () =>
-                              Navigator.pop(alertDialogContext, true),
-                          child: Text('نعم'),
-                        ),
-                      ],
-                    );
-                  },
-                ) ??
-                false;
-            if (confirmDialogResponse) {
-              GoRouter.of(context).prepareAuthEvent();
-              await signOut();
-
-              context.goNamedAuth(
-                'LogIn',
-                mounted,
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 0),
-                  ),
-                },
-              );
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'تم تسجيل خروجك بنجاح',
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  duration: Duration(milliseconds: 4000),
-                  backgroundColor: Color(0xE15BD85B),
-                ),
-              );
-            }
-          },
-        ),
         title: Text(
           'حسابي',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -114,7 +50,72 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 fontSize: 22,
               ),
         ),
-        actions: [],
+        actions: [
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.logout,
+              color: Color(0xFFFF5757),
+              size: 22,
+            ),
+            onPressed: () async {
+              var confirmDialogResponse = await showDialog<bool>(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text('هل تريدين تسجيل الخروج'),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, false),
+                            child: Text('لا'),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(alertDialogContext, true),
+                            child: Text('نعم'),
+                          ),
+                        ],
+                      );
+                    },
+                  ) ??
+                  false;
+              if (confirmDialogResponse) {
+                GoRouter.of(context).prepareAuthEvent();
+                await signOut();
+
+                context.goNamedAuth(
+                  'LogIn',
+                  mounted,
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 0),
+                    ),
+                  },
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'تم تسجيل خروجك بنجاح',
+                      style: TextStyle(
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    duration: Duration(milliseconds: 4000),
+                    backgroundColor: Color(0xE15BD85B),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
         centerTitle: true,
         elevation: 2,
       ),
@@ -155,14 +156,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: AuthUserStreamWidget(
                                   child: SelectionArea(
                                       child: Text(
                                     currentUserDisplayName,
-                                    textAlign: TextAlign.end,
+                                    textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyText1
                                         .override(
@@ -175,7 +176,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               SelectionArea(
                                   child: Text(
                                 '  مرحباً',
-                                textAlign: TextAlign.end,
+                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -190,7 +191,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
                                 padding:
@@ -213,16 +214,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 20, 0),
+                                      20, 15, 20, 0),
                                   child: SelectionArea(
                                       child: Text(
                                     'الاسم:',
-                                    textAlign: TextAlign.end,
+                                    textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
                                       color: FlutterFlowTheme.of(context)
@@ -294,16 +295,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 20, 0),
+                                      20, 0, 20, 0),
                                   child: SelectionArea(
                                       child: Text(
                                     'الكلية:',
-                                    textAlign: TextAlign.end,
+                                    textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
                                       color: FlutterFlowTheme.of(context)
@@ -359,16 +360,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 20, 0),
+                                      20, 15, 20, 0),
                                   child: SelectionArea(
                                       child: Text(
                                     'المستوى:',
-                                    textAlign: TextAlign.end,
+                                    textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
                                       color: FlutterFlowTheme.of(context)

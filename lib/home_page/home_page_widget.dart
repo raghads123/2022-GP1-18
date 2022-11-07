@@ -72,7 +72,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(200, 0, 0, 20),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 200, 20),
                             child: Text(
                               'الأنشطة',
                               textAlign: TextAlign.start,

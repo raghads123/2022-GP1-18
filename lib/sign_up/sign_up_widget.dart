@@ -384,30 +384,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            45, 0, 45, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            SelectionArea(
-                                                child: Text(
-                                              'كلمة المرور يجب أن تتكون من:\n٨ خانات\nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية  \nإحدى الرموز: ! @ # ٪ *& \nرقم',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFF494646),
-                                                    fontWeight: FontWeight.w100,
-                                                  ),
-                                            )),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 2, 0, 2),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -497,15 +473,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: () async {
-                                          context.goNamed('LogIn');
-                                        },
-                                        child: Text(
-                                          'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF494646),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 5, 0, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.goNamed('LogIn');
+                                          },
+                                          child: Text(
+                                            'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF494646),
+                                            ),
                                           ),
                                         ),
                                       ),

@@ -149,9 +149,9 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                         return SingleChildScrollView(
                                           primary: false,
                                           child: Column(
-                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                                MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
@@ -180,7 +180,8 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                                         ),
                                                 itemPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(10, 0, 0, 18),
+                                                        .fromSTEB(
+                                                            10, 0, 30, 18),
                                                 initialized:
                                                     checkboxGroupValues != null,
                                               ),

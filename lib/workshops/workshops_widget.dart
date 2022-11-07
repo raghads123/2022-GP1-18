@@ -46,6 +46,31 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.chevron_right,
+            color: Color(0xFF777373),
+            size: 30,
+          ),
+          onPressed: () async {
+            if (Navigator.of(context).canPop()) {
+              context.pop();
+            }
+            context.pushNamed(
+              'HomePage',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.rightToLeft,
+                ),
+              },
+            );
+          },
+        ),
         title: Text(
           'ورش العمل',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -54,33 +79,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                 fontSize: 22,
               ),
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.chevron_right,
-              color: Color(0xFF777373),
-              size: 30,
-            ),
-            onPressed: () async {
-              if (Navigator.of(context).canPop()) {
-                context.pop();
-              }
-              context.pushNamed(
-                'HomePage',
-                extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
-                    hasTransition: true,
-                    transitionType: PageTransitionType.rightToLeft,
-                  ),
-                },
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: true,
         elevation: 2,
       ),
@@ -98,6 +97,14 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        child: Icon(
+                          Icons.search,
+                          color: Color(0xFF777373),
+                          size: 20,
+                        ),
+                      ),
                       Expanded(
                         child: Container(
                           width: 40,
@@ -116,7 +123,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -218,19 +225,11 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                     ),
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
-                                  textAlign: TextAlign.end,
+                                  textAlign: TextAlign.start,
                                 );
                               },
                             ),
                           ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-                        child: Icon(
-                          Icons.search,
-                          color: Color(0xFF777373),
-                          size: 20,
                         ),
                       ),
                     ],
@@ -359,17 +358,22 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
-                                            Text(
-                                              listViewExtraActsRecord.actName!,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .title3
-                                                  .override(
-                                                    fontFamily: 'Outfit',
-                                                    color: Color(0xFF1C8EC1),
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                            Expanded(
+                                              child: Text(
+                                                listViewExtraActsRecord
+                                                    .actName!,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title3
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          color:
+                                                              Color(0xFF1C8EC1),
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -377,15 +381,27 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.start,
                                         children: [
+                                          Text(
+                                            'تبدأ',
+                                            textAlign: TextAlign.end,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Lexend Deca',
+                                                  color: Color(0xFF777373),
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
                                           Expanded(
-                                            child: Align(
-                                              alignment:
-                                                  AlignmentDirectional(1.4, 0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(120, 0, 0, 0),
                                               child: Text(
                                                 'تنتهي',
-                                                textAlign: TextAlign.end,
+                                                textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyText1
@@ -399,22 +415,6 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                               ),
                                             ),
                                           ),
-                                          Expanded(
-                                            child: Text(
-                                              'تبدأ',
-                                              textAlign: TextAlign.end,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF777373),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                            ),
-                                          ),
                                         ],
                                       ),
                                       Padding(
@@ -423,10 +423,43 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Icon(
-                                              Icons.keyboard_arrow_left_rounded,
-                                              color: Color(0xFF777373),
-                                              size: 24,
+                                            Expanded(
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .sdate!),
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Roboto Mono',
+                                                      color: Color(0xFF1C8EC1),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .edate!),
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .subtitle2
+                                                    .override(
+                                                      fontFamily: 'Roboto Mono',
+                                                      color: Color(0xFF1C8EC1),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                    ),
+                                              ),
                                             ),
                                             InkWell(
                                               onTap: () async {
@@ -469,43 +502,10 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                         ),
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .edate!),
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .sdate!),
-                                                textAlign: TextAlign.end,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
+                                            Icon(
+                                              Icons.chevron_left,
+                                              color: Color(0xFF777373),
+                                              size: 24,
                                             ),
                                           ],
                                         ),

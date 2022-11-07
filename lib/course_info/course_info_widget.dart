@@ -190,8 +190,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Poppins',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                      color: Color(0xFF0184BD),
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
@@ -200,8 +199,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                                 child: Icon(
                                   Icons.schedule,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                  color: Color(0xFF0184BD),
                                   size: 20,
                                 ),
                               ),
@@ -217,8 +215,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                        color: Color(0xFF0184BD),
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -228,8 +225,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                                 child: Icon(
                                   Icons.schedule,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                  color: Color(0xFF0184BD),
                                   size: 20,
                                 ),
                               ),
@@ -250,8 +246,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                        color: Color(0xFF0184BD),
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -261,8 +256,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                                 child: Icon(
                                   Icons.location_on_sharp,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                  color: Color(0xFF0184BD),
                                   size: 20,
                                 ),
                               ),
@@ -284,8 +278,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                        color: Color(0xFF0184BD),
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -296,8 +289,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                       0, 0, 0, 4),
                                   child: Icon(
                                     Icons.event_seat_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: Color(0xFF0184BD),
                                     size: 20,
                                   ),
                                 ),
@@ -469,14 +461,12 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                   );
                                 }
                               }
-
-                              context.pushNamed('MyActivites');
                             },
                             text: 'إلتحاق',
                             options: FFButtonOptions(
                               width: 270,
                               height: 50,
-                              color: Color(0xE15BD85B),
+                              color: Color(0xFF1C8EC1),
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle1
                                   .override(

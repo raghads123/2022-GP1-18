@@ -349,7 +349,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             elevation: 2,
                             borderColor: Colors.transparent,
                             borderWidth: 0,
-                            borderRadius: 0,
+                            borderRadius: 25,
                             margin:
                                 EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
                             hidesUnderline: true,
@@ -415,7 +415,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               elevation: 2,
                               borderColor: Colors.transparent,
                               borderWidth: 0,
-                              borderRadius: 0,
+                              borderRadius: 25,
                               margin:
                                   EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
                               hidesUnderline: true,
@@ -448,7 +448,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 color: Colors.transparent,
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.circular(0),
+                              borderRadius: BorderRadius.circular(25),
                             ),
                             showLoadingIndicator: false,
                           ),

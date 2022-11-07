@@ -292,6 +292,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     style: GoogleFonts.getFont(
                                       'Open Sans',
                                       color: Color(0xFF494646),
+                                      fontWeight: FontWeight.normal,
                                     ),
                                   ),
                                 ),

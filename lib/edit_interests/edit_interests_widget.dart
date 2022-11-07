@@ -427,6 +427,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     FlutterFlowCheckboxGroup(
                                       initiallySelected: containerUsersRecord!

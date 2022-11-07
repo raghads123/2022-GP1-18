@@ -1,14 +1,11 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_checkbox_group.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Settinginterests2Widget extends StatefulWidget {
@@ -19,86 +16,9 @@ class Settinginterests2Widget extends StatefulWidget {
       _Settinginterests2WidgetState();
 }
 
-class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
-    with TickerProviderStateMixin {
-  final animationsMap = {
-    'imageOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1200.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1300.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'columnOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-  };
+class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
   List<String>? checkboxGroupValues;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,30 +76,24 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                   EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Image.asset(
                                     'assets/images/9hsjc_2.png',
                                     width: 190,
                                     fit: BoxFit.cover,
-                                  ).animateOnPageLoad(animationsMap[
-                                      'imageOnPageLoadAnimation']!),
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      '!اهلًا ِبك',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF0184BD),
-                                            fontSize: 24,
-                                          ),
-                                    )).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation1']!),
                                   ),
+                                  SelectionArea(
+                                      child: Text(
+                                    '!اهلًا ِبك',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF0184BD),
+                                          fontSize: 24,
+                                        ),
+                                  )),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 0, 2),
@@ -193,86 +107,71 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                             color: Color(0xFF0184BD),
                                             fontSize: 20,
                                           ),
-                                    )).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation2']!),
+                                    )),
                                   ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        width: double.infinity,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          border: Border.all(
-                                            color: Color(0xFF494646),
-                                          ),
-                                        ),
-                                        child:
-                                            StreamBuilder<List<CategoryRecord>>(
-                                          stream: queryCategoryRecord(
-                                            singleRecord: true,
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50,
-                                                  height: 50,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                  Container(
+                                    width: double.infinity,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(
+                                        color: Color(0xFF494646),
+                                      ),
+                                    ),
+                                    child: StreamBuilder<List<CategoryRecord>>(
+                                      stream: queryCategoryRecord(
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .primaryColor,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            List<CategoryRecord>
-                                                columnCategoryRecordList =
-                                                snapshot.data!;
-                                            // Return an empty Container when the document does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
-                                            final columnCategoryRecord =
-                                                columnCategoryRecordList
-                                                        .isNotEmpty
-                                                    ? columnCategoryRecordList
-                                                        .first
-                                                    : null;
-                                            return SingleChildScrollView(
-                                              primary: false,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  FlutterFlowCheckboxGroup(
-                                                    options:
-                                                        columnCategoryRecord!
-                                                            .name!
-                                                            .toList(),
-                                                    onChanged: (val) =>
-                                                        setState(() =>
-                                                            checkboxGroupValues =
-                                                                val),
-                                                    activeColor:
-                                                        Color(0x00000000),
-                                                    checkColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    checkboxBorderColor:
-                                                        Color(0xFF95A1AC),
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        List<CategoryRecord>
+                                            columnCategoryRecordList =
+                                            snapshot.data!;
+                                        // Return an empty Container when the document does not exist.
+                                        if (snapshot.data!.isEmpty) {
+                                          return Container();
+                                        }
+                                        final columnCategoryRecord =
+                                            columnCategoryRecordList.isNotEmpty
+                                                ? columnCategoryRecordList.first
+                                                : null;
+                                        return SingleChildScrollView(
+                                          primary: false,
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FlutterFlowCheckboxGroup(
+                                                options: columnCategoryRecord!
+                                                    .name!
+                                                    .toList(),
+                                                onChanged: (val) => setState(
+                                                    () => checkboxGroupValues =
+                                                        val),
+                                                activeColor: Color(0x00000000),
+                                                checkColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                checkboxBorderColor:
+                                                    Color(0xFF95A1AC),
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
                                                         .title3
                                                         .override(
                                                           fontFamily: 'Poppins',
@@ -281,65 +180,58 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget>
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
-                                                    itemPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 0, 0, 18),
-                                                    initialized:
-                                                        checkboxGroupValues !=
-                                                            null,
-                                                  ),
-                                                ],
+                                                itemPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(10, 0, 0, 18),
+                                                initialized:
+                                                    checkboxGroupValues != null,
                                               ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            final usersUpdateData = {
-                                              'intrests': checkboxGroupValues,
-                                            };
-                                            await currentUserReference!
-                                                .update(usersUpdateData);
-
-                                            context.goNamed(
-                                              'HomePage',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          text: 'إنهاء',
-                                          options: FFButtonOptions(
-                                            width: 300,
-                                            height: 50,
-                                            color: Color(0xFFFF5757),
-                                            textStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFFFFFAF1),
-                                              fontSize: 16,
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
+                                            ],
                                           ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 25, 0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        final usersUpdateData = {
+                                          'intrests': checkboxGroupValues,
+                                        };
+                                        await currentUserReference!
+                                            .update(usersUpdateData);
+
+                                        context.goNamed(
+                                          'HomePage',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      text: 'إنهاء',
+                                      options: FFButtonOptions(
+                                        width: 300,
+                                        height: 50,
+                                        color: Color(0xFFFF5757),
+                                        textStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFFFFFAF1),
+                                          fontSize: 16,
                                         ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: BorderRadius.circular(25),
                                       ),
-                                    ],
-                                  ).animateOnPageLoad(animationsMap[
-                                      'columnOnPageLoadAnimation']!),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

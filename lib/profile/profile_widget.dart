@@ -158,6 +158,17 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              SelectionArea(
+                                  child: Text(
+                                '  مرحباً',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Poppins',
+                                      fontSize: 24,
+                                    ),
+                              )),
                               Expanded(
                                 child: AuthUserStreamWidget(
                                   child: SelectionArea(
@@ -173,17 +184,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   )),
                                 ),
                               ),
-                              SelectionArea(
-                                  child: Text(
-                                '  مرحباً',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 24,
-                                    ),
-                              )),
                             ],
                           ),
                         ),

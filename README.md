@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-Count me in is an applecation to help students find all university activities and help them enroll and apply to opportunities provided by the university, get recommened the best suitable activities, for their interests.
+FlutterFlow projects are built to run on the Flutter _stable_ release.
 
 ### IMPORTANT:
 

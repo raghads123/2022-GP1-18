@@ -273,8 +273,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           'Open Sans',
                                           color: Color(0xFF565656),
                                         ),
-                                        hintText:
-                                            'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
+                                        hintText: 'الكلية ',
                                         fillColor: Color(0xFFE0E0E0),
                                         elevation: 2,
                                         borderColor: Colors.transparent,
@@ -311,8 +310,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           'Open Sans',
                                           color: Color(0xFF565656),
                                         ),
-                                        hintText:
-                                            'المستوى ــــــــــــــــــــــــــــــــــــــــ',
+                                        hintText: 'المستوى ',
                                         fillColor: Color(0xFFE0E0E0),
                                         elevation: 2,
                                         borderColor: Colors.transparent,

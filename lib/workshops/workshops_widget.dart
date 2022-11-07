@@ -52,7 +52,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.chevron_right,
+            Icons.chevron_left,
             color: Color(0xFF777373),
             size: 30,
           ),
@@ -503,7 +503,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                               ),
                                             ),
                                             Icon(
-                                              Icons.chevron_left,
+                                              Icons.chevron_right,
                                               color: Color(0xFF777373),
                                               size: 24,
                                             ),

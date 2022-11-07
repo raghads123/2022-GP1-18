@@ -52,7 +52,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
           borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
-            Icons.chevron_right,
+            Icons.chevron_left,
             color: Color(0xFF777373),
             size: 30,
           ),
@@ -500,7 +500,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                               ),
                                             ),
                                             Icon(
-                                              Icons.chevron_left,
+                                              Icons.chevron_right_rounded,
                                               color: Color(0xFF777373),
                                               size: 24,
                                             ),

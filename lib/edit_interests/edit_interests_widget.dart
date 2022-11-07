@@ -51,7 +51,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
               alignment: AlignmentDirectional(0.35, 0),
               child: Text(
                 'إهتماماتك',
-                textAlign: TextAlign.end,
+                textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Poppins',
                       color: FlutterFlowTheme.of(context).primaryBtnText,
@@ -344,7 +344,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 8),
                       child: Text(
                         'الإهتمامات',
-                        textAlign: TextAlign.end,
+                        textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).subtitle1.override(
                               fontFamily: 'Poppins',
                               color: Color(0xFF494646),

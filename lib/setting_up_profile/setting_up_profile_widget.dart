@@ -242,7 +242,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                             'Open Sans',
                                             color: Color(0xFF565656),
                                           ),
-                                          textAlign: TextAlign.end,
+                                          textAlign: TextAlign.start,
                                         ),
                                       ),
                                     ),

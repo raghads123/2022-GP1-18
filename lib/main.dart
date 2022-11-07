@@ -71,6 +71,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Count Me In',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
@@ -79,7 +80,9 @@ class _MyAppState extends State<MyApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       locale: _locale,
-      supportedLocales: const [Locale('en', '')],
+      supportedLocales: const [
+        Locale('ar', 'AE'),
+      ],
       theme: ThemeData(brightness: Brightness.light),
       themeMode: _themeMode,
       routeInformationParser: _router.routeInformationParser,

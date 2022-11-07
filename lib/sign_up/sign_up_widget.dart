@@ -304,6 +304,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               hintText: 'ادخلي كلمة المرور',
+                                              helperText:
+                                                  'كلمة المرور يجب أن تحتوي على الأقل على: \nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية\nإحدى الرموز: ! @ # & \n رقم',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -393,9 +395,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               return;
                                             }
 
-                                            if (passwordController!.text !=
-                                                confirmpasswordController!
-                                                    .text) {
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            if (passwordController?.text !=
+                                                confirmpasswordController
+                                                    ?.text) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -412,20 +416,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       Color(0xE1FF2323),
-                                                ),
-                                              );
-                                            }
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-                                            if (passwordController?.text !=
-                                                confirmpasswordController
-                                                    ?.text) {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Passwords don\'t match!',
-                                                  ),
                                                 ),
                                               );
                                               return;

@@ -25,12 +25,12 @@ class _AddoppWidgetState extends State<AddoppWidget> {
   String uploadedFileUrl = '';
 
   TextEditingController? oppNameController;
-  TextEditingController? oppdesController;
   TextEditingController? oppskill1Controller;
   TextEditingController? oppskill2Controller;
   TextEditingController? oppskill3Controller;
   TextEditingController? oppskill4Controller;
   TextEditingController? oppskill5Controller;
+  TextEditingController? oppdesController;
   DateTime? datePicked1;
   DateTime? datePicked2;
   final _unfocusNode = FocusNode();
@@ -41,24 +41,24 @@ class _AddoppWidgetState extends State<AddoppWidget> {
   void initState() {
     super.initState();
     oppNameController = TextEditingController();
-    oppdesController = TextEditingController();
     oppskill1Controller = TextEditingController();
     oppskill2Controller = TextEditingController();
     oppskill3Controller = TextEditingController();
     oppskill4Controller = TextEditingController();
     oppskill5Controller = TextEditingController();
+    oppdesController = TextEditingController();
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
     oppNameController?.dispose();
-    oppdesController?.dispose();
     oppskill1Controller?.dispose();
     oppskill2Controller?.dispose();
     oppskill3Controller?.dispose();
     oppskill4Controller?.dispose();
     oppskill5Controller?.dispose();
+    oppdesController?.dispose();
     super.dispose();
   }
 
@@ -92,9 +92,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                 }
                 context.pushNamed('HomePage');
 
-                FFAppState().update(() {
-                  FFAppState().numskills = 1;
-                });
+                FFAppState().numskills = 1;
+                FFAppState().Skilllist = [];
               },
             ),
           ),
@@ -195,71 +194,6 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
-                      child: Container(
-                        width: 400,
-                        child: TextFormField(
-                          controller: oppdesController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'وصف الفرصة',
-                            labelStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF0283BC),
-                              fontWeight: FontWeight.normal,
-                            ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFF0F0F0),
-                          ),
-                          style: GoogleFonts.getFont(
-                            'Open Sans',
-                            color: Color(0xFF565656),
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.start,
-                          maxLines: 2,
-                          keyboardType: TextInputType.multiline,
                         ),
                       ),
                     ),
@@ -420,7 +354,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             onChanged: (_) => EasyDebounce.debounce(
                               'oppskill3Controller',
                               Duration(milliseconds: 2000),
-                              () => setState(() {}),
+                              () async {
+                                FFAppState()
+                                    .addToSkilllist(oppskill3Controller!.text);
+                              },
                             ),
                             obscureText: false,
                             decoration: InputDecoration(
@@ -624,7 +561,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         ),
                       ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 5),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -642,10 +579,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             onPressed: FFAppState().numskills == 5
                                 ? null
                                 : () async {
-                                    FFAppState().update(() {
-                                      FFAppState().numskills =
-                                          FFAppState().numskills + 1;
-                                    });
+                                    FFAppState().numskills =
+                                        FFAppState().numskills + 1;
                                   },
                           ),
                           Padding(
@@ -660,6 +595,71 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      child: Container(
+                        width: 400,
+                        child: TextFormField(
+                          controller: oppdesController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'وصف الفرصة',
+                            labelStyle: GoogleFonts.getFont(
+                              'Open Sans',
+                              color: Color(0xFF0283BC),
+                              fontWeight: FontWeight.normal,
+                            ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .bodyText2
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF0283BC),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF0283BC),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFF0F0F0),
+                          ),
+                          style: GoogleFonts.getFont(
+                            'Open Sans',
+                            color: Color(0xFF565656),
+                            fontWeight: FontWeight.normal,
+                          ),
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                          keyboardType: TextInputType.multiline,
+                        ),
                       ),
                     ),
                     Padding(
@@ -935,6 +935,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             await OpportunitiesRecord.collection
                                 .doc()
                                 .set(opportunitiesCreateData);
+                            FFAppState().numskills = 1;
+                            FFAppState().Skilllist = [];
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(

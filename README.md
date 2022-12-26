@@ -1,12 +1,10 @@
-# Count Me In
+# GRAD PROJECT 2
 
-Count me is an application that helps student find, enroll, and apply to all activities and opportunities provided by the university.
-this release provids the all neccesary functions for the students application
-
-Flutterflow, flutter and dart were used to develop this application.
+A new Flutter project.
 
 ## Getting Started
 
+FlutterFlow projects are built to run on the Flutter _stable_ release.
 
 ### IMPORTANT:
 
@@ -20,10 +18,6 @@ flutter packages pub run build_runner build --delete-conflicting-outputs
 This command creates the generated files that parse each Record from Firestore into a schema object.
 
 ### Getting started continued:
-To run this application on Visual Studion code download all files (in "main" branch) in one folder > open vscode > open folder (then choose the folder you just made) > navigate to main.dart file and then run 
-
-To download this application on your android phone:
-Use app-release.apk
 
 This project is a starting point for a Flutter application.
 

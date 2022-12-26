@@ -8,6 +8,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 
 class CoursesWidget extends StatefulWidget {
   const CoursesWidget({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
   final fieldSearchKey = GlobalKey();
   TextEditingController? fieldSearchController;
   String? fieldSearchSelectedOption;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -35,11 +37,14 @@ class _CoursesWidgetState extends State<CoursesWidget> {
   @override
   void dispose() {
     _streamSubscriptions.forEach((s) => s?.cancel());
+    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -85,7 +90,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
       ),
       body: SafeArea(
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: SingleChildScrollView(
             primary: false,
             child: Column(
@@ -301,7 +306,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                         width: 50,
                         height: 50,
                         child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.of(context).primaryColor,
+                          color: Color(0xFF0184BD),
                         ),
                       ),
                     ),
@@ -424,9 +429,13 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .sdate!),
+                                                  'MMMEd',
+                                                  listViewExtraActsRecord
+                                                      .sdate!,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                ),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -443,9 +452,13 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                             Expanded(
                                               child: Text(
                                                 dateTimeFormat(
-                                                    'MMMEd',
-                                                    listViewExtraActsRecord
-                                                        .edate!),
+                                                  'MMMEd',
+                                                  listViewExtraActsRecord
+                                                      .edate!,
+                                                  locale: FFLocalizations.of(
+                                                          context)
+                                                      .languageCode,
+                                                ),
                                                 textAlign: TextAlign.start,
                                                 style: FlutterFlowTheme.of(
                                                         context)

@@ -31,6 +31,14 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 
   String? get level;
 
+  @BuiltValueField(wireName: 'users_acts')
+  BuiltList<String>? get usersActs;
+
+  @BuiltValueField(wireName: 'users_opp')
+  BuiltList<String>? get usersOpp;
+
+  String? get type;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -43,7 +51,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..photoUrl = ''
     ..phoneNumber = ''
     ..intrests = ListBuilder()
-    ..level = '';
+    ..level = ''
+    ..usersActs = ListBuilder()
+    ..usersOpp = ListBuilder()
+    ..type = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -75,6 +86,7 @@ Map<String, dynamic> createUsersRecordData({
   String? photoUrl,
   String? phoneNumber,
   String? level,
+  String? type,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -88,7 +100,10 @@ Map<String, dynamic> createUsersRecordData({
         ..photoUrl = photoUrl
         ..phoneNumber = phoneNumber
         ..intrests = null
-        ..level = level,
+        ..level = level
+        ..usersActs = null
+        ..usersOpp = null
+        ..type = type,
     ),
   );
 

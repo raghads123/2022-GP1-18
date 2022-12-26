@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class EditInterestsWidget extends StatefulWidget {
   const EditInterestsWidget({Key? key}) : super(key: key);
@@ -21,10 +22,19 @@ class EditInterestsWidget extends StatefulWidget {
 class _EditInterestsWidgetState extends State<EditInterestsWidget>
     with TickerProviderStateMixin {
   List<String>? checkboxGroupValues;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void dispose() {
+    _unfocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return StreamBuilder<List<CategoryRecord>>(
       stream: queryCategoryRecord(),
       builder: (context, snapshot) {
@@ -35,7 +45,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+                color: Color(0xFF0184BD),
               ),
             ),
           );
@@ -90,7 +100,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
           ),
           body: SafeArea(
             child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(
@@ -117,15 +127,14 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                   width: 50,
                                   height: 50,
                                   child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color: Color(0xFF0184BD),
                                   ),
                                 ),
                               );
                             }
                             List<UsersRecord> stackUsersRecordList =
                                 snapshot.data!;
-                            // Return an empty Container when the document does not exist.
+                            // Return an empty Container when the item does not exist.
                             if (snapshot.data!.isEmpty) {
                               return Container();
                             }
@@ -232,7 +241,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                         child:
                                                                             CircularProgressIndicator(
                                                                           color:
-                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                              Color(0xFF0184BD),
                                                                         ),
                                                                       ),
                                                                     );
@@ -241,7 +250,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                       iconUsersRecordList =
                                                                       snapshot
                                                                           .data!;
-                                                                  // Return an empty Container when the document does not exist.
+                                                                  // Return an empty Container when the item does not exist.
                                                                   if (snapshot
                                                                       .data!
                                                                       .isEmpty) {
@@ -365,15 +374,14 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                               width: 50,
                               height: 50,
                               child: CircularProgressIndicator(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+                                color: Color(0xFF0184BD),
                               ),
                             ),
                           );
                         }
                         List<UsersRecord> containerUsersRecordList =
                             snapshot.data!;
-                        // Return an empty Container when the document does not exist.
+                        // Return an empty Container when the item does not exist.
                         if (snapshot.data!.isEmpty) {
                           return Container();
                         }
@@ -406,15 +414,14 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                     width: 50,
                                     height: 50,
                                     child: CircularProgressIndicator(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                      color: Color(0xFF0184BD),
                                     ),
                                   ),
                                 );
                               }
                               List<CategoryRecord> columnCategoryRecordList =
                                   snapshot.data!;
-                              // Return an empty Container when the document does not exist.
+                              // Return an empty Container when the item does not exist.
                               if (snapshot.data!.isEmpty) {
                                 return Container();
                               }
@@ -429,41 +436,46 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    FlutterFlowCheckboxGroup(
-                                      initiallySelected: containerUsersRecord!
-                                          .intrests!
-                                          .toList(),
-                                      options:
-                                          columnCategoryRecord!.name!.toList(),
-                                      onChanged: (val) async {
-                                        setState(
-                                            () => checkboxGroupValues = val);
-                                        final usersUpdateData = {
-                                          'intrests': checkboxGroupValues,
-                                        };
-                                        await containerUsersRecord!.reference
-                                            .update(usersUpdateData);
-                                      },
-                                      activeColor: Color(0x00000000),
-                                      checkColor: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      checkboxBorderColor: Color(0xFF95A1AC),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .title3
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF565656),
-                                          ),
-                                      itemPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              10, 0, 0, 20),
-                                      checkboxBorderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(0),
-                                        bottomRight: Radius.circular(0),
-                                        topLeft: Radius.circular(3),
-                                        topRight: Radius.circular(0),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 55, 0),
+                                      child: FlutterFlowCheckboxGroup(
+                                        initiallySelected: containerUsersRecord!
+                                            .intrests!
+                                            .toList(),
+                                        options: columnCategoryRecord!.name!
+                                            .toList(),
+                                        onChanged: (val) async {
+                                          setState(
+                                              () => checkboxGroupValues = val);
+                                          final usersUpdateData = {
+                                            'intrests': checkboxGroupValues,
+                                          };
+                                          await containerUsersRecord!.reference
+                                              .update(usersUpdateData);
+                                        },
+                                        activeColor: Color(0x00000000),
+                                        checkColor: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        checkboxBorderColor: Color(0xFF95A1AC),
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .title3
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF565656),
+                                            ),
+                                        itemPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                10, 0, 0, 20),
+                                        checkboxBorderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0),
+                                          bottomRight: Radius.circular(0),
+                                          topLeft: Radius.circular(3),
+                                          topRight: Radius.circular(0),
+                                        ),
+                                        initialized:
+                                            checkboxGroupValues != null,
                                       ),
-                                      initialized: checkboxGroupValues != null,
                                     ),
                                   ],
                                 ),

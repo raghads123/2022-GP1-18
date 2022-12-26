@@ -30,47 +30,10 @@ Future<User?> signInOrCreateAccount(
     }
     return userCredential?.user;
   } on FirebaseAuthException catch (e) {
-    if (e.code == 'email-already-in-use') {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'يوجد حساب بهذا البريد الإلكتروني حاولي تسجيل الدخول',
-          style: TextStyle(
-            color: Color.fromARGB(223, 255, 255, 255),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        duration: Duration(milliseconds: 4000),
-        backgroundColor: Color(0xE1FF2323),
-      ));
-    } else if (e.code == 'user-not-found') {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'لا يوجد حساب بهذا البريد الإلكتروني حاولي إنشاء حساب',
-          style: TextStyle(
-            color: Color.fromARGB(223, 255, 255, 255),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        duration: Duration(milliseconds: 4000),
-        backgroundColor: Color(0xE1FF2323),
-      ));
-    } else if (e.code == 'wrong-password') {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-          'كلمة المرور خاطئة',
-          style: TextStyle(
-            color: Color.fromARGB(223, 255, 255, 255),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        duration: Duration(milliseconds: 4000),
-        backgroundColor: Color(0xE1FF2323),
-      ));
-    }
-
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.')),
+    );
     return null;
   }
 }
@@ -105,12 +68,12 @@ Future resetPassword(
   } on FirebaseAuthException catch (e) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error: ${e.message!}')),
+      SnackBar(content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.')),
     );
     return null;
   }
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Password reset email sent')),
+    SnackBar(content: Text('تم إرسال بريد إعادة تعيين كلمة المرور!')),
   );
 }
 
@@ -190,7 +153,7 @@ Future beginPhoneAuth({
     verificationFailed: (e) {
       completer.complete(false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Error: ${e.message!}'),
+        content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.'),
       ));
     },
     codeSent: (verificationId, _) {

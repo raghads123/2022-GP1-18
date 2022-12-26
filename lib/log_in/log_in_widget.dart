@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LogInWidget extends StatefulWidget {
   const LogInWidget({Key? key}) : super(key: key);
@@ -15,7 +16,6 @@ class LogInWidget extends StatefulWidget {
 class _LogInWidgetState extends State<LogInWidget> {
   TextEditingController? emailController;
   TextEditingController? passwordController;
-
   late bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -36,6 +36,8 @@ class _LogInWidgetState extends State<LogInWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -245,8 +247,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         return;
                                       }
 
-                                      setState(() => FFAppState().userSigned =
-                                          currentUserEmail);
+                                      FFAppState().userSigned =
+                                          currentUserEmail;
 
                                       context.pushNamedAuth(
                                           'HomePage', mounted);
@@ -276,7 +278,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'Email required!',
+                                            'يجب إدخال البريد الإلكتروني',
                                           ),
                                         ),
                                       );
@@ -301,7 +303,17 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       0, 0, 0, 20),
                                   child: InkWell(
                                     onTap: () async {
-                                      context.pushNamed('SignUp');
+                                      context.pushNamed(
+                                        'SignUp',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
                                     },
                                     child: Text(
                                       'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
@@ -322,6 +334,40 @@ class _LogInWidgetState extends State<LogInWidget> {
                 ),
               ),
             ],
+          ),
+          Align(
+            alignment: AlignmentDirectional(-0.9, -0.95),
+            child: InkWell(
+              onTap: () async {
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                }
+                context.pushNamed(
+                  'FirstPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.rightToLeft,
+                    ),
+                  },
+                );
+              },
+              child: Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                  child: Icon(
+                    Icons.arrow_back_rounded,
+                    color: Color(0xFFFF5757),
+                    size: 24,
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),

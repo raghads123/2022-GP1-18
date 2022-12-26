@@ -201,7 +201,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                                 child: SelectionArea(
                                     child: Text(
-                                  'يمكنك تعديل معلوماتك الشخصية التالية:',
+                                  'يمكنك تعديل المعلومات التالية:',
                                   textAlign: TextAlign.end,
                                   style: GoogleFonts.getFont(
                                     'Merriweather',
@@ -229,8 +229,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: Color(0xFFFF5757),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   )),
@@ -310,8 +309,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: Color(0xFFFF5757),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   )),
@@ -374,8 +372,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Merriweather',
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
+                                      color: Color(0xFFFF5757),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   )),
@@ -443,8 +440,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   .bodyText2
                                   .override(
                                     fontFamily: 'Lexend Deca',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: Color(0xFFFF5757),
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
@@ -485,7 +481,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             options: FFButtonOptions(
                               width: 230,
                               height: 50,
-                              color: Color(0xFFFF5757),
+                              color: Color(0xFF1C8EC1),
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(

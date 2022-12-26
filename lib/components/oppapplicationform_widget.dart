@@ -123,7 +123,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                         child: Text(
-                          'عبي نموذج التقديم أدناه',
+                          'الرجاء تعبئة نموذج التقديم أدناه',
                           style: FlutterFlowTheme.of(context).title2.override(
                                 fontFamily: 'Outfit',
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -271,7 +271,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     labelText: ' نبذة عنك',
                                     labelStyle:
                                         FlutterFlowTheme.of(context).bodyText2,
-                                    hintText: 'اكتبي نبذة بسيطة عنك )٢٨٠ حرف(',
+                                    hintText: ' نبذة بسيطة عنك )٢٨٠ حرف(',
                                     hintStyle:
                                         FlutterFlowTheme.of(context).bodyText2,
                                     enabledBorder: OutlineInputBorder(

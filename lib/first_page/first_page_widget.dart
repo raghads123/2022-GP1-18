@@ -165,15 +165,11 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFFFFF8C9),
+                                            color: Color(0xFFFF5757),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
-                                              color: Color(0xFF0184BD),
+                                              color: Color(0xFFFFFAF1),
                                               fontSize: 20,
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Color(0xFF0184BD),
-                                              width: 0,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(25),
@@ -192,7 +188,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFFE79B75),
+                                            color: Color(0xFFFF5757),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFFFFFAF1),

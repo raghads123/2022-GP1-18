@@ -107,7 +107,7 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                         0, 0, 0, 2),
                                     child: SelectionArea(
                                         child: Text(
-                                      'حددي إهتماماتك',
+                                      'حدد إهتماماتك',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(

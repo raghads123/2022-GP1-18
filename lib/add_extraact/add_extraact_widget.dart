@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../backend/firebase_storage/storage.dart';
+import '../components/category_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -109,7 +110,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
           width: double.infinity,
           child: Form(
             key: formKey,
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Container(
               width: double.infinity,
               height: double.infinity,
@@ -184,6 +185,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.start,
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return 'يجب تعبئة الحقل';
+                            }
+
+                            return null;
+                          },
                         ),
                       ),
                     ),
@@ -249,6 +257,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           textAlign: TextAlign.start,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return 'يجب تعبئة الحقل';
+                            }
+
+                            return null;
+                          },
                         ),
                       ),
                     ),
@@ -314,6 +329,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           keyboardType: TextInputType.multiline,
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
+                              return 'يجب تعبئة الحقل';
+                            }
+
+                            return null;
+                          },
                         ),
                       ),
                     ),
@@ -378,11 +400,6 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               setState(() => isMediaUploading = true);
                               var downloadUrls = <String>[];
                               try {
-                                showUploadMessage(
-                                  context,
-                                  'يتم رفع الملفات...',
-                                  showLoading: true,
-                                );
                                 downloadUrls = (await Future.wait(
                                   selectedMedia.map(
                                     (m) async => await uploadData(
@@ -393,19 +410,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     .map((u) => u!)
                                     .toList();
                               } finally {
-                                ScaffoldMessenger.of(context)
-                                    .hideCurrentSnackBar();
                                 isMediaUploading = false;
                               }
                               if (downloadUrls.length == selectedMedia.length) {
                                 setState(
                                     () => uploadedFileUrl = downloadUrls.first);
-                                showUploadMessage(
-                                    context, 'تم رفع الملفات بنجاح!');
                               } else {
                                 setState(() {});
-                                showUploadMessage(
-                                    context, 'فشل في رفع الملفات');
                                 return;
                               }
                             }
@@ -424,6 +435,70 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                 child: Text(
                                   'شعار النشاط',
+                                  textAlign: TextAlign.end,
+                                  style: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF0283BC),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      child: InkWell(
+                        onTap: () async {
+                          await showModalBottomSheet(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            enableDrag: false,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: CategoryWidget(),
+                              );
+                            },
+                          ).then((value) => setState(() {}));
+                        },
+                        child: Container(
+                          width: 400,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFF0F0F0),
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: Color(0x33000000),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(25),
+                            shape: BoxShape.rectangle,
+                            border: Border.all(
+                              color: Color(0xFF0283BC),
+                              width: 2,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.category_outlined,
+                                color: Color(0xFF57636C),
+                                size: 24,
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                child: Text(
+                                  ' تصنيف النشاط',
                                   textAlign: TextAlign.end,
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
@@ -598,7 +673,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     () => checkboxListTileValue = newValue!);
                               },
                               title: Text(
-                                'لدي مقاعد محددة',
+                                ' المقاعد محددة',
                                 textAlign: TextAlign.start,
                                 style: GoogleFonts.getFont(
                                   'Open Sans',
@@ -725,34 +800,52 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   : null;
                           return FFButtonWidget(
                             onPressed: () async {
-                              final extraActsCreateData =
-                                  createExtraActsRecordData(
-                                actType: actTypeValue,
-                                actName: actNameController!.text,
-                                actDec: actBioController!.text,
-                                actPic: uploadedFileUrl,
-                                status: 'معلق',
-                                sdate: datePicked2,
-                                edate: datePicked1,
-                                actLoc: actLocController!.text,
-                                seats: checkboxListTileValue,
-                                numSeats: int.tryParse(textController4!.text),
-                                actProvider: currentUserEmail,
-                              );
+                              if (formKey.currentState == null ||
+                                  !formKey.currentState!.validate()) {
+                                return;
+                              }
+
+                              if (actTypeValue == null) {
+                                return;
+                              }
+                              if (datePicked1 == null) {
+                                return;
+                              }
+                              if (datePicked2 == null) {
+                                return;
+                              }
+                              if (uploadedFileUrl == null ||
+                                  uploadedFileUrl.isEmpty) {
+                                return;
+                              }
+
+                              final extraActsCreateData = {
+                                ...createExtraActsRecordData(
+                                  actType: actTypeValue,
+                                  actName: actNameController!.text,
+                                  actDec: actBioController!.text,
+                                  actPic: uploadedFileUrl,
+                                  status: 'معلق',
+                                  sdate: datePicked2,
+                                  edate: datePicked1,
+                                  actLoc: actLocController!.text,
+                                  seats: checkboxListTileValue,
+                                  numSeats: int.tryParse(textController4!.text),
+                                  actProvider: currentUserEmail,
+                                ),
+                                'Act_category': FFAppState().ActCategory,
+                              };
                               await ExtraActsRecord.collection
                                   .doc()
                                   .set(extraActsCreateData);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'تم إضافة النشاط بنجاح',
-                                    style: FlutterFlowTheme.of(context)
-                                        .title3
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryColor,
-                                        ),
+                                    'تم ارسال الطلب بنجاح',
+                                    style: TextStyle(
+                                      color: Color(0xE15BD85B),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   duration: Duration(milliseconds: 4000),
                                   backgroundColor: Color(0x00000000),

@@ -515,7 +515,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                               },
                                             );
                                           },
-                                          text: 'تم إلتحاقك بهذا النشاط مسبقاً',
+                                          text: 'تم إلتحاقك بهذا النشاط ',
                                           options: FFButtonOptions(
                                             width: 270,
                                             height: 50,

@@ -52,14 +52,6 @@ class _$OpportunitiesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.opSkills;
-    if (value != null) {
-      result
-        ..add('OpSkills')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
     value = object.opProvider;
     if (value != null) {
       result
@@ -110,6 +102,14 @@ class _$OpportunitiesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.opSkills;
+    if (value != null) {
+      result
+        ..add('OpSkills')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -149,12 +149,6 @@ class _$OpportunitiesRecordSerializer
           result.edate = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'OpSkills':
-          result.opSkills.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
         case 'OpProvider':
           result.opProvider = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -187,6 +181,12 @@ class _$OpportunitiesRecordSerializer
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'OpSkills':
+          result.opSkills.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -210,8 +210,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
   @override
   final DateTime? edate;
   @override
-  final BuiltList<String>? opSkills;
-  @override
   final String? opProvider;
   @override
   final String? opProviderLogo;
@@ -226,6 +224,8 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
   @override
   final String? status;
   @override
+  final BuiltList<String>? opSkills;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$OpportunitiesRecord(
@@ -237,7 +237,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
       this.opDesc,
       this.sdate,
       this.edate,
-      this.opSkills,
       this.opProvider,
       this.opProviderLogo,
       this.category,
@@ -245,6 +244,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
       this.oppName,
       this.appliedBy,
       this.status,
+      this.opSkills,
       this.ffRef})
       : super._();
 
@@ -265,7 +265,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
         opDesc == other.opDesc &&
         sdate == other.sdate &&
         edate == other.edate &&
-        opSkills == other.opSkills &&
         opProvider == other.opProvider &&
         opProviderLogo == other.opProviderLogo &&
         category == other.category &&
@@ -273,6 +272,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
         oppName == other.oppName &&
         appliedBy == other.appliedBy &&
         status == other.status &&
+        opSkills == other.opSkills &&
         ffRef == other.ffRef;
   }
 
@@ -293,14 +293,14 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
                                                     opDesc.hashCode),
                                                 sdate.hashCode),
                                             edate.hashCode),
-                                        opSkills.hashCode),
-                                    opProvider.hashCode),
-                                opProviderLogo.hashCode),
-                            category.hashCode),
-                        opQ.hashCode),
-                    oppName.hashCode),
-                appliedBy.hashCode),
-            status.hashCode),
+                                        opProvider.hashCode),
+                                    opProviderLogo.hashCode),
+                                category.hashCode),
+                            opQ.hashCode),
+                        oppName.hashCode),
+                    appliedBy.hashCode),
+                status.hashCode),
+            opSkills.hashCode),
         ffRef.hashCode));
   }
 
@@ -311,7 +311,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
           ..add('opDesc', opDesc)
           ..add('sdate', sdate)
           ..add('edate', edate)
-          ..add('opSkills', opSkills)
           ..add('opProvider', opProvider)
           ..add('opProviderLogo', opProviderLogo)
           ..add('category', category)
@@ -319,6 +318,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
           ..add('oppName', oppName)
           ..add('appliedBy', appliedBy)
           ..add('status', status)
+          ..add('opSkills', opSkills)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -343,11 +343,6 @@ class OpportunitiesRecordBuilder
   DateTime? _edate;
   DateTime? get edate => _$this._edate;
   set edate(DateTime? edate) => _$this._edate = edate;
-
-  ListBuilder<String>? _opSkills;
-  ListBuilder<String> get opSkills =>
-      _$this._opSkills ??= new ListBuilder<String>();
-  set opSkills(ListBuilder<String>? opSkills) => _$this._opSkills = opSkills;
 
   String? _opProvider;
   String? get opProvider => _$this._opProvider;
@@ -381,6 +376,11 @@ class OpportunitiesRecordBuilder
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
+  ListBuilder<String>? _opSkills;
+  ListBuilder<String> get opSkills =>
+      _$this._opSkills ??= new ListBuilder<String>();
+  set opSkills(ListBuilder<String>? opSkills) => _$this._opSkills = opSkills;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -396,7 +396,6 @@ class OpportunitiesRecordBuilder
       _opDesc = $v.opDesc;
       _sdate = $v.sdate;
       _edate = $v.edate;
-      _opSkills = $v.opSkills?.toBuilder();
       _opProvider = $v.opProvider;
       _opProviderLogo = $v.opProviderLogo;
       _category = $v.category?.toBuilder();
@@ -404,6 +403,7 @@ class OpportunitiesRecordBuilder
       _oppName = $v.oppName;
       _appliedBy = $v.appliedBy?.toBuilder();
       _status = $v.status;
+      _opSkills = $v.opSkills?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -433,7 +433,6 @@ class OpportunitiesRecordBuilder
               opDesc: opDesc,
               sdate: sdate,
               edate: edate,
-              opSkills: _opSkills?.build(),
               opProvider: opProvider,
               opProviderLogo: opProviderLogo,
               category: _category?.build(),
@@ -441,18 +440,19 @@ class OpportunitiesRecordBuilder
               oppName: oppName,
               appliedBy: _appliedBy?.build(),
               status: status,
+              opSkills: _opSkills?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'opSkills';
-        _opSkills?.build();
-
         _$failedField = 'category';
         _category?.build();
 
         _$failedField = 'appliedBy';
         _appliedBy?.build();
+
+        _$failedField = 'opSkills';
+        _opSkills?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'OpportunitiesRecord', _$failedField, e.toString());

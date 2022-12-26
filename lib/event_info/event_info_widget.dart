@@ -350,61 +350,68 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                         if (valueOrDefault(currentUserDocument?.type, '') !=
                             'admin')
                           AuthUserStreamWidget(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                if ((eventInfoExtraActsRecord!.seats ==
-                                        false) ||
-                                    ((eventInfoExtraActsRecord!.seats ==
-                                            true) &&
-                                        (eventInfoExtraActsRecord!.numSeats !=
-                                            0)))
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 40),
-                                    child: StreamBuilder<List<UsersRecord>>(
-                                      stream: queryUsersRecord(
-                                        queryBuilder: (usersRecord) =>
-                                            usersRecord.where('email',
-                                                isEqualTo: currentUserEmail),
-                                        singleRecord: true,
+                            child: StreamBuilder<List<UsersRecord>>(
+                              stream: queryUsersRecord(
+                                queryBuilder: (usersRecord) =>
+                                    usersRecord.where('email',
+                                        isEqualTo: currentUserEmail),
+                                singleRecord: true,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: Color(0xFF0184BD),
                                       ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50,
-                                              height: 50,
-                                              child: CircularProgressIndicator(
-                                                color: Color(0xFF0184BD),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        List<UsersRecord>
-                                            buttonUsersRecordList =
-                                            snapshot.data!;
-                                        // Return an empty Container when the item does not exist.
-                                        if (snapshot.data!.isEmpty) {
-                                          return Container();
-                                        }
-                                        final buttonUsersRecord =
-                                            buttonUsersRecordList.isNotEmpty
-                                                ? buttonUsersRecordList.first
-                                                : null;
-                                        return FFButtonWidget(
+                                    ),
+                                  );
+                                }
+                                List<UsersRecord> columnUsersRecordList =
+                                    snapshot.data!;
+                                final columnUsersRecord =
+                                    columnUsersRecordList.isNotEmpty
+                                        ? columnUsersRecordList.first
+                                        : null;
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    if (!columnUsersRecord!.usersActs!
+                                        .toList()
+                                        .contains(
+                                            eventInfoExtraActsRecord!.actName))
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 10, 0, 40),
+                                        child: FFButtonWidget(
                                           onPressed: () async {
                                             if (eventInfoExtraActsRecord!
                                                 .seats!) {
-                                              if ((eventInfoExtraActsRecord!
-                                                          .numSeats! >
-                                                      0) &&
-                                                  !buttonUsersRecord!.usersActs!
-                                                      .toList()
-                                                      .contains(
-                                                          eventInfoExtraActsRecord!
-                                                              .actName)) {
+                                              if (eventInfoExtraActsRecord!
+                                                      .numSeats ==
+                                                  0) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'عذراً لا تتوفر مقاعد'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('تم'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              } else {
                                                 final usersUpdateData = {
                                                   'users_acts':
                                                       FieldValue.arrayUnion([
@@ -412,7 +419,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                         .actName
                                                   ]),
                                                 };
-                                                await buttonUsersRecord!
+                                                await columnUsersRecord!
                                                     .reference
                                                     .update(usersUpdateData);
 
@@ -425,103 +432,35 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                     .reference
                                                     .update(
                                                         extraActsUpdateData);
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'تم إلتحاقك بهذا النشاط بنجاح.'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              } else {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'تم إلتحاقك بهذا النشاط مسبقاً.'),
-                                                      content: Text(
-                                                          '.توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
                                               }
                                             } else {
-                                              if (buttonUsersRecord!.usersActs!
-                                                  .toList()
-                                                  .contains(
-                                                      eventInfoExtraActsRecord!
-                                                          .actName)) {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'تم إلتحاقك بهذا النشاط مسبقاً.'),
-                                                      content: Text(
-                                                          '.توجهي لصفحة \"أنشطتي\" لإلغاء التسجيل'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              } else {
-                                                final usersUpdateData = {
-                                                  'users_acts':
-                                                      FieldValue.arrayUnion([
-                                                    eventInfoExtraActsRecord!
-                                                        .actName
-                                                  ]),
-                                                };
-                                                await buttonUsersRecord!
-                                                    .reference
-                                                    .update(usersUpdateData);
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'تم إلتحاقك بهذا النشاط بنجاح.'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              }
+                                              final usersUpdateData = {
+                                                'users_acts':
+                                                    FieldValue.arrayUnion([
+                                                  eventInfoExtraActsRecord!
+                                                      .actName
+                                                ]),
+                                              };
+                                              await columnUsersRecord!.reference
+                                                  .update(usersUpdateData);
                                             }
+
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'تم إلتحاقك في هذا النشاط بنجاح',
+                                                  style: GoogleFonts.getFont(
+                                                    'Open Sans',
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    Color(0xE15BD85B),
+                                              ),
+                                            );
                                           },
                                           text: 'إلتحاق',
                                           options: FFButtonOptions(
@@ -541,40 +480,62 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                               width: 1,
                                             ),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                if ((eventInfoExtraActsRecord!.seats == true) &&
-                                    (eventInfoExtraActsRecord!.numSeats == 0))
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 40),
-                                    child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: 'لا يمكنك الالتحاق عذرًا',
-                                      options: FFButtonOptions(
-                                        width: 270,
-                                        height: 50,
-                                        color: Color(0xFF575F6C),
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color: Color(0xFFF3F4F4),
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                        elevation: 2,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1,
                                         ),
                                       ),
-                                    ),
-                                  ),
-                              ],
+                                    if (columnUsersRecord!.usersActs!
+                                        .toList()
+                                        .contains(
+                                            eventInfoExtraActsRecord!.actName))
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 10, 0, 40),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'تم إلتحاقك بذا النشاط مسبقاً'),
+                                                  content: Text(
+                                                      'يمكنك تفقد صفحة \"أنشطتي\" لإلغاء الإلتحاق'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('تم'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          text: 'تم إلتحاقك بهذا النشاط ',
+                                          options: FFButtonOptions(
+                                            width: 270,
+                                            height: 50,
+                                            color: Color(0xFF575F6C),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .subtitle1
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      color: Color(0xFFF3F4F4),
+                                                      fontWeight:
+                                                          FontWeight.w900,
+                                                    ),
+                                            elevation: 2,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              },
                             ),
                           ),
                       ],

@@ -23,9 +23,6 @@ abstract class OpportunitiesRecord
   @BuiltValueField(wireName: 'Edate')
   DateTime? get edate;
 
-  @BuiltValueField(wireName: 'OpSkills')
-  BuiltList<String>? get opSkills;
-
   @BuiltValueField(wireName: 'OpProvider')
   String? get opProvider;
 
@@ -45,6 +42,9 @@ abstract class OpportunitiesRecord
 
   String? get status;
 
+  @BuiltValueField(wireName: 'OpSkills')
+  BuiltList<String>? get opSkills;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -52,14 +52,14 @@ abstract class OpportunitiesRecord
   static void _initializeBuilder(OpportunitiesRecordBuilder builder) => builder
     ..opID = 0
     ..opDesc = ''
-    ..opSkills = ListBuilder()
     ..opProvider = ''
     ..opProviderLogo = ''
     ..category = ListBuilder()
     ..opQ = 0
     ..oppName = ''
     ..appliedBy = ListBuilder()
-    ..status = '';
+    ..status = ''
+    ..opSkills = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Opportunities');
@@ -102,14 +102,14 @@ Map<String, dynamic> createOpportunitiesRecordData({
         ..opDesc = opDesc
         ..sdate = sdate
         ..edate = edate
-        ..opSkills = null
         ..opProvider = opProvider
         ..opProviderLogo = opProviderLogo
         ..category = null
         ..opQ = opQ
         ..oppName = oppName
         ..appliedBy = null
-        ..status = status,
+        ..status = status
+        ..opSkills = null,
     ),
   );
 

@@ -103,6 +103,13 @@ class _$OpportunitiesRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -176,6 +183,10 @@ class _$OpportunitiesRecordSerializer
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -213,6 +224,8 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
   @override
   final BuiltList<String>? appliedBy;
   @override
+  final String? status;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$OpportunitiesRecord(
@@ -231,6 +244,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
       this.opQ,
       this.oppName,
       this.appliedBy,
+      this.status,
       this.ffRef})
       : super._();
 
@@ -258,6 +272,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
         opQ == other.opQ &&
         oppName == other.oppName &&
         appliedBy == other.appliedBy &&
+        status == other.status &&
         ffRef == other.ffRef;
   }
 
@@ -273,17 +288,19 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, opID.hashCode),
-                                                opDesc.hashCode),
-                                            sdate.hashCode),
-                                        edate.hashCode),
-                                    opSkills.hashCode),
-                                opProvider.hashCode),
-                            opProviderLogo.hashCode),
-                        category.hashCode),
-                    opQ.hashCode),
-                oppName.hashCode),
-            appliedBy.hashCode),
+                                            $jc(
+                                                $jc($jc(0, opID.hashCode),
+                                                    opDesc.hashCode),
+                                                sdate.hashCode),
+                                            edate.hashCode),
+                                        opSkills.hashCode),
+                                    opProvider.hashCode),
+                                opProviderLogo.hashCode),
+                            category.hashCode),
+                        opQ.hashCode),
+                    oppName.hashCode),
+                appliedBy.hashCode),
+            status.hashCode),
         ffRef.hashCode));
   }
 
@@ -301,6 +318,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
           ..add('opQ', opQ)
           ..add('oppName', oppName)
           ..add('appliedBy', appliedBy)
+          ..add('status', status)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -359,6 +377,10 @@ class OpportunitiesRecordBuilder
   set appliedBy(ListBuilder<String>? appliedBy) =>
       _$this._appliedBy = appliedBy;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -381,6 +403,7 @@ class OpportunitiesRecordBuilder
       _opQ = $v.opQ;
       _oppName = $v.oppName;
       _appliedBy = $v.appliedBy?.toBuilder();
+      _status = $v.status;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -417,6 +440,7 @@ class OpportunitiesRecordBuilder
               opQ: opQ,
               oppName: oppName,
               appliedBy: _appliedBy?.build(),
+              status: status,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

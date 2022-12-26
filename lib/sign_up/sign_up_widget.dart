@@ -1,9 +1,12 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -14,14 +17,13 @@ class SignUpWidget extends StatefulWidget {
 
 class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController? confirmpasswordController;
-
   late bool confirmpasswordVisibility;
   TextEditingController? emailController;
   TextEditingController? passwordController;
-
   late bool passwordVisibility;
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -35,6 +37,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   void dispose() {
+    _unfocusNode.dispose();
     confirmpasswordController?.dispose();
     emailController?.dispose();
     passwordController?.dispose();
@@ -43,11 +46,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(
           children: [
             Align(
@@ -57,6 +62,40 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 width: double.infinity,
                 height: 250,
                 fit: BoxFit.cover,
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-0.9, -0.95),
+              child: InkWell(
+                onTap: () async {
+                  if (Navigator.of(context).canPop()) {
+                    context.pop();
+                  }
+                  context.pushNamed(
+                    'FirstPage',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.rightToLeft,
+                      ),
+                    },
+                  );
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 3,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Color(0xFFFF5757),
+                      size: 24,
+                    ),
+                  ),
+                ),
               ),
             ),
             Align(
@@ -78,6 +117,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                           child: SingleChildScrollView(
+                            primary: false,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -269,7 +309,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               }
 
                                               if (!RegExp(
-                                                      r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")
+                                                      '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}\$')
                                                   .hasMatch(val)) {
                                                 return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز @!%*?&';
                                               }
@@ -304,8 +344,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               hintText: 'ادخلي كلمة المرور',
-                                              helperText:
-                                                  'كلمة المرور يجب أن تحتوي على الأقل على: \nحرف كبير باللغة الإنجليزية\nحرف صغير باللغة الإنجليزية\nإحدى الرموز: ! @ # & \n رقم',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -386,7 +424,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 2, 0, 2),
+                                            0, 13, 0, 2),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             if (formKey.currentState == null ||
@@ -405,17 +443,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 SnackBar(
                                                   content: Text(
                                                     'كلمة المرور لا تتطابق',
-                                                    style: GoogleFonts.getFont(
-                                                      'Open Sans',
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
                                                   ),
-                                                  duration: Duration(
-                                                      milliseconds: 4000),
-                                                  backgroundColor:
-                                                      Color(0xE1FF2323),
                                                 ),
                                               );
                                               return;
@@ -430,6 +458,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             if (user == null) {
                                               return;
                                             }
+
+                                            final usersCreateData =
+                                                createUsersRecordData(
+                                              type: 'student',
+                                            );
+                                            await UsersRecord.collection
+                                                .doc(user.uid)
+                                                .update(usersCreateData);
+
+                                            final usersUpdateData =
+                                                createUsersRecordData(
+                                              type: 'student',
+                                            );
+                                            await currentUserReference!
+                                                .update(usersUpdateData);
 
                                             context.goNamedAuth(
                                               'SettingUpProfile',
@@ -448,10 +491,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFFFF5757),
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
-                                              color: Color(0xFFFFFAF1),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBtnText,
                                               fontSize: 16,
                                             ),
                                             borderSide: BorderSide(
@@ -468,7 +514,19 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             0, 5, 0, 0),
                                         child: InkWell(
                                           onTap: () async {
-                                            context.goNamed('LogIn');
+                                            context.goNamed(
+                                              'LogIn',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
                                           },
                                           child: Text(
                                             'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',

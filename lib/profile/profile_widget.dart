@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);
@@ -36,6 +37,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
@@ -66,7 +69,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     context: context,
                     builder: (alertDialogContext) {
                       return AlertDialog(
-                        title: Text('هل تريدين تسجيل الخروج'),
+                        title: Text('هل تريد تسجيل الخروج'),
                         actions: [
                           TextButton(
                             onPressed: () =>
@@ -87,8 +90,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 GoRouter.of(context).prepareAuthEvent();
                 await signOut();
 
-                context.goNamedAuth(
-                  'LogIn',
+                context.pushNamedAuth(
+                  'FirstPage',
                   mounted,
                   extra: <String, dynamic>{
                     kTransitionInfoKey: TransitionInfo(
@@ -125,7 +128,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 700,
+              height: 739,
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: [
@@ -318,7 +321,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         AuthUserStreamWidget(
-                          child: FlutterFlowDropDown(
+                          child: FlutterFlowDropDown<String>(
                             initialOption: collegeValue ??= valueOrDefault(
                                 currentUserDocument?.college, ''),
                             options: [
@@ -344,8 +347,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               'Open Sans',
                               color: Color(0xFF565656),
                             ),
-                            hintText:
-                                'الكلية ـــــــــــــــــــــــــــــــــــــــــــــ',
+                            hintText: 'الكلية ',
                             fillColor: Color(0xFFE0E0E0),
                             elevation: 2,
                             borderColor: Colors.transparent,
@@ -385,7 +387,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
                           child: AuthUserStreamWidget(
-                            child: FlutterFlowDropDown(
+                            child: FlutterFlowDropDown<String>(
                               initialOption: levelValue ??= valueOrDefault(
                                   currentUserDocument?.level, ''),
                               options: [
@@ -410,8 +412,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 'Open Sans',
                                 color: Color(0xFF565656),
                               ),
-                              hintText:
-                                  'المستوى ــــــــــــــــــــــــــــــــــــــــ',
+                              hintText: 'المستوى',
                               fillColor: Color(0xFFE0E0E0),
                               elevation: 2,
                               borderColor: Colors.transparent,

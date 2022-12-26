@@ -43,6 +43,8 @@ abstract class OpportunitiesRecord
   @BuiltValueField(wireName: 'applied_by')
   BuiltList<String>? get appliedBy;
 
+  String? get status;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -56,7 +58,8 @@ abstract class OpportunitiesRecord
     ..category = ListBuilder()
     ..opQ = 0
     ..oppName = ''
-    ..appliedBy = ListBuilder();
+    ..appliedBy = ListBuilder()
+    ..status = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Opportunities');
@@ -89,6 +92,7 @@ Map<String, dynamic> createOpportunitiesRecordData({
   String? opProviderLogo,
   int? opQ,
   String? oppName,
+  String? status,
 }) {
   final firestoreData = serializers.toFirestore(
     OpportunitiesRecord.serializer,
@@ -104,7 +108,8 @@ Map<String, dynamic> createOpportunitiesRecordData({
         ..category = null
         ..opQ = opQ
         ..oppName = oppName
-        ..appliedBy = null,
+        ..appliedBy = null
+        ..status = status,
     ),
   );
 

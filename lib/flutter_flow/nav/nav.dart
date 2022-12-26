@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
+
 import '../../auth/firebase_user_provider.dart';
 
 import '../../index.dart';
@@ -19,8 +20,8 @@ export 'serialization_util.dart';
 const kTransitionInfoKey = '__transition_info__';
 
 class AppStateNotifier extends ChangeNotifier {
-  CountMeInFirebaseUser? initialUser;
-  CountMeInFirebaseUser? user;
+  GradProject2FirebaseUser? initialUser;
+  GradProject2FirebaseUser? user;
   bool showSplashImage = true;
   String? _redirectLocation;
 
@@ -45,7 +46,7 @@ class AppStateNotifier extends ChangeNotifier {
   /// to perform subsequent actions (such as navigation) afterwards.
   void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
 
-  void update(CountMeInFirebaseUser newUser) {
+  void update(GradProject2FirebaseUser newUser) {
     initialUser ??= newUser;
     user = newUser;
     // Refresh the app on auth change unless explicitly marked otherwise.
@@ -68,14 +69,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LogInWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : FirstPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LogInWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : FirstPageWidget(),
           routes: [
+            FFRoute(
+              name: 'FirstPage',
+              path: 'firstPage',
+              builder: (context, params) => FirstPageWidget(),
+            ),
             FFRoute(
               name: 'SignUp',
               path: 'signUp',
@@ -149,12 +155,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
-              requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
-            ),
-            FFRoute(
               name: 'Opportunity_apply_form',
               path: 'opportunityApplyForm',
               requireAuth: true,
@@ -164,12 +164,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'MyActivites',
-              path: 'myActivites',
+              name: 'Opportunities',
+              path: 'opportunities',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'MyActivites')
-                  : MyActivitesWidget(),
+              builder: (context, params) => OpportunitiesWidget(),
             ),
             FFRoute(
               name: 'Profile',
@@ -186,12 +184,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => EditInterestsWidget(),
             ),
             FFRoute(
-              name: 'user_ratings',
-              path: 'userRatings',
+              name: 'myActivities',
+              path: 'myActivities',
               requireAuth: true,
-              builder: (context, params) => UserRatingsWidget(
-                actname: params.getParam('actname', ParamType.String),
-              ),
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'myActivities')
+                  : MyActivitiesWidget(),
+            ),
+            FFRoute(
+              name: 'ActivityAdminSignup',
+              path: 'activityAdminSignup',
+              builder: (context, params) => ActivityAdminSignupWidget(),
+            ),
+            FFRoute(
+              name: 'ActivityAdminLogin',
+              path: 'activityAdminLogin',
+              builder: (context, params) => ActivityAdminLoginWidget(),
+            ),
+            FFRoute(
+              name: 'AddExtraact',
+              path: 'addExtraact',
+              requireAuth: true,
+              builder: (context, params) => AddExtraactWidget(),
+            ),
+            FFRoute(
+              name: 'Addopp',
+              path: 'Addopp',
+              requireAuth: true,
+              builder: (context, params) => AddoppWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -304,7 +324,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -318,7 +338,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 
@@ -351,7 +371,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/logIn';
+            return '/firstPage';
           }
           return null;
         },
@@ -364,12 +384,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primaryColor,
+              ? Container(
+                  color: Colors.white,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/9hsjc_2.png',
+                      width: 200,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

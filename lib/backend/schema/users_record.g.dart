@@ -83,6 +83,29 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.usersActs;
+    if (value != null) {
+      result
+        ..add('users_acts')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.usersOpp;
+    if (value != null) {
+      result
+        ..add('users_opp')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.type;
+    if (value != null) {
+      result
+        ..add('type')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -143,6 +166,22 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.level = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'users_acts':
+          result.usersActs.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'users_opp':
+          result.usersOpp.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'type':
+          result.type = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -176,6 +215,12 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? level;
   @override
+  final BuiltList<String>? usersActs;
+  @override
+  final BuiltList<String>? usersOpp;
+  @override
+  final String? type;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -191,6 +236,9 @@ class _$UsersRecord extends UsersRecord {
       this.phoneNumber,
       this.intrests,
       this.level,
+      this.usersActs,
+      this.usersOpp,
+      this.type,
       this.ffRef})
       : super._();
 
@@ -214,6 +262,9 @@ class _$UsersRecord extends UsersRecord {
         phoneNumber == other.phoneNumber &&
         intrests == other.intrests &&
         level == other.level &&
+        usersActs == other.usersActs &&
+        usersOpp == other.usersOpp &&
+        type == other.type &&
         ffRef == other.ffRef;
   }
 
@@ -227,15 +278,21 @@ class _$UsersRecord extends UsersRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, email.hashCode),
-                                        displayName.hashCode),
-                                    uid.hashCode),
-                                createdTime.hashCode),
-                            college.hashCode),
-                        photoUrl.hashCode),
-                    phoneNumber.hashCode),
-                intrests.hashCode),
-            level.hashCode),
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc($jc(0, email.hashCode),
+                                                    displayName.hashCode),
+                                                uid.hashCode),
+                                            createdTime.hashCode),
+                                        college.hashCode),
+                                    photoUrl.hashCode),
+                                phoneNumber.hashCode),
+                            intrests.hashCode),
+                        level.hashCode),
+                    usersActs.hashCode),
+                usersOpp.hashCode),
+            type.hashCode),
         ffRef.hashCode));
   }
 
@@ -251,6 +308,9 @@ class _$UsersRecord extends UsersRecord {
           ..add('phoneNumber', phoneNumber)
           ..add('intrests', intrests)
           ..add('level', level)
+          ..add('usersActs', usersActs)
+          ..add('usersOpp', usersOpp)
+          ..add('type', type)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -296,6 +356,21 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get level => _$this._level;
   set level(String? level) => _$this._level = level;
 
+  ListBuilder<String>? _usersActs;
+  ListBuilder<String> get usersActs =>
+      _$this._usersActs ??= new ListBuilder<String>();
+  set usersActs(ListBuilder<String>? usersActs) =>
+      _$this._usersActs = usersActs;
+
+  ListBuilder<String>? _usersOpp;
+  ListBuilder<String> get usersOpp =>
+      _$this._usersOpp ??= new ListBuilder<String>();
+  set usersOpp(ListBuilder<String>? usersOpp) => _$this._usersOpp = usersOpp;
+
+  String? _type;
+  String? get type => _$this._type;
+  set type(String? type) => _$this._type = type;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -316,6 +391,9 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _phoneNumber = $v.phoneNumber;
       _intrests = $v.intrests?.toBuilder();
       _level = $v.level;
+      _usersActs = $v.usersActs?.toBuilder();
+      _usersOpp = $v.usersOpp?.toBuilder();
+      _type = $v.type;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -350,12 +428,20 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
               phoneNumber: phoneNumber,
               intrests: _intrests?.build(),
               level: level,
+              usersActs: _usersActs?.build(),
+              usersOpp: _usersOpp?.build(),
+              type: type,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'intrests';
         _intrests?.build();
+
+        _$failedField = 'usersActs';
+        _usersActs?.build();
+        _$failedField = 'usersOpp';
+        _usersOpp?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'UsersRecord', _$failedField, e.toString());

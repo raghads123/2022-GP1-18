@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class SettingUpProfileWidget extends StatefulWidget {
   const SettingUpProfileWidget({Key? key}) : super(key: key);
@@ -94,6 +95,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
   String? collegeValue;
   TextEditingController? nameController;
   String? levelValue;
+  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -105,17 +107,20 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
 
   @override
   void dispose() {
+    _unfocusNode.dispose();
     nameController?.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Colors.white,
       body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
+        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(
           children: [
             Align(
@@ -249,7 +254,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 15),
-                                      child: FlutterFlowDropDown(
+                                      child: FlutterFlowDropDown<String>(
                                         options: [
                                           'كلية الآداب',
                                           'كلية التربية',
@@ -287,7 +292,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 0, 0, 15),
-                                      child: FlutterFlowDropDown(
+                                      child: FlutterFlowDropDown<String>(
                                         options: [
                                           'المستوى الأول',
                                           'المستوى الثاني',

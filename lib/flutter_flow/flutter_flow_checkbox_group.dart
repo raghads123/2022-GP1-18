@@ -20,7 +20,7 @@ class FlutterFlowCheckboxGroup extends StatefulWidget {
 
   final List<String>? initiallySelected;
   final List<String> options;
-  final void Function(List<String>) onChanged;
+  final void Function(List<String>)? onChanged;
   final TextStyle textStyle;
   final EdgeInsetsGeometry? labelPadding;
   final EdgeInsetsGeometry? itemPadding;
@@ -48,7 +48,11 @@ class _FlutterFlowCheckboxGroupState extends State<FlutterFlowCheckboxGroup> {
     checkboxValues = widget.initiallySelected ?? [];
     if (!widget.initialized && checkboxValues.isNotEmpty) {
       SchedulerBinding.instance.addPostFrameCallback(
-        (_) => widget.onChanged(checkboxValues),
+        (_) {
+          if (widget.onChanged != null) {
+            widget.onChanged!(checkboxValues);
+          }
+        },
       );
     }
     changeSelectedValues?.addListener(() {
@@ -81,16 +85,18 @@ class _FlutterFlowCheckboxGroupState extends State<FlutterFlowCheckboxGroup> {
                 children: [
                   Checkbox(
                     value: selected,
-                    onChanged: (isSelected) {
-                      if (isSelected == null) {
-                        return;
-                      }
-                      isSelected
-                          ? checkboxValues.add(option)
-                          : checkboxValues.remove(option);
-                      widget.onChanged(checkboxValues);
-                      setState(() {});
-                    },
+                    onChanged: widget.onChanged != null
+                        ? (isSelected) {
+                            if (isSelected == null) {
+                              return;
+                            }
+                            isSelected
+                                ? checkboxValues.add(option)
+                                : checkboxValues.remove(option);
+                            widget.onChanged!(checkboxValues);
+                            setState(() {});
+                          }
+                        : null,
                     activeColor: widget.activeColor,
                     checkColor: widget.checkColor,
                     shape: RoundedRectangleBorder(

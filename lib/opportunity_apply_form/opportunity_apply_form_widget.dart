@@ -197,9 +197,8 @@ class _OpportunityApplyFormWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: Color(
+                                                                    0xFFFF5757),
                                                               ),
                                                     )),
                                                   ),
@@ -220,9 +219,8 @@ class _OpportunityApplyFormWidgetState
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
+                                                                color: Color(
+                                                                    0xFFFF5757),
                                                               ),
                                                     )),
                                                   ),
@@ -414,6 +412,8 @@ class _OpportunityApplyFormWidgetState
                                                                   return AlertDialog(
                                                                     title: Text(
                                                                         '.لقد تم تقديمك على هذه الفرصة مسبقاً'),
+                                                                    content: Text(
+                                                                        'توجه لصفحة  \"فرصي\"  لمتابعة حالة التقديم'),
                                                                     actions: [
                                                                       TextButton(
                                                                         onPressed:
@@ -428,7 +428,7 @@ class _OpportunityApplyFormWidgetState
                                                               );
                                                             },
                                                             text:
-                                                                'لا يمكنك التقديم عذرًا',
+                                                                'تم تقديمك على هذه الفرصة',
                                                             options:
                                                                 FFButtonOptions(
                                                               width: 270,

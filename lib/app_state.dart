@@ -17,19 +17,9 @@ class FFAppState extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
   }
 
-  static bool _shouldNotify = true;
-  void _maybeNotifyListeners() {
-    if (_shouldNotify) notifyListeners();
-  }
-
-  // Update FFAppState without notifying and rebuilding all widgets.
-  static void updateSilently(VoidCallback callback) {
-    try {
-      _shouldNotify = false;
-      callback();
-    } finally {
-      _shouldNotify = true;
-    }
+  void update(VoidCallback callback) {
+    callback();
+    notifyListeners();
   }
 
   late SharedPreferences prefs;
@@ -37,15 +27,41 @@ class FFAppState extends ChangeNotifier {
   String _userSigned = '';
   String get userSigned => _userSigned;
   set userSigned(String _value) {
-    _maybeNotifyListeners();
     _userSigned = _value;
   }
 
   int _numskills = 1;
   int get numskills => _numskills;
   set numskills(int _value) {
-    _maybeNotifyListeners();
     _numskills = _value;
+  }
+
+  List<String> _ActCategory = [];
+  List<String> get ActCategory => _ActCategory;
+  set ActCategory(List<String> _value) {
+    _ActCategory = _value;
+  }
+
+  void addToActCategory(String _value) {
+    _ActCategory.add(_value);
+  }
+
+  void removeFromActCategory(String _value) {
+    _ActCategory.remove(_value);
+  }
+
+  List<String> _Skilllist = [];
+  List<String> get Skilllist => _Skilllist;
+  set Skilllist(List<String> _value) {
+    _Skilllist = _value;
+  }
+
+  void addToSkilllist(String _value) {
+    _Skilllist.add(_value);
+  }
+
+  void removeFromSkilllist(String _value) {
+    _Skilllist.remove(_value);
   }
 }
 

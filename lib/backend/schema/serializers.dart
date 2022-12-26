@@ -21,6 +21,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   OpportunitiesRecord,
   CategoryRecord,
   OppApplicationsRecord,
+  OpSkillsStruct,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

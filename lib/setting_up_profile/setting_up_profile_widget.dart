@@ -359,7 +359,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           color: Color(0xFFFF5757),
                                           textStyle: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0xFFFFFAF1),
+                                            color: Colors.white,
                                             fontSize: 16,
                                           ),
                                           borderSide: BorderSide(

@@ -247,8 +247,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         return;
                                       }
 
-                                      FFAppState().userSigned =
-                                          currentUserEmail;
+                                      FFAppState().update(() {
+                                        FFAppState().userSigned =
+                                            currentUserEmail;
+                                      });
 
                                       context.pushNamedAuth(
                                           'HomePage', mounted);

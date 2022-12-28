@@ -25,6 +25,9 @@ abstract class OppApplicationsRecord
   @BuiltValueField(wireName: 'opp_name')
   String? get oppName;
 
+  @BuiltValueField(wireName: 'oppprovider_email')
+  String? get oppproviderEmail;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -35,7 +38,8 @@ abstract class OppApplicationsRecord
         ..appSkills = ''
         ..appBio = ''
         ..status = ''
-        ..oppName = '';
+        ..oppName = ''
+        ..oppproviderEmail = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('opp_applications');
@@ -65,6 +69,7 @@ Map<String, dynamic> createOppApplicationsRecordData({
   String? appBio,
   String? status,
   String? oppName,
+  String? oppproviderEmail,
 }) {
   final firestoreData = serializers.toFirestore(
     OppApplicationsRecord.serializer,
@@ -74,7 +79,8 @@ Map<String, dynamic> createOppApplicationsRecordData({
         ..appSkills = appSkills
         ..appBio = appBio
         ..status = status
-        ..oppName = oppName,
+        ..oppName = oppName
+        ..oppproviderEmail = oppproviderEmail,
     ),
   );
 

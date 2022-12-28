@@ -90,30 +90,6 @@ class _$ExtraActsRecordSerializer
         ..add('num_seats')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    value = object.enrolledBy;
-    if (value != null) {
-      result
-        ..add('enrolled_by')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    value = object.rateCr;
-    if (value != null) {
-      result
-        ..add('rate_cr')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    value = object.rateNum;
-    if (value != null) {
-      result
-        ..add('rate_num')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(int)])));
-    }
     value = object.actCategory;
     if (value != null) {
       result
@@ -126,6 +102,13 @@ class _$ExtraActsRecordSerializer
     if (value != null) {
       result
         ..add('Act_provider')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.actID;
+    if (value != null) {
+      result
+        ..add('Act_ID')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -192,24 +175,6 @@ class _$ExtraActsRecordSerializer
           result.numSeats = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
-        case 'enrolled_by':
-          result.enrolledBy.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
-        case 'rate_cr':
-          result.rateCr.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
-        case 'rate_num':
-          result.rateNum.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(int)]))!
-              as BuiltList<Object?>);
-          break;
         case 'Act_category':
           result.actCategory.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -218,6 +183,10 @@ class _$ExtraActsRecordSerializer
           break;
         case 'Act_provider':
           result.actProvider = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'Act_ID':
+          result.actID = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -255,15 +224,11 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final int? numSeats;
   @override
-  final BuiltList<String>? enrolledBy;
-  @override
-  final BuiltList<String>? rateCr;
-  @override
-  final BuiltList<int>? rateNum;
-  @override
   final BuiltList<String>? actCategory;
   @override
   final String? actProvider;
+  @override
+  final String? actID;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -281,11 +246,9 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actLoc,
       this.seats,
       this.numSeats,
-      this.enrolledBy,
-      this.rateCr,
-      this.rateNum,
       this.actCategory,
       this.actProvider,
+      this.actID,
       this.ffRef})
       : super._();
 
@@ -311,11 +274,9 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actLoc == other.actLoc &&
         seats == other.seats &&
         numSeats == other.numSeats &&
-        enrolledBy == other.enrolledBy &&
-        rateCr == other.rateCr &&
-        rateNum == other.rateNum &&
         actCategory == other.actCategory &&
         actProvider == other.actProvider &&
+        actID == other.actID &&
         ffRef == other.ffRef;
   }
 
@@ -334,27 +295,20 @@ class _$ExtraActsRecord extends ExtraActsRecord {
                                             $jc(
                                                 $jc(
                                                     $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                $jc(
-                                                                    0,
-                                                                    actType
-                                                                        .hashCode),
-                                                                actName
-                                                                    .hashCode),
-                                                            actDec.hashCode),
-                                                        actPic.hashCode),
-                                                    status.hashCode),
-                                                sdate.hashCode),
-                                            edate.hashCode),
-                                        actLoc.hashCode),
-                                    seats.hashCode),
-                                numSeats.hashCode),
-                            enrolledBy.hashCode),
-                        rateCr.hashCode),
-                    rateNum.hashCode),
-                actCategory.hashCode),
-            actProvider.hashCode),
+                                                        $jc(0,
+                                                            actType.hashCode),
+                                                        actName.hashCode),
+                                                    actDec.hashCode),
+                                                actPic.hashCode),
+                                            status.hashCode),
+                                        sdate.hashCode),
+                                    edate.hashCode),
+                                actLoc.hashCode),
+                            seats.hashCode),
+                        numSeats.hashCode),
+                    actCategory.hashCode),
+                actProvider.hashCode),
+            actID.hashCode),
         ffRef.hashCode));
   }
 
@@ -371,11 +325,9 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actLoc', actLoc)
           ..add('seats', seats)
           ..add('numSeats', numSeats)
-          ..add('enrolledBy', enrolledBy)
-          ..add('rateCr', rateCr)
-          ..add('rateNum', rateNum)
           ..add('actCategory', actCategory)
           ..add('actProvider', actProvider)
+          ..add('actID', actID)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -425,21 +377,6 @@ class ExtraActsRecordBuilder
   int? get numSeats => _$this._numSeats;
   set numSeats(int? numSeats) => _$this._numSeats = numSeats;
 
-  ListBuilder<String>? _enrolledBy;
-  ListBuilder<String> get enrolledBy =>
-      _$this._enrolledBy ??= new ListBuilder<String>();
-  set enrolledBy(ListBuilder<String>? enrolledBy) =>
-      _$this._enrolledBy = enrolledBy;
-
-  ListBuilder<String>? _rateCr;
-  ListBuilder<String> get rateCr =>
-      _$this._rateCr ??= new ListBuilder<String>();
-  set rateCr(ListBuilder<String>? rateCr) => _$this._rateCr = rateCr;
-
-  ListBuilder<int>? _rateNum;
-  ListBuilder<int> get rateNum => _$this._rateNum ??= new ListBuilder<int>();
-  set rateNum(ListBuilder<int>? rateNum) => _$this._rateNum = rateNum;
-
   ListBuilder<String>? _actCategory;
   ListBuilder<String> get actCategory =>
       _$this._actCategory ??= new ListBuilder<String>();
@@ -449,6 +386,10 @@ class ExtraActsRecordBuilder
   String? _actProvider;
   String? get actProvider => _$this._actProvider;
   set actProvider(String? actProvider) => _$this._actProvider = actProvider;
+
+  String? _actID;
+  String? get actID => _$this._actID;
+  set actID(String? actID) => _$this._actID = actID;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -471,11 +412,9 @@ class ExtraActsRecordBuilder
       _actLoc = $v.actLoc;
       _seats = $v.seats;
       _numSeats = $v.numSeats;
-      _enrolledBy = $v.enrolledBy?.toBuilder();
-      _rateCr = $v.rateCr?.toBuilder();
-      _rateNum = $v.rateNum?.toBuilder();
       _actCategory = $v.actCategory?.toBuilder();
       _actProvider = $v.actProvider;
+      _actID = $v.actID;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -511,21 +450,13 @@ class ExtraActsRecordBuilder
               actLoc: actLoc,
               seats: seats,
               numSeats: numSeats,
-              enrolledBy: _enrolledBy?.build(),
-              rateCr: _rateCr?.build(),
-              rateNum: _rateNum?.build(),
               actCategory: _actCategory?.build(),
               actProvider: actProvider,
+              actID: actID,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'enrolledBy';
-        _enrolledBy?.build();
-        _$failedField = 'rateCr';
-        _rateCr?.build();
-        _$failedField = 'rateNum';
-        _rateNum?.build();
         _$failedField = 'actCategory';
         _actCategory?.build();
       } catch (e) {

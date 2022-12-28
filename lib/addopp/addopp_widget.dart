@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
@@ -25,12 +26,12 @@ class _AddoppWidgetState extends State<AddoppWidget> {
   String uploadedFileUrl = '';
 
   TextEditingController? oppNameController;
-  TextEditingController? oppdesController;
   TextEditingController? oppskill1Controller;
   TextEditingController? oppskill2Controller;
   TextEditingController? oppskill3Controller;
   TextEditingController? oppskill4Controller;
   TextEditingController? oppskill5Controller;
+  TextEditingController? oppdesController;
   DateTime? datePicked1;
   DateTime? datePicked2;
   final _unfocusNode = FocusNode();
@@ -41,24 +42,24 @@ class _AddoppWidgetState extends State<AddoppWidget> {
   void initState() {
     super.initState();
     oppNameController = TextEditingController();
-    oppdesController = TextEditingController();
     oppskill1Controller = TextEditingController();
     oppskill2Controller = TextEditingController();
     oppskill3Controller = TextEditingController();
     oppskill4Controller = TextEditingController();
     oppskill5Controller = TextEditingController();
+    oppdesController = TextEditingController();
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
     oppNameController?.dispose();
-    oppdesController?.dispose();
     oppskill1Controller?.dispose();
     oppskill2Controller?.dispose();
     oppskill3Controller?.dispose();
     oppskill4Controller?.dispose();
     oppskill5Controller?.dispose();
+    oppdesController?.dispose();
     super.dispose();
   }
 
@@ -92,9 +93,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                 }
                 context.pushNamed('HomePage');
 
-                FFAppState().update(() {
-                  FFAppState().numskills = 1;
-                });
+                FFAppState().numskills = 1;
+                FFAppState().Skilllist = [];
               },
             ),
           ),
@@ -195,71 +195,6 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.start,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
-                      child: Container(
-                        width: 400,
-                        child: TextFormField(
-                          controller: oppdesController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'وصف الفرصة',
-                            labelStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF0283BC),
-                              fontWeight: FontWeight.normal,
-                            ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFF0F0F0),
-                          ),
-                          style: GoogleFonts.getFont(
-                            'Open Sans',
-                            color: Color(0xFF565656),
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.start,
-                          maxLines: 2,
-                          keyboardType: TextInputType.multiline,
                         ),
                       ),
                     ),
@@ -420,7 +355,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             onChanged: (_) => EasyDebounce.debounce(
                               'oppskill3Controller',
                               Duration(milliseconds: 2000),
-                              () => setState(() {}),
+                              () async {
+                                FFAppState()
+                                    .addToSkilllist(oppskill3Controller!.text);
+                              },
                             ),
                             obscureText: false,
                             decoration: InputDecoration(
@@ -624,7 +562,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         ),
                       ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 5),
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -660,6 +598,71 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      child: Container(
+                        width: 400,
+                        child: TextFormField(
+                          controller: oppdesController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'وصف الفرصة',
+                            labelStyle: GoogleFonts.getFont(
+                              'Open Sans',
+                              color: Color(0xFF0283BC),
+                              fontWeight: FontWeight.normal,
+                            ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .bodyText2
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF0283BC),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF0283BC),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFF0F0F0),
+                          ),
+                          style: GoogleFonts.getFont(
+                            'Open Sans',
+                            color: Color(0xFF565656),
+                            fontWeight: FontWeight.normal,
+                          ),
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                          keyboardType: TextInputType.multiline,
+                        ),
                       ),
                     ),
                     Padding(
@@ -891,86 +894,65 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         ],
                       ),
                     ),
-                    StreamBuilder<List<OpportunitiesRecord>>(
-                      stream: queryOpportunitiesRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color: Color(0xFF0184BD),
-                              ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        final opportunitiesCreateData = {
+                          ...createOpportunitiesRecordData(
+                            opDesc: oppdesController!.text,
+                            sdate: datePicked1,
+                            edate: datePicked2,
+                            opProvider: currentUserEmail,
+                            opProviderLogo: uploadedFileUrl,
+                            oppName: oppNameController!.text,
+                            status: 'معلق',
+                            opID: random_data.randomString(
+                              20,
+                              20,
+                              true,
+                              true,
+                              true,
                             ),
-                          );
-                        }
-                        List<OpportunitiesRecord>
-                            buttonOpportunitiesRecordList = snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
-                        final buttonOpportunitiesRecord =
-                            buttonOpportunitiesRecordList.isNotEmpty
-                                ? buttonOpportunitiesRecordList.first
-                                : null;
-                        return FFButtonWidget(
-                          onPressed: () async {
-                            final opportunitiesCreateData = {
-                              ...createOpportunitiesRecordData(
-                                opDesc: oppdesController!.text,
-                                sdate: datePicked1,
-                                edate: datePicked2,
-                                opProvider: currentUserEmail,
-                                opProviderLogo: uploadedFileUrl,
-                                oppName: oppNameController!.text,
-                                status: 'معلق',
-                              ),
-                              'OpSkills': FFAppState().Skilllist,
-                            };
-                            await OpportunitiesRecord.collection
-                                .doc()
-                                .set(opportunitiesCreateData);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'تم إضافة النشاط بنجاح',
-                                  style: FlutterFlowTheme.of(context)
-                                      .title3
-                                      .override(
+                          ),
+                          'OpSkills': FFAppState().Skilllist,
+                        };
+                        await OpportunitiesRecord.collection
+                            .doc()
+                            .set(opportunitiesCreateData);
+                        FFAppState().numskills = 1;
+                        FFAppState().Skilllist = [];
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'تم إضافة النشاط بنجاح',
+                              style:
+                                  FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryColor,
                                       ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor: Color(0x00000000),
-                              ),
-                            );
-                          },
-                          text: 'إرسال طلب الإضافة',
-                          options: FFButtonOptions(
-                            width: 270,
-                            height: 50,
-                            color: Color(0xFF1C8EC1),
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                            elevation: 2,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
                             ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor: Color(0x00000000),
                           ),
                         );
                       },
+                      text: 'إرسال طلب الإضافة',
+                      options: FFButtonOptions(
+                        width: 270,
+                        height: 50,
+                        color: Color(0xFF1C8EC1),
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                        elevation: 2,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                      ),
                     ),
                   ],
                 ),

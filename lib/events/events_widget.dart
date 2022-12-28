@@ -243,8 +243,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                   pagingController: () {
                     final Query<Object?> Function(Query<Object?>) queryBuilder =
                         (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'event')
-                            .where('status', isEqualTo: 'approved');
+                            .where('Act_type', isEqualTo: 'فعالية')
+                            .where('status', isEqualTo: 'موافق عليها');
                     if (_pagingController != null) {
                       final query = queryBuilder(ExtraActsRecord.collection);
                       if (query != _pagingQuery) {
@@ -262,8 +262,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                     _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryExtraActsRecordPage(
                         queryBuilder: (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'event')
-                            .where('status', isEqualTo: 'approved'),
+                            .where('Act_type', isEqualTo: 'فعالية')
+                            .where('status', isEqualTo: 'موافق عليها'),
                         nextPageMarker: nextPageMarker,
                         pageSize: 25,
                         isStream: true,

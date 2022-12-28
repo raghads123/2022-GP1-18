@@ -6,6 +6,7 @@ import 'extra_acts_record.dart';
 import 'opportunities_record.dart';
 import 'category_record.dart';
 import 'opp_applications_record.dart';
+import 'rating_record.dart';
 
 import 'index.dart';
 
@@ -21,7 +22,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   OpportunitiesRecord,
   CategoryRecord,
   OppApplicationsRecord,
-  OpSkillsStruct,
+  RatingRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

@@ -60,6 +60,13 @@ class _$OppApplicationsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.oppproviderEmail;
+    if (value != null) {
+      result
+        ..add('oppprovider_email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -103,6 +110,10 @@ class _$OppApplicationsRecordSerializer
           result.oppName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'oppprovider_email':
+          result.oppproviderEmail = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -128,6 +139,8 @@ class _$OppApplicationsRecord extends OppApplicationsRecord {
   @override
   final String? oppName;
   @override
+  final String? oppproviderEmail;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$OppApplicationsRecord(
@@ -140,6 +153,7 @@ class _$OppApplicationsRecord extends OppApplicationsRecord {
       this.appBio,
       this.status,
       this.oppName,
+      this.oppproviderEmail,
       this.ffRef})
       : super._();
 
@@ -161,6 +175,7 @@ class _$OppApplicationsRecord extends OppApplicationsRecord {
         appBio == other.appBio &&
         status == other.status &&
         oppName == other.oppName &&
+        oppproviderEmail == other.oppproviderEmail &&
         ffRef == other.ffRef;
   }
 
@@ -169,10 +184,12 @@ class _$OppApplicationsRecord extends OppApplicationsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, appEmail.hashCode), appSkills.hashCode),
-                    appBio.hashCode),
-                status.hashCode),
-            oppName.hashCode),
+                $jc(
+                    $jc($jc($jc(0, appEmail.hashCode), appSkills.hashCode),
+                        appBio.hashCode),
+                    status.hashCode),
+                oppName.hashCode),
+            oppproviderEmail.hashCode),
         ffRef.hashCode));
   }
 
@@ -184,6 +201,7 @@ class _$OppApplicationsRecord extends OppApplicationsRecord {
           ..add('appBio', appBio)
           ..add('status', status)
           ..add('oppName', oppName)
+          ..add('oppproviderEmail', oppproviderEmail)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -213,6 +231,11 @@ class OppApplicationsRecordBuilder
   String? get oppName => _$this._oppName;
   set oppName(String? oppName) => _$this._oppName = oppName;
 
+  String? _oppproviderEmail;
+  String? get oppproviderEmail => _$this._oppproviderEmail;
+  set oppproviderEmail(String? oppproviderEmail) =>
+      _$this._oppproviderEmail = oppproviderEmail;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -229,6 +252,7 @@ class OppApplicationsRecordBuilder
       _appBio = $v.appBio;
       _status = $v.status;
       _oppName = $v.oppName;
+      _oppproviderEmail = $v.oppproviderEmail;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -257,6 +281,7 @@ class OppApplicationsRecordBuilder
             appBio: appBio,
             status: status,
             oppName: oppName,
+            oppproviderEmail: oppproviderEmail,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -25,12 +25,6 @@ class _$OpportunitiesRecordSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.opID;
-    if (value != null) {
-      result
-        ..add('OpID')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.opDesc;
     if (value != null) {
       result
@@ -87,14 +81,6 @@ class _$OpportunitiesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.appliedBy;
-    if (value != null) {
-      result
-        ..add('applied_by')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
     value = object.status;
     if (value != null) {
       result
@@ -109,6 +95,13 @@ class _$OpportunitiesRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.opID;
+    if (value != null) {
+      result
+        ..add('OpID')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -133,10 +126,6 @@ class _$OpportunitiesRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'OpID':
-          result.opID = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'OpDesc':
           result.opDesc = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -171,12 +160,6 @@ class _$OpportunitiesRecordSerializer
           result.oppName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'applied_by':
-          result.appliedBy.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
         case 'status':
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -186,6 +169,10 @@ class _$OpportunitiesRecordSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+        case 'OpID':
+          result.opID = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -201,8 +188,6 @@ class _$OpportunitiesRecordSerializer
 }
 
 class _$OpportunitiesRecord extends OpportunitiesRecord {
-  @override
-  final int? opID;
   @override
   final String? opDesc;
   @override
@@ -220,11 +205,11 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
   @override
   final String? oppName;
   @override
-  final BuiltList<String>? appliedBy;
-  @override
   final String? status;
   @override
   final BuiltList<String>? opSkills;
+  @override
+  final String? opID;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -233,8 +218,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
       (new OpportunitiesRecordBuilder()..update(updates))._build();
 
   _$OpportunitiesRecord._(
-      {this.opID,
-      this.opDesc,
+      {this.opDesc,
       this.sdate,
       this.edate,
       this.opProvider,
@@ -242,9 +226,9 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
       this.category,
       this.opQ,
       this.oppName,
-      this.appliedBy,
       this.status,
       this.opSkills,
+      this.opID,
       this.ffRef})
       : super._();
 
@@ -261,7 +245,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is OpportunitiesRecord &&
-        opID == other.opID &&
         opDesc == other.opDesc &&
         sdate == other.sdate &&
         edate == other.edate &&
@@ -270,9 +253,9 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
         category == other.category &&
         opQ == other.opQ &&
         oppName == other.oppName &&
-        appliedBy == other.appliedBy &&
         status == other.status &&
         opSkills == other.opSkills &&
+        opID == other.opID &&
         ffRef == other.ffRef;
   }
 
@@ -288,9 +271,7 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc(
-                                                $jc($jc(0, opID.hashCode),
-                                                    opDesc.hashCode),
+                                            $jc($jc(0, opDesc.hashCode),
                                                 sdate.hashCode),
                                             edate.hashCode),
                                         opProvider.hashCode),
@@ -298,16 +279,15 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
                                 category.hashCode),
                             opQ.hashCode),
                         oppName.hashCode),
-                    appliedBy.hashCode),
-                status.hashCode),
-            opSkills.hashCode),
+                    status.hashCode),
+                opSkills.hashCode),
+            opID.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'OpportunitiesRecord')
-          ..add('opID', opID)
           ..add('opDesc', opDesc)
           ..add('sdate', sdate)
           ..add('edate', edate)
@@ -316,9 +296,9 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
           ..add('category', category)
           ..add('opQ', opQ)
           ..add('oppName', oppName)
-          ..add('appliedBy', appliedBy)
           ..add('status', status)
           ..add('opSkills', opSkills)
+          ..add('opID', opID)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -327,10 +307,6 @@ class _$OpportunitiesRecord extends OpportunitiesRecord {
 class OpportunitiesRecordBuilder
     implements Builder<OpportunitiesRecord, OpportunitiesRecordBuilder> {
   _$OpportunitiesRecord? _$v;
-
-  int? _opID;
-  int? get opID => _$this._opID;
-  set opID(int? opID) => _$this._opID = opID;
 
   String? _opDesc;
   String? get opDesc => _$this._opDesc;
@@ -366,12 +342,6 @@ class OpportunitiesRecordBuilder
   String? get oppName => _$this._oppName;
   set oppName(String? oppName) => _$this._oppName = oppName;
 
-  ListBuilder<String>? _appliedBy;
-  ListBuilder<String> get appliedBy =>
-      _$this._appliedBy ??= new ListBuilder<String>();
-  set appliedBy(ListBuilder<String>? appliedBy) =>
-      _$this._appliedBy = appliedBy;
-
   String? _status;
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
@@ -380,6 +350,10 @@ class OpportunitiesRecordBuilder
   ListBuilder<String> get opSkills =>
       _$this._opSkills ??= new ListBuilder<String>();
   set opSkills(ListBuilder<String>? opSkills) => _$this._opSkills = opSkills;
+
+  String? _opID;
+  String? get opID => _$this._opID;
+  set opID(String? opID) => _$this._opID = opID;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -392,7 +366,6 @@ class OpportunitiesRecordBuilder
   OpportunitiesRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _opID = $v.opID;
       _opDesc = $v.opDesc;
       _sdate = $v.sdate;
       _edate = $v.edate;
@@ -401,9 +374,9 @@ class OpportunitiesRecordBuilder
       _category = $v.category?.toBuilder();
       _opQ = $v.opQ;
       _oppName = $v.oppName;
-      _appliedBy = $v.appliedBy?.toBuilder();
       _status = $v.status;
       _opSkills = $v.opSkills?.toBuilder();
+      _opID = $v.opID;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -429,7 +402,6 @@ class OpportunitiesRecordBuilder
     try {
       _$result = _$v ??
           new _$OpportunitiesRecord._(
-              opID: opID,
               opDesc: opDesc,
               sdate: sdate,
               edate: edate,
@@ -438,18 +410,15 @@ class OpportunitiesRecordBuilder
               category: _category?.build(),
               opQ: opQ,
               oppName: oppName,
-              appliedBy: _appliedBy?.build(),
               status: status,
               opSkills: _opSkills?.build(),
+              opID: opID,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'category';
         _category?.build();
-
-        _$failedField = 'appliedBy';
-        _appliedBy?.build();
 
         _$failedField = 'opSkills';
         _opSkills?.build();

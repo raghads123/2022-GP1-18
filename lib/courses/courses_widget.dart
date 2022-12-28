@@ -244,8 +244,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                   pagingController: () {
                     final Query<Object?> Function(Query<Object?>) queryBuilder =
                         (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'course')
-                            .where('status', isEqualTo: 'approved');
+                            .where('Act_type', isEqualTo: 'دورة تدريبية')
+                            .where('status', isEqualTo: 'موافق عليها');
                     if (_pagingController != null) {
                       final query = queryBuilder(ExtraActsRecord.collection);
                       if (query != _pagingQuery) {
@@ -263,8 +263,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryExtraActsRecordPage(
                         queryBuilder: (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'course')
-                            .where('status', isEqualTo: 'approved'),
+                            .where('Act_type', isEqualTo: 'دورة تدريبية')
+                            .where('status', isEqualTo: 'موافق عليها'),
                         nextPageMarker: nextPageMarker,
                         pageSize: 25,
                         isStream: true,

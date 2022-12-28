@@ -244,8 +244,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                   pagingController: () {
                     final Query<Object?> Function(Query<Object?>) queryBuilder =
                         (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'workshope')
-                            .where('status', isEqualTo: 'approved');
+                            .where('Act_type', isEqualTo: 'ورشة عمل')
+                            .where('status', isEqualTo: 'موافق عليها');
                     if (_pagingController != null) {
                       final query = queryBuilder(ExtraActsRecord.collection);
                       if (query != _pagingQuery) {
@@ -263,8 +263,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                     _pagingController!.addPageRequestListener((nextPageMarker) {
                       queryExtraActsRecordPage(
                         queryBuilder: (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'workshope')
-                            .where('status', isEqualTo: 'approved'),
+                            .where('Act_type', isEqualTo: 'ورشة عمل')
+                            .where('status', isEqualTo: 'موافق عليها'),
                         nextPageMarker: nextPageMarker,
                         pageSize: 25,
                         isStream: true,
@@ -349,7 +349,10 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: Image.network(
-                                          listViewExtraActsRecord.actPic!,
+                                          valueOrDefault<String>(
+                                            listViewExtraActsRecord.actPic,
+                                            'logo',
+                                          ),
                                           width: double.infinity,
                                           height: 110,
                                           fit: BoxFit.cover,

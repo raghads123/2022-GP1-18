@@ -39,20 +39,14 @@ abstract class ExtraActsRecord
   @BuiltValueField(wireName: 'num_seats')
   int? get numSeats;
 
-  @BuiltValueField(wireName: 'enrolled_by')
-  BuiltList<String>? get enrolledBy;
-
-  @BuiltValueField(wireName: 'rate_cr')
-  BuiltList<String>? get rateCr;
-
-  @BuiltValueField(wireName: 'rate_num')
-  BuiltList<int>? get rateNum;
-
   @BuiltValueField(wireName: 'Act_category')
   BuiltList<String>? get actCategory;
 
   @BuiltValueField(wireName: 'Act_provider')
   String? get actProvider;
+
+  @BuiltValueField(wireName: 'Act_ID')
+  String? get actID;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -67,11 +61,9 @@ abstract class ExtraActsRecord
     ..actLoc = ''
     ..seats = false
     ..numSeats = 0
-    ..enrolledBy = ListBuilder()
-    ..rateCr = ListBuilder()
-    ..rateNum = ListBuilder()
     ..actCategory = ListBuilder()
-    ..actProvider = '';
+    ..actProvider = ''
+    ..actID = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('extra_acts');
@@ -106,6 +98,7 @@ Map<String, dynamic> createExtraActsRecordData({
   bool? seats,
   int? numSeats,
   String? actProvider,
+  String? actID,
 }) {
   final firestoreData = serializers.toFirestore(
     ExtraActsRecord.serializer,
@@ -121,11 +114,9 @@ Map<String, dynamic> createExtraActsRecordData({
         ..actLoc = actLoc
         ..seats = seats
         ..numSeats = numSeats
-        ..enrolledBy = null
-        ..rateCr = null
-        ..rateNum = null
         ..actCategory = null
-        ..actProvider = actProvider,
+        ..actProvider = actProvider
+        ..actID = actID,
     ),
   );
 

@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -832,6 +833,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   seats: checkboxListTileValue,
                                   numSeats: int.tryParse(textController4!.text),
                                   actProvider: currentUserEmail,
+                                  actID: random_data.randomString(
+                                    20,
+                                    20,
+                                    true,
+                                    true,
+                                    true,
+                                  ),
                                 ),
                                 'Act_category': FFAppState().ActCategory,
                               };
@@ -843,12 +851,12 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   content: Text(
                                     'تم ارسال الطلب بنجاح',
                                     style: TextStyle(
-                                      color: Color(0xE15BD85B),
+                                      color: Color(0xE1FFFFFF),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 4000),
-                                  backgroundColor: Color(0x00000000),
+                                  backgroundColor: Color(0xE15BD85B),
                                 ),
                               );
                             },

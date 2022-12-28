@@ -13,9 +13,11 @@ class OppapplicationformWidget extends StatefulWidget {
   const OppapplicationformWidget({
     Key? key,
     this.oppappform,
+    this.oppappemail,
   }) : super(key: key);
 
   final String? oppappform;
+  final String? oppappemail;
 
   @override
   _OppapplicationformWidgetState createState() =>
@@ -372,6 +374,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     oppName:
                                         containerOpportunitiesRecord!.oppName,
                                     status: 'معلق',
+                                    oppproviderEmail: widget.oppappemail,
                                   );
                                   await OppApplicationsRecord.collection
                                       .doc()

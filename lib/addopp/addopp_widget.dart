@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/upload_media.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/foundation.dart';
@@ -579,8 +580,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             onPressed: FFAppState().numskills == 5
                                 ? null
                                 : () async {
-                                    FFAppState().numskills =
-                                        FFAppState().numskills + 1;
+                                    FFAppState().update(() {
+                                      FFAppState().numskills =
+                                          FFAppState().numskills + 1;
+                                    });
                                   },
                           ),
                           Padding(
@@ -891,88 +894,65 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         ],
                       ),
                     ),
-                    StreamBuilder<List<OpportunitiesRecord>>(
-                      stream: queryOpportunitiesRecord(
-                        singleRecord: true,
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: CircularProgressIndicator(
-                                color: Color(0xFF0184BD),
-                              ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        final opportunitiesCreateData = {
+                          ...createOpportunitiesRecordData(
+                            opDesc: oppdesController!.text,
+                            sdate: datePicked1,
+                            edate: datePicked2,
+                            opProvider: currentUserEmail,
+                            opProviderLogo: uploadedFileUrl,
+                            oppName: oppNameController!.text,
+                            status: 'معلق',
+                            opID: random_data.randomString(
+                              20,
+                              20,
+                              true,
+                              true,
+                              true,
                             ),
-                          );
-                        }
-                        List<OpportunitiesRecord>
-                            buttonOpportunitiesRecordList = snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
-                        final buttonOpportunitiesRecord =
-                            buttonOpportunitiesRecordList.isNotEmpty
-                                ? buttonOpportunitiesRecordList.first
-                                : null;
-                        return FFButtonWidget(
-                          onPressed: () async {
-                            final opportunitiesCreateData = {
-                              ...createOpportunitiesRecordData(
-                                opDesc: oppdesController!.text,
-                                sdate: datePicked1,
-                                edate: datePicked2,
-                                opProvider: currentUserEmail,
-                                opProviderLogo: uploadedFileUrl,
-                                oppName: oppNameController!.text,
-                                status: 'معلق',
-                              ),
-                              'OpSkills': FFAppState().Skilllist,
-                            };
-                            await OpportunitiesRecord.collection
-                                .doc()
-                                .set(opportunitiesCreateData);
-                            FFAppState().numskills = 1;
-                            FFAppState().Skilllist = [];
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'تم إضافة النشاط بنجاح',
-                                  style: FlutterFlowTheme.of(context)
-                                      .title3
-                                      .override(
+                          ),
+                          'OpSkills': FFAppState().Skilllist,
+                        };
+                        await OpportunitiesRecord.collection
+                            .doc()
+                            .set(opportunitiesCreateData);
+                        FFAppState().numskills = 1;
+                        FFAppState().Skilllist = [];
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'تم إضافة النشاط بنجاح',
+                              style:
+                                  FlutterFlowTheme.of(context).title3.override(
                                         fontFamily: 'Poppins',
                                         color: FlutterFlowTheme.of(context)
                                             .primaryColor,
                                       ),
-                                ),
-                                duration: Duration(milliseconds: 4000),
-                                backgroundColor: Color(0x00000000),
-                              ),
-                            );
-                          },
-                          text: 'إرسال طلب الإضافة',
-                          options: FFButtonOptions(
-                            width: 270,
-                            height: 50,
-                            color: Color(0xFF1C8EC1),
-                            textStyle:
-                                FlutterFlowTheme.of(context).subtitle1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                    ),
-                            elevation: 2,
-                            borderSide: BorderSide(
-                              color: Colors.transparent,
-                              width: 1,
                             ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor: Color(0x00000000),
                           ),
                         );
                       },
+                      text: 'إرسال طلب الإضافة',
+                      options: FFButtonOptions(
+                        width: 270,
+                        height: 50,
+                        color: Color(0xFF1C8EC1),
+                        textStyle:
+                            FlutterFlowTheme.of(context).subtitle1.override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                        elevation: 2,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                      ),
                     ),
                   ],
                 ),

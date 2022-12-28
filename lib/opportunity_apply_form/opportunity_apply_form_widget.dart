@@ -351,6 +351,8 @@ class _OpportunityApplyFormWidgetState
                                                                             OppapplicationformWidget(
                                                                           oppappform:
                                                                               containerOpportunitiesRecord!.oppName,
+                                                                          oppappemail:
+                                                                              columnUsersRecord!.email,
                                                                         ),
                                                                       ),
                                                                     );

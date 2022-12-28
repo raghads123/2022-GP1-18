@@ -403,8 +403,12 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                             ),
                                                             child:
                                                                 Image.network(
-                                                              listViewOpportunitiesRecord
-                                                                  .opProviderLogo!,
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewOpportunitiesRecord
+                                                                    .opProviderLogo,
+                                                                'logo',
+                                                              ),
                                                               width: 160,
                                                               height: 100,
                                                               fit: BoxFit

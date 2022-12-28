@@ -249,7 +249,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                             0),
                                                                     child: Icon(
                                                                       Icons
-                                                                          .stairs,
+                                                                          .flaky,
                                                                       color: Color(
                                                                           0xFF575F6C),
                                                                       size: 24,
@@ -743,7 +743,10 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                     padding: MediaQuery.of(context).viewInsets,
                                                                                     child: Container(
                                                                                       height: 500,
-                                                                                      child: RatecollectionWidget(),
+                                                                                      child: RatecollectionWidget(
+                                                                                        ratingactID: columnExtraActsRecord!.actID,
+                                                                                        ratingtype: columnExtraActsRecord!.actType,
+                                                                                      ),
                                                                                     ),
                                                                                   );
                                                                                 },
@@ -938,8 +941,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(180,
-                                                                    0, 0, 90),
+                                                                .fromSTEB(160,
+                                                                    0, 0, 0),
                                                         child:
                                                             FlutterFlowIconButton(
                                                           borderColor: Colors

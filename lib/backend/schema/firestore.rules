@@ -8,32 +8,39 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    match /sessions/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if request.auth != null;
-      allow delete: if request.auth != null;
-    }
-
-    match /opp/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /workshops/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if request.auth != null;
-      allow delete: if false;
-    }
-
-    match /events/{document} {
+    match /extra_acts/{document} {
       allow create: if true;
       allow read: if true;
       allow write: if false;
       allow delete: if false;
+    }
+
+    match /Opportunities/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /category/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /opp_applications/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /rating/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
     }
   }
 }

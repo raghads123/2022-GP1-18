@@ -1,4 +1,4 @@
-# Count Me In
+# GRAD PROJECT 2
 
 A new Flutter project.
 

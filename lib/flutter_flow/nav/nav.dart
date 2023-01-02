@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
 import '../../backend/backend.dart';
+
 import '../../auth/firebase_user_provider.dart';
 
 import '../../index.dart';
@@ -19,8 +20,8 @@ export 'serialization_util.dart';
 const kTransitionInfoKey = '__transition_info__';
 
 class AppStateNotifier extends ChangeNotifier {
-  CountMeInFirebaseUser? initialUser;
-  CountMeInFirebaseUser? user;
+  GradProject2FirebaseUser? initialUser;
+  GradProject2FirebaseUser? user;
   bool showSplashImage = true;
   String? _redirectLocation;
 
@@ -45,7 +46,7 @@ class AppStateNotifier extends ChangeNotifier {
   /// to perform subsequent actions (such as navigation) afterwards.
   void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
 
-  void update(CountMeInFirebaseUser newUser) {
+  void update(GradProject2FirebaseUser newUser) {
     initialUser ??= newUser;
     user = newUser;
     // Refresh the app on auth change unless explicitly marked otherwise.
@@ -68,18 +69,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, _) =>
-          appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : FirstPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : SignUpWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : FirstPageWidget(),
           routes: [
+            FFRoute(
+              name: 'FirstPage',
+              path: 'firstPage',
+              builder: (context, params) => FirstPageWidget(),
+            ),
             FFRoute(
               name: 'SignUp',
               path: 'signUp',
               builder: (context, params) => SignUpWidget(),
+            ),
+            FFRoute(
+              name: 'SettingUpProfile',
+              path: 'settingUpProfile',
+              requireAuth: true,
+              builder: (context, params) => SettingUpProfileWidget(),
+            ),
+            FFRoute(
+              name: 'Settinginterests2',
+              path: 'settinginterests2',
+              requireAuth: true,
+              builder: (context, params) => Settinginterests2Widget(),
             ),
             FFRoute(
               name: 'LogIn',
@@ -95,12 +113,61 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomePageWidget(),
             ),
             FFRoute(
-              name: 'MyActivites',
-              path: 'myActivites',
+              name: 'courses',
+              path: 'courses',
               requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'MyActivites')
-                  : MyActivitesWidget(),
+              builder: (context, params) => CoursesWidget(),
+            ),
+            FFRoute(
+              name: 'course_info',
+              path: 'courseInfo',
+              requireAuth: true,
+              builder: (context, params) => CourseInfoWidget(
+                courseid: params.getParam('courseid', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'workshops',
+              path: 'workshops',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsWidget(),
+            ),
+            FFRoute(
+              name: 'workshope_info',
+              path: 'workshopeInfo',
+              requireAuth: true,
+              builder: (context, params) => WorkshopeInfoWidget(
+                workshopid: params.getParam('workshopid', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'events',
+              path: 'events',
+              requireAuth: true,
+              builder: (context, params) => EventsWidget(),
+            ),
+            FFRoute(
+              name: 'event_info',
+              path: 'eventInfo',
+              requireAuth: true,
+              builder: (context, params) => EventInfoWidget(
+                eventid: params.getParam('eventid', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'Opportunity_apply_form',
+              path: 'opportunityApplyForm',
+              requireAuth: true,
+              builder: (context, params) => OpportunityApplyFormWidget(
+                opportunityID:
+                    params.getParam('opportunityID', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'Opportunities',
+              path: 'opportunities',
+              requireAuth: true,
+              builder: (context, params) => OpportunitiesWidget(),
             ),
             FFRoute(
               name: 'Profile',
@@ -111,39 +178,40 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : ProfileWidget(),
             ),
             FFRoute(
-              name: 'Sessions',
-              path: 'sessions',
+              name: 'EditInterests',
+              path: 'editInterests',
               requireAuth: true,
-              builder: (context, params) => SessionsWidget(),
+              builder: (context, params) => EditInterestsWidget(),
             ),
             FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
+              name: 'myActivities',
+              path: 'myActivities',
               requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'myActivities')
+                  : MyActivitiesWidget(),
             ),
             FFRoute(
-              name: 'Events',
-              path: 'events',
-              requireAuth: true,
-              builder: (context, params) => EventsWidget(),
+              name: 'ActivityAdminSignup',
+              path: 'activityAdminSignup',
+              builder: (context, params) => ActivityAdminSignupWidget(),
             ),
             FFRoute(
-              name: 'event_info',
-              path: 'eventInfo',
-              requireAuth: true,
-              asyncParams: {
-                'eventInfo': getDoc('events', EventsRecord.serializer),
-              },
-              builder: (context, params) => EventInfoWidget(
-                eventInfo: params.getParam('eventInfo', ParamType.Document),
-              ),
+              name: 'ActivityAdminLogin',
+              path: 'activityAdminLogin',
+              builder: (context, params) => ActivityAdminLoginWidget(),
             ),
             FFRoute(
-              name: 'extracurricular_activities',
-              path: 'extracurricularActivities',
+              name: 'AddExtraact',
+              path: 'addExtraact',
               requireAuth: true,
-              builder: (context, params) => ExtracurricularActivitiesWidget(),
+              builder: (context, params) => AddExtraactWidget(),
+            ),
+            FFRoute(
+              name: 'Addopp',
+              path: 'Addopp',
+              requireAuth: true,
+              builder: (context, params) => AddoppWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -256,7 +324,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -270,7 +338,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 
@@ -303,7 +371,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/signUp';
+            return '/firstPage';
           }
           return null;
         },
@@ -316,12 +384,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primaryColor,
+              ? Container(
+                  color: Colors.white,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/9hsjc_2.png',
+                      width: 200,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

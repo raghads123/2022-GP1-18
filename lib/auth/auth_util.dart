@@ -32,7 +32,7 @@ Future<User?> signInOrCreateAccount(
   } on FirebaseAuthException catch (e) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error: ${e.message!}')),
+      SnackBar(content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.')),
     );
     return null;
   }
@@ -68,12 +68,12 @@ Future resetPassword(
   } on FirebaseAuthException catch (e) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error: ${e.message!}')),
+      SnackBar(content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.')),
     );
     return null;
   }
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Password reset email sent')),
+    SnackBar(content: Text('تم إرسال بريد إعادة تعيين كلمة المرور!')),
   );
 }
 
@@ -131,6 +131,7 @@ Future beginPhoneAuth({
     onCodeSent();
     return;
   }
+  final completer = Completer<bool>();
   // If you'd like auto-verification, without the user having to enter the SMS
   // code manually. Follow these instructions:
   // * For Android: https://firebase.google.com/docs/auth/android/phone-auth?authuser=0#enable-app-verification (SafetyNet set up)
@@ -150,16 +151,20 @@ Future beginPhoneAuth({
       // );
     },
     verificationFailed: (e) {
+      completer.complete(false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Error: ${e.message!}'),
+        content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.'),
       ));
     },
     codeSent: (verificationId, _) {
       _phoneAuthVerificationCode = verificationId;
+      completer.complete(true);
       onCodeSent();
     },
     codeAutoRetrievalTimeout: (_) {},
   );
+
+  return completer.future;
 }
 
 Future verifySmsCode({

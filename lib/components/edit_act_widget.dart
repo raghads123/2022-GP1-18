@@ -37,7 +37,6 @@ class _EditActWidgetState extends State<EditActWidget> {
   @override
   void initState() {
     super.initState();
-    actLocController = TextEditingController();
     actNameController = TextEditingController(text: widget.actname);
     textController4 = TextEditingController();
   }
@@ -197,7 +196,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                           child: Container(
                             width: double.infinity,
                             child: TextFormField(
-                              controller: actLocController,
+                              controller: actLocController ??=
+                                  TextEditingController(
+                                text: formExtraActsRecord!.actLoc,
+                              ),
                               obscureText: false,
                               decoration: InputDecoration(
                                 labelText: 'موقع النشاط',
@@ -248,7 +250,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                               ),
                               style: GoogleFonts.getFont(
                                 'Open Sans',
-                                color: Color(0xFF565656),
+                                color: Color(0xFF1C8EC1),
                                 fontWeight: FontWeight.normal,
                               ),
                               textAlign: TextAlign.start,
@@ -700,7 +702,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 actPic: uploadedFileUrl,
                                 status: 'معلق',
                                 numSeats: int.tryParse(textController4!.text),
-                                actLoc: actLocController!.text,
+                                actLoc: actLocController?.text ?? '',
                                 sdate: datePicked1,
                                 edate: datePicked2,
                               );

@@ -288,7 +288,7 @@ class _OpportunityApplyFormWidgetState
                                                       '') !=
                                                   'admin')
                                                 AuthUserStreamWidget(
-                                                  child: Column(
+                                                  builder: (context) => Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [

@@ -304,7 +304,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                 child: AuthUserStreamWidget(
-                                  child: InkWell(
+                                  builder: (context) => InkWell(
                                     onTap: () async {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
@@ -374,7 +374,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                                 child: AuthUserStreamWidget(
-                                  child: InkWell(
+                                  builder: (context) => InkWell(
                                     onTap: () async {
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();

@@ -25,3 +25,5 @@ export 'activity_admin_login/activity_admin_login_widget.dart'
     show ActivityAdminLoginWidget;
 export 'add_extraact/add_extraact_widget.dart' show AddExtraactWidget;
 export 'addopp/addopp_widget.dart' show AddoppWidget;
+export 'activity_dash/activity_dash_widget.dart' show ActivityDashWidget;
+export 'app_management/app_management_widget.dart' show AppManagementWidget;

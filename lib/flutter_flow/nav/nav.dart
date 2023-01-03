@@ -212,6 +212,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'Addopp',
               requireAuth: true,
               builder: (context, params) => AddoppWidget(),
+            ),
+            FFRoute(
+              name: 'ActivityDash',
+              path: 'activityDash',
+              requireAuth: true,
+              builder: (context, params) => ActivityDashWidget(),
+            ),
+            FFRoute(
+              name: 'app_management',
+              path: 'appManagement',
+              requireAuth: true,
+              builder: (context, params) => AppManagementWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

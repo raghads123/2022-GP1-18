@@ -350,7 +350,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                         if (valueOrDefault(currentUserDocument?.type, '') !=
                             'admin')
                           AuthUserStreamWidget(
-                            child: StreamBuilder<List<UsersRecord>>(
+                            builder: (context) =>
+                                StreamBuilder<List<UsersRecord>>(
                               stream: queryUsersRecord(
                                 queryBuilder: (usersRecord) =>
                                     usersRecord.where('email',

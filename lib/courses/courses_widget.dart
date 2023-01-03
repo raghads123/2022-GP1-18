@@ -275,10 +275,10 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                         );
                         final streamSubscription =
                             page.dataStream?.listen((data) {
-                          final itemIndexes = _pagingController!.itemList!
-                              .asMap()
-                              .map((k, v) => MapEntry(v.reference.id, k));
                           data.forEach((item) {
+                            final itemIndexes = _pagingController!.itemList!
+                                .asMap()
+                                .map((k, v) => MapEntry(v.reference.id, k));
                             final index = itemIndexes[item.reference.id];
                             final items = _pagingController!.itemList!;
                             if (index != null) {

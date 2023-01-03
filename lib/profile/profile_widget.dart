@@ -174,7 +174,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               )),
                               Expanded(
                                 child: AuthUserStreamWidget(
-                                  child: SelectionArea(
+                                  builder: (context) => SelectionArea(
                                       child: Text(
                                     currentUserDisplayName,
                                     textAlign: TextAlign.start,
@@ -242,7 +242,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           padding:
                               EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
                           child: AuthUserStreamWidget(
-                            child: Container(
+                            builder: (context) => Container(
                               width: 300,
                               child: TextFormField(
                                 controller: nameController,
@@ -319,7 +319,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                         ),
                         AuthUserStreamWidget(
-                          child: FlutterFlowDropDown<String>(
+                          builder: (context) => FlutterFlowDropDown<String>(
                             initialOption: collegeValue ??= valueOrDefault(
                                 currentUserDocument?.college, ''),
                             options: [
@@ -384,7 +384,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
                           child: AuthUserStreamWidget(
-                            child: FlutterFlowDropDown<String>(
+                            builder: (context) => FlutterFlowDropDown<String>(
                               initialOption: levelValue ??= valueOrDefault(
                                   currentUserDocument?.level, ''),
                               options: [

@@ -352,7 +352,8 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                         if (valueOrDefault(currentUserDocument?.type, '') !=
                             'admin')
                           AuthUserStreamWidget(
-                            child: StreamBuilder<List<UsersRecord>>(
+                            builder: (context) =>
+                                StreamBuilder<List<UsersRecord>>(
                               stream: queryUsersRecord(
                                 queryBuilder: (usersRecord) =>
                                     usersRecord.where('email',

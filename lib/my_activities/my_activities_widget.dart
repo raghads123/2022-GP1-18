@@ -343,11 +343,6 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     children: [
-                                                      Icon(
-                                                        Icons.settings_outlined,
-                                                        color: Colors.black,
-                                                        size: 24,
-                                                      ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -434,6 +429,11 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                             ),
                                                           ],
                                                         ),
+                                                      ),
+                                                      Icon(
+                                                        Icons.settings_outlined,
+                                                        color: Colors.black,
+                                                        size: 24,
                                                       ),
                                                     ],
                                                   ),

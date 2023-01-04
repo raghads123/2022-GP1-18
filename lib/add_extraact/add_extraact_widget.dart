@@ -832,7 +832,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   actLoc: actLocController!.text,
                                   seats: checkboxListTileValue,
                                   numSeats: int.tryParse(textController4!.text),
-                                  actProvider: currentUserEmail,
+                                  actProvider: currentUserDisplayName,
                                   actID: random_data.randomString(
                                     20,
                                     20,

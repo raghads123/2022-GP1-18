@@ -901,7 +901,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             opDesc: oppdesController!.text,
                             sdate: datePicked1,
                             edate: datePicked2,
-                            opProvider: currentUserEmail,
+                            opProvider: currentUserDisplayName,
                             opProviderLogo: uploadedFileUrl,
                             oppName: oppNameController!.text,
                             status: 'معلق',

@@ -815,10 +815,6 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               if (datePicked2 == null) {
                                 return;
                               }
-                              if (uploadedFileUrl == null ||
-                                  uploadedFileUrl.isEmpty) {
-                                return;
-                              }
 
                               final extraActsCreateData = {
                                 ...createExtraActsRecordData(
@@ -840,6 +836,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     true,
                                     true,
                                   ),
+                                  actProviderEmail: currentUserEmail,
                                 ),
                                 'Act_category': FFAppState().ActCategory,
                               };

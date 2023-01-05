@@ -74,7 +74,10 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
                               child: Image.network(
-                                eventInfoExtraActsRecord!.actPic!,
+                                valueOrDefault<String>(
+                                  eventInfoExtraActsRecord!.actPic,
+                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                ),
                                 width: double.infinity,
                                 height: 300,
                                 fit: BoxFit.cover,

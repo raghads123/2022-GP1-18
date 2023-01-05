@@ -350,7 +350,10 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
                                         child: Image.network(
-                                          listViewExtraActsRecord.actPic!,
+                                          valueOrDefault<String>(
+                                            listViewExtraActsRecord.actPic,
+                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                          ),
                                           width: double.infinity,
                                           height: 110,
                                           fit: BoxFit.cover,

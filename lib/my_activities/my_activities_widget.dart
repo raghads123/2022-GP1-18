@@ -283,7 +283,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                         stream: queryOpportunitiesRecord(
                                           queryBuilder: (opportunitiesRecord) =>
                                               opportunitiesRecord.where(
-                                                  'OpProvider',
+                                                  'OpProvider_email',
                                                   isEqualTo: currentUserEmail),
                                         ),
                                         builder: (context, snapshot) {
@@ -797,7 +797,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                         stream: queryExtraActsRecord(
                                           queryBuilder: (extraActsRecord) =>
                                               extraActsRecord.where(
-                                                  'Act_provider',
+                                                  'Act_provider_email',
                                                   isEqualTo: currentUserEmail),
                                         ),
                                         builder: (context, snapshot) {

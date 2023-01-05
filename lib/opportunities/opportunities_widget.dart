@@ -407,7 +407,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                   String>(
                                                                 listViewOpportunitiesRecord
                                                                     .opProviderLogo,
-                                                                'logo',
+                                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
                                                               ),
                                                               width: 160,
                                                               height: 100,

@@ -138,8 +138,11 @@ class _OpportunityApplyFormWidgetState
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 0, 0, 15),
                                                 child: Image.network(
-                                                  containerOpportunitiesRecord!
-                                                      .opProviderLogo!,
+                                                  valueOrDefault<String>(
+                                                    containerOpportunitiesRecord!
+                                                        .opProviderLogo,
+                                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
+                                                  ),
                                                   width: 130,
                                                   fit: BoxFit.contain,
                                                 ),

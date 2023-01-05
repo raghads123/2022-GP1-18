@@ -79,10 +79,13 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 50),
                                   child: Image.network(
-                                    scrollingContainerExtraActsRecord!.actPic!,
+                                    valueOrDefault<String>(
+                                      scrollingContainerExtraActsRecord!.actPic,
+                                      'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                    ),
                                     width: double.infinity,
                                     height: 300,
-                                    fit: BoxFit.contain,
+                                    fit: BoxFit.scaleDown,
                                   ),
                                 ),
                               ),

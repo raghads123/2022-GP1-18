@@ -912,6 +912,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               true,
                               true,
                             ),
+                            opProviderEmail: currentUserEmail,
                           ),
                           'OpSkills': FFAppState().Skilllist,
                         };

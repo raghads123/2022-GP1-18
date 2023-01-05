@@ -112,6 +112,13 @@ class _$ExtraActsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.actProviderEmail;
+    if (value != null) {
+      result
+        ..add('Act_provider_email')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -189,6 +196,10 @@ class _$ExtraActsRecordSerializer
           result.actID = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'Act_provider_email':
+          result.actProviderEmail = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -230,6 +241,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final String? actID;
   @override
+  final String? actProviderEmail;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ExtraActsRecord([void Function(ExtraActsRecordBuilder)? updates]) =>
@@ -249,6 +262,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actCategory,
       this.actProvider,
       this.actID,
+      this.actProviderEmail,
       this.ffRef})
       : super._();
 
@@ -277,6 +291,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actCategory == other.actCategory &&
         actProvider == other.actProvider &&
         actID == other.actID &&
+        actProviderEmail == other.actProviderEmail &&
         ffRef == other.ffRef;
   }
 
@@ -295,20 +310,24 @@ class _$ExtraActsRecord extends ExtraActsRecord {
                                             $jc(
                                                 $jc(
                                                     $jc(
-                                                        $jc(0,
-                                                            actType.hashCode),
-                                                        actName.hashCode),
-                                                    actDec.hashCode),
-                                                actPic.hashCode),
-                                            status.hashCode),
-                                        sdate.hashCode),
-                                    edate.hashCode),
-                                actLoc.hashCode),
-                            seats.hashCode),
-                        numSeats.hashCode),
-                    actCategory.hashCode),
-                actProvider.hashCode),
-            actID.hashCode),
+                                                        $jc(
+                                                            $jc(
+                                                                0,
+                                                                actType
+                                                                    .hashCode),
+                                                            actName.hashCode),
+                                                        actDec.hashCode),
+                                                    actPic.hashCode),
+                                                status.hashCode),
+                                            sdate.hashCode),
+                                        edate.hashCode),
+                                    actLoc.hashCode),
+                                seats.hashCode),
+                            numSeats.hashCode),
+                        actCategory.hashCode),
+                    actProvider.hashCode),
+                actID.hashCode),
+            actProviderEmail.hashCode),
         ffRef.hashCode));
   }
 
@@ -328,6 +347,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actCategory', actCategory)
           ..add('actProvider', actProvider)
           ..add('actID', actID)
+          ..add('actProviderEmail', actProviderEmail)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -391,6 +411,11 @@ class ExtraActsRecordBuilder
   String? get actID => _$this._actID;
   set actID(String? actID) => _$this._actID = actID;
 
+  String? _actProviderEmail;
+  String? get actProviderEmail => _$this._actProviderEmail;
+  set actProviderEmail(String? actProviderEmail) =>
+      _$this._actProviderEmail = actProviderEmail;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -415,6 +440,7 @@ class ExtraActsRecordBuilder
       _actCategory = $v.actCategory?.toBuilder();
       _actProvider = $v.actProvider;
       _actID = $v.actID;
+      _actProviderEmail = $v.actProviderEmail;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -453,6 +479,7 @@ class ExtraActsRecordBuilder
               actCategory: _actCategory?.build(),
               actProvider: actProvider,
               actID: actID,
+              actProviderEmail: actProviderEmail,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

@@ -351,7 +351,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                         child: Image.network(
                                           valueOrDefault<String>(
                                             listViewExtraActsRecord.actPic,
-                                            'logo',
+                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
                                           ),
                                           width: double.infinity,
                                           height: 110,

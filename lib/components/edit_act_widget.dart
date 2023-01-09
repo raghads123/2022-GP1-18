@@ -1,6 +1,5 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -25,13 +24,14 @@ class EditActWidget extends StatefulWidget {
 
 class _EditActWidgetState extends State<EditActWidget> {
   bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  Uint8List uploadedFileBytes = Uint8List.fromList([]);
 
   TextEditingController? actBioController;
   TextEditingController? actLocController;
   TextEditingController? actNameController;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  DateTime? datePicked3;
   TextEditingController? textController4;
 
   @override
@@ -363,24 +363,18 @@ class _EditActWidgetState extends State<EditActWidget> {
                                         validateFileFormat(
                                             m.storagePath, context))) {
                                   setState(() => isMediaUploading = true);
-                                  var downloadUrls = <String>[];
+                                  var selectedMediaBytes = <Uint8List>[];
                                   try {
-                                    downloadUrls = (await Future.wait(
-                                      selectedMedia.map(
-                                        (m) async => await uploadData(
-                                            m.storagePath, m.bytes),
-                                      ),
-                                    ))
-                                        .where((u) => u != null)
-                                        .map((u) => u!)
+                                    selectedMediaBytes = selectedMedia
+                                        .map((m) => m.bytes)
                                         .toList();
                                   } finally {
                                     isMediaUploading = false;
                                   }
-                                  if (downloadUrls.length ==
+                                  if (selectedMediaBytes.length ==
                                       selectedMedia.length) {
-                                    setState(() =>
-                                        uploadedFileUrl = downloadUrls.first);
+                                    setState(() => uploadedFileBytes =
+                                        selectedMediaBytes.first);
                                   } else {
                                     setState(() {});
                                     return;
@@ -525,7 +519,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                           'بداية النشاط',
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0xFF0283BC),
+                                            color: Color(0xFF565656),
                                             fontWeight: FontWeight.normal,
                                             fontSize: 16,
                                           ),
@@ -585,13 +579,36 @@ class _EditActWidgetState extends State<EditActWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5, 0, 0, 0),
-                                        child: Text(
-                                          'نهاية النشاط',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF0283BC),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16,
+                                        child: InkWell(
+                                          onTap: () async {
+                                            final _datePicked3Date =
+                                                await showDatePicker(
+                                              context: context,
+                                              initialDate:
+                                                  formExtraActsRecord!.edate!,
+                                              firstDate:
+                                                  formExtraActsRecord!.edate!,
+                                              lastDate: DateTime(2050),
+                                            );
+
+                                            if (_datePicked3Date != null) {
+                                              setState(
+                                                () => datePicked3 = DateTime(
+                                                  _datePicked3Date.year,
+                                                  _datePicked3Date.month,
+                                                  _datePicked3Date.day,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                          child: Text(
+                                            'نهاية النشاط',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF0283BC),
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -699,7 +716,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                             onPressed: () async {
                               final extraActsUpdateData =
                                   createExtraActsRecordData(
-                                actPic: uploadedFileUrl,
+                                actPic: uploadedFileBytes,
                                 status: 'معلق',
                                 numSeats: int.tryParse(textController4!.text),
                                 actLoc: actLocController?.text ?? '',

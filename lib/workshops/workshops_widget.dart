@@ -358,32 +358,37 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 0, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                listViewExtraActsRecord
-                                                    .actName!,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title3
-                                                        .override(
-                                                          fontFamily: 'Outfit',
-                                                          color:
-                                                              Color(0xFF1C8EC1),
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                              ),
+                                      Align(
+                                        alignment: AlignmentDirectional(-1, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 8, 0, 8),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  listViewExtraActsRecord
+                                                      .actName!,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .title3
+                                                      .override(
+                                                        fontFamily: 'Outfit',
+                                                        color:
+                                                            Color(0xFF1C8EC1),
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
                                       Row(

@@ -131,318 +131,351 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                               List<OppApplicationsRecord>
                                                   columnOppApplicationsRecordList =
                                                   snapshot.data!;
-                                              return Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: List.generate(
-                                                    columnOppApplicationsRecordList
-                                                        .length, (columnIndex) {
-                                                  final columnOppApplicationsRecord =
-                                                      columnOppApplicationsRecordList[
-                                                          columnIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                6, 6, 6, 6),
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.white,
-                                                        boxShadow: [
-                                                          BoxShadow(
-                                                            blurRadius: 7,
+                                              return SingleChildScrollView(
+                                                primary: false,
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: List.generate(
+                                                      columnOppApplicationsRecordList
+                                                          .length,
+                                                      (columnIndex) {
+                                                    final columnOppApplicationsRecord =
+                                                        columnOppApplicationsRecordList[
+                                                            columnIndex];
+                                                    return Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  6, 6, 6, 6),
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              blurRadius: 7,
+                                                              color: Color(
+                                                                  0xFF777373),
+                                                              offset:
+                                                                  Offset(0, 3),
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          border: Border.all(
                                                             color: Color(
-                                                                0xFF777373),
-                                                            offset:
-                                                                Offset(0, 3),
-                                                          )
-                                                        ],
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        border: Border.all(
-                                                          color:
-                                                              Color(0xFFE4DFDA),
+                                                                0xFFE4DFDA),
+                                                          ),
                                                         ),
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(12,
-                                                                    12, 12, 12),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          8,
-                                                                          0,
-                                                                          8),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Text(
-                                                                    columnOppApplicationsRecord
-                                                                        .oppName!,
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .end,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .title3
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Outfit',
-                                                                          color:
-                                                                              Color(0xFF1C8EC1),
-                                                                          fontSize:
-                                                                              20,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          0,
-                                                                          0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  SelectionArea(
-                                                                      child:
-                                                                          Text(
-                                                                    'حالة التقديم',
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle1,
-                                                                  )),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12,
+                                                                      12,
+                                                                      12,
+                                                                      12),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            60,
                                                                             0,
+                                                                            8,
+                                                                            0,
+                                                                            8),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      columnOppApplicationsRecord
+                                                                          .oppName!,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .end,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .title3
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF1C8EC1),
+                                                                            fontSize:
+                                                                                20,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
                                                                             0,
                                                                             0),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .flaky,
-                                                                      color: Color(
-                                                                          0xFF575F6C),
-                                                                      size: 24,
-                                                                    ),
-                                                                  ),
-                                                                  SelectionArea(
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    SelectionArea(
+                                                                        child:
+                                                                            Text(
+                                                                      'حالة التقديم',
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle1,
+                                                                    )),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              60,
+                                                                              0,
+                                                                              0,
+                                                                              0),
                                                                       child:
-                                                                          Text(
-                                                                    columnOppApplicationsRecord
-                                                                        .status!,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1,
-                                                                  )),
-                                                                ],
+                                                                          Icon(
+                                                                        Icons
+                                                                            .flaky,
+                                                                        color: Color(
+                                                                            0xFF575F6C),
+                                                                        size:
+                                                                            24,
+                                                                      ),
+                                                                    ),
+                                                                    SelectionArea(
+                                                                        child:
+                                                                            Text(
+                                                                      columnOppApplicationsRecord
+                                                                          .status!,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1,
+                                                                    )),
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                                }),
+                                                    );
+                                                  }),
+                                                ),
                                               );
                                             },
                                           ),
                                         ],
                                       ),
-                                    if (tabBarUsersRecord!.type == 'admin')
-                                      StreamBuilder<List<OpportunitiesRecord>>(
-                                        stream: queryOpportunitiesRecord(
-                                          queryBuilder: (opportunitiesRecord) =>
-                                              opportunitiesRecord.where(
-                                                  'OpProvider_email',
-                                                  isEqualTo: currentUserEmail),
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50,
-                                                height: 50,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: Color(0xFF0184BD),
-                                                ),
+                                    SingleChildScrollView(
+                                      primary: false,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          if (tabBarUsersRecord!.type ==
+                                              'admin')
+                                            StreamBuilder<
+                                                List<OpportunitiesRecord>>(
+                                              stream: queryOpportunitiesRecord(
+                                                queryBuilder:
+                                                    (opportunitiesRecord) =>
+                                                        opportunitiesRecord.where(
+                                                            'OpProvider_email',
+                                                            isEqualTo:
+                                                                currentUserEmail),
                                               ),
-                                            );
-                                          }
-                                          List<OpportunitiesRecord>
-                                              listViewOpportunitiesRecordList =
-                                              snapshot.data!;
-                                          return ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            primary: false,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount:
-                                                listViewOpportunitiesRecordList
-                                                    .length,
-                                            itemBuilder:
-                                                (context, listViewIndex) {
-                                              final listViewOpportunitiesRecord =
-                                                  listViewOpportunitiesRecordList[
-                                                      listViewIndex];
-                                              return Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(16, 12, 16, 0),
-                                                child: Container(
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        blurRadius: 3,
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child:
+                                                          CircularProgressIndicator(
                                                         color:
-                                                            Color(0x25000000),
-                                                        offset: Offset(0, 2),
-                                                      )
-                                                    ],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(12,
-                                                                    12, 16, 12),
-                                                        child: Column(
+                                                            Color(0xFF0184BD),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<OpportunitiesRecord>
+                                                    listViewOpportunitiesRecordList =
+                                                    snapshot.data!;
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  primary: false,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewOpportunitiesRecordList
+                                                          .length,
+                                                  itemBuilder:
+                                                      (context, listViewIndex) {
+                                                    final listViewOpportunitiesRecord =
+                                                        listViewOpportunitiesRecordList[
+                                                            listViewIndex];
+                                                    return Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(16, 12,
+                                                                  16, 0),
+                                                      child: Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              blurRadius: 3,
+                                                              color: Color(
+                                                                  0x25000000),
+                                                              offset:
+                                                                  Offset(0, 2),
+                                                            )
+                                                          ],
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text(
-                                                              listViewOpportunitiesRecord
-                                                                  .oppName!,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .title2
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Outfit',
-                                                                    color: Color(
-                                                                        0xFF101213),
-                                                                    fontSize:
-                                                                        22,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          12,
+                                                                          12,
+                                                                          16,
+                                                                          12),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    listViewOpportunitiesRecord
+                                                                        .oppName!,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .title2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Outfit',
+                                                                          color:
+                                                                              Color(0xFF101213),
+                                                                          fontSize:
+                                                                              22,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
                                                                   ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                listViewOpportunitiesRecord
-                                                                    .opProvider!,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText2
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Outfit',
-                                                                      color: Color(
-                                                                          0xFF57636C),
-                                                                      fontSize:
-                                                                          14,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      listViewOpportunitiesRecord
+                                                                          .opProvider!,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF57636C),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
+                                                                          ),
                                                                     ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            4,
+                                                                            0,
+                                                                            0),
+                                                                    child: Text(
+                                                                      listViewOpportunitiesRecord
+                                                                          .status!,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Outfit',
+                                                                            color:
+                                                                                Color(0xFF4B39EF),
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
                                                             ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          4,
-                                                                          0,
-                                                                          0),
-                                                              child: Text(
-                                                                listViewOpportunitiesRecord
-                                                                    .status!,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Outfit',
-                                                                      color: Color(
-                                                                          0xFF4B39EF),
-                                                                      fontSize:
-                                                                          14,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                    ),
-                                                              ),
+                                                            Icon(
+                                                              Icons
+                                                                  .settings_outlined,
+                                                              color:
+                                                                  Colors.black,
+                                                              size: 24,
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                      Icon(
-                                                        Icons.settings_outlined,
-                                                        color: Colors.black,
-                                                        size: 24,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                        ],
                                       ),
+                                    ),
                                   ],
                                 ),
                               ),

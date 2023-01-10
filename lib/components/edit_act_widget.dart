@@ -30,8 +30,7 @@ class _EditActWidgetState extends State<EditActWidget> {
   TextEditingController? actBioController;
   TextEditingController? actLocController;
   TextEditingController? actNameController;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
+  DateTime? datePicked;
   TextEditingController? textController4;
 
   @override
@@ -489,50 +488,29 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     width: 2,
                                   ),
                                 ),
-                                child: InkWell(
-                                  onTap: () async {
-                                    final _datePicked1Date =
-                                        await showDatePicker(
-                                      context: context,
-                                      initialDate: getCurrentTimestamp,
-                                      firstDate: DateTime(1900),
-                                      lastDate: DateTime(2050),
-                                    );
-
-                                    if (_datePicked1Date != null) {
-                                      setState(
-                                        () => datePicked1 = DateTime(
-                                          _datePicked1Date.year,
-                                          _datePicked1Date.month,
-                                          _datePicked1Date.day,
-                                        ),
-                                      );
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.date_range_outlined,
-                                        color: Color(0xFF57636C),
-                                        size: 24,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 0, 0, 0),
-                                        child: Text(
-                                          'بداية النشاط',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF0283BC),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16,
-                                          ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: Text(
+                                        'بداية النشاط',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16,
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Container(
@@ -555,20 +533,20 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 ),
                                 child: InkWell(
                                   onTap: () async {
-                                    final _datePicked2Date =
+                                    final _datePickedDate =
                                         await showDatePicker(
                                       context: context,
-                                      initialDate: getCurrentTimestamp,
-                                      firstDate: DateTime(1900),
+                                      initialDate: formExtraActsRecord!.edate!,
+                                      firstDate: formExtraActsRecord!.edate!,
                                       lastDate: DateTime(2050),
                                     );
 
-                                    if (_datePicked2Date != null) {
+                                    if (_datePickedDate != null) {
                                       setState(
-                                        () => datePicked2 = DateTime(
-                                          _datePicked2Date.year,
-                                          _datePicked2Date.month,
-                                          _datePicked2Date.day,
+                                        () => datePicked = DateTime(
+                                          _datePickedDate.year,
+                                          _datePickedDate.month,
+                                          _datePickedDate.day,
                                         ),
                                       );
                                     }
@@ -623,72 +601,71 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  if (formExtraActsRecord!.seats == true)
-                                    Expanded(
-                                      child: Container(
-                                        width: 400,
-                                        child: TextFormField(
-                                          controller: textController4,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: 'عدد المقاعد',
-                                            labelStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFF0283BC),
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                            hintStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyText2,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFF0283BC),
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0xFF0283BC),
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 2,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            filled: true,
-                                            fillColor: Color(0xFFF0F0F0),
-                                            prefixIcon: Icon(
-                                              Icons.event_seat_rounded,
-                                            ),
-                                          ),
-                                          style: GoogleFonts.getFont(
+                                  Expanded(
+                                    child: Container(
+                                      width: 400,
+                                      child: TextFormField(
+                                        controller: textController4,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: 'عدد المقاعد',
+                                          labelStyle: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0xFF565656),
+                                            color: Color(0xFF0283BC),
                                             fontWeight: FontWeight.normal,
                                           ),
-                                          textAlign: TextAlign.start,
-                                          keyboardType: TextInputType.number,
+                                          hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText2,
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF0283BC),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF0283BC),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          filled: true,
+                                          fillColor: Color(0xFFF0F0F0),
+                                          prefixIcon: Icon(
+                                            Icons.event_seat_rounded,
+                                          ),
                                         ),
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        textAlign: TextAlign.start,
+                                        keyboardType: TextInputType.number,
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -697,17 +674,61 @@ class _EditActWidgetState extends State<EditActWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              if ((actLocController?.text ?? '') != null &&
+                                  (actLocController?.text ?? '') != '') {
+                                final extraActsUpdateData =
+                                    createExtraActsRecordData(
+                                  actLoc: actLocController?.text ?? '',
+                                );
+                                await formExtraActsRecord!.reference
+                                    .update(extraActsUpdateData);
+                              }
+                              if (isMediaUploading) {
+                                final extraActsUpdateData =
+                                    createExtraActsRecordData(
+                                  actPic: uploadedFileUrl,
+                                );
+                                await formExtraActsRecord!.reference
+                                    .update(extraActsUpdateData);
+                              }
+                              if (datePicked != null) {
+                                final extraActsUpdateData =
+                                    createExtraActsRecordData(
+                                  edate: datePicked,
+                                );
+                                await formExtraActsRecord!.reference
+                                    .update(extraActsUpdateData);
+                              }
+                              if (textController4!.text != null &&
+                                  textController4!.text != '') {
+                                final extraActsUpdateData =
+                                    createExtraActsRecordData(
+                                  numSeats: int.tryParse(textController4!.text),
+                                );
+                                await formExtraActsRecord!.reference
+                                    .update(extraActsUpdateData);
+                              }
+
                               final extraActsUpdateData =
                                   createExtraActsRecordData(
-                                actPic: uploadedFileUrl,
                                 status: 'معلق',
-                                numSeats: int.tryParse(textController4!.text),
-                                actLoc: actLocController?.text ?? '',
-                                sdate: datePicked1,
-                                edate: datePicked2,
                               );
                               await formExtraActsRecord!.reference
                                   .update(extraActsUpdateData);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'لقد تم تقديم طلب تعديلك بنجاح',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor: Color(0x00000000),
+                                ),
+                              );
+                              Navigator.pop(context);
                             },
                             text: 'إرسال طلب التعديل',
                             options: FFButtonOptions(

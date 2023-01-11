@@ -199,7 +199,6 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                         width: 300,
                                         child: TextFormField(
                                           controller: nameController,
-                                          autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'الأسم',

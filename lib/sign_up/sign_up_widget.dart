@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -19,6 +20,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   TextEditingController? confirmpasswordController;
   late bool confirmpasswordVisibility;
   TextEditingController? emailController;
+  final emailMask =
+      MaskTextInputFormatter(mask: '#########AAAAAAAAAAAAAAAAAAA');
   TextEditingController? passwordController;
   late bool passwordVisibility;
   final _unfocusNode = FocusNode();
@@ -129,7 +132,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                                 Form(
                                   key: formKey,
-                                  autovalidateMode: AutovalidateMode.disabled,
+                                  autovalidateMode: AutovalidateMode.always,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -142,13 +145,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             controller: emailController,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: 'البريد الإلكتروني ',
+                                              labelText: 'البريد الجامعي',
                                               labelStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              hintText: 'example@email.com',
+                                              hintText: 'ID@student.ksu.edu.sa',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -202,12 +205,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               }
 
                                               if (!RegExp(
-                                                      kTextValidatorEmailRegex)
+                                                      '^([0-9]{9})+@student\\.ksu\\.edu\\.sa\$')
                                                   .hasMatch(val)) {
-                                                return 'تأكدي من صيغة البريد الإلكتروني';
+                                                return 'الرجاء التأكد من صيغة البريد الجامعي';
                                               }
                                               return null;
                                             },
+                                            inputFormatters: [emailMask],
                                           ),
                                         ),
                                       ),
@@ -234,7 +238,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              hintText: 'ادخلي كلمة المرور',
+                                              hintText: 'ادخل كلمة المرور',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
@@ -309,9 +313,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               }
 
                                               if (!RegExp(
-                                                      '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@\$!%*?&]{8,}\$')
+                                                      '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!±§@#\$%?/><\':;~`,.|^&*+=(){}[_-])[A-Za-z\\d!±§@#\$%?/><\':;~`,.|^&*+=(){}[_-]{8,}\$')
                                                   .hasMatch(val)) {
-                                                return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز @!%*?&';
+                                                return 'إلزامي: حرف كبير - حرف صغير - رقم - رمز ';
                                               }
                                               return null;
                                             },
@@ -343,7 +347,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 color: Color(0xFF565656),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              hintText: 'ادخلي كلمة المرور',
+                                              hintText: 'ادخل كلمة المرور',
                                               hintStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFF565656),

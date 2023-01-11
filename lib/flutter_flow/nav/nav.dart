@@ -105,18 +105,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LogInWidget(),
             ),
             FFRoute(
+              name: 'courses',
+              path: 'courses',
+              requireAuth: true,
+              builder: (context, params) => CoursesWidget(),
+            ),
+            FFRoute(
               name: 'HomePage',
               path: 'homePage',
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'HomePage')
                   : HomePageWidget(),
-            ),
-            FFRoute(
-              name: 'courses',
-              path: 'courses',
-              requireAuth: true,
-              builder: (context, params) => CoursesWidget(),
             ),
             FFRoute(
               name: 'course_info',
@@ -127,18 +127,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'workshops',
-              path: 'workshops',
-              requireAuth: true,
-              builder: (context, params) => WorkshopsWidget(),
-            ),
-            FFRoute(
               name: 'workshope_info',
               path: 'workshopeInfo',
               requireAuth: true,
               builder: (context, params) => WorkshopeInfoWidget(
                 workshopid: params.getParam('workshopid', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'workshops',
+              path: 'workshops',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsWidget(),
             ),
             FFRoute(
               name: 'events',

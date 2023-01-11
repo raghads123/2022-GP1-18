@@ -199,7 +199,6 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                         width: 300,
                                         child: TextFormField(
                                           controller: nameController,
-                                          autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'الأسم',
@@ -268,7 +267,10 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           'كلية طب الأسنان',
                                           'كلية الصيدلة',
                                           'كلية العلوم الطبية التطبيقية',
-                                          'كلية التمريض'
+                                          'كلية التمريض',
+                                          'كلية العلوم الرياضية و النشاط البدني',
+                                          'كلية الحقوق والعلوم السياسية',
+                                          'كلية السياحة والآثار'
                                         ],
                                         onChanged: (val) =>
                                             setState(() => collegeValue = val),

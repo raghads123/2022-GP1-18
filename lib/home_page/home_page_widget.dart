@@ -298,41 +298,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 ),
                               ],
                             ),
-                            if (valueOrDefault(currentUserDocument?.type, '') ==
-                                'admin')
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: AuthUserStreamWidget(
-                                  builder: (context) => InkWell(
-                                    onTap: () async {
-                                      if (Navigator.of(context).canPop()) {
-                                        context.pop();
-                                      }
-                                      context.pushNamed(
-                                        'AddExtraact',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.leftToRight,
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    child: Container(
-                                      width: 314.5,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFFAF1),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 4,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0, 2),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              child: Container(
+                                width: 314.5,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFFAF1),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Color(0x33000000),
+                                      offset: Offset(0, 2),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Visibility(
+                                  visible: valueOrDefault(
+                                          currentUserDocument?.type, '') ==
+                                      'admin',
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => InkWell(
+                                      onTap: () async {
+                                        context.pushNamed('AddExtraact');
+                                      },
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -368,6 +358,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
+                            ),
                             if (valueOrDefault(currentUserDocument?.type, '') ==
                                 'admin')
                               Padding(
@@ -403,25 +394,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ],
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.add_rounded,
-                                            color: Color(0xFF777373),
-                                            size: 24,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 10, 5, 10),
-                                            child: Text(
-                                              'إضافة فرصة',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                      child: Visibility(
+                                        visible: valueOrDefault(
+                                                currentUserDocument?.type,
+                                                '') ==
+                                            'admin',
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.pushNamed('Addopp');
+                                          },
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.add_rounded,
+                                                color: Color(0xFF777373),
+                                                size: 24,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(5, 10, 5, 10),
+                                                child: Text(
+                                                  'إضافة فرصة',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .title1
                                                       .override(
                                                         fontFamily:
@@ -430,9 +429,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             Color(0xFF777373),
                                                         fontSize: 19,
                                                       ),
-                                            ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ),

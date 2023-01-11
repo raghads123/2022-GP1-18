@@ -26,6 +26,16 @@ export 'schema/opp_applications_record.dart';
 export 'schema/rating_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
+Future<int> queryUsersRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      UsersRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<UsersRecord>> queryUsersRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -68,6 +78,16 @@ Future<FFFirestorePage<UsersRecord>> queryUsersRecordPage({
     );
 
 /// Functions to query ExtraActsRecords (as a Stream and as a Future).
+Future<int> queryExtraActsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ExtraActsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<ExtraActsRecord>> queryExtraActsRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -110,6 +130,16 @@ Future<FFFirestorePage<ExtraActsRecord>> queryExtraActsRecordPage({
     );
 
 /// Functions to query OpportunitiesRecords (as a Stream and as a Future).
+Future<int> queryOpportunitiesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      OpportunitiesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<OpportunitiesRecord>> queryOpportunitiesRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -152,6 +182,16 @@ Future<FFFirestorePage<OpportunitiesRecord>> queryOpportunitiesRecordPage({
     );
 
 /// Functions to query CategoryRecords (as a Stream and as a Future).
+Future<int> queryCategoryRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CategoryRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<CategoryRecord>> queryCategoryRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -194,6 +234,16 @@ Future<FFFirestorePage<CategoryRecord>> queryCategoryRecordPage({
     );
 
 /// Functions to query OppApplicationsRecords (as a Stream and as a Future).
+Future<int> queryOppApplicationsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      OppApplicationsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<OppApplicationsRecord>> queryOppApplicationsRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -236,6 +286,16 @@ Future<FFFirestorePage<OppApplicationsRecord>> queryOppApplicationsRecordPage({
     );
 
 /// Functions to query RatingRecords (as a Stream and as a Future).
+Future<int> queryRatingRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      RatingRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
 Stream<List<RatingRecord>> queryRatingRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
@@ -276,6 +336,22 @@ Future<FFFirestorePage<RatingRecord>> queryRatingRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
+
+Future<int> queryCollectionCount(
+  Query collection, {
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) {
+  final builder = queryBuilder ?? (q) => q;
+  var query = builder(collection);
+  if (limit > 0) {
+    query = query.limit(limit);
+  }
+
+  return query.count().get().catchError((err) {
+    print('Error querying $collection: $err');
+  }).then((value) => value.count);
+}
 
 Stream<List<T>> queryCollection<T>(Query collection, Serializer<T> serializer,
     {Query Function(Query)? queryBuilder,

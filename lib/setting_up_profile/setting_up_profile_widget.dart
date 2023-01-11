@@ -267,7 +267,10 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           'كلية طب الأسنان',
                                           'كلية الصيدلة',
                                           'كلية العلوم الطبية التطبيقية',
-                                          'كلية التمريض'
+                                          'كلية التمريض',
+                                          'كلية العلوم الرياضية و النشاط البدني',
+                                          'كلية الحقوق والعلوم السياسية',
+                                          'كلية السياحة والآثار'
                                         ],
                                         onChanged: (val) =>
                                             setState(() => collegeValue = val),

@@ -496,7 +496,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                   queryParams: {
                                                     'courseid': serializeParam(
                                                       listViewExtraActsRecord
-                                                          .actName,
+                                                          .actID,
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,

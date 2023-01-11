@@ -94,13 +94,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       controller: emailController,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'البريد الإلكتروني',
+                                        labelText: 'البريد الجامعي',
                                         labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
-                                        hintText: 'example@email.com',
+                                        hintText: 'ID@student.ksu.edu.sa',
                                         hintStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
@@ -165,7 +165,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
-                                        hintText: 'ادخلي كلمة المرور',
+                                        hintText: 'ادخل كلمة المرور',
                                         hintStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),

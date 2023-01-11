@@ -105,18 +105,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LogInWidget(),
             ),
             FFRoute(
-              name: 'courses',
-              path: 'courses',
-              requireAuth: true,
-              builder: (context, params) => CoursesWidget(),
-            ),
-            FFRoute(
               name: 'HomePage',
               path: 'homePage',
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'HomePage')
                   : HomePageWidget(),
+            ),
+            FFRoute(
+              name: 'courses',
+              path: 'courses',
+              requireAuth: true,
+              builder: (context, params) => CoursesWidget(),
             ),
             FFRoute(
               name: 'course_info',

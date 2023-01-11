@@ -34,7 +34,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
       body: StreamBuilder<List<ExtraActsRecord>>(
         stream: queryExtraActsRecord(
           queryBuilder: (extraActsRecord) =>
-              extraActsRecord.where('Act_name', isEqualTo: widget.courseid),
+              extraActsRecord.where('Act_ID', isEqualTo: widget.courseid),
           singleRecord: true,
         ),
         builder: (context, snapshot) {
@@ -352,8 +352,10 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                             ],
                           ),
                         ),
-                        if (valueOrDefault(currentUserDocument?.type, '') !=
-                            'admin')
+                        if ((valueOrDefault(currentUserDocument?.type, '') ==
+                                'student') &&
+                            (getCurrentTimestamp <
+                                scrollingContainerExtraActsRecord!.edate!))
                           AuthUserStreamWidget(
                             builder: (context) =>
                                 StreamBuilder<List<UsersRecord>>(
@@ -389,7 +391,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                         .toList()
                                         .contains(
                                             scrollingContainerExtraActsRecord!
-                                                .actName))
+                                                .actID))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 40),
@@ -493,7 +495,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                         .toList()
                                         .contains(
                                             scrollingContainerExtraActsRecord!
-                                                .actName))
+                                                .actID))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 40),

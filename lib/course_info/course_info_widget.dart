@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class CourseInfoWidget extends StatefulWidget {
@@ -75,14 +77,48 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  scrollingContainerExtraActsRecord!.actPic,
-                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          valueOrDefault<String>(
+                                            scrollingContainerExtraActsRecord!
+                                                .actPic,
+                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                          ),
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: valueOrDefault<String>(
+                                          scrollingContainerExtraActsRecord!
+                                              .actPic,
+                                          'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                        ),
+                                        useHeroAnimation: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: valueOrDefault<String>(
+                                    scrollingContainerExtraActsRecord!.actPic,
+                                    'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                  ),
+                                  transitionOnUserGestures: true,
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      scrollingContainerExtraActsRecord!.actPic,
+                                      'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                    ),
+                                    width: double.infinity,
+                                    height: 300,
+                                    fit: BoxFit.scaleDown,
+                                  ),
                                 ),
-                                width: double.infinity,
-                                height: 300,
-                                fit: BoxFit.scaleDown,
                               ),
                             ),
                             Align(
@@ -352,6 +388,34 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                             ],
                           ),
                         ),
+                        if (getCurrentTimestamp >=
+                            scrollingContainerExtraActsRecord!.edate!)
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 4),
+                                    child: Text(
+                                      'لقد أنتهت هذه الدورة شكراً لاهتمامك!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFFB72F31),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         if ((valueOrDefault(currentUserDocument?.type, '') ==
                                 'student') &&
                             (getCurrentTimestamp <
@@ -380,6 +444,10 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                 }
                                 List<UsersRecord> columnUsersRecordList =
                                     snapshot.data!;
+                                // Return an empty Container when the item does not exist.
+                                if (snapshot.data!.isEmpty) {
+                                  return Container();
+                                }
                                 final columnUsersRecord =
                                     columnUsersRecordList.isNotEmpty
                                         ? columnUsersRecordList.first
@@ -425,11 +493,10 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                   'users_acts':
                                                       FieldValue.arrayUnion([
                                                     scrollingContainerExtraActsRecord!
-                                                        .actName
+                                                        .actID
                                                   ]),
                                                 };
-                                                await columnUsersRecord!
-                                                    .reference
+                                                await currentUserReference!
                                                     .update(usersUpdateData);
 
                                                 final extraActsUpdateData = {
@@ -450,7 +517,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                       .actName
                                                 ]),
                                               };
-                                              await columnUsersRecord!.reference
+                                              await currentUserReference!
                                                   .update(usersUpdateData);
                                             }
 

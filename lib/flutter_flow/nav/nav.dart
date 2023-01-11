@@ -127,18 +127,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'workshops',
+              path: 'workshops',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsWidget(),
+            ),
+            FFRoute(
               name: 'workshope_info',
               path: 'workshopeInfo',
               requireAuth: true,
               builder: (context, params) => WorkshopeInfoWidget(
                 workshopid: params.getParam('workshopid', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'workshops',
-              path: 'workshops',
-              requireAuth: true,
-              builder: (context, params) => WorkshopsWidget(),
             ),
             FFRoute(
               name: 'events',

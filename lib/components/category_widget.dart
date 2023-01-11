@@ -103,8 +103,13 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(7, 7, 55, 7),
                           child: FlutterFlowCheckboxGroup(
                             options: columnCategoryRecord!.name!.toList(),
-                            onChanged: (val) =>
-                                setState(() => checkboxGroupValues = val),
+                            onChanged: (val) async {
+                              setState(() => checkboxGroupValues = val);
+                              setState(() {
+                                FFAppState().ActCategory =
+                                    checkboxGroupValues!.toList();
+                              });
+                            },
                             activeColor: Color(0x00000000),
                             checkColor: FlutterFlowTheme.of(context).alternate,
                             checkboxBorderColor: Color(0xFF95A1AC),
@@ -129,7 +134,6 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
-                  FFAppState().ActCategory = checkboxGroupValues!.toList();
                   Navigator.pop(context);
                 },
                 text: 'تم',

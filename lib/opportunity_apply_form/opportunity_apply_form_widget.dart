@@ -53,7 +53,7 @@ class _OpportunityApplyFormWidgetState
                     child: StreamBuilder<List<OpportunitiesRecord>>(
                       stream: queryOpportunitiesRecord(
                         queryBuilder: (opportunitiesRecord) =>
-                            opportunitiesRecord.where('oppName',
+                            opportunitiesRecord.where('OpID',
                                 isEqualTo: widget.opportunityID),
                         singleRecord: true,
                       ),
@@ -188,10 +188,11 @@ class _OpportunityApplyFormWidgetState
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 0, 0, 15),
+                                                                0, 0, 15, 15),
                                                     child: SelectionArea(
                                                         child: Text(
-                                                      'تقدم فرصة',
+                                                      containerOpportunitiesRecord!
+                                                          .opProvider!,
                                                       textAlign: TextAlign.end,
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -209,11 +210,10 @@ class _OpportunityApplyFormWidgetState
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 0, 15, 15),
+                                                                0, 0, 0, 15),
                                                     child: SelectionArea(
                                                         child: Text(
-                                                      containerOpportunitiesRecord!
-                                                          .opProvider!,
+                                                      'تقدم فرصة',
                                                       textAlign: TextAlign.end,
                                                       style:
                                                           FlutterFlowTheme.of(
@@ -288,8 +288,8 @@ class _OpportunityApplyFormWidgetState
                                               ),
                                               if (valueOrDefault(
                                                       currentUserDocument?.type,
-                                                      '') !=
-                                                  'admin')
+                                                      '') ==
+                                                  'student')
                                                 AuthUserStreamWidget(
                                                   builder: (context) => Column(
                                                     mainAxisSize:
@@ -300,7 +300,7 @@ class _OpportunityApplyFormWidgetState
                                                           .toList()
                                                           .contains(
                                                               containerOpportunitiesRecord!
-                                                                  .oppName))
+                                                                  .opID))
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
@@ -309,61 +309,37 @@ class _OpportunityApplyFormWidgetState
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
-                                                              if (columnUsersRecord!
-                                                                  .usersOpp!
-                                                                  .toList()
-                                                                  .contains(
-                                                                      containerOpportunitiesRecord!
-                                                                          .oppName)) {
-                                                                await showDialog(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          '.لقد تم تقديمك على هذه الفرصة مسبقاً'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('تم'),
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                              } else {
-                                                                showModalBottomSheet(
-                                                                  isScrollControlled:
-                                                                      true,
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (context) {
-                                                                    return Padding(
-                                                                      padding: MediaQuery.of(
-                                                                              context)
-                                                                          .viewInsets,
+                                                              showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return Padding(
+                                                                    padding: MediaQuery.of(
+                                                                            context)
+                                                                        .viewInsets,
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          400,
                                                                       child:
-                                                                          Container(
-                                                                        height:
-                                                                            400,
-                                                                        child:
-                                                                            OppapplicationformWidget(
-                                                                          oppappform:
-                                                                              containerOpportunitiesRecord!.oppName,
-                                                                          oppappemail:
-                                                                              columnUsersRecord!.email,
-                                                                        ),
+                                                                          OppapplicationformWidget(
+                                                                        oppappform:
+                                                                            containerOpportunitiesRecord!.opID,
+                                                                        oppappemail:
+                                                                            currentUserEmail,
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                ).then((value) =>
-                                                                    setState(
-                                                                        () {}));
-                                                              }
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
                                                             },
                                                             text: 'تقديم',
                                                             options:
@@ -397,7 +373,7 @@ class _OpportunityApplyFormWidgetState
                                                           .toList()
                                                           .contains(
                                                               containerOpportunitiesRecord!
-                                                                  .oppName))
+                                                                  .opID))
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional

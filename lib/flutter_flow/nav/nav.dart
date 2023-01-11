@@ -155,6 +155,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
+              name: 'Opportunities',
+              path: 'opportunities',
+              requireAuth: true,
+              builder: (context, params) => OpportunitiesWidget(),
+            ),
+            FFRoute(
               name: 'Opportunity_apply_form',
               path: 'opportunityApplyForm',
               requireAuth: true,
@@ -162,12 +168,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 opportunityID:
                     params.getParam('opportunityID', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'Opportunities',
-              path: 'opportunities',
-              requireAuth: true,
-              builder: (context, params) => OpportunitiesWidget(),
             ),
             FFRoute(
               name: 'Profile',

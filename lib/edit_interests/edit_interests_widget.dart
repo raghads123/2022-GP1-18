@@ -105,7 +105,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                 primary: false,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
@@ -350,10 +350,10 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 8),
+                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                       child: Text(
                         'الإهتمامات',
-                        textAlign: TextAlign.end,
+                        textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).subtitle1.override(
                               fontFamily: 'Poppins',
                               color: Color(0xFF494646),

@@ -402,7 +402,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 4, 0, 4),
                                     child: Text(
-                                      'لقد أنتهت هذه الدورة شكراً لاهتمامك!',
+                                      'لقد إنتهت فرصة الإلتحاق بهذه الدورة شكراً لاهتمامك!',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1

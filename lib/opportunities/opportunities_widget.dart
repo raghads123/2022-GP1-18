@@ -265,20 +265,19 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                         final listViewOpportunitiesRecord =
                             listViewOpportunitiesRecordList[listViewIndex];
                         return Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 8, 16, 12),
+                          padding: EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
                           child: Container(
                             width: double.infinity,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
-                                  blurRadius: 9,
-                                  color: FlutterFlowTheme.of(context).gray600,
-                                  offset: Offset(0, 2),
+                                  blurRadius: 7,
+                                  color: Color(0xFF777373),
+                                  offset: Offset(0, 3),
                                 )
                               ],
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(8),
                             ),
                             child: Visibility(
                               visible: functions.showSearchResultOp(
@@ -320,6 +319,35 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .only(
+                                                              bottomLeft: Radius
+                                                                  .circular(0),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          12),
+                                                              topLeft: Radius
+                                                                  .circular(0),
+                                                              topRight: Radius
+                                                                  .circular(12),
+                                                            ),
+                                                            child:
+                                                                Image.network(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewOpportunitiesRecord
+                                                                    .opProviderLogo,
+                                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
+                                                              ),
+                                                              width: 160,
+                                                              height: 100,
+                                                              fit: BoxFit
+                                                                  .contain,
+                                                            ),
+                                                          ),
                                                           Expanded(
                                                             child: Padding(
                                                               padding:
@@ -386,35 +414,6 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                               ),
                                                             ),
                                                           ),
-                                                          ClipRRect(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .only(
-                                                              bottomLeft: Radius
-                                                                  .circular(0),
-                                                              bottomRight:
-                                                                  Radius
-                                                                      .circular(
-                                                                          12),
-                                                              topLeft: Radius
-                                                                  .circular(0),
-                                                              topRight: Radius
-                                                                  .circular(12),
-                                                            ),
-                                                            child:
-                                                                Image.network(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                listViewOpportunitiesRecord
-                                                                    .opProviderLogo,
-                                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
-                                                              ),
-                                                              width: 160,
-                                                              height: 100,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -448,7 +447,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                                                     'opportunityID':
                                                                         serializeParam(
                                                                       listViewOpportunitiesRecord
-                                                                          .oppName,
+                                                                          .opID,
                                                                       ParamType
                                                                           .String,
                                                                     ),

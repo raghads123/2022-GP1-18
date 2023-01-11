@@ -51,7 +51,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
     return StreamBuilder<List<OpportunitiesRecord>>(
       stream: queryOpportunitiesRecord(
         queryBuilder: (opportunitiesRecord) =>
-            opportunitiesRecord.where('oppName', isEqualTo: widget.oppappform),
+            opportunitiesRecord.where('OpID', isEqualTo: widget.oppappform),
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -358,14 +358,6 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     return;
                                   }
 
-                                  final usersUpdateData = {
-                                    'users_opp': FieldValue.arrayUnion([
-                                      containerOpportunitiesRecord!.oppName
-                                    ]),
-                                  };
-                                  await columnUsersRecord!.reference
-                                      .update(usersUpdateData);
-
                                   final oppApplicationsCreateData =
                                       createOppApplicationsRecordData(
                                     appEmail: userEmailController!.text,
@@ -379,6 +371,13 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                   await OppApplicationsRecord.collection
                                       .doc()
                                       .set(oppApplicationsCreateData);
+
+                                  final usersUpdateData = {
+                                    'users_opp': FieldValue.arrayUnion(
+                                        [containerOpportunitiesRecord!.opID]),
+                                  };
+                                  await columnUsersRecord!.reference
+                                      .update(usersUpdateData);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(

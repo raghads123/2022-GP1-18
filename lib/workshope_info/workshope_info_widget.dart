@@ -421,7 +421,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0, 4, 0, 4),
                                       child: Text(
-                                        'لقد انتهت هذه ورشة العمل شكراً لاهتمامك!',
+                                        'لقد إنتهت فرصة الإلتحاق هذه ورشة العمل شكراً لاهتمامك!',
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1

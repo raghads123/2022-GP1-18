@@ -494,7 +494,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                     'workshopid':
                                                         serializeParam(
                                                       listViewExtraActsRecord
-                                                          .actName,
+                                                          .actID,
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,

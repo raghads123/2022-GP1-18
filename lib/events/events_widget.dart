@@ -498,7 +498,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                   queryParams: {
                                                     'eventid': serializeParam(
                                                       listViewExtraActsRecord
-                                                          .actName,
+                                                          .actID,
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,

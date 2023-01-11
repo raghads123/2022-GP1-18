@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class EventInfoWidget extends StatefulWidget {
@@ -31,7 +33,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
     return StreamBuilder<List<ExtraActsRecord>>(
       stream: queryExtraActsRecord(
         queryBuilder: (extraActsRecord) =>
-            extraActsRecord.where('Act_name', isEqualTo: widget.eventid),
+            extraActsRecord.where('Act_ID', isEqualTo: widget.eventid),
         singleRecord: true,
       ),
       builder: (context, snapshot) {
@@ -73,14 +75,46 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
-                              child: Image.network(
-                                valueOrDefault<String>(
-                                  eventInfoExtraActsRecord!.actPic,
-                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: FlutterFlowExpandedImageView(
+                                        image: Image.network(
+                                          valueOrDefault<String>(
+                                            eventInfoExtraActsRecord!.actPic,
+                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                          ),
+                                          fit: BoxFit.contain,
+                                        ),
+                                        allowRotation: false,
+                                        tag: valueOrDefault<String>(
+                                          eventInfoExtraActsRecord!.actPic,
+                                          'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                        ),
+                                        useHeroAnimation: true,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Hero(
+                                  tag: valueOrDefault<String>(
+                                    eventInfoExtraActsRecord!.actPic,
+                                    'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                  ),
+                                  transitionOnUserGestures: true,
+                                  child: Image.network(
+                                    valueOrDefault<String>(
+                                      eventInfoExtraActsRecord!.actPic,
+                                      'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                    ),
+                                    width: double.infinity,
+                                    height: 300,
+                                    fit: BoxFit.scaleDown,
+                                  ),
                                 ),
-                                width: double.infinity,
-                                height: 300,
-                                fit: BoxFit.cover,
                               ),
                             ),
                             Container(
@@ -350,8 +384,37 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                             ],
                           ),
                         ),
-                        if (valueOrDefault(currentUserDocument?.type, '') !=
-                            'admin')
+                        if (getCurrentTimestamp >=
+                            eventInfoExtraActsRecord!.edate!)
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 4, 0, 4),
+                                    child: Text(
+                                      'لقد إنتهت فرصة الإلتحاق بهذه الفعالية شكراً لاهتمامك!',
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFFB72F31),
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        if ((valueOrDefault(currentUserDocument?.type, '') ==
+                                'student') &&
+                            (getCurrentTimestamp <
+                                eventInfoExtraActsRecord!.edate!))
                           AuthUserStreamWidget(
                             builder: (context) =>
                                 StreamBuilder<List<UsersRecord>>(
@@ -386,7 +449,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     if (!columnUsersRecord!.usersActs!
                                         .toList()
                                         .contains(
-                                            eventInfoExtraActsRecord!.actName))
+                                            eventInfoExtraActsRecord!.actID))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 40),
@@ -420,7 +483,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                   'users_acts':
                                                       FieldValue.arrayUnion([
                                                     eventInfoExtraActsRecord!
-                                                        .actName
+                                                        .actID
                                                   ]),
                                                 };
                                                 await columnUsersRecord!
@@ -442,7 +505,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                 'users_acts':
                                                     FieldValue.arrayUnion([
                                                   eventInfoExtraActsRecord!
-                                                      .actName
+                                                      .actID
                                                 ]),
                                               };
                                               await columnUsersRecord!.reference
@@ -489,7 +552,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     if (columnUsersRecord!.usersActs!
                                         .toList()
                                         .contains(
-                                            eventInfoExtraActsRecord!.actName))
+                                            eventInfoExtraActsRecord!.actID))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 40),

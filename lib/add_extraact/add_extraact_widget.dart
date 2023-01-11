@@ -543,16 +543,28 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                 final _datePicked1Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
-                                  firstDate: DateTime(1900),
+                                  firstDate: getCurrentTimestamp,
                                   lastDate: DateTime(2050),
                                 );
 
+                                TimeOfDay? _datePicked1Time;
                                 if (_datePicked1Date != null) {
+                                  _datePicked1Time = await showTimePicker(
+                                    context: context,
+                                    initialTime: TimeOfDay.fromDateTime(
+                                        getCurrentTimestamp),
+                                  );
+                                }
+
+                                if (_datePicked1Date != null &&
+                                    _datePicked1Time != null) {
                                   setState(
                                     () => datePicked1 = DateTime(
                                       _datePicked1Date.year,
                                       _datePicked1Date.month,
                                       _datePicked1Date.day,
+                                      _datePicked1Time!.hour,
+                                      _datePicked1Time.minute,
                                     ),
                                   );
                                 }
@@ -606,16 +618,28 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                 final _datePicked2Date = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
-                                  firstDate: DateTime(1900),
+                                  firstDate: getCurrentTimestamp,
                                   lastDate: DateTime(2050),
                                 );
 
+                                TimeOfDay? _datePicked2Time;
                                 if (_datePicked2Date != null) {
+                                  _datePicked2Time = await showTimePicker(
+                                    context: context,
+                                    initialTime: TimeOfDay.fromDateTime(
+                                        getCurrentTimestamp),
+                                  );
+                                }
+
+                                if (_datePicked2Date != null &&
+                                    _datePicked2Time != null) {
                                   setState(
                                     () => datePicked2 = DateTime(
                                       _datePicked2Date.year,
                                       _datePicked2Date.month,
                                       _datePicked2Date.day,
+                                      _datePicked2Time!.hour,
+                                      _datePicked2Time.minute,
                                     ),
                                   );
                                 }
@@ -674,7 +698,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     () => checkboxListTileValue = newValue!);
                               },
                               title: Text(
-                                ' المقاعد محددة',
+                                'المقاعد محددة',
                                 textAlign: TextAlign.start,
                                 style: GoogleFonts.getFont(
                                   'Open Sans',

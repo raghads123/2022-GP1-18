@@ -197,8 +197,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 15, 0, 15),
                                 child: SelectionArea(
                                     child: Text(
                                   'يمكنك تعديل المعلومات التالية:',
@@ -213,6 +213,41 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ],
                           ),
                         ),
+                        if (valueOrDefault(currentUserDocument?.type, '') ==
+                            'student')
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed('EditInterests');
+                                },
+                                text: 'تعديل الإهتمامات',
+                                icon: Icon(
+                                  Icons.edit_outlined,
+                                  size: 15,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 300,
+                                  height: 50,
+                                  color: Color(0xFFE0E0E0),
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyText2
+                                      .override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: Color(0xFFFF5757),
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                showLoadingIndicator: false,
+                              ),
+                            ),
+                          ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
                           child: Row(
@@ -222,7 +257,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 15, 20, 0),
+                                      20, 0, 20, 0),
                                   child: SelectionArea(
                                       child: Text(
                                     'الاسم:',
@@ -293,164 +328,155 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
+                        if (valueOrDefault(currentUserDocument?.type, '') ==
+                            'student')
+                          AuthUserStreamWidget(
+                            builder: (context) => Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 0),
-                                  child: SelectionArea(
-                                      child: Text(
-                                    'الكلية:',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.getFont(
-                                      'Merriweather',
-                                      color: Color(0xFFFF5757),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        AuthUserStreamWidget(
-                          builder: (context) => FlutterFlowDropDown<String>(
-                            initialOption: collegeValue ??= valueOrDefault(
-                                currentUserDocument?.college, ''),
-                            options: [
-                              'كلية الآداب',
-                              'كلية التربية',
-                              'كلية اللغات والترجمة',
-                              'كلية الهندسة',
-                              'كلية العلوم',
-                              'كلية علوم الحاسب والمعلومات',
-                              'كلية العمارة والتخطيط',
-                              'كلية إدارة الأعمال',
-                              'كلية الطب',
-                              'كلية طب الأسنان',
-                              'كلية الصيدلة',
-                              'كلية العلوم الطبية التطبيقية',
-                              'كلية التمريض'
-                            ],
-                            onChanged: (val) =>
-                                setState(() => collegeValue = val),
-                            width: 300,
-                            height: 50,
-                            textStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF565656),
-                            ),
-                            hintText: 'الكلية ',
-                            fillColor: Color(0xFFE0E0E0),
-                            elevation: 2,
-                            borderColor: Colors.transparent,
-                            borderWidth: 0,
-                            borderRadius: 25,
-                            margin:
-                                EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                            hidesUnderline: true,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 2),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 15, 20, 0),
-                                  child: SelectionArea(
-                                      child: Text(
-                                    'المستوى:',
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.getFont(
-                                      'Merriweather',
-                                      color: Color(0xFFFF5757),
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  )),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
-                          child: AuthUserStreamWidget(
-                            builder: (context) => FlutterFlowDropDown<String>(
-                              initialOption: levelValue ??= valueOrDefault(
-                                  currentUserDocument?.level, ''),
-                              options: [
-                                'المستوى الأول',
-                                'المستوى الثاني',
-                                'المستوى الثالث',
-                                'المستوى الرابع',
-                                'المستوى الخامس',
-                                'المستوى السادس',
-                                'المستوى السابع',
-                                'المستوى الثامن',
-                                'المستوى التاسع',
-                                'المستوى العاشر',
-                                'المستوى الحادي عشر',
-                                'المستوى الثاني عشر'
-                              ],
-                              onChanged: (val) =>
-                                  setState(() => levelValue = val),
-                              width: 300,
-                              height: 50,
-                              textStyle: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: Color(0xFF565656),
-                              ),
-                              hintText: 'المستوى',
-                              fillColor: Color(0xFFE0E0E0),
-                              elevation: 2,
-                              borderColor: Colors.transparent,
-                              borderWidth: 0,
-                              borderRadius: 25,
-                              margin:
-                                  EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                              hidesUnderline: true,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('EditInterests');
-                            },
-                            text: 'تعديل الإهتمامات',
-                            icon: Icon(
-                              Icons.edit_outlined,
-                              size: 15,
-                            ),
-                            options: FFButtonOptions(
-                              width: 300,
-                              height: 50,
-                              color: Color(0xFFE0E0E0),
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFFFF5757),
+                                      30, 0, 30, 2),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 0, 20, 0),
+                                          child: SelectionArea(
+                                              child: Text(
+                                            'الكلية:',
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.getFont(
+                                              'Merriweather',
+                                              color: Color(0xFFFF5757),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(25),
+                                ),
+                                FlutterFlowDropDown<String>(
+                                  initialOption: collegeValue ??=
+                                      valueOrDefault(
+                                          currentUserDocument?.college, ''),
+                                  options: [
+                                    'كلية الآداب',
+                                    'كلية التربية',
+                                    'كلية اللغات والترجمة',
+                                    'كلية الهندسة',
+                                    'كلية العلوم',
+                                    'كلية علوم الحاسب والمعلومات',
+                                    'كلية العمارة والتخطيط',
+                                    'كلية إدارة الأعمال',
+                                    'كلية الطب',
+                                    'كلية طب الأسنان',
+                                    'كلية الصيدلة',
+                                    'كلية العلوم الطبية التطبيقية',
+                                    'كلية التمريض'
+                                  ],
+                                  onChanged: (val) =>
+                                      setState(() => collegeValue = val),
+                                  width: 300,
+                                  height: 50,
+                                  textStyle: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF565656),
+                                  ),
+                                  hintText: 'الكلية ',
+                                  fillColor: Color(0xFFE0E0E0),
+                                  elevation: 2,
+                                  borderColor: Colors.transparent,
+                                  borderWidth: 0,
+                                  borderRadius: 25,
+                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                      12, 4, 12, 4),
+                                  hidesUnderline: true,
+                                ),
+                              ],
                             ),
-                            showLoadingIndicator: false,
                           ),
-                        ),
+                        if (valueOrDefault(currentUserDocument?.type, '') ==
+                            'student')
+                          AuthUserStreamWidget(
+                            builder: (context) => Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      30, 0, 30, 2),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 15, 20, 0),
+                                          child: SelectionArea(
+                                              child: Text(
+                                            'المستوى:',
+                                            textAlign: TextAlign.start,
+                                            style: GoogleFonts.getFont(
+                                              'Merriweather',
+                                              color: Color(0xFFFF5757),
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 15),
+                                  child: FlutterFlowDropDown<String>(
+                                    initialOption: levelValue ??=
+                                        valueOrDefault(
+                                            currentUserDocument?.level, ''),
+                                    options: [
+                                      'المستوى الأول',
+                                      'المستوى الثاني',
+                                      'المستوى الثالث',
+                                      'المستوى الرابع',
+                                      'المستوى الخامس',
+                                      'المستوى السادس',
+                                      'المستوى السابع',
+                                      'المستوى الثامن',
+                                      'المستوى التاسع',
+                                      'المستوى العاشر',
+                                      'المستوى الحادي عشر',
+                                      'المستوى الثاني عشر'
+                                    ],
+                                    onChanged: (val) =>
+                                        setState(() => levelValue = val),
+                                    width: 300,
+                                    height: 50,
+                                    textStyle: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: Color(0xFF565656),
+                                    ),
+                                    hintText: 'المستوى',
+                                    fillColor: Color(0xFFE0E0E0),
+                                    elevation: 2,
+                                    borderColor: Colors.transparent,
+                                    borderWidth: 0,
+                                    borderRadius: 25,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        12, 4, 12, 4),
+                                    hidesUnderline: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
                           child: FFButtonWidget(
@@ -485,7 +511,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
-                                    fontFamily: 'Lexend Deca',
+                                    fontFamily: 'Open Sans',
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,

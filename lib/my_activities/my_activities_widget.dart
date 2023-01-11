@@ -507,7 +507,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                   queryBuilder:
                                                       (extraActsRecord) =>
                                                           extraActsRecord.where(
-                                                              'Act_name',
+                                                              'Act_ID',
                                                               isEqualTo:
                                                                   useractlistItem),
                                                   singleRecord: true,
@@ -976,54 +976,61 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                           ],
                                                         ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(160,
-                                                                    0, 0, 0),
-                                                        child:
-                                                            FlutterFlowIconButton(
-                                                          borderColor: Colors
-                                                              .transparent,
-                                                          borderRadius: 10,
-                                                          borderWidth: 1,
-                                                          buttonSize: 40,
-                                                          icon: Icon(
-                                                            Icons.edit_outlined,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 25,
+                                                      if (listViewExtraActsRecord
+                                                              .status ==
+                                                          'موافق عليها')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(160,
+                                                                      0, 0, 0),
+                                                          child:
+                                                              FlutterFlowIconButton(
+                                                            borderColor: Colors
+                                                                .transparent,
+                                                            borderRadius: 10,
+                                                            borderWidth: 1,
+                                                            buttonSize: 40,
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .edit_outlined,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              size: 25,
+                                                            ),
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return Padding(
+                                                                    padding: MediaQuery.of(
+                                                                            context)
+                                                                        .viewInsets,
+                                                                    child:
+                                                                        EditActWidget(
+                                                                      actname:
+                                                                          listViewExtraActsRecord
+                                                                              .actName,
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
                                                           ),
-                                                          onPressed: () async {
-                                                            await showModalBottomSheet(
-                                                              isScrollControlled:
-                                                                  true,
-                                                              backgroundColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              enableDrag: false,
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
-                                                                  child:
-                                                                      EditActWidget(
-                                                                    actname:
-                                                                        listViewExtraActsRecord
-                                                                            .actName,
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
-                                                          },
                                                         ),
-                                                      ),
                                                     ],
                                                   ),
                                                 ),

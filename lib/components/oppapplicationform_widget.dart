@@ -367,6 +367,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                         containerOpportunitiesRecord!.oppName,
                                     status: 'معلق',
                                     oppproviderEmail: widget.oppappemail,
+                                    oppIDDD: widget.oppappform,
                                   );
                                   await OppApplicationsRecord.collection
                                       .doc()

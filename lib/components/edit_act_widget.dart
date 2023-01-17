@@ -14,10 +14,10 @@ import 'package:provider/provider.dart';
 class EditActWidget extends StatefulWidget {
   const EditActWidget({
     Key? key,
-    this.actname,
+    this.actID,
   }) : super(key: key);
 
-  final String? actname;
+  final String? actID;
 
   @override
   _EditActWidgetState createState() => _EditActWidgetState();
@@ -36,7 +36,6 @@ class _EditActWidgetState extends State<EditActWidget> {
   @override
   void initState() {
     super.initState();
-    actNameController = TextEditingController(text: widget.actname);
     textController4 = TextEditingController();
   }
 
@@ -90,8 +89,8 @@ class _EditActWidgetState extends State<EditActWidget> {
               ),
               child: StreamBuilder<List<ExtraActsRecord>>(
                 stream: queryExtraActsRecord(
-                  queryBuilder: (extraActsRecord) => extraActsRecord
-                      .where('Act_name', isEqualTo: widget.actname),
+                  queryBuilder: (extraActsRecord) =>
+                      extraActsRecord.where('Act_ID', isEqualTo: widget.actID),
                   singleRecord: true,
                 ),
                 builder: (context, snapshot) {
@@ -129,7 +128,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                           child: Container(
                             width: 400,
                             child: TextFormField(
-                              controller: actNameController,
+                              controller: actNameController ??=
+                                  TextEditingController(
+                                text: formExtraActsRecord!.actName,
+                              ),
                               autofocus: true,
                               readOnly: true,
                               obscureText: false,

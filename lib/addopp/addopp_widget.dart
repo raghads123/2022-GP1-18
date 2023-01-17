@@ -928,7 +928,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             opProvider: currentUserDisplayName,
                             opProviderLogo: uploadedFileUrl,
                             oppName: oppNameController!.text,
-                            status: 'معلق',
+                            status: 'موافق عليها',
                             opID: random_data.randomString(
                               20,
                               20,

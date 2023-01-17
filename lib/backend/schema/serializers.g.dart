@@ -12,6 +12,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(OppApplicationsRecord.serializer)
       ..add(OpportunitiesRecord.serializer)
       ..add(RatingRecord.serializer)
+      ..add(UserHistoryRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),

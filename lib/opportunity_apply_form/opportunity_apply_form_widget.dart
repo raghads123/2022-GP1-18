@@ -332,7 +332,7 @@ class _OpportunityApplyFormWidgetState
                                                                         oppappform:
                                                                             containerOpportunitiesRecord!.opID,
                                                                         oppappemail:
-                                                                            currentUserEmail,
+                                                                            containerOpportunitiesRecord!.opProviderEmail,
                                                                       ),
                                                                     ),
                                                                   );

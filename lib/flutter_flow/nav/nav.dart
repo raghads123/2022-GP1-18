@@ -214,16 +214,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => AddoppWidget(),
             ),
             FFRoute(
-              name: 'ActivityDash',
-              path: 'activityDash',
+              name: 'MyActDetails',
+              path: 'myActDetails',
               requireAuth: true,
-              builder: (context, params) => ActivityDashWidget(),
+              builder: (context, params) => MyActDetailsWidget(
+                actsdetails: params.getParam('actsdetails', ParamType.String),
+              ),
             ),
             FFRoute(
-              name: 'app_management',
-              path: 'appManagement',
+              name: 'MyOppDetails',
+              path: 'myOppDetails',
               requireAuth: true,
-              builder: (context, params) => AppManagementWidget(),
+              builder: (context, params) => MyOppDetailsWidget(
+                opportunityID:
+                    params.getParam('opportunityID', ParamType.String),
+              ),
+            ),
+            FFRoute(
+              name: 'SettingUpProfileCopy',
+              path: 'settingUpProfileCopy',
+              requireAuth: true,
+              builder: (context, params) => SettingUpProfileCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

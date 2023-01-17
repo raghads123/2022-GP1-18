@@ -439,65 +439,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
-                            if (valueOrDefault(currentUserDocument?.type, '') ==
-                                'admin')
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                                child: AuthUserStreamWidget(
-                                  builder: (context) => InkWell(
-                                    onTap: () async {
-                                      context.pushNamed('ActivityDash');
-                                    },
-                                    child: Container(
-                                      width: 314.5,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFFFFAF1),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 4,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0, 2),
-                                          )
-                                        ],
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.settings,
-                                            color: Color(0xFF777373),
-                                            size: 22,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 10, 5, 10),
-                                            child: Text(
-                                              'ادارة المتقدمين',
-                                              textAlign: TextAlign.center,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Playfair Display',
-                                                        color:
-                                                            Color(0xFF777373),
-                                                        fontSize: 19,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
                           ],
                         ),
                       ),

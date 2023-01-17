@@ -385,8 +385,9 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                               await currentUserReference!
                                                   .update(usersUpdateData);
 
-                                              context.goNamedAuth(
-                                                  'HomePage', mounted);
+                                              context.pushNamedAuth(
+                                                  'SettingUpProfileCopy',
+                                                  mounted);
                                             },
                                             text: 'إنشاء حساب',
                                             options: FFButtonOptions(

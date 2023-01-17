@@ -240,7 +240,10 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                   ),
                 ),
                 StreamBuilder<List<OpportunitiesRecord>>(
-                  stream: queryOpportunitiesRecord(),
+                  stream: queryOpportunitiesRecord(
+                    queryBuilder: (opportunitiesRecord) => opportunitiesRecord
+                        .where('status', isEqualTo: 'موافق عليها'),
+                  ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -258,6 +261,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                         snapshot.data!;
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      primary: false,
                       shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: listViewOpportunitiesRecordList.length,

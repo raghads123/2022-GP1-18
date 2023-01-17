@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -485,36 +486,76 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                     ),
                                               ),
                                             ),
-                                            InkWell(
-                                              onTap: () async {
-                                                if (Navigator.of(context)
-                                                    .canPop()) {
-                                                  context.pop();
+                                            StreamBuilder<
+                                                List<UserHistoryRecord>>(
+                                              stream: queryUserHistoryRecord(
+                                                queryBuilder:
+                                                    (userHistoryRecord) =>
+                                                        userHistoryRecord.where(
+                                                            'user_email',
+                                                            isEqualTo:
+                                                                currentUserEmail),
+                                                singleRecord: true,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color:
+                                                            Color(0xFF0184BD),
+                                                      ),
+                                                    ),
+                                                  );
                                                 }
-                                                context.pushNamed(
-                                                  'course_info',
-                                                  queryParams: {
-                                                    'courseid': serializeParam(
-                                                      listViewExtraActsRecord
-                                                          .actID,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .leftToRight,
-                                                    ),
+                                                List<UserHistoryRecord>
+                                                    textUserHistoryRecordList =
+                                                    snapshot.data!;
+                                                // Return an empty Container when the item does not exist.
+                                                if (snapshot.data!.isEmpty) {
+                                                  return Container();
+                                                }
+                                                final textUserHistoryRecord =
+                                                    textUserHistoryRecordList
+                                                            .isNotEmpty
+                                                        ? textUserHistoryRecordList
+                                                            .first
+                                                        : null;
+                                                return InkWell(
+                                                  onTap: () async {
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
+                                                    context.pushNamed(
+                                                      'course_info',
+                                                      queryParams: {
+                                                        'courseid':
+                                                            serializeParam(
+                                                          listViewExtraActsRecord
+                                                              .actID,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .leftToRight,
+                                                        ),
+                                                      },
+                                                    );
                                                   },
-                                                );
-                                              },
-                                              child: Text(
-                                                'للمزيد',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                  child: Text(
+                                                    'للمزيد',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily: 'Poppins',
@@ -523,7 +564,9 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
-                                              ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                             Icon(
                                               Icons.chevron_right_rounded,

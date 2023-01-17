@@ -1,8 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
-import '../components/edit_act_widget.dart';
 import '../components/ratecollection_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -458,12 +456,46 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                 ],
                                                               ),
                                                             ),
-                                                            Icon(
-                                                              Icons
-                                                                  .settings_outlined,
-                                                              color:
-                                                                  Colors.black,
-                                                              size: 24,
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          160,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  if (Navigator.of(
+                                                                          context)
+                                                                      .canPop()) {
+                                                                    context
+                                                                        .pop();
+                                                                  }
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'MyOppDetails',
+                                                                    queryParams:
+                                                                        {
+                                                                      'opportunityID':
+                                                                          serializeParam(
+                                                                        listViewOpportunitiesRecord
+                                                                            .opID,
+                                                                        ParamType
+                                                                            .String,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .arrow_forward_ios_rounded,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  size: 24,
+                                                                ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
@@ -602,7 +634,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                             .start,
                                                                     children: [
                                                                       Text(
-                                                                        useractlistItem,
+                                                                        columnExtraActsRecord!
+                                                                            .actName!,
                                                                         textAlign:
                                                                             TextAlign.end,
                                                                         style: FlutterFlowTheme.of(context)
@@ -976,61 +1009,39 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                           ],
                                                         ),
                                                       ),
-                                                      if (listViewExtraActsRecord
-                                                              .status ==
-                                                          'موافق عليها')
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(160,
-                                                                      0, 0, 0),
-                                                          child:
-                                                              FlutterFlowIconButton(
-                                                            borderColor: Colors
-                                                                .transparent,
-                                                            borderRadius: 10,
-                                                            borderWidth: 1,
-                                                            buttonSize: 40,
-                                                            icon: Icon(
-                                                              Icons
-                                                                  .edit_outlined,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              size: 25,
-                                                            ),
-                                                            onPressed:
-                                                                () async {
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                enableDrag:
-                                                                    false,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
-                                                                    child:
-                                                                        EditActWidget(
-                                                                      actname:
-                                                                          listViewExtraActsRecord
-                                                                              .actName,
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
-                                                            },
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(10, 0,
+                                                                    0, 0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            if (Navigator.of(
+                                                                    context)
+                                                                .canPop()) {
+                                                              context.pop();
+                                                            }
+                                                            context.pushNamed(
+                                                              'MyActDetails',
+                                                              queryParams: {
+                                                                'actsdetails':
+                                                                    serializeParam(
+                                                                  listViewExtraActsRecord
+                                                                      .actID,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .arrow_forward_ios_rounded,
+                                                            color: Colors.black,
+                                                            size: 24,
                                                           ),
                                                         ),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),

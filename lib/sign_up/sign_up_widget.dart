@@ -470,6 +470,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             await currentUserReference!
                                                 .update(usersUpdateData);
 
+                                            final userHistoryCreateData =
+                                                createUserHistoryRecordData(
+                                              userEmail: currentUserEmail,
+                                            );
+                                            await UserHistoryRecord.collection
+                                                .doc()
+                                                .set(userHistoryCreateData);
+
                                             context.goNamedAuth(
                                               'SettingUpProfile',
                                               mounted,

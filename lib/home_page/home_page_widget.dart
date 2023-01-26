@@ -115,16 +115,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 children: [
                                   InkWell(
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'courses',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.leftToRight,
-                                          ),
-                                        },
-                                      );
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
+                                      context.pushNamed('coursesCopy');
                                     },
                                     child: Container(
                                       width: 150,

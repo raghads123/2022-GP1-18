@@ -1,9 +1,11 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -482,37 +484,92 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                     ),
                                               ),
                                             ),
-                                            InkWell(
-                                              onTap: () async {
-                                                if (Navigator.of(context)
-                                                    .canPop()) {
-                                                  context.pop();
+                                            StreamBuilder<
+                                                List<UserHistoryRecord>>(
+                                              stream: queryUserHistoryRecord(
+                                                queryBuilder:
+                                                    (userHistoryRecord) =>
+                                                        userHistoryRecord.where(
+                                                            'user_email',
+                                                            isEqualTo:
+                                                                currentUserEmail),
+                                                singleRecord: true,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50,
+                                                      height: 50,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color:
+                                                            Color(0xFF0184BD),
+                                                      ),
+                                                    ),
+                                                  );
                                                 }
-                                                context.pushNamed(
-                                                  'workshope_info',
-                                                  queryParams: {
-                                                    'workshopid':
-                                                        serializeParam(
-                                                      listViewExtraActsRecord
-                                                          .actID,
-                                                      ParamType.String,
-                                                    ),
-                                                  }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .leftToRight,
-                                                    ),
+                                                List<UserHistoryRecord>
+                                                    textUserHistoryRecordList =
+                                                    snapshot.data!;
+                                                // Return an empty Container when the item does not exist.
+                                                if (snapshot.data!.isEmpty) {
+                                                  return Container();
+                                                }
+                                                final textUserHistoryRecord =
+                                                    textUserHistoryRecordList
+                                                            .isNotEmpty
+                                                        ? textUserHistoryRecordList
+                                                            .first
+                                                        : null;
+                                                return InkWell(
+                                                  onTap: () async {
+                                                    if (Navigator.of(context)
+                                                        .canPop()) {
+                                                      context.pop();
+                                                    }
+                                                    context.pushNamed(
+                                                      'workshope_info',
+                                                      queryParams: {
+                                                        'workshopid':
+                                                            serializeParam(
+                                                          listViewExtraActsRecord
+                                                              .actID,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .leftToRight,
+                                                        ),
+                                                      },
+                                                    );
+
+                                                    final userHistoryUpdateData =
+                                                        createUserHistoryRecordData(
+                                                      userEmail:
+                                                          currentUserEmail,
+                                                      extraActivityID:
+                                                          listViewExtraActsRecord
+                                                              .actID,
+                                                      aCTType:
+                                                          listViewExtraActsRecord
+                                                              .actType,
+                                                    );
+                                                    await textUserHistoryRecord!
+                                                        .reference
+                                                        .update(
+                                                            userHistoryUpdateData);
                                                   },
-                                                );
-                                              },
-                                              child: Text(
-                                                'للمزيد',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                                  child: Text(
+                                                    'للمزيد',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyText1
                                                         .override(
                                                           fontFamily: 'Poppins',
@@ -521,7 +578,9 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
-                                              ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                             Icon(
                                               Icons.chevron_right,

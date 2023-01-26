@@ -29,3 +29,4 @@ export 'my_act_details/my_act_details_widget.dart' show MyActDetailsWidget;
 export 'my_opp_details/my_opp_details_widget.dart' show MyOppDetailsWidget;
 export 'setting_up_profile_copy/setting_up_profile_copy_widget.dart'
     show SettingUpProfileCopyWidget;
+export 'courses_copy/courses_copy_widget.dart' show CoursesCopyWidget;

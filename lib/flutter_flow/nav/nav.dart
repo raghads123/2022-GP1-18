@@ -235,6 +235,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'settingUpProfileCopy',
               requireAuth: true,
               builder: (context, params) => SettingUpProfileCopyWidget(),
+            ),
+            FFRoute(
+              name: 'coursesCopy',
+              path: 'coursesCopy',
+              requireAuth: true,
+              builder: (context, params) => CoursesCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

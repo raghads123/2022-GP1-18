@@ -5,10 +5,10 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
 class CoursesWidget extends StatefulWidget {
@@ -19,15 +19,11 @@ class CoursesWidget extends StatefulWidget {
 }
 
 class _CoursesWidgetState extends State<CoursesWidget> {
-  PagingController<DocumentSnapshot?, ExtraActsRecord>? _pagingController;
-  Query? _pagingQuery;
-  List<StreamSubscription?> _streamSubscriptions = [];
-
+  final _unfocusNode = FocusNode();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   final fieldSearchKey = GlobalKey();
   TextEditingController? fieldSearchController;
   String? fieldSearchSelectedOption;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -37,7 +33,6 @@ class _CoursesWidgetState extends State<CoursesWidget> {
 
   @override
   void dispose() {
-    _streamSubscriptions.forEach((s) => s?.cancel());
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -241,351 +236,338 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                     ],
                   ),
                 ),
-                PagedListView<DocumentSnapshot<Object?>?, ExtraActsRecord>(
-                  pagingController: () {
-                    final Query<Object?> Function(Query<Object?>) queryBuilder =
-                        (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'دورة تدريبية')
-                            .where('status', isEqualTo: 'موافق عليها');
-                    if (_pagingController != null) {
-                      final query = queryBuilder(ExtraActsRecord.collection);
-                      if (query != _pagingQuery) {
-                        // The query has changed
-                        _pagingQuery = query;
-                        _streamSubscriptions.forEach((s) => s?.cancel());
-                        _streamSubscriptions.clear();
-                        _pagingController!.refresh();
-                      }
-                      return _pagingController!;
-                    }
-
-                    _pagingController = PagingController(firstPageKey: null);
-                    _pagingQuery = queryBuilder(ExtraActsRecord.collection);
-                    _pagingController!.addPageRequestListener((nextPageMarker) {
-                      queryExtraActsRecordPage(
-                        queryBuilder: (extraActsRecord) => extraActsRecord
-                            .where('Act_type', isEqualTo: 'دورة تدريبية')
-                            .where('status', isEqualTo: 'موافق عليها'),
-                        nextPageMarker: nextPageMarker,
-                        pageSize: 25,
-                        isStream: true,
-                      ).then((page) {
-                        _pagingController!.appendPage(
-                          page.data,
-                          page.nextPageMarker,
-                        );
-                        final streamSubscription =
-                            page.dataStream?.listen((data) {
-                          data.forEach((item) {
-                            final itemIndexes = _pagingController!.itemList!
-                                .asMap()
-                                .map((k, v) => MapEntry(v.reference.id, k));
-                            final index = itemIndexes[item.reference.id];
-                            final items = _pagingController!.itemList!;
-                            if (index != null) {
-                              items.replaceRange(index, index + 1, [item]);
-                              _pagingController!.itemList = {
-                                for (var item in items) item.reference: item
-                              }.values.toList();
-                            }
-                          });
-                          setState(() {});
-                        });
-                        _streamSubscriptions.add(streamSubscription);
-                      });
-                    });
-                    return _pagingController!;
-                  }(),
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  builderDelegate: PagedChildBuilderDelegate<ExtraActsRecord>(
-                    // Customize what your widget looks like when it's loading the first page.
-                    firstPageProgressIndicatorBuilder: (_) => Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: Color(0xFF0184BD),
+                StreamBuilder<List<ExtraActsRecord>>(
+                  stream: queryExtraActsRecord(
+                    queryBuilder: (extraActsRecord) => extraActsRecord
+                        .where('Act_type', isEqualTo: 'دورة تدريبية')
+                        .where('status', isEqualTo: 'موافق عليها'),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF0184BD),
+                          ),
                         ),
-                      ),
-                    ),
-
-                    itemBuilder: (context, _, listViewIndex) {
-                      final listViewExtraActsRecord =
-                          _pagingController!.itemList![listViewIndex];
-                      return Visibility(
-                        visible: functions.showSearchResultCourse(
-                            fieldSearchController!.text,
-                            listViewExtraActsRecord.actName!),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 7,
-                                      color: Color(0xFF777373),
-                                      offset: Offset(0, 3),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: Color(0xFFE4DFDA),
+                      );
+                    }
+                    List<ExtraActsRecord> listViewExtraActsRecordList =
+                        snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewExtraActsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewExtraActsRecord =
+                            listViewExtraActsRecordList[listViewIndex];
+                        return Visibility(
+                          visible: functions.showSearchResultCourse(
+                              fieldSearchController!.text,
+                              listViewExtraActsRecord.actName!),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 7,
+                                        color: Color(0xFF777373),
+                                        offset: Offset(0, 3),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: Color(0xFFE4DFDA),
+                                    ),
                                   ),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12, 12, 12, 12),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            listViewExtraActsRecord.actPic,
-                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
-                                          ),
-                                          width: double.infinity,
-                                          height: 110,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: AlignmentDirectional(-1, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 8),
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  listViewExtraActsRecord
-                                                      .actName!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .title3
-                                                      .override(
-                                                        fontFamily: 'Outfit',
-                                                        color:
-                                                            Color(0xFF1C8EC1),
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ],
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12, 12, 12, 12),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              listViewExtraActsRecord.actPic,
+                                              'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
                                             ),
+                                            width: double.infinity,
+                                            height: 110,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'تبدأ',
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1
-                                                .override(
-                                                  fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF777373),
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(120, 0, 0, 0),
-                                              child: Text(
-                                                'تنتهي',
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Lexend Deca',
-                                                      color: Color(0xFF777373),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 8),
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    listViewExtraActsRecord
+                                                        .actName!,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title3
+                                                        .override(
+                                                          fontFamily: 'Outfit',
+                                                          color:
+                                                              Color(0xFF1C8EC1),
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 4, 0, 0),
-                                        child: Row(
+                                        ),
+                                        Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           children: [
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                  'MMMEd',
-                                                  listViewExtraActsRecord
-                                                      .sdate!,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                dateTimeFormat(
-                                                  'MMMEd',
-                                                  listViewExtraActsRecord
-                                                      .edate!,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                ),
-                                                textAlign: TextAlign.start,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .subtitle2
-                                                    .override(
-                                                      fontFamily: 'Roboto Mono',
-                                                      color: Color(0xFF1C8EC1),
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                              ),
-                                            ),
-                                            StreamBuilder<
-                                                List<UserHistoryRecord>>(
-                                              stream: queryUserHistoryRecord(
-                                                queryBuilder:
-                                                    (userHistoryRecord) =>
-                                                        userHistoryRecord.where(
-                                                            'user_email',
-                                                            isEqualTo:
-                                                                currentUserEmail),
-                                                singleRecord: true,
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50,
-                                                      height: 50,
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color:
-                                                            Color(0xFF0184BD),
-                                                      ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<UserHistoryRecord>
-                                                    textUserHistoryRecordList =
-                                                    snapshot.data!;
-                                                // Return an empty Container when the item does not exist.
-                                                if (snapshot.data!.isEmpty) {
-                                                  return Container();
-                                                }
-                                                final textUserHistoryRecord =
-                                                    textUserHistoryRecordList
-                                                            .isNotEmpty
-                                                        ? textUserHistoryRecordList
-                                                            .first
-                                                        : null;
-                                                return InkWell(
-                                                  onTap: () async {
-                                                    if (Navigator.of(context)
-                                                        .canPop()) {
-                                                      context.pop();
-                                                    }
-                                                    context.pushNamed(
-                                                      'course_info',
-                                                      queryParams: {
-                                                        'courseid':
-                                                            serializeParam(
-                                                          listViewExtraActsRecord
-                                                              .actID,
-                                                          ParamType.String,
-                                                        ),
-                                                      }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        kTransitionInfoKey:
-                                                            TransitionInfo(
-                                                          hasTransition: true,
-                                                          transitionType:
-                                                              PageTransitionType
-                                                                  .leftToRight,
-                                                        ),
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Text(
-                                                    'للمزيد',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF777373),
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
+                                            Text(
+                                              'تبدأ',
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF777373),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
                                                   ),
-                                                );
-                                              },
                                             ),
-                                            Icon(
-                                              Icons.chevron_right_rounded,
-                                              color: Color(0xFF777373),
-                                              size: 24,
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(120, 0, 0, 0),
+                                                child: Text(
+                                                  'تنتهي',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF777373),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 4, 0, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .sdate!,
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  ),
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Roboto Mono',
+                                                        color:
+                                                            Color(0xFF1C8EC1),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  dateTimeFormat(
+                                                    'MMMEd',
+                                                    listViewExtraActsRecord
+                                                        .edate!,
+                                                    locale: FFLocalizations.of(
+                                                            context)
+                                                        .languageCode,
+                                                  ),
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .subtitle2
+                                                      .override(
+                                                        fontFamily:
+                                                            'Roboto Mono',
+                                                        color:
+                                                            Color(0xFF1C8EC1),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              StreamBuilder<
+                                                  List<UserHistoryRecord>>(
+                                                stream: queryUserHistoryRecord(
+                                                  queryBuilder: (userHistoryRecord) =>
+                                                      userHistoryRecord.where(
+                                                          'user_email',
+                                                          isEqualTo:
+                                                              currentUserEmail),
+                                                  singleRecord: true,
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50,
+                                                        height: 50,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color:
+                                                              Color(0xFF0184BD),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<UserHistoryRecord>
+                                                      textUserHistoryRecordList =
+                                                      snapshot.data!;
+                                                  // Return an empty Container when the item does not exist.
+                                                  if (snapshot.data!.isEmpty) {
+                                                    return Container();
+                                                  }
+                                                  final textUserHistoryRecord =
+                                                      textUserHistoryRecordList
+                                                              .isNotEmpty
+                                                          ? textUserHistoryRecordList
+                                                              .first
+                                                          : null;
+                                                  return InkWell(
+                                                    onTap: () async {
+                                                      if (Navigator.of(context)
+                                                          .canPop()) {
+                                                        context.pop();
+                                                      }
+                                                      context.pushNamed(
+                                                        'course_info',
+                                                        queryParams: {
+                                                          'courseid':
+                                                              serializeParam(
+                                                            listViewExtraActsRecord
+                                                                .actID,
+                                                            ParamType.String,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          kTransitionInfoKey:
+                                                              TransitionInfo(
+                                                            hasTransition: true,
+                                                            transitionType:
+                                                                PageTransitionType
+                                                                    .leftToRight,
+                                                          ),
+                                                        },
+                                                      );
+
+                                                      final userHistoryUpdateData =
+                                                          createUserHistoryRecordData(
+                                                        userEmail:
+                                                            currentUserEmail,
+                                                        extraActivityID:
+                                                            listViewExtraActsRecord
+                                                                .actID,
+                                                        aCTType:
+                                                            listViewExtraActsRecord
+                                                                .actType,
+                                                      );
+                                                      await textUserHistoryRecord!
+                                                          .reference
+                                                          .update(
+                                                              userHistoryUpdateData);
+                                                    },
+                                                    child: Text(
+                                                      'للمزيد',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: Color(
+                                                                    0xFF777373),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                              Icon(
+                                                Icons.chevron_right_rounded,
+                                                color: Color(0xFF777373),
+                                                size: 24,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
               ],
             ),

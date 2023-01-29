@@ -30,3 +30,5 @@ export 'my_opp_details/my_opp_details_widget.dart' show MyOppDetailsWidget;
 export 'setting_up_profile_copy/setting_up_profile_copy_widget.dart'
     show SettingUpProfileCopyWidget;
 export 'courses_copy/courses_copy_widget.dart' show CoursesCopyWidget;
+export 'sync_in_calender/sync_in_calender_widget.dart'
+    show SyncInCalenderWidget;

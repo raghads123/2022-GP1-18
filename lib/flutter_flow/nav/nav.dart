@@ -241,6 +241,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'coursesCopy',
               requireAuth: true,
               builder: (context, params) => CoursesCopyWidget(),
+            ),
+            FFRoute(
+              name: 'SyncInCalender',
+              path: 'syncInCalender',
+              requireAuth: true,
+              builder: (context, params) => SyncInCalenderWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

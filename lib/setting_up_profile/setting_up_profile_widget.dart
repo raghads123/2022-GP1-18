@@ -193,7 +193,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                   width:
                                       MediaQuery.of(context).size.width * 0.9,
                                   height: MediaQuery.of(context).size.height *
-                                      0.411,
+                                      0.345,
                                   decoration: BoxDecoration(
                                     color: Color(0x6CE1D7C6),
                                     borderRadius: BorderRadius.circular(25),

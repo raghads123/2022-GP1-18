@@ -212,7 +212,7 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 0),
+                                        0, 20, 0, 20),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         final usersUpdateData = {

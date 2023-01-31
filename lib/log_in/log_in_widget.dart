@@ -259,7 +259,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     options: FFButtonOptions(
                                       width: 300,
                                       height: 50,
-                                      color: Color(0xFFFF5757),
+                                      color: Color(0xFF579BB1),
                                       textStyle: GoogleFonts.getFont(
                                         'Open Sans',
                                         color: Color(0xFFFFFAF1),

@@ -120,7 +120,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                 offset: Offset(0, 2),
                               )
                             ],
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                           ),
                           child: Padding(
                             padding:
@@ -275,23 +275,13 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(6, 6, 6, 6),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 15, 15, 15),
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 7,
-                                        color: Color(0xFF777373),
-                                        offset: Offset(0, 3),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                      color: Color(0xFFE4DFDA),
-                                    ),
+                                    color: Color(0x84ECE8DD),
+                                    borderRadius: BorderRadius.circular(25),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -301,7 +291,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                       children: [
                                         ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                              BorderRadius.circular(25),
                                           child: Image.network(
                                             valueOrDefault<String>(
                                               listViewExtraActsRecord.actPic,

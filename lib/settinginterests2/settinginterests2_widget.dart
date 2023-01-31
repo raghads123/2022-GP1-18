@@ -124,7 +124,7 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                       width: double.infinity,
                                       height: 254.3,
                                       decoration: BoxDecoration(
-                                        color: Color(0x6CE1D7C6),
+                                        color: Color(0xFFE1D7C6),
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child:

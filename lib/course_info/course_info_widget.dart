@@ -464,80 +464,91 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 40),
                                         child: FFButtonWidget(
-                                          onPressed: () async {
-                                            if (scrollingContainerExtraActsRecord!
-                                                .seats!) {
-                                              if (scrollingContainerExtraActsRecord!
-                                                      .numSeats ==
-                                                  0) {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text(
-                                                          'عذراً لا تتوفر مقاعد'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('تم'),
+                                          onPressed: columnUsersRecord!
+                                                  .usersActs!
+                                                  .toList()
+                                                  .contains(
+                                                      scrollingContainerExtraActsRecord!
+                                                          .actID)
+                                              ? null
+                                              : () async {
+                                                  if (scrollingContainerExtraActsRecord!
+                                                      .seats!) {
+                                                    if (scrollingContainerExtraActsRecord!
+                                                            .numSeats ==
+                                                        0) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'عذراً لا تتوفر مقاعد'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('تم'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    } else {
+                                                      final usersUpdateData = {
+                                                        'users_acts': FieldValue
+                                                            .arrayUnion([
+                                                          scrollingContainerExtraActsRecord!
+                                                              .actID
+                                                        ]),
+                                                      };
+                                                      await currentUserReference!
+                                                          .update(
+                                                              usersUpdateData);
+
+                                                      final extraActsUpdateData =
+                                                          {
+                                                        'num_seats': FieldValue
+                                                            .increment(-(1)),
+                                                      };
+                                                      await scrollingContainerExtraActsRecord!
+                                                          .reference
+                                                          .update(
+                                                              extraActsUpdateData);
+                                                    }
+                                                  } else {
+                                                    final usersUpdateData = {
+                                                      'users_acts': FieldValue
+                                                          .arrayUnion([
+                                                        scrollingContainerExtraActsRecord!
+                                                            .actName
+                                                      ]),
+                                                    };
+                                                    await currentUserReference!
+                                                        .update(
+                                                            usersUpdateData);
+                                                  }
+
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackBar(
+                                                      content: Text(
+                                                        'تم إلتحاقك في هذا النشاط بنجاح',
+                                                        style:
+                                                            GoogleFonts.getFont(
+                                                          'Open Sans',
+                                                          color: Colors.white,
                                                         ),
-                                                      ],
-                                                    );
-                                                  },
-                                                );
-                                              } else {
-                                                final usersUpdateData = {
-                                                  'users_acts':
-                                                      FieldValue.arrayUnion([
-                                                    scrollingContainerExtraActsRecord!
-                                                        .actID
-                                                  ]),
-                                                };
-                                                await currentUserReference!
-                                                    .update(usersUpdateData);
-
-                                                final extraActsUpdateData = {
-                                                  'num_seats':
-                                                      FieldValue.increment(
-                                                          -(1)),
-                                                };
-                                                await scrollingContainerExtraActsRecord!
-                                                    .reference
-                                                    .update(
-                                                        extraActsUpdateData);
-                                              }
-                                            } else {
-                                              final usersUpdateData = {
-                                                'users_acts':
-                                                    FieldValue.arrayUnion([
-                                                  scrollingContainerExtraActsRecord!
-                                                      .actName
-                                                ]),
-                                              };
-                                              await currentUserReference!
-                                                  .update(usersUpdateData);
-                                            }
-
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'تم إلتحاقك في هذا النشاط بنجاح',
-                                                  style: GoogleFonts.getFont(
-                                                    'Open Sans',
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                duration: Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    Color(0xE15BD85B),
-                                              ),
-                                            );
-                                          },
+                                                      ),
+                                                      duration: Duration(
+                                                          milliseconds: 4000),
+                                                      backgroundColor:
+                                                          Color(0xE15BD85B),
+                                                    ),
+                                                  );
+                                                },
                                           text: 'إلتحاق',
                                           options: FFButtonOptions(
                                             width: 270,
@@ -552,9 +563,13 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                     ),
                                             elevation: 2,
                                             borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 1,
+                                              width: 0,
                                             ),
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            disabledColor: Color(0x79E0E0E0),
+                                            disabledTextColor:
+                                                Color(0xFFECE8DD),
                                           ),
                                         ),
                                       ),

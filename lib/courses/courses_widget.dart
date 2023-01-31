@@ -45,16 +45,15 @@ class _CoursesWidgetState extends State<CoursesWidget> {
       key: scaffoldKey,
       backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF579BB1),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
           borderRadius: 30,
-          borderWidth: 1,
           buttonSize: 60,
           icon: Icon(
             Icons.chevron_left,
-            color: Color(0xFF777373),
+            color: FlutterFlowTheme.of(context).lineColor,
             size: 30,
           ),
           onPressed: () async {
@@ -76,7 +75,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
           'الدورات',
           style: FlutterFlowTheme.of(context).title2.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFF777373),
+                color: FlutterFlowTheme.of(context).lineColor,
                 fontSize: 22,
               ),
         ),
@@ -93,7 +92,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -277,8 +276,10 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15, 15, 15, 15),
-                                child: Container(
-                                  width: double.infinity,
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 220),
+                                  curve: Curves.linear,
+                                  width: 400,
                                   decoration: BoxDecoration(
                                     color: Color(0x84ECE8DD),
                                     borderRadius: BorderRadius.circular(25),

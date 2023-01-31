@@ -364,7 +364,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                   child: Icon(
                     Icons.arrow_back_rounded,
-                    color: Color(0xFFFF5757),
+                    color: Color(0xFF579BB1),
                     size: 24,
                   ),
                 ),

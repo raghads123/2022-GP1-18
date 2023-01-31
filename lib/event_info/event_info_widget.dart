@@ -59,7 +59,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
             : null;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: Color(0xFFF4F3F0),
           body: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,

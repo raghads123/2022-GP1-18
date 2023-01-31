@@ -63,7 +63,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                     width: double.infinity,
                     height: 100,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xFFF4F3F0),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(

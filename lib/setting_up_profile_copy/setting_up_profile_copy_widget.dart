@@ -116,7 +116,7 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(

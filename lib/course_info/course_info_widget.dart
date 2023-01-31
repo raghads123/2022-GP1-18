@@ -32,7 +32,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: Color(0xFFF4F3F0),
       body: StreamBuilder<List<ExtraActsRecord>>(
         stream: queryExtraActsRecord(
           queryBuilder: (extraActsRecord) =>

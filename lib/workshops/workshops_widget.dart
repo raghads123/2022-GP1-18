@@ -49,7 +49,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,

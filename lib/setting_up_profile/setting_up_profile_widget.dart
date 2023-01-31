@@ -339,54 +339,52 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           hidesUnderline: true,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 20, 0, 20),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            final usersUpdateData =
-                                                createUsersRecordData(
-                                              displayName: nameController!.text,
-                                              college: collegeValue,
-                                              level: levelValue,
-                                            );
-                                            await currentUserReference!
-                                                .update(usersUpdateData);
-
-                                            context.goNamed(
-                                              'Settinginterests2',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          text: 'التالي',
-                                          options: FFButtonOptions(
-                                            width: 300,
-                                            height: 50,
-                                            color: Color(0xFF579BB1),
-                                            textStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFFFFFAF1),
-                                              fontSize: 16,
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                        ),
-                                      ),
                                     ],
                                   ).animateOnPageLoad(animationsMap[
                                       'columnOnPageLoadAnimation']!),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 20, 0, 20),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      final usersUpdateData =
+                                          createUsersRecordData(
+                                        displayName: nameController!.text,
+                                        college: collegeValue,
+                                        level: levelValue,
+                                      );
+                                      await currentUserReference!
+                                          .update(usersUpdateData);
+
+                                      context.goNamed(
+                                        'Settinginterests2',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    text: 'التالي',
+                                    options: FFButtonOptions(
+                                      width: 300,
+                                      height: 50,
+                                      color: Color(0xFF579BB1),
+                                      textStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFFFFFAF1),
+                                        fontSize: 16,
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

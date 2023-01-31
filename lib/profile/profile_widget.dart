@@ -187,6 +187,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   )),
                                 ),
                               ),
+                              InkWell(
+                                onTap: () async {
+                                  context.pushNamed('SyncInCalender');
+                                },
+                                child: Icon(
+                                  Icons.calendar_today,
+                                  color: Color(0xFFFF5757),
+                                  size: 24,
+                                ),
+                              ),
                             ],
                           ),
                         ),

@@ -117,6 +117,54 @@ class WorkshopCBCall {
   }
 }
 
+class EvetnCBCall {
+  static Future<ApiCallResponse> call({
+    String? userID = '',
+  }) {
+    final body = '''
+{
+  "user_ID": "${userID}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'evetnCB',
+      apiUrl: 'https://countmeinapi.herokuapp.com/activityCB/',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class EventMBCall {
+  static Future<ApiCallResponse> call({
+    String? userID = '',
+  }) {
+    final body = '''
+{
+  "user_ID": "${userID}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'eventMB',
+      apiUrl: 'https://countmeinapi.herokuapp.com/activityCB/',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

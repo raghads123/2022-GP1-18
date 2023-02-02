@@ -309,9 +309,12 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                               child: Image.network(
-                                                getJsonField(
-                                                  workshopMBdataItem,
-                                                  r'''$.Act_pic''',
+                                                valueOrDefault<String>(
+                                                  getJsonField(
+                                                    workshopMBdataItem,
+                                                    r'''$.Act_pic''',
+                                                  ),
+                                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
                                                 ),
                                                 width: double.infinity,
                                                 height: 110,

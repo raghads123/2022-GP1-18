@@ -629,9 +629,9 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                           child: InkWell(
                                             onTap: () async {
                                               context.pushNamed(
-                                                'course_info',
+                                                'workshope_info',
                                                 queryParams: {
-                                                  'courseid': serializeParam(
+                                                  'workshopid': serializeParam(
                                                     getJsonField(
                                                       workshopCBdataItem,
                                                       r'''$.Act_ID''',
@@ -690,7 +690,8 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                                 ),
                                                                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
                                                               ),
-                                                              height: 80,
+                                                              width: 90,
+                                                              height: 90,
                                                               fit: BoxFit.cover,
                                                             ),
                                                           ),

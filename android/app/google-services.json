@@ -7,6 +7,50 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:235740299041:android:d60bd9abae639269484860",
+        "android_client_info": {
+          "package_name": "com.example.application_ayoub_allali"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235740299041-e4m9tl5afl2bec3j3k9gjathdmdd5vg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.application_ayoub_allali",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "235740299041-0ftbaqa2279ir4078hmgp6c20pkrcd4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIrIWqauPjQllhTUZZB9xcYdYDZNVy970"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235740299041-0ftbaqa2279ir4078hmgp6c20pkrcd4t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "235740299041-68s64p0spithnrt84st9df0r9cj6c9sk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.applicationAyoubAllali"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:235740299041:android:c3c5a6e7d85b46cd484860",
         "android_client_info": {
           "package_name": "com.example.countmein_app"
@@ -39,10 +83,10 @@
               "client_type": 3
             },
             {
-              "client_id": "235740299041-p6f49jhl6nmi3vkohq5g717ibuqq2rah.apps.googleusercontent.com",
+              "client_id": "235740299041-68s64p0spithnrt84st9df0r9cj6c9sk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.countmein"
+                "bundle_id": "com.example.applicationAyoubAllali"
               }
             }
           ]
@@ -83,10 +127,10 @@
               "client_type": 3
             },
             {
-              "client_id": "235740299041-p6f49jhl6nmi3vkohq5g717ibuqq2rah.apps.googleusercontent.com",
+              "client_id": "235740299041-68s64p0spithnrt84st9df0r9cj6c9sk.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.mycompany.countmein"
+                "bundle_id": "com.example.applicationAyoubAllali"
               }
             }
           ]

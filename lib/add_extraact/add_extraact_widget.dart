@@ -63,7 +63,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80),
         child: AppBar(

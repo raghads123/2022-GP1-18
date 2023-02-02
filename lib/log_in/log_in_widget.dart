@@ -63,7 +63,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                     width: double.infinity,
                     height: 100,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xFFF4F3F0),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(
@@ -259,7 +259,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     options: FFButtonOptions(
                                       width: 300,
                                       height: 50,
-                                      color: Color(0xFFFF5757),
+                                      color: Color(0xFF579BB1),
                                       textStyle: GoogleFonts.getFont(
                                         'Open Sans',
                                         color: Color(0xFFFFFAF1),
@@ -364,7 +364,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                   child: Icon(
                     Icons.arrow_back_rounded,
-                    color: Color(0xFFFF5757),
+                    color: Color(0xFF579BB1),
                     size: 24,
                   ),
                 ),

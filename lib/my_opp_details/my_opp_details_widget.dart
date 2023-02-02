@@ -36,7 +36,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Color(0xFFF4F3F0),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
         child: Stack(

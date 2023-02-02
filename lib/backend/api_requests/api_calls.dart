@@ -31,6 +31,90 @@ class CousesMBCall {
       cache: false,
     );
   }
+
+  static dynamic acceptedmbcourses(dynamic response) => getJsonField(
+        response,
+        r'''$.data[?(@.status=='ÙÙØ§ÙÙ Ø¹ÙÙÙØ§')]''',
+        true,
+      );
+}
+
+class CoursesCBCall {
+  static Future<ApiCallResponse> call({
+    String? userID = '',
+  }) {
+    final body = '''
+{
+  "user_ID": "${userID}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'coursesCB',
+      apiUrl: 'https://countmeinapi.herokuapp.com/coursesCB/',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class WorkshopMBCall {
+  static Future<ApiCallResponse> call({
+    String? userID = '',
+  }) {
+    final body = '''
+{
+  "user_ID": "${userID}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'workshopMB',
+      apiUrl: 'https://countmeinapi.herokuapp.com/workshopMB/',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic acceptedworkshops(dynamic response) => getJsonField(
+        response,
+        r'''$.data[?(@.status=='ÙÙØ§ÙÙ Ø¹ÙÙÙØ§')]''',
+        true,
+      );
+}
+
+class WorkshopCBCall {
+  static Future<ApiCallResponse> call({
+    String? userID = '',
+  }) {
+    final body = '''
+{
+  "user_ID": "${userID}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'workshopCB',
+      apiUrl: 'https://countmeinapi.herokuapp.com/workshopCB/',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 class ApiPagingParams {

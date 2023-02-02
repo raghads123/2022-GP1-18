@@ -32,7 +32,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -697,7 +697,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                 if (confirmDialogResponse) {
                                                                                   final usersUpdateData = {
                                                                                     'users_acts': FieldValue.arrayRemove([
-                                                                                      useractlistItem
+                                                                                      columnExtraActsRecord!.actID
                                                                                     ]),
                                                                                   };
                                                                                   await tabBarUsersRecord!.reference.update(usersUpdateData);
@@ -743,7 +743,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                 if (confirmDialogResponse) {
                                                                                   final usersUpdateData = {
                                                                                     'users_acts': FieldValue.arrayRemove([
-                                                                                      useractlistItem
+                                                                                      columnExtraActsRecord!.actID
                                                                                     ]),
                                                                                   };
                                                                                   await tabBarUsersRecord!.reference.update(usersUpdateData);

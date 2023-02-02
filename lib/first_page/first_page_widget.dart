@@ -117,7 +117,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                           width: double.infinity,
                           height: 100,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Color(0xFFF4F3F0),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Padding(
@@ -165,7 +165,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFFFF5757),
+                                            color: Color(0xFF579BB1),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFFFFFAF1),
@@ -188,7 +188,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFFFF5757),
+                                            color: Color(0xFF579BB1),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFFFFFAF1),

@@ -53,7 +53,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
         List<CategoryRecord> editInterestsCategoryRecordList = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          backgroundColor: Color(0xFFF4F3F0),
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).alternate,
             automaticallyImplyLeading: false,

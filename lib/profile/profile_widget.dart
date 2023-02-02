@@ -41,7 +41,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
@@ -185,6 +185,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           fontSize: 24,
                                         ),
                                   )),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  context.pushNamed('SyncInCalender');
+                                },
+                                child: Icon(
+                                  Icons.calendar_today,
+                                  color: Color(0xFFFF5757),
+                                  size: 24,
                                 ),
                               ),
                             ],

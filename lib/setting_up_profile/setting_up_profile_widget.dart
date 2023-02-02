@@ -190,8 +190,6 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                       'textOnPageLoadAnimation2']!),
                                 ),
                                 Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.9,
                                   height: MediaQuery.of(context).size.height *
                                       0.345,
                                   decoration: BoxDecoration(
@@ -203,7 +201,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 20, 20, 15),
+                                            20, 40, 20, 15),
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(

@@ -124,7 +124,7 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                       width: double.infinity,
                                       height: 254.3,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFE1D7C6),
+                                        color: Color(0x6CE1D7C6),
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child:
@@ -159,52 +159,57 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                                   ? columnCategoryRecordList
                                                       .first
                                                   : null;
-                                          return Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 20, 20, 20),
-                                                child: FlutterFlowCheckboxGroup(
-                                                  options: columnCategoryRecord!
-                                                      .name!
-                                                      .toList(),
-                                                  onChanged: (val) => setState(
-                                                      () =>
-                                                          checkboxGroupValues =
-                                                              val),
-                                                  activeColor:
-                                                      Color(0x00000000),
-                                                  checkColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate,
-                                                  checkboxBorderColor:
-                                                      Color(0xFF95A1AC),
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .title3
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        color:
-                                                            Color(0xFF565656),
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                  itemPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                              10, 0, 30, 18),
-                                                  initialized:
-                                                      checkboxGroupValues !=
-                                                          null,
+                                          return SingleChildScrollView(
+                                            primary: false,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20, 20, 55, 0),
+                                                  child:
+                                                      FlutterFlowCheckboxGroup(
+                                                    options:
+                                                        columnCategoryRecord!
+                                                            .name!
+                                                            .toList(),
+                                                    onChanged: (val) =>
+                                                        setState(() =>
+                                                            checkboxGroupValues =
+                                                                val),
+                                                    activeColor:
+                                                        Color(0x00000000),
+                                                    checkColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .alternate,
+                                                    checkboxBorderColor:
+                                                        Color(0xFF95A1AC),
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .title3
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFF565656),
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                    itemPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 30, 18),
+                                                    initialized:
+                                                        checkboxGroupValues !=
+                                                            null,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           );
                                         },
                                       ),

@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -576,63 +577,177 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                             ),
                                           ),
                                         ),
-                                      if (columnUsersRecord!.usersActs!
-                                          .toList()
-                                          .contains(
-                                              scrollingContainerExtraActsRecord!
-                                                  .actID))
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 40),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    title: Text(
-                                                        'تم إلتحاقك بذا النشاط مسبقاً'),
-                                                    content: Text(
-                                                        'يمكنك تفقد صفحة \"أنشطتي\" لإلغاء الإلتحاق'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('تم'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
-                                              );
-                                            },
-                                            text: 'تم إلتحاقك بهذا النشاط ',
-                                            options: FFButtonOptions(
-                                              width: 270,
-                                              height: 50,
-                                              color: Color(0xFF575F6C),
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .subtitle1
-                                                  .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Color(0xFFF3F4F4),
-                                                    fontWeight: FontWeight.w900,
-                                                  ),
-                                              elevation: 2,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                     ],
                                   );
                                 },
                               ),
                             ),
+                          Container(
+                            width: 380,
+                            height: 183,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF4F3F0),
+                            ),
+                            child: FutureBuilder<ApiCallResponse>(
+                              future: WorkshopCBCall.call(
+                                userID: currentUserEmail,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircularProgressIndicator(
+                                        color: Color(0xFF0184BD),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                final listViewWorkshopCBResponse =
+                                    snapshot.data!;
+                                return Builder(
+                                  builder: (context) {
+                                    final workshopCBdata = getJsonField(
+                                      listViewWorkshopCBResponse.jsonBody,
+                                      r'''$.data''',
+                                    ).toList();
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: workshopCBdata.length,
+                                      itemBuilder:
+                                          (context, workshopCBdataIndex) {
+                                        final workshopCBdataItem =
+                                            workshopCBdata[workshopCBdataIndex];
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 20, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'course_info',
+                                                queryParams: {
+                                                  'courseid': serializeParam(
+                                                    getJsonField(
+                                                      workshopCBdataItem,
+                                                      r'''$.Act_ID''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 130,
+                                              height: 175,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    blurRadius: 4,
+                                                    color: Color(0x33000000),
+                                                    offset: Offset(0, 2),
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                shape: BoxShape.rectangle,
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25),
+                                                            child:
+                                                                Image.network(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                getJsonField(
+                                                                  workshopCBdataItem,
+                                                                  r'''$.Act_pic''',
+                                                                ),
+                                                                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
+                                                              ),
+                                                              height: 80,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          6,
+                                                                          0,
+                                                                          6,
+                                                                          0),
+                                                              child: Text(
+                                                                getJsonField(
+                                                                  workshopCBdataItem,
+                                                                  r'''$.Act_name''',
+                                                                ).toString(),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Poppins',
+                                                                      color: Color(
+                                                                          0xFF57636C),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
                         ],
                       ),
                     ),

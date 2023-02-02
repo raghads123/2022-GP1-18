@@ -81,6 +81,7 @@ class _SyncInCalenderWidgetState extends State<SyncInCalenderWidget> {
                 color: Color(0xFFFF5757),
                 weekFormat: false,
                 weekStartsMonday: false,
+                initialDate: getCurrentTimestamp,
                 onChange: (DateTimeRange? newSelectedDate) {
                   setState(() => calendarSelectedDay = newSelectedDate);
                 },
@@ -95,45 +96,48 @@ class _SyncInCalenderWidgetState extends State<SyncInCalenderWidget> {
                 inactiveDateStyle: TextStyle(),
                 locale: FFLocalizations.of(context).languageCode,
               ),
-              StreamBuilder<List<ExtraActsRecord>>(
-                stream: queryExtraActsRecord(
-                  queryBuilder: (extraActsRecord) => extraActsRecord
-                      .where('Sdate', isEqualTo: calendarSelectedDay?.start),
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: Color(0xFF0184BD),
-                        ),
-                      ),
-                    );
-                  }
-                  List<ExtraActsRecord> listViewExtraActsRecordList =
-                      snapshot.data!;
-                  return ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    itemCount: listViewExtraActsRecordList.length,
-                    itemBuilder: (context, listViewIndex) {
-                      final listViewExtraActsRecord =
-                          listViewExtraActsRecordList[listViewIndex];
-                      return AuthUserStreamWidget(
-                        builder: (context) => Text(
-                          (currentUserDocument?.usersActs?.toList() ?? [])
-                              .contains(listViewExtraActsRecord.actName)
-                              .toString(),
-                          style: FlutterFlowTheme.of(context).bodyText1,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                child: StreamBuilder<List<ExtraActsRecord>>(
+                  stream: queryExtraActsRecord(
+                    queryBuilder: (extraActsRecord) => extraActsRecord
+                        .where('Sdate', isEqualTo: calendarSelectedDay?.start),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF0184BD),
+                          ),
                         ),
                       );
-                    },
-                  );
-                },
+                    }
+                    List<ExtraActsRecord> listViewExtraActsRecordList =
+                        snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewExtraActsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewExtraActsRecord =
+                            listViewExtraActsRecordList[listViewIndex];
+                        return AuthUserStreamWidget(
+                          builder: (context) => Text(
+                            (currentUserDocument?.usersActs?.toList() ?? [])
+                                .contains(listViewExtraActsRecord.actName)
+                                .toString(),
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ],
           ),

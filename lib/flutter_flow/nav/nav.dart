@@ -94,15 +94,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SettingUpProfileWidget(),
             ),
             FFRoute(
+              name: 'LogIn',
+              path: 'logIn',
+              builder: (context, params) => LogInWidget(),
+            ),
+            FFRoute(
               name: 'Settinginterests2',
               path: 'settinginterests2',
               requireAuth: true,
               builder: (context, params) => Settinginterests2Widget(),
-            ),
-            FFRoute(
-              name: 'LogIn',
-              path: 'logIn',
-              builder: (context, params) => LogInWidget(),
             ),
             FFRoute(
               name: 'HomePage',

@@ -180,9 +180,8 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                           ),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 40, 20, 0),
+                                EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
                             child: SingleChildScrollView(
-                              primary: false,
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -735,8 +734,9 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                                         ),
                                                                         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
                                                                       ),
+                                                                      width: 90,
                                                                       height:
-                                                                          80,
+                                                                          90,
                                                                       fit: BoxFit
                                                                           .cover,
                                                                     ),

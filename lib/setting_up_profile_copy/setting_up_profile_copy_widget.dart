@@ -10,6 +10,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'setting_up_profile_copy_model.dart';
+export 'setting_up_profile_copy_model.dart';
 
 class SettingUpProfileCopyWidget extends StatefulWidget {
   const SettingUpProfileCopyWidget({Key? key}) : super(key: key);
@@ -21,6 +23,11 @@ class SettingUpProfileCopyWidget extends StatefulWidget {
 
 class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
     with TickerProviderStateMixin {
+  late SettingUpProfileCopyModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -92,21 +99,20 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
       ],
     ),
   };
-  TextEditingController? nameController;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => SettingUpProfileCopyModel());
 
-    nameController = TextEditingController();
+    _model.nameController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    nameController?.dispose();
     super.dispose();
   }
 
@@ -197,7 +203,7 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
                                       child: Container(
                                         width: 300,
                                         child: TextFormField(
-                                          controller: nameController,
+                                          controller: _model.nameController,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'الأسم',
@@ -246,6 +252,9 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
                                             color: Color(0xFF565656),
                                           ),
                                           textAlign: TextAlign.start,
+                                          validator: _model
+                                              .nameControllerValidator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -256,7 +265,8 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
                                         onPressed: () async {
                                           final usersUpdateData =
                                               createUsersRecordData(
-                                            displayName: nameController!.text,
+                                            displayName:
+                                                _model.nameController.text,
                                           );
                                           await currentUserReference!
                                               .update(usersUpdateData);

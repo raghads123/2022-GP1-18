@@ -12,6 +12,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'courses_model.dart';
+export 'courses_model.dart';
 
 class CoursesWidget extends StatefulWidget {
   const CoursesWidget({Key? key}) : super(key: key);
@@ -21,21 +23,23 @@ class CoursesWidget extends StatefulWidget {
 }
 
 class _CoursesWidgetState extends State<CoursesWidget> {
-  Completer<ApiCallResponse>? _apiRequestCompleter;
-  final fieldSearchKey = GlobalKey();
-  TextEditingController? fieldSearchController;
-  String? fieldSearchSelectedOption;
-  final _unfocusNode = FocusNode();
+  late CoursesModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    fieldSearchController = TextEditingController();
+    _model = createModel(context, () => CoursesModel());
+
+    _model.fieldSearchController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -142,8 +146,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                               optionsViewBuilder:
                                   (context, onSelected, options) {
                                 return AutocompleteOptionsList(
-                                  textFieldKey: fieldSearchKey,
-                                  textController: fieldSearchController!,
+                                  textFieldKey: _model.fieldSearchKey,
+                                  textController: _model.fieldSearchController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
@@ -160,8 +164,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    fieldSearchSelectedOption = selection);
+                                setState(() => _model
+                                    .fieldSearchSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -170,14 +174,15 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                fieldSearchController = textEditingController;
+                                _model.fieldSearchController =
+                                    textEditingController;
                                 return TextFormField(
-                                  key: fieldSearchKey,
+                                  key: _model.fieldSearchKey,
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'fieldSearchController',
+                                    '_model.fieldSearchController',
                                     Duration(milliseconds: 500),
                                     () => setState(() {}),
                                   ),
@@ -229,6 +234,9 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                   textAlign: TextAlign.start,
+                                  validator: _model
+                                      .fieldSearchControllerValidator
+                                      .asValidator(context),
                                 );
                               },
                             ),
@@ -239,10 +247,11 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                   ),
                 ),
                 FutureBuilder<ApiCallResponse>(
-                  future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
-                        ..complete(CousesMBCall.call(
-                          userID: currentUserEmail,
-                        )))
+                  future: (_model.apiRequestCompleter ??=
+                          Completer<ApiCallResponse>()
+                            ..complete(CousesMBCall.call(
+                              userID: currentUserEmail,
+                            )))
                       .future,
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -266,8 +275,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                             [];
                         return RefreshIndicator(
                           onRefresh: () async {
-                            setState(() => _apiRequestCompleter = null);
-                            await waitForApiRequestCompleter();
+                            setState(() => _model.apiRequestCompleter = null);
+                            await _model.waitForApiRequestCompleter();
                           },
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
@@ -280,7 +289,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                   coursesMBdata[coursesMBdataIndex];
                               return Visibility(
                                 visible: functions.showSearchResultCourse(
-                                    fieldSearchController!.text,
+                                    _model.fieldSearchController.text,
                                     getJsonField(
                                       coursesMBdataItem,
                                       r'''$.Act_name''',
@@ -631,20 +640,5 @@ class _CoursesWidgetState extends State<CoursesWidget> {
         ),
       ),
     );
-  }
-
-  Future waitForApiRequestCompleter({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
   }
 }

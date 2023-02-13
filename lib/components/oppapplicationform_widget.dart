@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'oppapplicationform_model.dart';
+export 'oppapplicationform_model.dart';
 
 class OppapplicationformWidget extends StatefulWidget {
   const OppapplicationformWidget({
@@ -25,22 +27,27 @@ class OppapplicationformWidget extends StatefulWidget {
 }
 
 class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
-  String? skillValue;
-  TextEditingController? userEmailController;
-  TextEditingController? shortbioController;
-  final formKey = GlobalKey<FormState>();
+  late OppapplicationformModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    shortbioController = TextEditingController();
-    userEmailController = TextEditingController(text: currentUserEmail);
+    _model = createModel(context, () => OppapplicationformModel());
+
+    _model.userEmailController = TextEditingController(text: currentUserEmail);
+    _model.shortbioController = TextEditingController();
   }
 
   @override
   void dispose() {
-    shortbioController?.dispose();
-    userEmailController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -137,7 +144,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                     ],
                   ),
                   Form(
-                    key: formKey,
+                    key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
                     child: StreamBuilder<List<UsersRecord>>(
                       stream: queryUsersRecord(
@@ -177,7 +184,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                               child: Container(
                                 width: 300,
                                 child: TextFormField(
-                                  controller: userEmailController,
+                                  controller: _model.userEmailController,
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
@@ -228,6 +235,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     fontSize: 16,
                                   ),
                                   textAlign: TextAlign.start,
+                                  validator: _model.userEmailControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
                             ),
@@ -242,7 +251,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                       .toList()
                                       .toList(),
                                   onChanged: (val) =>
-                                      setState(() => skillValue = val),
+                                      setState(() => _model.skillValue = val),
                                   width: 300,
                                   height: 50,
                                   textStyle: GoogleFonts.getFont(
@@ -267,7 +276,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                               child: Container(
                                 width: 300,
                                 child: TextFormField(
-                                  controller: shortbioController,
+                                  controller: _model.shortbioController,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: ' نبذة عنك',
@@ -315,17 +324,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                   ),
                                   textAlign: TextAlign.start,
                                   maxLines: 10,
-                                  validator: (val) {
-                                    if (val == null || val.isEmpty) {
-                                      return 'يجب تعبئة الحقل';
-                                    }
-
-                                    if (val.length > 280) {
-                                      return 'يمكنك كتابة ٢٨٠ حرف فقط';
-                                    }
-
-                                    return null;
-                                  },
+                                  validator: _model.shortbioControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
                             ),
@@ -334,12 +334,12 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  if (formKey.currentState == null ||
-                                      !formKey.currentState!.validate()) {
+                                  if (_model.formKey.currentState == null ||
+                                      !_model.formKey.currentState!
+                                          .validate()) {
                                     return;
                                   }
-
-                                  if (skillValue == null) {
+                                  if (_model.skillValue == null) {
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
@@ -360,9 +360,9 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
 
                                   final oppApplicationsCreateData =
                                       createOppApplicationsRecordData(
-                                    appEmail: userEmailController!.text,
-                                    appSkills: skillValue,
-                                    appBio: shortbioController!.text,
+                                    appEmail: _model.userEmailController.text,
+                                    appSkills: _model.skillValue,
+                                    appBio: _model.shortbioController.text,
                                     oppName:
                                         containerOpportunitiesRecord!.oppName,
                                     status: 'معلق',

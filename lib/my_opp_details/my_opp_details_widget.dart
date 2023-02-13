@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'my_opp_details_model.dart';
+export 'my_opp_details_model.dart';
 
 class MyOppDetailsWidget extends StatefulWidget {
   const MyOppDetailsWidget({
@@ -21,11 +23,21 @@ class MyOppDetailsWidget extends StatefulWidget {
 }
 
 class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
-  final _unfocusNode = FocusNode();
+  late MyOppDetailsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MyOppDetailsModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

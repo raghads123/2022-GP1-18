@@ -50,6 +50,10 @@ class FFAppState extends ChangeNotifier {
     _ActCategory.remove(_value);
   }
 
+  void removeAtIndexFromActCategory(int _index) {
+    _ActCategory.removeAt(_index);
+  }
+
   List<String> _Skilllist = [];
   List<String> get Skilllist => _Skilllist;
   set Skilllist(List<String> _value) {
@@ -62,6 +66,10 @@ class FFAppState extends ChangeNotifier {
 
   void removeFromSkilllist(String _value) {
     _Skilllist.remove(_value);
+  }
+
+  void removeAtIndexFromSkilllist(int _index) {
+    _Skilllist.removeAt(_index);
   }
 }
 

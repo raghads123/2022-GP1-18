@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'ratecollection_model.dart';
+export 'ratecollection_model.dart';
 
 class RatecollectionWidget extends StatefulWidget {
   const RatecollectionWidget({
@@ -25,10 +27,26 @@ class RatecollectionWidget extends StatefulWidget {
 }
 
 class _RatecollectionWidgetState extends State<RatecollectionWidget> {
-  String? choiceChipsValue;
-  double? ratingBar1Value;
-  double? ratingBar2Value;
-  double? ratingBar3Value;
+  late RatecollectionModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => RatecollectionModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +111,13 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
               ),
               RatingBar.builder(
                 onRatingUpdate: (newValue) =>
-                    setState(() => ratingBar1Value = newValue),
+                    setState(() => _model.ratingBar1Value = newValue),
                 itemBuilder: (context, index) => Icon(
                   Icons.star_rate_rounded,
                   color: Color(0xFFFFC40C),
                 ),
                 direction: Axis.horizontal,
-                initialRating: ratingBar1Value ??= 0,
+                initialRating: _model.ratingBar1Value ??= 0,
                 unratedColor: Color(0xFF9E9E9E),
                 itemCount: 5,
                 itemSize: 40,
@@ -118,13 +136,13 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
               ),
               RatingBar.builder(
                 onRatingUpdate: (newValue) =>
-                    setState(() => ratingBar2Value = newValue),
+                    setState(() => _model.ratingBar2Value = newValue),
                 itemBuilder: (context, index) => Icon(
                   Icons.star_rate_rounded,
                   color: Color(0xFFFFC40C),
                 ),
                 direction: Axis.horizontal,
-                initialRating: ratingBar2Value ??= 0,
+                initialRating: _model.ratingBar2Value ??= 0,
                 unratedColor: Color(0xFF9E9E9E),
                 itemCount: 5,
                 itemSize: 40,
@@ -144,13 +162,13 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
               ),
               RatingBar.builder(
                 onRatingUpdate: (newValue) =>
-                    setState(() => ratingBar3Value = newValue),
+                    setState(() => _model.ratingBar3Value = newValue),
                 itemBuilder: (context, index) => Icon(
                   Icons.star_rate_rounded,
                   color: Color(0xFFFFC40C),
                 ),
                 direction: Axis.horizontal,
-                initialRating: ratingBar3Value ??= 0,
+                initialRating: _model.ratingBar3Value ??= 0,
                 unratedColor: Color(0xFF9E9E9E),
                 itemCount: 5,
                 itemSize: 40,
@@ -172,7 +190,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                 child: FlutterFlowChoiceChips(
                   options: [ChipData('نعم'), ChipData('لا')],
                   onChanged: (val) =>
-                      setState(() => choiceChipsValue = val?.first),
+                      setState(() => _model.choiceChipsValue = val?.first),
                   selectedChipStyle: ChipStyle(
                     backgroundColor: Color(0xFF323B45),
                     textStyle: FlutterFlowTheme.of(context).bodyText1.override(
@@ -206,7 +224,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
 
                     final ratingCreateData = createRatingRecordData(
                       actID: widget.ratingactID,
-                      rating: ratingBar1Value?.round(),
+                      rating: _model.ratingBar1Value?.round(),
                       useremail: currentUserEmail,
                       actType: widget.ratingtype,
                     );

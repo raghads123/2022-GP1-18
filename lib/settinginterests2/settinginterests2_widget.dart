@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'settinginterests2_model.dart';
+export 'settinginterests2_model.dart';
 
 class Settinginterests2Widget extends StatefulWidget {
   const Settinginterests2Widget({Key? key}) : super(key: key);
@@ -18,12 +20,21 @@ class Settinginterests2Widget extends StatefulWidget {
 }
 
 class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
-  List<String>? checkboxGroupValues;
-  final _unfocusNode = FocusNode();
+  late Settinginterests2Model _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => Settinginterests2Model());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -178,9 +189,9 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                                             .name!
                                                             .toList(),
                                                     onChanged: (val) =>
-                                                        setState(() =>
-                                                            checkboxGroupValues =
-                                                                val),
+                                                        setState(() => _model
+                                                                .checkboxGroupValues =
+                                                            val),
                                                     activeColor:
                                                         Color(0x00000000),
                                                     checkColor:
@@ -203,9 +214,9 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 0, 30, 18),
-                                                    initialized:
-                                                        checkboxGroupValues !=
-                                                            null,
+                                                    initialized: _model
+                                                            .checkboxGroupValues !=
+                                                        null,
                                                   ),
                                                 ),
                                               ],
@@ -221,7 +232,8 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         final usersUpdateData = {
-                                          'intrests': checkboxGroupValues,
+                                          'intrests':
+                                              _model.checkboxGroupValues,
                                         };
                                         await currentUserReference!
                                             .update(usersUpdateData);

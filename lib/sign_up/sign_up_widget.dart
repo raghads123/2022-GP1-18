@@ -5,6 +5,8 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'sign_up_model.dart';
+export 'sign_up_model.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -14,31 +16,26 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController? confirmpasswordController;
-  late bool confirmpasswordVisibility;
-  TextEditingController? emailController;
-  TextEditingController? passwordController;
-  late bool passwordVisibility;
-  final _unfocusNode = FocusNode();
+  late SignUpModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    confirmpasswordController = TextEditingController();
-    confirmpasswordVisibility = false;
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVisibility = false;
+    _model = createModel(context, () => SignUpModel());
+
+    _model.emailController = TextEditingController();
+    _model.passwordController = TextEditingController();
+    _model.confirmpasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    confirmpasswordController?.dispose();
-    emailController?.dispose();
-    passwordController?.dispose();
     super.dispose();
   }
 
@@ -91,7 +88,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   fit: BoxFit.cover,
                                 ),
                                 Form(
-                                  key: formKey,
+                                  key: _model.formKey,
                                   autovalidateMode: AutovalidateMode.disabled,
                                   child: Container(
                                     width:
@@ -114,7 +111,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller: emailController,
+                                              controller:
+                                                  _model.emailController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: 'البريد الإلكتروني ',
@@ -173,6 +171,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .emailControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -183,16 +184,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller: passwordController,
+                                              controller:
+                                                  _model.passwordController,
                                               onFieldSubmitted: (_) async {
-                                                if (formKey.currentState ==
+                                                if (_model.formKey
+                                                            .currentState ==
                                                         null ||
-                                                    !formKey.currentState!
+                                                    !_model
+                                                        .formKey.currentState!
                                                         .validate()) {
                                                   return;
                                                 }
                                               },
-                                              obscureText: !passwordVisibility,
+                                              obscureText:
+                                                  !_model.passwordVisibility,
                                               decoration: InputDecoration(
                                                 labelText: 'كلمة المرور ',
                                                 labelStyle: GoogleFonts.getFont(
@@ -245,13 +250,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fillColor: Color(0xFFE1D7C6),
                                                 suffixIcon: InkWell(
                                                   onTap: () => setState(
-                                                    () => passwordVisibility =
-                                                        !passwordVisibility,
+                                                    () => _model
+                                                            .passwordVisibility =
+                                                        !_model
+                                                            .passwordVisibility,
                                                   ),
                                                   focusNode: FocusNode(
                                                       skipTraversal: true),
                                                   child: Icon(
-                                                    passwordVisibility
+                                                    _model.passwordVisibility
                                                         ? Icons
                                                             .visibility_outlined
                                                         : Icons
@@ -267,6 +274,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .passwordControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -277,18 +287,20 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller:
-                                                  confirmpasswordController,
+                                              controller: _model
+                                                  .confirmpasswordController,
                                               onFieldSubmitted: (_) async {
-                                                if (formKey.currentState ==
+                                                if (_model.formKey
+                                                            .currentState ==
                                                         null ||
-                                                    !formKey.currentState!
+                                                    !_model
+                                                        .formKey.currentState!
                                                         .validate()) {
                                                   return;
                                                 }
                                               },
-                                              obscureText:
-                                                  !confirmpasswordVisibility,
+                                              obscureText: !_model
+                                                  .confirmpasswordVisibility,
                                               decoration: InputDecoration(
                                                 labelText: 'تأكيد كلمة المرور',
                                                 labelStyle: GoogleFonts.getFont(
@@ -341,13 +353,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fillColor: Color(0xFFE1D7C6),
                                                 suffixIcon: InkWell(
                                                   onTap: () => setState(
-                                                    () => confirmpasswordVisibility =
-                                                        !confirmpasswordVisibility,
+                                                    () => _model
+                                                            .confirmpasswordVisibility =
+                                                        !_model
+                                                            .confirmpasswordVisibility,
                                                   ),
                                                   focusNode: FocusNode(
                                                       skipTraversal: true),
                                                   child: Icon(
-                                                    confirmpasswordVisibility
+                                                    _model.confirmpasswordVisibility
                                                         ? Icons
                                                             .visibility_outlined
                                                         : Icons
@@ -363,6 +377,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .confirmpasswordControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -372,15 +389,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   0, 20, 0, 2),
                                           child: FFButtonWidget(
                                             onPressed: () async {
-                                              if (formKey.currentState ==
+                                              if (_model.formKey.currentState ==
                                                       null ||
-                                                  !formKey.currentState!
+                                                  !_model.formKey.currentState!
                                                       .validate()) {
                                                 return;
                                               }
-
-                                              if (passwordController!.text !=
-                                                  confirmpasswordController!
+                                              if (_model.passwordController
+                                                      .text !=
+                                                  _model
+                                                      .confirmpasswordController
                                                       .text) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
@@ -404,9 +422,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               }
                                               GoRouter.of(context)
                                                   .prepareAuthEvent();
-                                              if (passwordController?.text !=
-                                                  confirmpasswordController
-                                                      ?.text) {
+                                              if (_model.passwordController
+                                                      .text !=
+                                                  _model
+                                                      .confirmpasswordController
+                                                      .text) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -421,8 +441,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               final user =
                                                   await createAccountWithEmail(
                                                 context,
-                                                emailController!.text,
-                                                passwordController!.text,
+                                                _model.emailController.text,
+                                                _model.passwordController.text,
                                               );
                                               if (user == null) {
                                                 return;
@@ -445,7 +465,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             options: FFButtonOptions(
                                               width: 300,
                                               height: 50,
-                                              color: Color(0xFF579BB1),
+                                              color: Color(0xBF579BB1),
                                               textStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFFFFFAF1),

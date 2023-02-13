@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'event_info_model.dart';
+export 'event_info_model.dart';
 
 class EventInfoWidget extends StatefulWidget {
   const EventInfoWidget({
@@ -25,7 +27,22 @@ class EventInfoWidget extends StatefulWidget {
 }
 
 class _EventInfoWidgetState extends State<EventInfoWidget> {
+  late EventInfoModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => EventInfoModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -489,7 +506,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                     },
                                                   );
                                                 } else {
-                                                  final usersUpdateData = {
+                                                  final usersUpdateData1 = {
                                                     'users_acts':
                                                         FieldValue.arrayUnion([
                                                       eventInfoExtraActsRecord!
@@ -498,7 +515,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                   };
                                                   await columnUsersRecord!
                                                       .reference
-                                                      .update(usersUpdateData);
+                                                      .update(usersUpdateData1);
 
                                                   final extraActsUpdateData = {
                                                     'num_seats':
@@ -511,7 +528,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                           extraActsUpdateData);
                                                 }
                                               } else {
-                                                final usersUpdateData = {
+                                                final usersUpdateData2 = {
                                                   'users_acts':
                                                       FieldValue.arrayUnion([
                                                     eventInfoExtraActsRecord!
@@ -520,7 +537,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                 };
                                                 await columnUsersRecord!
                                                     .reference
-                                                    .update(usersUpdateData);
+                                                    .update(usersUpdateData2);
                                               }
 
                                               ScaffoldMessenger.of(context)

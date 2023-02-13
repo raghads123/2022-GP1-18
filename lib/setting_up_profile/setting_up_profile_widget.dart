@@ -11,6 +11,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'setting_up_profile_model.dart';
+export 'setting_up_profile_model.dart';
 
 class SettingUpProfileWidget extends StatefulWidget {
   const SettingUpProfileWidget({Key? key}) : super(key: key);
@@ -21,6 +23,11 @@ class SettingUpProfileWidget extends StatefulWidget {
 
 class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
     with TickerProviderStateMixin {
+  late SettingUpProfileModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -92,23 +99,20 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
       ],
     ),
   };
-  String? collegeValue;
-  TextEditingController? nameController;
-  String? levelValue;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => SettingUpProfileModel());
 
-    nameController = TextEditingController();
+    _model.nameController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    nameController?.dispose();
     super.dispose();
   }
 
@@ -205,7 +209,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                         child: Container(
                                           width: 300,
                                           child: TextFormField(
-                                            controller: nameController,
+                                            controller: _model.nameController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -257,6 +261,9 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                               color: Color(0xFF579BB1),
                                             ),
                                             textAlign: TextAlign.start,
+                                            validator: _model
+                                                .nameControllerValidator
+                                                .asValidator(context),
                                           ),
                                         ),
                                       ),
@@ -280,7 +287,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                             'كلية التمريض'
                                           ],
                                           onChanged: (val) => setState(
-                                              () => collegeValue = val),
+                                              () => _model.collegeValue = val),
                                           width: 300,
                                           height: 50,
                                           textStyle: GoogleFonts.getFont(
@@ -317,8 +324,8 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                             'المستوى الحادي عشر',
                                             'المستوى الثاني عشر'
                                           ],
-                                          onChanged: (val) =>
-                                              setState(() => levelValue = val),
+                                          onChanged: (val) => setState(
+                                              () => _model.levelValue = val),
                                           width: 300,
                                           height: 50,
                                           textStyle: GoogleFonts.getFont(
@@ -348,9 +355,9 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                     onPressed: () async {
                                       final usersUpdateData =
                                           createUsersRecordData(
-                                        displayName: nameController!.text,
-                                        college: collegeValue,
-                                        level: levelValue,
+                                        displayName: _model.nameController.text,
+                                        college: _model.collegeValue,
+                                        level: _model.levelValue,
                                       );
                                       await currentUserReference!
                                           .update(usersUpdateData);

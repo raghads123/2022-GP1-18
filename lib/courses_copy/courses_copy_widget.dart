@@ -12,6 +12,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'courses_copy_model.dart';
+export 'courses_copy_model.dart';
 
 class CoursesCopyWidget extends StatefulWidget {
   const CoursesCopyWidget({Key? key}) : super(key: key);
@@ -21,21 +23,23 @@ class CoursesCopyWidget extends StatefulWidget {
 }
 
 class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
-  Completer<ApiCallResponse>? _apiRequestCompleter;
-  final fieldSearchKey = GlobalKey();
-  TextEditingController? fieldSearchController;
-  String? fieldSearchSelectedOption;
-  final _unfocusNode = FocusNode();
+  late CoursesCopyModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    fieldSearchController = TextEditingController();
+    _model = createModel(context, () => CoursesCopyModel());
+
+    _model.fieldSearchController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -143,8 +147,8 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                               optionsViewBuilder:
                                   (context, onSelected, options) {
                                 return AutocompleteOptionsList(
-                                  textFieldKey: fieldSearchKey,
-                                  textController: fieldSearchController!,
+                                  textFieldKey: _model.fieldSearchKey,
+                                  textController: _model.fieldSearchController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
@@ -161,8 +165,8 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    fieldSearchSelectedOption = selection);
+                                setState(() => _model
+                                    .fieldSearchSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -171,14 +175,15 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                fieldSearchController = textEditingController;
+                                _model.fieldSearchController =
+                                    textEditingController;
                                 return TextFormField(
-                                  key: fieldSearchKey,
+                                  key: _model.fieldSearchKey,
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'fieldSearchController',
+                                    '_model.fieldSearchController',
                                     Duration(milliseconds: 500),
                                     () => setState(() {}),
                                   ),
@@ -230,6 +235,9 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                   textAlign: TextAlign.start,
+                                  validator: _model
+                                      .fieldSearchControllerValidator
+                                      .asValidator(context),
                                 );
                               },
                             ),
@@ -240,10 +248,11 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                   ),
                 ),
                 FutureBuilder<ApiCallResponse>(
-                  future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
-                        ..complete(CousesMBCall.call(
-                          userID: currentUserEmail,
-                        )))
+                  future: (_model.apiRequestCompleter ??=
+                          Completer<ApiCallResponse>()
+                            ..complete(CousesMBCall.call(
+                              userID: currentUserEmail,
+                            )))
                       .future,
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -267,8 +276,8 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                         ).toList();
                         return RefreshIndicator(
                           onRefresh: () async {
-                            setState(() => _apiRequestCompleter = null);
-                            await waitForApiRequestCompleter();
+                            setState(() => _model.apiRequestCompleter = null);
+                            await _model.waitForApiRequestCompleter();
                           },
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
@@ -281,7 +290,7 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                   coursesMBdata[coursesMBdataIndex];
                               return Visibility(
                                 visible: functions.showSearchResultCourse(
-                                    fieldSearchController!.text,
+                                    _model.fieldSearchController.text,
                                     getJsonField(
                                       listViewCousesMBResponse.jsonBody,
                                       r'''$.Act_name''',
@@ -558,20 +567,5 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
         ),
       ),
     );
-  }
-
-  Future waitForApiRequestCompleter({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
   }
 }

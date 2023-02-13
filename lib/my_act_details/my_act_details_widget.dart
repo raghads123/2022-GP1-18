@@ -6,6 +6,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'my_act_details_model.dart';
+export 'my_act_details_model.dart';
 
 class MyActDetailsWidget extends StatefulWidget {
   const MyActDetailsWidget({
@@ -20,11 +22,21 @@ class MyActDetailsWidget extends StatefulWidget {
 }
 
 class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
-  final _unfocusNode = FocusNode();
+  late MyActDetailsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MyActDetailsModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

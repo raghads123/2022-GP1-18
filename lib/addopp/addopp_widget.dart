@@ -13,6 +13,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'addopp_model.dart';
+export 'addopp_model.dart';
 
 class AddoppWidget extends StatefulWidget {
   const AddoppWidget({Key? key}) : super(key: key);
@@ -22,44 +24,30 @@ class AddoppWidget extends StatefulWidget {
 }
 
 class _AddoppWidgetState extends State<AddoppWidget> {
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  late AddoppModel _model;
 
-  TextEditingController? oppNameController;
-  TextEditingController? oppskill1Controller;
-  TextEditingController? oppskill2Controller;
-  TextEditingController? oppskill3Controller;
-  TextEditingController? oppskill4Controller;
-  TextEditingController? oppskill5Controller;
-  TextEditingController? oppdesController;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
-  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    oppNameController = TextEditingController();
-    oppskill1Controller = TextEditingController();
-    oppskill2Controller = TextEditingController();
-    oppskill3Controller = TextEditingController();
-    oppskill4Controller = TextEditingController();
-    oppskill5Controller = TextEditingController();
-    oppdesController = TextEditingController();
+    _model = createModel(context, () => AddoppModel());
+
+    _model.oppNameController = TextEditingController();
+    _model.oppskill1Controller = TextEditingController();
+    _model.oppskill2Controller = TextEditingController();
+    _model.oppskill3Controller = TextEditingController();
+    _model.oppskill4Controller = TextEditingController();
+    _model.oppskill5Controller = TextEditingController();
+    _model.oppdesController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    oppNameController?.dispose();
-    oppskill1Controller?.dispose();
-    oppskill2Controller?.dispose();
-    oppskill3Controller?.dispose();
-    oppskill4Controller?.dispose();
-    oppskill5Controller?.dispose();
-    oppdesController?.dispose();
     super.dispose();
   }
 
@@ -119,7 +107,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
         child: Container(
           width: double.infinity,
           child: Form(
-            key: formKey,
+            key: _model.formKey,
             autovalidateMode: AutovalidateMode.always,
             child: Container(
               width: double.infinity,
@@ -140,7 +128,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                       child: Container(
                         width: 400,
                         child: TextFormField(
-                          controller: oppNameController,
+                          controller: _model.oppNameController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'اسم الفرصة',
@@ -195,6 +183,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.start,
+                          validator: _model.oppNameControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -203,13 +193,13 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                       child: Container(
                         width: double.infinity,
                         child: TextFormField(
-                          controller: oppskill1Controller,
+                          controller: _model.oppskill1Controller,
                           onChanged: (_) => EasyDebounce.debounce(
-                            'oppskill1Controller',
+                            '_model.oppskill1Controller',
                             Duration(milliseconds: 2000),
                             () async {
-                              FFAppState()
-                                  .addToSkilllist(oppskill1Controller!.text);
+                              FFAppState().addToSkilllist(
+                                  _model.oppskill1Controller.text);
                             },
                           ),
                           obscureText: false,
@@ -268,6 +258,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                           textAlign: TextAlign.start,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
+                          validator: _model.oppskill1ControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -277,13 +269,13 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         child: Container(
                           width: double.infinity,
                           child: TextFormField(
-                            controller: oppskill2Controller,
+                            controller: _model.oppskill2Controller,
                             onChanged: (_) => EasyDebounce.debounce(
-                              'oppskill2Controller',
+                              '_model.oppskill2Controller',
                               Duration(milliseconds: 2000),
                               () async {
-                                FFAppState()
-                                    .addToSkilllist(oppskill2Controller!.text);
+                                FFAppState().addToSkilllist(
+                                    _model.oppskill2Controller.text);
                               },
                             ),
                             obscureText: false,
@@ -342,6 +334,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             textAlign: TextAlign.start,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
+                            validator: _model.oppskill2ControllerValidator
+                                .asValidator(context),
                           ),
                         ),
                       ),
@@ -351,13 +345,13 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         child: Container(
                           width: double.infinity,
                           child: TextFormField(
-                            controller: oppskill3Controller,
+                            controller: _model.oppskill3Controller,
                             onChanged: (_) => EasyDebounce.debounce(
-                              'oppskill3Controller',
+                              '_model.oppskill3Controller',
                               Duration(milliseconds: 2000),
                               () async {
-                                FFAppState()
-                                    .addToSkilllist(oppskill3Controller!.text);
+                                FFAppState().addToSkilllist(
+                                    _model.oppskill3Controller.text);
                               },
                             ),
                             obscureText: false,
@@ -416,6 +410,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             textAlign: TextAlign.start,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
+                            validator: _model.oppskill3ControllerValidator
+                                .asValidator(context),
                           ),
                         ),
                       ),
@@ -425,9 +421,9 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         child: Container(
                           width: double.infinity,
                           child: TextFormField(
-                            controller: oppskill4Controller,
+                            controller: _model.oppskill4Controller,
                             onChanged: (_) => EasyDebounce.debounce(
-                              'oppskill4Controller',
+                              '_model.oppskill4Controller',
                               Duration(milliseconds: 2000),
                               () => setState(() {}),
                             ),
@@ -487,6 +483,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             textAlign: TextAlign.start,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
+                            validator: _model.oppskill4ControllerValidator
+                                .asValidator(context),
                           ),
                         ),
                       ),
@@ -496,9 +494,9 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                         child: Container(
                           width: double.infinity,
                           child: TextFormField(
-                            controller: oppskill5Controller,
+                            controller: _model.oppskill5Controller,
                             onChanged: (_) => EasyDebounce.debounce(
-                              'oppskill5Controller',
+                              '_model.oppskill5Controller',
                               Duration(milliseconds: 2000),
                               () => setState(() {}),
                             ),
@@ -558,6 +556,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             textAlign: TextAlign.start,
                             maxLines: null,
                             keyboardType: TextInputType.multiline,
+                            validator: _model.oppskill5ControllerValidator
+                                .asValidator(context),
                           ),
                         ),
                       ),
@@ -605,7 +605,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                       child: Container(
                         width: 400,
                         child: TextFormField(
-                          controller: oppdesController,
+                          controller: _model.oppdesController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'وصف الفرصة',
@@ -662,6 +662,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           keyboardType: TextInputType.multiline,
+                          validator: _model.oppdesControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -696,7 +698,8 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             if (selectedMedia != null &&
                                 selectedMedia.every((m) => validateFileFormat(
                                     m.storagePath, context))) {
-                              setState(() => isMediaUploading = true);
+                              setState(() => _model.isMediaUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
                               var downloadUrls = <String>[];
                               try {
                                 showUploadMessage(
@@ -704,6 +707,15 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                   'يتم رفع الملفات...',
                                   showLoading: true,
                                 );
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                        ))
+                                    .toList();
+
                                 downloadUrls = (await Future.wait(
                                   selectedMedia.map(
                                     (m) async => await uploadData(
@@ -716,11 +728,16 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               } finally {
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                isMediaUploading = false;
+                                _model.isMediaUploading = false;
                               }
-                              if (downloadUrls.length == selectedMedia.length) {
-                                setState(
-                                    () => uploadedFileUrl = downloadUrls.first);
+                              if (selectedUploadedFiles.length ==
+                                      selectedMedia.length &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                  _model.uploadedFileUrl = downloadUrls.first;
+                                });
                                 showUploadMessage(
                                     context, 'تم رفع الملفات بنجاح!');
                               } else {
@@ -803,15 +820,15 @@ class _AddoppWidgetState extends State<AddoppWidget> {
 
                                 if (_datePicked1Date != null &&
                                     _datePicked1Time != null) {
-                                  setState(
-                                    () => datePicked1 = DateTime(
+                                  setState(() {
+                                    _model.datePicked1 = DateTime(
                                       _datePicked1Date.year,
                                       _datePicked1Date.month,
                                       _datePicked1Date.day,
                                       _datePicked1Time!.hour,
                                       _datePicked1Time.minute,
-                                    ),
-                                  );
+                                    );
+                                  });
                                 }
                               },
                               child: Row(
@@ -878,15 +895,15 @@ class _AddoppWidgetState extends State<AddoppWidget> {
 
                                 if (_datePicked2Date != null &&
                                     _datePicked2Time != null) {
-                                  setState(
-                                    () => datePicked2 = DateTime(
+                                  setState(() {
+                                    _model.datePicked2 = DateTime(
                                       _datePicked2Date.year,
                                       _datePicked2Date.month,
                                       _datePicked2Date.day,
                                       _datePicked2Time!.hour,
                                       _datePicked2Time.minute,
-                                    ),
-                                  );
+                                    );
+                                  });
                                 }
                               },
                               child: Row(
@@ -922,12 +939,12 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                       onPressed: () async {
                         final opportunitiesCreateData = {
                           ...createOpportunitiesRecordData(
-                            opDesc: oppdesController!.text,
-                            sdate: datePicked1,
-                            edate: datePicked2,
+                            opDesc: _model.oppdesController.text,
+                            sdate: _model.datePicked1,
+                            edate: _model.datePicked2,
                             opProvider: currentUserDisplayName,
-                            opProviderLogo: uploadedFileUrl,
-                            oppName: oppNameController!.text,
+                            opProviderLogo: _model.uploadedFileUrl,
+                            oppName: _model.oppNameController.text,
                             status: 'موافق عليها',
                             opID: random_data.randomString(
                               20,

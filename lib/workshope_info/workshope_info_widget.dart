@@ -2,7 +2,6 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_expanded_image_view.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -11,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'workshope_info_model.dart';
+export 'workshope_info_model.dart';
 
 class WorkshopeInfoWidget extends StatefulWidget {
   const WorkshopeInfoWidget({
@@ -25,7 +26,22 @@ class WorkshopeInfoWidget extends StatefulWidget {
 }
 
 class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
+  late WorkshopeInfoModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => WorkshopeInfoModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -206,24 +222,6 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                       style:
                                           FlutterFlowTheme.of(context).title2,
                                     ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 7),
-                                  child: FlutterFlowIconButton(
-                                    borderColor: Colors.transparent,
-                                    borderRadius: 30,
-                                    borderWidth: 1,
-                                    buttonSize: 40,
-                                    icon: Icon(
-                                      Icons.notifications,
-                                      color: Color(0xFF57636C),
-                                      size: 30,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
                                   ),
                                 ),
                               ],
@@ -506,7 +504,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                     },
                                                   );
                                                 } else {
-                                                  final usersUpdateData = {
+                                                  final usersUpdateData1 = {
                                                     'users_acts':
                                                         FieldValue.arrayUnion([
                                                       scrollingContainerExtraActsRecord!
@@ -515,7 +513,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                   };
                                                   await columnUsersRecord!
                                                       .reference
-                                                      .update(usersUpdateData);
+                                                      .update(usersUpdateData1);
 
                                                   final extraActsUpdateData = {
                                                     'num_seats':
@@ -528,7 +526,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                           extraActsUpdateData);
                                                 }
                                               } else {
-                                                final usersUpdateData = {
+                                                final usersUpdateData2 = {
                                                   'users_acts':
                                                       FieldValue.arrayUnion([
                                                     scrollingContainerExtraActsRecord!
@@ -537,7 +535,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                 };
                                                 await columnUsersRecord!
                                                     .reference
-                                                    .update(usersUpdateData);
+                                                    .update(usersUpdateData2);
                                               }
 
                                               ScaffoldMessenger.of(context)

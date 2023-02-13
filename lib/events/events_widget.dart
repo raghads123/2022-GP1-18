@@ -11,6 +11,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'events_model.dart';
+export 'events_model.dart';
 
 class EventsWidget extends StatefulWidget {
   const EventsWidget({Key? key}) : super(key: key);
@@ -20,20 +22,23 @@ class EventsWidget extends StatefulWidget {
 }
 
 class _EventsWidgetState extends State<EventsWidget> {
-  final _unfocusNode = FocusNode();
+  late EventsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final fieldSearchKey = GlobalKey();
-  TextEditingController? fieldSearchController;
-  String? fieldSearchSelectedOption;
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    fieldSearchController = TextEditingController();
+    _model = createModel(context, () => EventsModel());
+
+    _model.fieldSearchController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -140,8 +145,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                               optionsViewBuilder:
                                   (context, onSelected, options) {
                                 return AutocompleteOptionsList(
-                                  textFieldKey: fieldSearchKey,
-                                  textController: fieldSearchController!,
+                                  textFieldKey: _model.fieldSearchKey,
+                                  textController: _model.fieldSearchController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
@@ -158,8 +163,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    fieldSearchSelectedOption = selection);
+                                setState(() => _model
+                                    .fieldSearchSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -168,14 +173,15 @@ class _EventsWidgetState extends State<EventsWidget> {
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                fieldSearchController = textEditingController;
+                                _model.fieldSearchController =
+                                    textEditingController;
                                 return TextFormField(
-                                  key: fieldSearchKey,
+                                  key: _model.fieldSearchKey,
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'fieldSearchController',
+                                    '_model.fieldSearchController',
                                     Duration(milliseconds: 500),
                                     () => setState(() {}),
                                   ),
@@ -227,6 +233,9 @@ class _EventsWidgetState extends State<EventsWidget> {
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                   textAlign: TextAlign.start,
+                                  validator: _model
+                                      .fieldSearchControllerValidator
+                                      .asValidator(context),
                                 );
                               },
                             ),
@@ -271,7 +280,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                 eventMBdata[eventMBdataIndex];
                             return Visibility(
                               visible: functions.showSearchResult(
-                                  fieldSearchController!.text,
+                                  _model.fieldSearchController.text,
                                   getJsonField(
                                     eventMBdataItem,
                                     r'''$.Act_name''',

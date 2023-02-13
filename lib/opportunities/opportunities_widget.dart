@@ -11,6 +11,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'opportunities_model.dart';
+export 'opportunities_model.dart';
 
 class OpportunitiesWidget extends StatefulWidget {
   const OpportunitiesWidget({Key? key}) : super(key: key);
@@ -21,20 +23,23 @@ class OpportunitiesWidget extends StatefulWidget {
 
 class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
     with TickerProviderStateMixin {
-  final _unfocusNode = FocusNode();
+  late OpportunitiesModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final fieldSearchKey = GlobalKey();
-  TextEditingController? fieldSearchController;
-  String? fieldSearchSelectedOption;
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    fieldSearchController = TextEditingController();
+    _model = createModel(context, () => OpportunitiesModel());
+
+    _model.fieldSearchController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -143,8 +148,8 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                               optionsViewBuilder:
                                   (context, onSelected, options) {
                                 return AutocompleteOptionsList(
-                                  textFieldKey: fieldSearchKey,
-                                  textController: fieldSearchController!,
+                                  textFieldKey: _model.fieldSearchKey,
+                                  textController: _model.fieldSearchController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
@@ -161,8 +166,8 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    fieldSearchSelectedOption = selection);
+                                setState(() => _model
+                                    .fieldSearchSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -171,14 +176,15 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                fieldSearchController = textEditingController;
+                                _model.fieldSearchController =
+                                    textEditingController;
                                 return TextFormField(
-                                  key: fieldSearchKey,
+                                  key: _model.fieldSearchKey,
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'fieldSearchController',
+                                    '_model.fieldSearchController',
                                     Duration(milliseconds: 500),
                                     () => setState(() {}),
                                   ),
@@ -230,6 +236,9 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                   textAlign: TextAlign.start,
+                                  validator: _model
+                                      .fieldSearchControllerValidator
+                                      .asValidator(context),
                                 );
                               },
                             ),
@@ -285,7 +294,7 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget>
                             ),
                             child: Visibility(
                               visible: functions.showSearchResultOp(
-                                  fieldSearchController!.text,
+                                  _model.fieldSearchController.text,
                                   listViewOpportunitiesRecord.oppName!),
                               child: Align(
                                 alignment: AlignmentDirectional(0.35, 0),

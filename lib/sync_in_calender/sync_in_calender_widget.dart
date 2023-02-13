@@ -7,6 +7,8 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'sync_in_calender_model.dart';
+export 'sync_in_calender_model.dart';
 
 class SyncInCalenderWidget extends StatefulWidget {
   const SyncInCalenderWidget({Key? key}) : super(key: key);
@@ -16,21 +18,21 @@ class SyncInCalenderWidget extends StatefulWidget {
 }
 
 class _SyncInCalenderWidgetState extends State<SyncInCalenderWidget> {
-  DateTimeRange? calendarSelectedDay;
-  final _unfocusNode = FocusNode();
+  late SyncInCalenderModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    calendarSelectedDay = DateTimeRange(
-      start: DateTime.now().startOfDay,
-      end: DateTime.now().endOfDay,
-    );
+    _model = createModel(context, () => SyncInCalenderModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -83,7 +85,7 @@ class _SyncInCalenderWidgetState extends State<SyncInCalenderWidget> {
                 weekStartsMonday: false,
                 initialDate: getCurrentTimestamp,
                 onChange: (DateTimeRange? newSelectedDate) {
-                  setState(() => calendarSelectedDay = newSelectedDate);
+                  setState(() => _model.calendarSelectedDay = newSelectedDate);
                 },
                 titleStyle: TextStyle(
                   color: FlutterFlowTheme.of(context).backgroundComponents,
@@ -100,8 +102,9 @@ class _SyncInCalenderWidgetState extends State<SyncInCalenderWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                 child: StreamBuilder<List<ExtraActsRecord>>(
                   stream: queryExtraActsRecord(
-                    queryBuilder: (extraActsRecord) => extraActsRecord
-                        .where('Sdate', isEqualTo: calendarSelectedDay?.start),
+                    queryBuilder: (extraActsRecord) => extraActsRecord.where(
+                        'Sdate',
+                        isEqualTo: _model.calendarSelectedDay?.start),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

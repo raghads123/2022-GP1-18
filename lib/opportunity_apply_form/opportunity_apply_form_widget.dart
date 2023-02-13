@@ -7,6 +7,8 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'opportunity_apply_form_model.dart';
+export 'opportunity_apply_form_model.dart';
 
 class OpportunityApplyFormWidget extends StatefulWidget {
   const OpportunityApplyFormWidget({
@@ -23,11 +25,21 @@ class OpportunityApplyFormWidget extends StatefulWidget {
 
 class _OpportunityApplyFormWidgetState
     extends State<OpportunityApplyFormWidget> {
-  final _unfocusNode = FocusNode();
+  late OpportunityApplyFormModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => OpportunityApplyFormModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }

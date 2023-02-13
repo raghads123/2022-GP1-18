@@ -9,6 +9,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'profile_model.dart';
+export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);
@@ -18,20 +20,22 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
-  String? collegeValue;
-  TextEditingController? nameController;
-  String? levelValue;
+  late ProfileModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController(text: currentUserDisplayName);
+    _model = createModel(context, () => ProfileModel());
+
+    _model.nameController = TextEditingController(text: currentUserDisplayName);
   }
 
   @override
   void dispose() {
-    nameController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -290,7 +294,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             builder: (context) => Container(
                               width: 300,
                               child: TextFormField(
-                                controller: nameController,
+                                controller: _model.nameController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   hintText: 'الاسم',
@@ -334,6 +338,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   color: Color(0xFF565656),
                                 ),
                                 textAlign: TextAlign.start,
+                                validator: _model.nameControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
                           ),
@@ -372,7 +378,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   ),
                                 ),
                                 FlutterFlowDropDown<String>(
-                                  initialOption: collegeValue ??=
+                                  initialOption: _model.collegeValue ??=
                                       valueOrDefault(
                                           currentUserDocument?.college, ''),
                                   options: [
@@ -391,7 +397,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     'كلية التمريض'
                                   ],
                                   onChanged: (val) =>
-                                      setState(() => collegeValue = val),
+                                      setState(() => _model.collegeValue = val),
                                   width: 300,
                                   height: 50,
                                   textStyle: GoogleFonts.getFont(
@@ -448,7 +454,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 15),
                                   child: FlutterFlowDropDown<String>(
-                                    initialOption: levelValue ??=
+                                    initialOption: _model.levelValue ??=
                                         valueOrDefault(
                                             currentUserDocument?.level, ''),
                                     options: [
@@ -466,7 +472,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       'المستوى الثاني عشر'
                                     ],
                                     onChanged: (val) =>
-                                        setState(() => levelValue = val),
+                                        setState(() => _model.levelValue = val),
                                     width: 300,
                                     height: 50,
                                     textStyle: GoogleFonts.getFont(
@@ -492,9 +498,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               final usersUpdateData = createUsersRecordData(
-                                displayName: nameController!.text,
-                                college: collegeValue,
-                                level: levelValue,
+                                displayName: _model.nameController.text,
+                                college: _model.collegeValue,
+                                level: _model.levelValue,
                               );
                               await currentUserReference!
                                   .update(usersUpdateData);

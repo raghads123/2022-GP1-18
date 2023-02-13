@@ -6,6 +6,8 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'category_model.dart';
+export 'category_model.dart';
 
 class CategoryWidget extends StatefulWidget {
   const CategoryWidget({Key? key}) : super(key: key);
@@ -15,7 +17,26 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-  List<String>? checkboxGroupValues;
+  late CategoryModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => CategoryModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +125,10 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                           child: FlutterFlowCheckboxGroup(
                             options: columnCategoryRecord!.name!.toList(),
                             onChanged: (val) async {
-                              setState(() => checkboxGroupValues = val);
+                              setState(() => _model.checkboxGroupValues = val);
                               setState(() {
                                 FFAppState().ActCategory =
-                                    checkboxGroupValues!.toList();
+                                    _model.checkboxGroupValues!.toList();
                               });
                             },
                             activeColor: Color(0x00000000),
@@ -121,7 +142,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                     ),
                             itemPadding:
                                 EdgeInsetsDirectional.fromSTEB(10, 0, 30, 18),
-                            initialized: checkboxGroupValues != null,
+                            initialized: _model.checkboxGroupValues != null,
                           ),
                         ),
                       ],

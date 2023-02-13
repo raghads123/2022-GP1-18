@@ -11,6 +11,8 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'workshops_model.dart';
+export 'workshops_model.dart';
 
 class WorkshopsWidget extends StatefulWidget {
   const WorkshopsWidget({Key? key}) : super(key: key);
@@ -20,20 +22,23 @@ class WorkshopsWidget extends StatefulWidget {
 }
 
 class _WorkshopsWidgetState extends State<WorkshopsWidget> {
-  final _unfocusNode = FocusNode();
+  late WorkshopsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final fieldSearchKey = GlobalKey();
-  TextEditingController? fieldSearchController;
-  String? fieldSearchSelectedOption;
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    fieldSearchController = TextEditingController();
+    _model = createModel(context, () => WorkshopsModel());
+
+    _model.fieldSearchController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -141,8 +146,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                               optionsViewBuilder:
                                   (context, onSelected, options) {
                                 return AutocompleteOptionsList(
-                                  textFieldKey: fieldSearchKey,
-                                  textController: fieldSearchController!,
+                                  textFieldKey: _model.fieldSearchKey,
+                                  textController: _model.fieldSearchController!,
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
@@ -159,8 +164,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                 );
                               },
                               onSelected: (String selection) {
-                                setState(() =>
-                                    fieldSearchSelectedOption = selection);
+                                setState(() => _model
+                                    .fieldSearchSelectedOption = selection);
                                 FocusScope.of(context).unfocus();
                               },
                               fieldViewBuilder: (
@@ -169,14 +174,15 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                 focusNode,
                                 onEditingComplete,
                               ) {
-                                fieldSearchController = textEditingController;
+                                _model.fieldSearchController =
+                                    textEditingController;
                                 return TextFormField(
-                                  key: fieldSearchKey,
+                                  key: _model.fieldSearchKey,
                                   controller: textEditingController,
                                   focusNode: focusNode,
                                   onEditingComplete: onEditingComplete,
                                   onChanged: (_) => EasyDebounce.debounce(
-                                    'fieldSearchController',
+                                    '_model.fieldSearchController',
                                     Duration(milliseconds: 500),
                                     () => setState(() {}),
                                   ),
@@ -228,6 +234,9 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                   ),
                                   style: FlutterFlowTheme.of(context).bodyText1,
                                   textAlign: TextAlign.start,
+                                  validator: _model
+                                      .fieldSearchControllerValidator
+                                      .asValidator(context),
                                 );
                               },
                             ),
@@ -272,7 +281,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                 workshopMBdata[workshopMBdataIndex];
                             return Visibility(
                               visible: functions.showSearchResultWorkshops(
-                                  fieldSearchController!.text,
+                                  _model.fieldSearchController.text,
                                   getJsonField(
                                     workshopMBdataItem,
                                     r'''$.Act_name''',

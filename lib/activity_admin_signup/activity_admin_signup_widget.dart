@@ -7,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'activity_admin_signup_model.dart';
+export 'activity_admin_signup_model.dart';
 
 class ActivityAdminSignupWidget extends StatefulWidget {
   const ActivityAdminSignupWidget({Key? key}) : super(key: key);
@@ -17,31 +19,26 @@ class ActivityAdminSignupWidget extends StatefulWidget {
 }
 
 class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
-  TextEditingController? confirmpasswordController;
-  late bool confirmpasswordVisibility;
-  TextEditingController? emailController;
-  TextEditingController? passwordController;
-  late bool passwordVisibility;
-  final _unfocusNode = FocusNode();
+  late ActivityAdminSignupModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    confirmpasswordController = TextEditingController();
-    confirmpasswordVisibility = false;
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVisibility = false;
+    _model = createModel(context, () => ActivityAdminSignupModel());
+
+    _model.emailController = TextEditingController();
+    _model.passwordController = TextEditingController();
+    _model.confirmpasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    confirmpasswordController?.dispose();
-    emailController?.dispose();
-    passwordController?.dispose();
     super.dispose();
   }
 
@@ -98,7 +95,7 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                     fit: BoxFit.cover,
                                   ),
                                   Form(
-                                    key: formKey,
+                                    key: _model.formKey,
                                     autovalidateMode: AutovalidateMode.disabled,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -110,7 +107,8 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller: emailController,
+                                              controller:
+                                                  _model.emailController,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText: 'البريد الإلكتروني ',
@@ -169,6 +167,9 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .emailControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -179,8 +180,10 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller: passwordController,
-                                              obscureText: !passwordVisibility,
+                                              controller:
+                                                  _model.passwordController,
+                                              obscureText:
+                                                  !_model.passwordVisibility,
                                               decoration: InputDecoration(
                                                 labelText: 'كلمة المرور ',
                                                 labelStyle: GoogleFonts.getFont(
@@ -233,13 +236,15 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 fillColor: Color(0xFFE0E0E0),
                                                 suffixIcon: InkWell(
                                                   onTap: () => setState(
-                                                    () => passwordVisibility =
-                                                        !passwordVisibility,
+                                                    () => _model
+                                                            .passwordVisibility =
+                                                        !_model
+                                                            .passwordVisibility,
                                                   ),
                                                   focusNode: FocusNode(
                                                       skipTraversal: true),
                                                   child: Icon(
-                                                    passwordVisibility
+                                                    _model.passwordVisibility
                                                         ? Icons
                                                             .visibility_outlined
                                                         : Icons
@@ -255,6 +260,9 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .passwordControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -265,10 +273,10 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                           child: Container(
                                             width: 300,
                                             child: TextFormField(
-                                              controller:
-                                                  confirmpasswordController,
-                                              obscureText:
-                                                  !confirmpasswordVisibility,
+                                              controller: _model
+                                                  .confirmpasswordController,
+                                              obscureText: !_model
+                                                  .confirmpasswordVisibility,
                                               decoration: InputDecoration(
                                                 labelText: 'تأكيد كلمة المرور',
                                                 labelStyle: GoogleFonts.getFont(
@@ -321,13 +329,15 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 fillColor: Color(0xFFE0E0E0),
                                                 suffixIcon: InkWell(
                                                   onTap: () => setState(
-                                                    () => confirmpasswordVisibility =
-                                                        !confirmpasswordVisibility,
+                                                    () => _model
+                                                            .confirmpasswordVisibility =
+                                                        !_model
+                                                            .confirmpasswordVisibility,
                                                   ),
                                                   focusNode: FocusNode(
                                                       skipTraversal: true),
                                                   child: Icon(
-                                                    confirmpasswordVisibility
+                                                    _model.confirmpasswordVisibility
                                                         ? Icons
                                                             .visibility_outlined
                                                         : Icons
@@ -343,6 +353,9 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .confirmpasswordControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
@@ -354,9 +367,11 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                             onPressed: () async {
                                               GoRouter.of(context)
                                                   .prepareAuthEvent();
-                                              if (passwordController?.text !=
-                                                  confirmpasswordController
-                                                      ?.text) {
+                                              if (_model.passwordController
+                                                      .text !=
+                                                  _model
+                                                      .confirmpasswordController
+                                                      .text) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -371,8 +386,8 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                               final user =
                                                   await createAccountWithEmail(
                                                 context,
-                                                emailController!.text,
-                                                passwordController!.text,
+                                                _model.emailController.text,
+                                                _model.passwordController.text,
                                               );
                                               if (user == null) {
                                                 return;

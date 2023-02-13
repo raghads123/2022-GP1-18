@@ -14,6 +14,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'add_extraact_model.dart';
+export 'add_extraact_model.dart';
 
 class AddExtraactWidget extends StatefulWidget {
   const AddExtraactWidget({Key? key}) : super(key: key);
@@ -23,37 +25,27 @@ class AddExtraactWidget extends StatefulWidget {
 }
 
 class _AddExtraactWidgetState extends State<AddExtraactWidget> {
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  late AddExtraactModel _model;
 
-  String? actTypeValue;
-  TextEditingController? actBioController;
-  TextEditingController? actLocController;
-  TextEditingController? actNameController;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
-  bool? checkboxListTileValue;
-  TextEditingController? textController4;
-  final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    actBioController = TextEditingController();
-    actLocController = TextEditingController();
-    actNameController = TextEditingController();
-    textController4 = TextEditingController();
+    _model = createModel(context, () => AddExtraactModel());
+
+    _model.actNameController = TextEditingController();
+    _model.actLocController = TextEditingController();
+    _model.actBioController = TextEditingController();
+    _model.textController4 = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    actBioController?.dispose();
-    actLocController?.dispose();
-    actNameController?.dispose();
-    textController4?.dispose();
     super.dispose();
   }
 
@@ -110,7 +102,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
         child: Container(
           width: double.infinity,
           child: Form(
-            key: formKey,
+            key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Container(
               width: double.infinity,
@@ -131,7 +123,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       child: Container(
                         width: 400,
                         child: TextFormField(
-                          controller: actNameController,
+                          controller: _model.actNameController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'اسم نشاط',
@@ -186,13 +178,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.start,
-                          validator: (val) {
-                            if (val == null || val.isEmpty) {
-                              return 'يجب تعبئة الحقل';
-                            }
-
-                            return null;
-                          },
+                          validator: _model.actNameControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -201,7 +188,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       child: Container(
                         width: double.infinity,
                         child: TextFormField(
-                          controller: actLocController,
+                          controller: _model.actLocController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'موقع النشاط',
@@ -258,13 +245,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           textAlign: TextAlign.start,
                           maxLines: null,
                           keyboardType: TextInputType.multiline,
-                          validator: (val) {
-                            if (val == null || val.isEmpty) {
-                              return 'يجب تعبئة الحقل';
-                            }
-
-                            return null;
-                          },
+                          validator: _model.actLocControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -273,7 +255,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       child: Container(
                         width: 400,
                         child: TextFormField(
-                          controller: actBioController,
+                          controller: _model.actBioController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'وصف النشاط',
@@ -330,13 +312,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           keyboardType: TextInputType.multiline,
-                          validator: (val) {
-                            if (val == null || val.isEmpty) {
-                              return 'يجب تعبئة الحقل';
-                            }
-
-                            return null;
-                          },
+                          validator: _model.actBioControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -344,7 +321,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
                       child: FlutterFlowDropDown<String>(
                         options: ['دورة تدريبية', 'ورشة عمل', 'فعالية'],
-                        onChanged: (val) => setState(() => actTypeValue = val),
+                        onChanged: (val) =>
+                            setState(() => _model.actTypeValue = val),
                         width: 400,
                         height: 50,
                         textStyle: GoogleFonts.getFont(
@@ -398,9 +376,19 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             if (selectedMedia != null &&
                                 selectedMedia.every((m) => validateFileFormat(
                                     m.storagePath, context))) {
-                              setState(() => isMediaUploading = true);
+                              setState(() => _model.isMediaUploading = true);
+                              var selectedUploadedFiles = <FFUploadedFile>[];
                               var downloadUrls = <String>[];
                               try {
+                                selectedUploadedFiles = selectedMedia
+                                    .map((m) => FFUploadedFile(
+                                          name: m.storagePath.split('/').last,
+                                          bytes: m.bytes,
+                                          height: m.dimensions?.height,
+                                          width: m.dimensions?.width,
+                                        ))
+                                    .toList();
+
                                 downloadUrls = (await Future.wait(
                                   selectedMedia.map(
                                     (m) async => await uploadData(
@@ -411,11 +399,16 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     .map((u) => u!)
                                     .toList();
                               } finally {
-                                isMediaUploading = false;
+                                _model.isMediaUploading = false;
                               }
-                              if (downloadUrls.length == selectedMedia.length) {
-                                setState(
-                                    () => uploadedFileUrl = downloadUrls.first);
+                              if (selectedUploadedFiles.length ==
+                                      selectedMedia.length &&
+                                  downloadUrls.length == selectedMedia.length) {
+                                setState(() {
+                                  _model.uploadedLocalFile =
+                                      selectedUploadedFiles.first;
+                                  _model.uploadedFileUrl = downloadUrls.first;
+                                });
                               } else {
                                 setState(() {});
                                 return;
@@ -558,15 +551,15 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
 
                                 if (_datePicked1Date != null &&
                                     _datePicked1Time != null) {
-                                  setState(
-                                    () => datePicked1 = DateTime(
+                                  setState(() {
+                                    _model.datePicked1 = DateTime(
                                       _datePicked1Date.year,
                                       _datePicked1Date.month,
                                       _datePicked1Date.day,
                                       _datePicked1Time!.hour,
                                       _datePicked1Time.minute,
-                                    ),
-                                  );
+                                    );
+                                  });
                                 }
                               },
                               child: Row(
@@ -633,15 +626,15 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
 
                                 if (_datePicked2Date != null &&
                                     _datePicked2Time != null) {
-                                  setState(
-                                    () => datePicked2 = DateTime(
+                                  setState(() {
+                                    _model.datePicked2 = DateTime(
                                       _datePicked2Date.year,
                                       _datePicked2Date.month,
                                       _datePicked2Date.day,
                                       _datePicked2Time!.hour,
                                       _datePicked2Time.minute,
-                                    ),
-                                  );
+                                    );
+                                  });
                                 }
                               },
                               child: Row(
@@ -692,10 +685,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               unselectedWidgetColor: Color(0xFF95A1AC),
                             ),
                             child: CheckboxListTile(
-                              value: checkboxListTileValue ??= false,
+                              value: _model.checkboxListTileValue ??= false,
                               onChanged: (newValue) async {
-                                setState(
-                                    () => checkboxListTileValue = newValue!);
+                                setState(() =>
+                                    _model.checkboxListTileValue = newValue!);
                               },
                               title: Text(
                                 'المقاعد محددة',
@@ -715,7 +708,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                         ),
                       ),
                     ),
-                    if (checkboxListTileValue == true)
+                    if (_model.checkboxListTileValue == true)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
                         child: Container(
@@ -724,12 +717,12 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              if (checkboxListTileValue == true)
+                              if (_model.checkboxListTileValue == true)
                                 Expanded(
                                   child: Container(
                                     width: 400,
                                     child: TextFormField(
-                                      controller: textController4,
+                                      controller: _model.textController4,
                                       obscureText: false,
                                       decoration: InputDecoration(
                                         labelText: 'عدد المقاعد',
@@ -785,6 +778,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                       ),
                                       textAlign: TextAlign.start,
                                       keyboardType: TextInputType.number,
+                                      validator: _model.textController4Validator
+                                          .asValidator(context),
                                     ),
                                   ),
                                 ),
@@ -825,33 +820,33 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   : null;
                           return FFButtonWidget(
                             onPressed: () async {
-                              if (formKey.currentState == null ||
-                                  !formKey.currentState!.validate()) {
+                              if (_model.formKey.currentState == null ||
+                                  !_model.formKey.currentState!.validate()) {
                                 return;
                               }
-
-                              if (actTypeValue == null) {
+                              if (_model.actTypeValue == null) {
                                 return;
                               }
-                              if (datePicked1 == null) {
+                              if (_model.datePicked1 == null) {
                                 return;
                               }
-                              if (datePicked2 == null) {
+                              if (_model.datePicked2 == null) {
                                 return;
                               }
 
                               final extraActsCreateData = {
                                 ...createExtraActsRecordData(
-                                  actType: actTypeValue,
-                                  actName: actNameController!.text,
-                                  actDec: actBioController!.text,
-                                  actPic: uploadedFileUrl,
+                                  actType: _model.actTypeValue,
+                                  actName: _model.actNameController.text,
+                                  actDec: _model.actBioController.text,
+                                  actPic: _model.uploadedFileUrl,
                                   status: 'معلق',
-                                  sdate: datePicked2,
-                                  edate: datePicked1,
-                                  actLoc: actLocController!.text,
-                                  seats: checkboxListTileValue,
-                                  numSeats: int.tryParse(textController4!.text),
+                                  sdate: _model.datePicked2,
+                                  edate: _model.datePicked1,
+                                  actLoc: _model.actLocController.text,
+                                  seats: _model.checkboxListTileValue,
+                                  numSeats:
+                                      int.tryParse(_model.textController4.text),
                                   actProvider: currentUserDisplayName,
                                   actID: random_data.randomString(
                                     20,

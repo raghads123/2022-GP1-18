@@ -39,15 +39,27 @@ service cloud.firestore {
     match /rating/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /user_history/{document} {
       allow create: if true;
       allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /Notify/{document} {
+      allow create: if true;
+      allow read: if true;
       allow write: if true;
       allow delete: if true;
+    }
+
+    match /ff_user_push_notifications/{id} {
+      allow read, update, delete: if false;
+      allow create: if /databases/$(database)/documents/users/$(request.auth.uid) == request.resource.data.sender;
     }
   }
 }

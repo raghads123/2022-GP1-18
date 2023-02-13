@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'course_info_model.dart';
+export 'course_info_model.dart';
 
 class CourseInfoWidget extends StatefulWidget {
   const CourseInfoWidget({
@@ -25,7 +27,22 @@ class CourseInfoWidget extends StatefulWidget {
 }
 
 class _CourseInfoWidgetState extends State<CourseInfoWidget> {
+  late CourseInfoModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => CourseInfoModel());
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -207,24 +224,73 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 7),
-                                          child: FlutterFlowIconButton(
-                                            borderColor: Colors.transparent,
-                                            borderRadius: 30,
-                                            borderWidth: 1,
-                                            buttonSize: 40,
-                                            icon: Icon(
-                                              Icons.notifications,
-                                              color: Color(0xFF57636C),
-                                              size: 30,
-                                            ),
-                                            onPressed: () {
-                                              print('IconButton pressed ...');
-                                            },
+                                        StreamBuilder<List<NotifyRecord>>(
+                                          stream: queryNotifyRecord(
+                                            singleRecord: true,
                                           ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: Color(0xFF0184BD),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<NotifyRecord>
+                                                iconButtonNotifyRecordList =
+                                                snapshot.data!;
+                                            // Return an empty Container when the item does not exist.
+                                            if (snapshot.data!.isEmpty) {
+                                              return Container();
+                                            }
+                                            final iconButtonNotifyRecord =
+                                                iconButtonNotifyRecordList
+                                                        .isNotEmpty
+                                                    ? iconButtonNotifyRecordList
+                                                        .first
+                                                    : null;
+                                            return FlutterFlowIconButton(
+                                              borderRadius: 30,
+                                              borderWidth: 1,
+                                              buttonSize: 60,
+                                              disabledColor: Color(0xFFEE4747),
+                                              icon: Icon(
+                                                Icons.notifications_none,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 30,
+                                              ),
+                                              onPressed: iconButtonNotifyRecord!
+                                                      .multiuser!
+                                                      .toList()
+                                                      .contains(
+                                                          currentUserReference)
+                                                  ? null
+                                                  : () async {
+                                                      final notifyUpdateData = {
+                                                        ...createNotifyRecordData(
+                                                          actID:
+                                                              widget.courseid,
+                                                        ),
+                                                        'multiuser': FieldValue
+                                                            .arrayUnion([
+                                                          currentUserReference
+                                                        ]),
+                                                      };
+                                                      await iconButtonNotifyRecord!
+                                                          .reference
+                                                          .update(
+                                                              notifyUpdateData);
+                                                    },
+                                            );
+                                          },
                                         ),
                                       ],
                                     ),
@@ -530,7 +596,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                             },
                                                           );
                                                         } else {
-                                                          final usersUpdateData =
+                                                          final usersUpdateData1 =
                                                               {
                                                             'users_acts':
                                                                 FieldValue
@@ -541,7 +607,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                           };
                                                           await currentUserReference!
                                                               .update(
-                                                                  usersUpdateData);
+                                                                  usersUpdateData1);
 
                                                           final extraActsUpdateData =
                                                               {
@@ -556,7 +622,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                                   extraActsUpdateData);
                                                         }
                                                       } else {
-                                                        final usersUpdateData =
+                                                        final usersUpdateData2 =
                                                             {
                                                           'users_acts':
                                                               FieldValue
@@ -567,7 +633,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                         };
                                                         await currentUserReference!
                                                             .update(
-                                                                usersUpdateData);
+                                                                usersUpdateData2);
                                                       }
 
                                                       ScaffoldMessenger.of(

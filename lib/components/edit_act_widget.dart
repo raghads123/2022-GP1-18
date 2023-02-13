@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'edit_act_model.dart';
+export 'edit_act_model.dart';
 
 class EditActWidget extends StatefulWidget {
   const EditActWidget({
@@ -24,27 +26,26 @@ class EditActWidget extends StatefulWidget {
 }
 
 class _EditActWidgetState extends State<EditActWidget> {
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  late EditActModel _model;
 
-  TextEditingController? actBioController;
-  TextEditingController? actLocController;
-  TextEditingController? actNameController;
-  DateTime? datePicked;
-  TextEditingController? textController4;
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    textController4 = TextEditingController();
+    _model = createModel(context, () => EditActModel());
+
+    _model.textController4 = TextEditingController();
   }
 
   @override
   void dispose() {
-    actBioController?.dispose();
-    actLocController?.dispose();
-    actNameController?.dispose();
-    textController4?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -128,7 +129,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                           child: Container(
                             width: 400,
                             child: TextFormField(
-                              controller: actNameController ??=
+                              controller: _model.actNameController ??=
                                   TextEditingController(
                                 text: formExtraActsRecord!.actName,
                               ),
@@ -188,6 +189,8 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 fontWeight: FontWeight.normal,
                               ),
                               textAlign: TextAlign.center,
+                              validator: _model.actNameControllerValidator
+                                  .asValidator(context),
                             ),
                           ),
                         ),
@@ -197,7 +200,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                           child: Container(
                             width: double.infinity,
                             child: TextFormField(
-                              controller: actLocController ??=
+                              controller: _model.actLocController ??=
                                   TextEditingController(
                                 text: formExtraActsRecord!.actLoc,
                               ),
@@ -257,6 +260,8 @@ class _EditActWidgetState extends State<EditActWidget> {
                               textAlign: TextAlign.start,
                               maxLines: null,
                               keyboardType: TextInputType.multiline,
+                              validator: _model.actLocControllerValidator
+                                  .asValidator(context),
                             ),
                           ),
                         ),
@@ -266,7 +271,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                           child: Container(
                             width: 400,
                             child: TextFormField(
-                              controller: actBioController ??=
+                              controller: _model.actBioController ??=
                                   TextEditingController(
                                 text: formExtraActsRecord!.actDec,
                               ),
@@ -327,6 +332,8 @@ class _EditActWidgetState extends State<EditActWidget> {
                               textAlign: TextAlign.center,
                               maxLines: 2,
                               keyboardType: TextInputType.multiline,
+                              validator: _model.actBioControllerValidator
+                                  .asValidator(context),
                             ),
                           ),
                         ),
@@ -363,9 +370,22 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     selectedMedia.every((m) =>
                                         validateFileFormat(
                                             m.storagePath, context))) {
-                                  setState(() => isMediaUploading = true);
+                                  setState(
+                                      () => _model.isMediaUploading = true);
+                                  var selectedUploadedFiles =
+                                      <FFUploadedFile>[];
                                   var downloadUrls = <String>[];
                                   try {
+                                    selectedUploadedFiles = selectedMedia
+                                        .map((m) => FFUploadedFile(
+                                              name:
+                                                  m.storagePath.split('/').last,
+                                              bytes: m.bytes,
+                                              height: m.dimensions?.height,
+                                              width: m.dimensions?.width,
+                                            ))
+                                        .toList();
+
                                     downloadUrls = (await Future.wait(
                                       selectedMedia.map(
                                         (m) async => await uploadData(
@@ -376,12 +396,18 @@ class _EditActWidgetState extends State<EditActWidget> {
                                         .map((u) => u!)
                                         .toList();
                                   } finally {
-                                    isMediaUploading = false;
+                                    _model.isMediaUploading = false;
                                   }
-                                  if (downloadUrls.length ==
-                                      selectedMedia.length) {
-                                    setState(() =>
-                                        uploadedFileUrl = downloadUrls.first);
+                                  if (selectedUploadedFiles.length ==
+                                          selectedMedia.length &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
+                                    setState(() {
+                                      _model.uploadedLocalFile =
+                                          selectedUploadedFiles.first;
+                                      _model.uploadedFileUrl =
+                                          downloadUrls.first;
+                                    });
                                   } else {
                                     setState(() {});
                                     return;
@@ -544,13 +570,13 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     );
 
                                     if (_datePickedDate != null) {
-                                      setState(
-                                        () => datePicked = DateTime(
+                                      setState(() {
+                                        _model.datePicked = DateTime(
                                           _datePickedDate.year,
                                           _datePickedDate.month,
                                           _datePickedDate.day,
-                                        ),
-                                      );
+                                        );
+                                      });
                                     }
                                   },
                                   child: Row(
@@ -607,7 +633,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     child: Container(
                                       width: 400,
                                       child: TextFormField(
-                                        controller: textController4,
+                                        controller: _model.textController4,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           labelText: 'عدد المقاعد',
@@ -665,6 +691,9 @@ class _EditActWidgetState extends State<EditActWidget> {
                                         ),
                                         textAlign: TextAlign.start,
                                         keyboardType: TextInputType.number,
+                                        validator: _model
+                                            .textController4Validator
+                                            .asValidator(context),
                                       ),
                                     ),
                                   ),
@@ -676,47 +705,48 @@ class _EditActWidgetState extends State<EditActWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if ((actLocController?.text ?? '') != null &&
-                                  (actLocController?.text ?? '') != '') {
-                                final extraActsUpdateData =
+                              if (_model.actLocController.text != null &&
+                                  _model.actLocController.text != '') {
+                                final extraActsUpdateData1 =
                                     createExtraActsRecordData(
-                                  actLoc: actLocController?.text ?? '',
+                                  actLoc: _model.actLocController.text,
                                 );
                                 await formExtraActsRecord!.reference
-                                    .update(extraActsUpdateData);
+                                    .update(extraActsUpdateData1);
                               }
-                              if (isMediaUploading) {
-                                final extraActsUpdateData =
+                              if (_model.isMediaUploading) {
+                                final extraActsUpdateData2 =
                                     createExtraActsRecordData(
-                                  actPic: uploadedFileUrl,
+                                  actPic: _model.uploadedFileUrl,
                                 );
                                 await formExtraActsRecord!.reference
-                                    .update(extraActsUpdateData);
+                                    .update(extraActsUpdateData2);
                               }
-                              if (datePicked != null) {
-                                final extraActsUpdateData =
+                              if (_model.datePicked != null) {
+                                final extraActsUpdateData3 =
                                     createExtraActsRecordData(
-                                  edate: datePicked,
+                                  edate: _model.datePicked,
                                 );
                                 await formExtraActsRecord!.reference
-                                    .update(extraActsUpdateData);
+                                    .update(extraActsUpdateData3);
                               }
-                              if (textController4!.text != null &&
-                                  textController4!.text != '') {
-                                final extraActsUpdateData =
+                              if (_model.textController4.text != null &&
+                                  _model.textController4.text != '') {
+                                final extraActsUpdateData4 =
                                     createExtraActsRecordData(
-                                  numSeats: int.tryParse(textController4!.text),
+                                  numSeats:
+                                      int.tryParse(_model.textController4.text),
                                 );
                                 await formExtraActsRecord!.reference
-                                    .update(extraActsUpdateData);
+                                    .update(extraActsUpdateData4);
                               }
 
-                              final extraActsUpdateData =
+                              final extraActsUpdateData5 =
                                   createExtraActsRecordData(
                                 status: 'معلق',
                               );
                               await formExtraActsRecord!.reference
-                                  .update(extraActsUpdateData);
+                                  .update(extraActsUpdateData5);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(

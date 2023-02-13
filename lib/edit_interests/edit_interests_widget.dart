@@ -11,6 +11,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'edit_interests_model.dart';
+export 'edit_interests_model.dart';
 
 class EditInterestsWidget extends StatefulWidget {
   const EditInterestsWidget({Key? key}) : super(key: key);
@@ -21,12 +23,21 @@ class EditInterestsWidget extends StatefulWidget {
 
 class _EditInterestsWidgetState extends State<EditInterestsWidget>
     with TickerProviderStateMixin {
-  List<String>? checkboxGroupValues;
-  final _unfocusNode = FocusNode();
+  late EditInterestsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => EditInterestsModel());
+  }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -446,10 +457,11 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                         options: columnCategoryRecord!.name!
                                             .toList(),
                                         onChanged: (val) async {
-                                          setState(
-                                              () => checkboxGroupValues = val);
+                                          setState(() =>
+                                              _model.checkboxGroupValues = val);
                                           final usersUpdateData = {
-                                            'intrests': checkboxGroupValues,
+                                            'intrests':
+                                                _model.checkboxGroupValues,
                                           };
                                           await containerUsersRecord!.reference
                                               .update(usersUpdateData);
@@ -474,7 +486,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                           topRight: Radius.circular(0),
                                         ),
                                         initialized:
-                                            checkboxGroupValues != null,
+                                            _model.checkboxGroupValues != null,
                                       ),
                                     ),
                                   ],

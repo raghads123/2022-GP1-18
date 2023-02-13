@@ -7,6 +7,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'first_page_model.dart';
+export 'first_page_model.dart';
 
 class FirstPageWidget extends StatefulWidget {
   const FirstPageWidget({Key? key}) : super(key: key);
@@ -17,6 +19,11 @@ class FirstPageWidget extends StatefulWidget {
 
 class _FirstPageWidgetState extends State<FirstPageWidget>
     with TickerProviderStateMixin {
+  late FirstPageModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
@@ -69,16 +76,17 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
       ],
     ),
   };
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => FirstPageModel());
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -156,7 +164,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
+                                            20, 20, 20, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             context.pushNamed('LogIn');
@@ -165,7 +173,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFF579BB1),
+                                            color: Color(0xBF579BB1),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFFFFFAF1),
@@ -178,7 +186,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 20),
+                                            20, 20, 20, 20),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             context.pushNamed(
@@ -188,7 +196,7 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
                                           options: FFButtonOptions(
                                             width: 300,
                                             height: 50,
-                                            color: Color(0xFF579BB1),
+                                            color: Color(0xBF579BB1),
                                             textStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFFFFFAF1),

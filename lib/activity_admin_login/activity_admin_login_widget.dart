@@ -5,6 +5,8 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'activity_admin_login_model.dart';
+export 'activity_admin_login_model.dart';
 
 class ActivityAdminLoginWidget extends StatefulWidget {
   const ActivityAdminLoginWidget({Key? key}) : super(key: key);
@@ -15,25 +17,25 @@ class ActivityAdminLoginWidget extends StatefulWidget {
 }
 
 class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
-  TextEditingController? emailController;
-  TextEditingController? passwordController;
-  late bool passwordVisibility;
-  final _unfocusNode = FocusNode();
+  late ActivityAdminLoginModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVisibility = false;
+    _model = createModel(context, () => ActivityAdminLoginModel());
+
+    _model.emailController = TextEditingController();
+    _model.passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    emailController?.dispose();
-    passwordController?.dispose();
     super.dispose();
   }
 
@@ -97,7 +99,7 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                       child: Container(
                                         width: 300,
                                         child: TextFormField(
-                                          controller: emailController,
+                                          controller: _model.emailController,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             labelText: 'البريد الإلكتروني',
@@ -154,6 +156,9 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                           textAlign: TextAlign.start,
+                                          validator: _model
+                                              .emailControllerValidator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -163,8 +168,9 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                       child: Container(
                                         width: 300,
                                         child: TextFormField(
-                                          controller: passwordController,
-                                          obscureText: !passwordVisibility,
+                                          controller: _model.passwordController,
+                                          obscureText:
+                                              !_model.passwordVisibility,
                                           decoration: InputDecoration(
                                             labelText: 'كلمة المرور',
                                             labelStyle: GoogleFonts.getFont(
@@ -215,13 +221,14 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                             fillColor: Color(0xFFE0E0E0),
                                             suffixIcon: InkWell(
                                               onTap: () => setState(
-                                                () => passwordVisibility =
-                                                    !passwordVisibility,
+                                                () => _model
+                                                        .passwordVisibility =
+                                                    !_model.passwordVisibility,
                                               ),
                                               focusNode: FocusNode(
                                                   skipTraversal: true),
                                               child: Icon(
-                                                passwordVisibility
+                                                _model.passwordVisibility
                                                     ? Icons.visibility_outlined
                                                     : Icons
                                                         .visibility_off_outlined,
@@ -238,6 +245,9 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                           textAlign: TextAlign.start,
+                                          validator: _model
+                                              .passwordControllerValidator
+                                              .asValidator(context),
                                         ),
                                       ),
                                     ),
@@ -251,8 +261,8 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
 
                                           final user = await signInWithEmail(
                                             context,
-                                            emailController!.text,
-                                            passwordController!.text,
+                                            _model.emailController.text,
+                                            _model.passwordController.text,
                                           );
                                           if (user == null) {
                                             return;
@@ -282,7 +292,8 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                     ),
                                     InkWell(
                                       onTap: () async {
-                                        if (emailController!.text.isEmpty) {
+                                        if (_model
+                                            .emailController.text.isEmpty) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -294,7 +305,7 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                           return;
                                         }
                                         await resetPassword(
-                                          email: emailController!.text,
+                                          email: _model.emailController.text,
                                           context: context,
                                         );
                                       },

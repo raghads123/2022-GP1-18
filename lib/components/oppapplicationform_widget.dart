@@ -1,9 +1,10 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,13 +41,14 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
     super.initState();
     _model = createModel(context, () => OppapplicationformModel());
 
-    _model.userEmailController = TextEditingController(text: currentUserEmail);
-    _model.shortbioController = TextEditingController();
+    _model.userEmailController ??=
+        TextEditingController(text: currentUserEmail);
+    _model.shortbioController ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }
@@ -66,8 +68,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
+              width: 50.0,
+              height: 50.0,
               child: CircularProgressIndicator(
                 color: Color(0xFF0184BD),
               ),
@@ -82,25 +84,25 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                 : null;
         return Material(
           color: Colors.transparent,
-          elevation: 5,
+          elevation: 5.0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(0),
-              bottomRight: Radius.circular(0),
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+              bottomLeft: Radius.circular(0.0),
+              bottomRight: Radius.circular(0.0),
+              topLeft: Radius.circular(50.0),
+              topRight: Radius.circular(50.0),
             ),
           ),
           child: Container(
             width: double.infinity,
-            height: 550,
+            height: 590.0,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFFF4F3F0),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0),
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+                bottomLeft: Radius.circular(0.0),
+                bottomRight: Radius.circular(0.0),
+                topLeft: Radius.circular(50.0),
+                topRight: Radius.circular(50.0),
               ),
             ),
             child: SingleChildScrollView(
@@ -114,34 +116,38 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: Container(
-                          width: 50,
-                          height: 4,
+                          width: 50.0,
+                          height: 4.0,
                           decoration: BoxDecoration(
                             color: Color(0xFFE0E3E7),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
-                        child: Text(
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
                           'الرجاء تعبئة نموذج التقديم أدناه',
-                          style: FlutterFlowTheme.of(context).title2.override(
+                          style: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
                                 fontFamily: 'Outfit',
-                                color: FlutterFlowTheme.of(context).alternate,
-                                fontSize: 22,
+                                color: Color(0xFF7EAEBD),
+                                fontSize: 22.0,
                                 fontWeight: FontWeight.w500,
                               ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Form(
                     key: _model.formKey,
@@ -157,8 +163,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 50,
-                              height: 50,
+                              width: 50.0,
+                              height: 50.0,
                               child: CircularProgressIndicator(
                                 color: Color(0xFF0184BD),
                               ),
@@ -179,10 +185,10 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 15, 4, 15),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 15.0),
                               child: Container(
-                                width: 300,
+                                width: 300.0,
                                 child: TextFormField(
                                   controller: _model.userEmailController,
                                   readOnly: true,
@@ -190,49 +196,54 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                   decoration: InputDecoration(
                                     labelText: 'بريدك الإلكتروني',
                                     labelStyle: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
                                         ),
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodySmall
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     filled: true,
-                                    fillColor: Color(0xFFE0E0E0),
+                                    fillColor: Color(0xFFE1D7C6),
                                   ),
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 16,
                                   ),
                                   textAlign: TextAlign.start,
                                   validator: _model.userEmailControllerValidator
@@ -241,86 +252,89 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0, 0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 15.0, 20.0, 15.0),
                                 child: FlutterFlowDropDown<String>(
+                                  controller: _model.skillController ??=
+                                      FormFieldController<String>(null),
                                   options: containerOpportunitiesRecord!
                                       .opSkills!
                                       .toList()
                                       .toList(),
                                   onChanged: (val) =>
                                       setState(() => _model.skillValue = val),
-                                  width: 300,
-                                  height: 50,
+                                  width: 300.0,
+                                  height: 50.0,
                                   textStyle: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
-                                  hintText: 'حددي مهارتك',
-                                  fillColor: Color(0xFFE0E0E0),
-                                  elevation: 2,
+                                  hintText: 'حدد مهارتك',
+                                  fillColor: Color(0xFFE1D7C6),
+                                  elevation: 2.0,
                                   borderColor: Colors.transparent,
-                                  borderWidth: 0,
-                                  borderRadius: 25,
+                                  borderWidth: 0.0,
+                                  borderRadius: 25.0,
                                   margin: EdgeInsetsDirectional.fromSTEB(
-                                      12, 4, 12, 4),
+                                      12.0, 4.0, 12.0, 4.0),
                                   hidesUnderline: true,
+                                  isSearchable: false,
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 4, 15),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 15.0),
                               child: Container(
-                                width: 300,
+                                width: 300.0,
                                 child: TextFormField(
                                   controller: _model.shortbioController,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: ' نبذة عنك',
                                     labelStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                        FlutterFlowTheme.of(context).bodySmall,
                                     hintText: ' نبذة بسيطة عنك )٢٨٠ حرف(',
                                     hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                        FlutterFlowTheme.of(context).bodySmall,
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xE1FF2323),
-                                        width: 1,
+                                        color: Color(0xFF7EAEBD),
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xE1FF2323),
-                                        width: 1,
+                                        color: Color(0xFF7EAEBD),
+                                        width: 1.0,
                                       ),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     filled: true,
-                                    fillColor: Color(0xFFE0E0E0),
+                                    fillColor: Color(0xFFE1D7C6),
                                   ),
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: 16,
+                                    color: Color(0xFF7EAEBD),
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 16.0,
                                   ),
                                   textAlign: TextAlign.start,
                                   maxLines: 10,
@@ -330,8 +344,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 30.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   if (_model.formKey.currentState == null ||
@@ -384,7 +398,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                       content: Text(
                                         'لقد تم تقديمك على هذه الفرصة بنجاح!',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyText2
+                                            .bodySmall
                                             .override(
                                               fontFamily: 'Poppins',
                                               color:
@@ -401,20 +415,24 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                 },
                                 text: 'إرسال',
                                 options: FFButtonOptions(
-                                  width: 270,
-                                  height: 50,
-                                  color: Color(0xFF1C8EC1),
+                                  width: 300.0,
+                                  height: 50.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: Color(0xFF7EAEBD),
                                   textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle1
+                                      .titleMedium
                                       .override(
                                         fontFamily: 'Poppins',
-                                        color: Colors.white,
+                                        color: Color(0xFFF4F3F0),
                                       ),
-                                  elevation: 2,
+                                  elevation: 2.0,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
-                                    width: 1,
                                   ),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
                               ),
                             ),

@@ -1,11 +1,11 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
+import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class _EventsWidgetState extends State<EventsWidget> {
     super.initState();
     _model = createModel(context, () => EventsModel());
 
-    _model.fieldSearchController = TextEditingController();
+    _model.fieldSearchController ??= TextEditingController();
   }
 
   @override
@@ -51,17 +51,17 @@ class _EventsWidgetState extends State<EventsWidget> {
       key: scaffoldKey,
       backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF4F3F0),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
           icon: Icon(
             Icons.chevron_left,
-            color: Color(0xFF777373),
-            size: 30,
+            color: Color(0xFF7EAEBD),
+            size: 30.0,
           ),
           onPressed: () async {
             if (Navigator.of(context).canPop()) {
@@ -80,15 +80,16 @@ class _EventsWidgetState extends State<EventsWidget> {
         ),
         title: Text(
           'الفعاليات',
-          style: FlutterFlowTheme.of(context).title2.override(
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFF777373),
-                fontSize: 22,
+                color: Color(0xFF7EAEBD),
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
               ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 2.0,
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -99,37 +100,40 @@ class _EventsWidgetState extends State<EventsWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           Icons.search,
                           color: Color(0xFF777373),
-                          size: 20,
+                          size: 20.0,
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          height: 35,
+                          width: 140.0,
+                          height: 35.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 4,
+                                blurRadius: 4.0,
                                 color: Color(0x33000000),
-                                offset: Offset(0, 2),
+                                offset: Offset(0.0, 2.0),
                               )
                             ],
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25.0),
                           ),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 12.0, 0.0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -150,16 +154,16 @@ class _EventsWidgetState extends State<EventsWidget> {
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   textHighlightStyle: TextStyle(),
-                                  elevation: 4,
+                                  elevation: 4.0,
                                   optionBackgroundColor:
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                   optionHighlightColor:
                                       FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                  maxHeight: 200,
+                                  maxHeight: 200.0,
                                 );
                               },
                               onSelected: (String selection) {
@@ -187,13 +191,17 @@ class _EventsWidgetState extends State<EventsWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'ابحثِ هنا',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintText: 'أبحث هنا',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodySmall
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF777373),
+                                        ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -203,7 +211,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -213,7 +221,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -223,7 +231,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -231,7 +239,12 @@ class _EventsWidgetState extends State<EventsWidget> {
                                       ),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF7EAEBD),
+                                      ),
                                   textAlign: TextAlign.start,
                                   validator: _model
                                       .fieldSearchControllerValidator
@@ -254,8 +267,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.0,
+                          height: 50.0,
                           child: CircularProgressIndicator(
                             color: Color(0xFF0184BD),
                           ),
@@ -287,56 +300,61 @@ class _EventsWidgetState extends State<EventsWidget> {
                                   ).toString()),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        6, 6, 6, 6),
+                                        15.0, 0.0, 15.0, 15.0),
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
                                           BoxShadow(
-                                            blurRadius: 7,
-                                            color: Color(0xFF777373),
-                                            offset: Offset(0, 3),
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(0.0, 2.0),
                                           )
                                         ],
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: Color(0xFFE4DFDA),
-                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
                                       ),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 12, 12, 12),
+                                            15.0, 15.0, 15.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.network(
-                                                valueOrDefault<String>(
-                                                  getJsonField(
-                                                    eventMBdataItem,
-                                                    r'''$.Act_pic''',
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    getJsonField(
+                                                      eventMBdataItem,
+                                                      r'''$.Act_pic''',
+                                                    ),
+                                                    'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
                                                   ),
-                                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                  width: double.infinity,
+                                                  height: 110.0,
+                                                  fit: BoxFit.cover,
                                                 ),
-                                                width: double.infinity,
-                                                height: 110,
-                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 0),
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 8, 0, 8),
+                                                    .fromSTEB(
+                                                        10.0, 10.0, 10.0, 10.0),
                                                 child: SingleChildScrollView(
                                                   scrollDirection:
                                                       Axis.horizontal,
@@ -354,16 +372,12 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .title3
+                                                                .headlineSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Outfit',
+                                                                      'Poppins',
                                                                   color: Color(
-                                                                      0xFF1C8EC1),
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
+                                                                      0xFF565656),
                                                                 ),
                                                       ),
                                                     ],
@@ -371,59 +385,38 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                 ),
                                               ),
                                             ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'تبدأ',
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF777373),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                120, 0, 0, 0),
-                                                    child: Text(
-                                                      'تنتهي',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Lexend Deca',
-                                                                color: Color(
-                                                                    0xFF777373),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                    ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 10.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'الموقع',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              Color(0xFF777373),
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 10.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -435,41 +428,19 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                     child: Text(
                                                       getJsonField(
                                                         eventMBdataItem,
-                                                        r'''$.Sdate''',
+                                                        r'''$.Act_loc''',
                                                       ).toString(),
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .subtitle2
+                                                          .titleSmall
                                                           .override(
                                                             fontFamily:
                                                                 'Roboto Mono',
                                                             color: Color(
                                                                 0xFF1C8EC1),
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      getJsonField(
-                                                        eventMBdataItem,
-                                                        r'''$.Edate''',
-                                                      ).toString(),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Roboto Mono',
-                                                            color: Color(
-                                                                0xFF1C8EC1),
-                                                            fontSize: 14,
+                                                            fontSize: 16.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -493,8 +464,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                       if (!snapshot.hasData) {
                                                         return Center(
                                                           child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
+                                                            width: 50.0,
+                                                            height: 50.0,
                                                             child:
                                                                 CircularProgressIndicator(
                                                               color: Color(
@@ -506,11 +477,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                       List<UserHistoryRecord>
                                                           textUserHistoryRecordList =
                                                           snapshot.data!;
-                                                      // Return an empty Container when the item does not exist.
-                                                      if (snapshot
-                                                          .data!.isEmpty) {
-                                                        return Container();
-                                                      }
                                                       final textUserHistoryRecord =
                                                           textUserHistoryRecordList
                                                                   .isNotEmpty
@@ -519,15 +485,10 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                               : null;
                                                       return InkWell(
                                                         onTap: () async {
-                                                          if (Navigator.of(
-                                                                  context)
-                                                              .canPop()) {
-                                                            context.pop();
-                                                          }
-                                                          context.pushNamed(
+                                                          context.goNamed(
                                                             'event_info',
                                                             queryParams: {
-                                                              'eventid':
+                                                              'eventID':
                                                                   serializeParam(
                                                                 getJsonField(
                                                                   eventMBdataItem,
@@ -550,33 +511,47 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                             },
                                                           );
 
-                                                          final userHistoryUpdateData =
-                                                              createUserHistoryRecordData(
-                                                            userEmail:
-                                                                currentUserEmail,
-                                                            extraActivityID:
-                                                                getJsonField(
-                                                              eventMBdataItem,
-                                                              r'''$.Act_ID''',
-                                                            ).toString(),
-                                                            aCTType:
-                                                                getJsonField(
-                                                              eventMBdataItem,
-                                                              r'''$.Act_type''',
-                                                            ).toString(),
-                                                          );
-                                                          await textUserHistoryRecord!
-                                                              .reference
-                                                              .update(
-                                                                  userHistoryUpdateData);
+                                                          if (textUserHistoryRecord !=
+                                                              null) {
+                                                            final userHistoryUpdateData =
+                                                                createUserHistoryRecordData(
+                                                              extraActivityID:
+                                                                  getJsonField(
+                                                                eventMBdataItem,
+                                                                r'''$.Act_ID''',
+                                                              ).toString(),
+                                                              aCTType: 'فعالية',
+                                                            );
+                                                            await textUserHistoryRecord!
+                                                                .reference
+                                                                .update(
+                                                                    userHistoryUpdateData);
+                                                          } else {
+                                                            final userHistoryCreateData =
+                                                                createUserHistoryRecordData(
+                                                              userEmail:
+                                                                  currentUserEmail,
+                                                              extraActivityID:
+                                                                  getJsonField(
+                                                                eventMBdataItem,
+                                                                r'''$.Act_ID''',
+                                                              ).toString(),
+                                                              aCTType: 'فعالية',
+                                                            );
+                                                            await UserHistoryRecord
+                                                                .collection
+                                                                .doc()
+                                                                .set(
+                                                                    userHistoryCreateData);
+                                                          }
                                                         },
                                                         child: Text(
                                                           'للمزيد',
                                                           textAlign:
-                                                              TextAlign.end,
+                                                              TextAlign.start,
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText2
+                                                              .bodySmall
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
@@ -593,7 +568,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                   Icon(
                                                     Icons.chevron_right_rounded,
                                                     color: Color(0xFF777373),
-                                                    size: 24,
+                                                    size: 24.0,
                                                   ),
                                                 ],
                                               ),

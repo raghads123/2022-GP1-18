@@ -1,9 +1,10 @@
-import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
 export 'sign_up_model.dart';
@@ -26,9 +27,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     super.initState();
     _model = createModel(context, () => SignUpModel());
 
-    _model.emailController = TextEditingController();
-    _model.passwordController = TextEditingController();
-    _model.confirmpasswordController = TextEditingController();
+    _model.emailController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController();
+    _model.confirmpasswordController ??= TextEditingController();
   }
 
   @override
@@ -51,45 +52,52 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         child: Stack(
           children: [
             Align(
-              alignment: AlignmentDirectional(0, -1),
+              alignment: AlignmentDirectional(0.0, -1.0),
               child: Image.asset(
-                'assets/images/mcatd_1.png',
+                'assets/images/40vyp_1.JPG',
                 width: double.infinity,
-                height: 250,
+                height: 250.0,
                 fit: BoxFit.cover,
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 180, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 180.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 100.0,
                         decoration: BoxDecoration(
                           color: Color(0xFFF4F3F0),
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(0.0),
+                            bottomRight: Radius.circular(0.0),
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0),
+                          ),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 25.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset(
-                                  'assets/images/9hsjc_2.png',
-                                  width: 190,
+                                  'assets/images/2logo.JPG',
+                                  width: 190.0,
                                   fit: BoxFit.cover,
                                 ),
                                 Form(
                                   key: _model.formKey,
-                                  autovalidateMode: AutovalidateMode.disabled,
+                                  autovalidateMode: AutovalidateMode.always,
                                   child: Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
@@ -97,7 +105,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         0.5,
                                     decoration: BoxDecoration(
                                       color: Color(0x6CE1D7C6),
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -107,21 +115,22 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 20, 14),
+                                                  20.0, 0.0, 20.0, 15.0),
                                           child: Container(
-                                            width: 300,
+                                            width: 300.0,
                                             child: TextFormField(
                                               controller:
                                                   _model.emailController,
                                               obscureText: false,
                                               decoration: InputDecoration(
-                                                labelText: 'البريد الإلكتروني ',
+                                                labelText: 'البريد الجامعي ',
                                                 labelStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
-                                                hintText: 'example@email.com',
+                                                hintText:
+                                                    'ID@student.ksu.edu.sa',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
@@ -131,58 +140,65 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 filled: true,
                                                 fillColor: Color(0xFFE1D7C6),
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFF579BB1),
+                                                color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .emailControllerValidator
                                                   .asValidator(context),
+                                              inputFormatters: [
+                                                _model.emailMask
+                                              ],
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 10, 20, 14),
+                                                  20.0, 15.0, 20.0, 15.0),
                                           child: Container(
-                                            width: 300,
+                                            width: 300.0,
                                             child: TextFormField(
                                               controller:
                                                   _model.passwordController,
@@ -205,7 +221,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
-                                                hintText: 'ادخلي كلمة المرور',
+                                                hintText:
+                                                    'الرجاء إدخال كلمة المرور',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
@@ -215,36 +232,40 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 filled: true,
                                                 fillColor: Color(0xFFE1D7C6),
@@ -264,13 +285,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                         : Icons
                                                             .visibility_off_outlined,
                                                     color: Color(0xFF95A1AC),
-                                                    size: 16,
+                                                    size: 16.0,
                                                   ),
                                                 ),
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFF579BB1),
+                                                color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
@@ -283,9 +304,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 10, 20, 1),
+                                                  20.0, 15.0, 20.0, 15.0),
                                           child: Container(
-                                            width: 300,
+                                            width: 300.0,
                                             child: TextFormField(
                                               controller: _model
                                                   .confirmpasswordController,
@@ -308,7 +329,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
-                                                hintText: 'ادخلي كلمة المرور',
+                                                hintText:
+                                                    'الرجاء إعادة إدخال كلمة المرور',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
@@ -318,36 +340,40 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
                                                     color: Color(0x00000000),
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xE1FF2323),
-                                                    width: 1,
+                                                    color: Color(0xFF7EAEBD),
+                                                    width: 1.0,
                                                   ),
                                                   borderRadius:
-                                                      BorderRadius.circular(25),
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
                                                 filled: true,
                                                 fillColor: Color(0xFFE1D7C6),
@@ -367,13 +393,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                         : Icons
                                                             .visibility_off_outlined,
                                                     color: Color(0xFF95A1AC),
-                                                    size: 16,
+                                                    size: 16.0,
                                                   ),
                                                 ),
                                               ),
                                               style: GoogleFonts.getFont(
                                                 'Open Sans',
-                                                color: Color(0xFF579BB1),
+                                                color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
                                               textAlign: TextAlign.start,
@@ -386,7 +412,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 20, 0, 2),
+                                                  20.0, 15.0, 20.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               if (_model.formKey.currentState ==
@@ -394,31 +420,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                   !_model.formKey.currentState!
                                                       .validate()) {
                                                 return;
-                                              }
-                                              if (_model.passwordController
-                                                      .text !=
-                                                  _model
-                                                      .confirmpasswordController
-                                                      .text) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'كلمة المرور لا تتطابق',
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Open Sans',
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                    duration: Duration(
-                                                        milliseconds: 4000),
-                                                    backgroundColor:
-                                                        Color(0xE1FF2323),
-                                                  ),
-                                                );
                                               }
                                               GoRouter.of(context)
                                                   .prepareAuthEvent();
@@ -448,45 +449,43 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 return;
                                               }
 
+                                              await sendEmailVerification();
+
                                               context.goNamedAuth(
-                                                'SettingUpProfile',
-                                                mounted,
-                                                extra: <String, dynamic>{
-                                                  kTransitionInfoKey:
-                                                      TransitionInfo(
-                                                    hasTransition: true,
-                                                    transitionType:
-                                                        PageTransitionType.fade,
-                                                  ),
-                                                },
-                                              );
+                                                  'Emailauth', mounted);
                                             },
                                             text: 'إنشاء حساب',
                                             options: FFButtonOptions(
-                                              width: 300,
-                                              height: 50,
-                                              color: Color(0xBF579BB1),
+                                              width: 300.0,
+                                              height: 50.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFF7EAEBD),
                                               textStyle: GoogleFonts.getFont(
                                                 'Open Sans',
                                                 color: Color(0xFFFFFAF1),
-                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18.0,
                                               ),
+                                              elevation: 2.0,
                                               borderSide: BorderSide(
                                                 color: Colors.transparent,
-                                                width: 0,
+                                                width: 0.0,
                                               ),
                                               borderRadius:
-                                                  BorderRadius.circular(25),
+                                                  BorderRadius.circular(25.0),
                                             ),
                                           ),
                                         ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 5, 0, 0),
+                                                  0.0, 5.0, 0.0, 0.0),
                                           child: InkWell(
                                             onTap: () async {
-                                              context.goNamed('LogIn');
+                                              context.goNamed('studentlogin');
                                             },
                                             child: Text(
                                               'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
@@ -509,6 +508,37 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-0.9, -0.95),
+              child: InkWell(
+                onTap: () async {
+                  context.goNamed(
+                    'FirstPage',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.rightToLeft,
+                      ),
+                    },
+                  );
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 3.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Color(0xFF7EAEBD),
+                      size: 24.0,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

@@ -1,14 +1,12 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'setting_up_profile_model.dart';
@@ -21,91 +19,18 @@ class SettingUpProfileWidget extends StatefulWidget {
   _SettingUpProfileWidgetState createState() => _SettingUpProfileWidgetState();
 }
 
-class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
-    with TickerProviderStateMixin {
+class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
   late SettingUpProfileModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-
-  final animationsMap = {
-    'imageOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1200.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1300.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'columnOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => SettingUpProfileModel());
 
-    _model.nameController = TextEditingController();
+    _model.nameController ??= TextEditingController();
   }
 
   @override
@@ -128,89 +53,87 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
         child: Stack(
           children: [
             Align(
-              alignment: AlignmentDirectional(0, -1),
+              alignment: AlignmentDirectional(0.0, -1.0),
               child: Image.asset(
-                'assets/images/mcatd_1.png',
+                'assets/images/40vyp_1.JPG',
                 width: double.infinity,
-                height: 250,
+                height: 250.0,
                 fit: BoxFit.cover,
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 180, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 180.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 100.0,
                         decoration: BoxDecoration(
                           color: Color(0xFFF4F3F0),
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 25.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset(
-                                  'assets/images/9hsjc_2.png',
-                                  width: 190,
+                                  'assets/images/2logo.JPG',
+                                  width: 190.0,
                                   fit: BoxFit.cover,
-                                ).animateOnPageLoad(
-                                    animationsMap['imageOnPageLoadAnimation']!),
+                                ),
                                 SelectionArea(
                                     child: Text(
                                   '!اهلًا ِبك',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Poppins',
                                         color: Color(0xFF0184BD),
-                                        fontSize: 24,
+                                        fontSize: 24.0,
                                       ),
-                                )).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation1']!),
+                                )),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
+                                      0.0, 0.0, 0.0, 10.0),
                                   child: SelectionArea(
                                       child: Text(
-                                    'ساعدينا بالتعرف عليك بشكلٍ أفضل',
+                                    'ساعدنا بالتعرف عليك بشكلٍ أفضل',
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF0184BD),
-                                          fontSize: 20,
+                                          fontSize: 20.0,
                                         ),
-                                  )).animateOnPageLoad(animationsMap[
-                                      'textOnPageLoadAnimation2']!),
+                                  )),
                                 ),
                                 Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.345,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.41,
                                   decoration: BoxDecoration(
                                     color: Color(0x6CE1D7C6),
-                                    borderRadius: BorderRadius.circular(25),
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 40, 20, 15),
+                                            20.0, 30.0, 20.0, 15.0),
                                         child: Container(
-                                          width: 300,
+                                          width: 300.0,
                                           child: TextFormField(
                                             controller: _model.nameController,
-                                            autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               hintText: 'الأسم',
@@ -218,47 +141,45 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                                 'Open Sans',
                                                 color: Color(0xFF565656),
                                               ),
-                                              enabledBorder:
-                                                  UnderlineInputBorder(
+                                              enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(25.0),
                                               ),
-                                              focusedBorder:
-                                                  UnderlineInputBorder(
+                                              focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(25.0),
                                               ),
-                                              errorBorder: UnderlineInputBorder(
+                                              errorBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(25.0),
                                               ),
                                               focusedErrorBorder:
-                                                  UnderlineInputBorder(
+                                                  OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x00000000),
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                    BorderRadius.circular(25.0),
                                               ),
                                               filled: true,
                                               fillColor: Color(0xFFE1D7C6),
                                             ),
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
-                                              color: Color(0xFF579BB1),
+                                              color: Color(0xFF7EAEBD),
                                             ),
                                             textAlign: TextAlign.start,
                                             validator: _model
@@ -269,8 +190,11 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 15, 0, 15),
+                                            20.0, 15.0, 20.0, 15.0),
                                         child: FlutterFlowDropDown<String>(
+                                          controller: _model
+                                                  .collegeController ??=
+                                              FormFieldController<String>(null),
                                           options: [
                                             'كلية الآداب',
                                             'كلية التربية',
@@ -288,28 +212,31 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           ],
                                           onChanged: (val) => setState(
                                               () => _model.collegeValue = val),
-                                          width: 300,
-                                          height: 50,
+                                          width: 300.0,
+                                          height: 50.0,
                                           textStyle: GoogleFonts.getFont(
                                             'Open Sans',
                                             color: Color(0xFF565656),
                                           ),
                                           hintText: 'الكلية ',
                                           fillColor: Color(0xFFE1D7C6),
-                                          elevation: 2,
+                                          elevation: 2.0,
                                           borderColor: Colors.transparent,
-                                          borderWidth: 0,
-                                          borderRadius: 25,
+                                          borderWidth: 0.0,
+                                          borderRadius: 25.0,
                                           margin:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  12, 4, 12, 4),
+                                                  12.0, 4.0, 12.0, 4.0),
                                           hidesUnderline: true,
+                                          isSearchable: false,
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 15, 0, 15),
+                                            20.0, 15.0, 20.0, 15.0),
                                         child: FlutterFlowDropDown<String>(
+                                          controller: _model.levelController ??=
+                                              FormFieldController<String>(null),
                                           options: [
                                             'المستوى الأول',
                                             'المستوى الثاني',
@@ -326,69 +253,81 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget>
                                           ],
                                           onChanged: (val) => setState(
                                               () => _model.levelValue = val),
-                                          width: 300,
-                                          height: 50,
+                                          width: 300.0,
+                                          height: 50.0,
                                           textStyle: GoogleFonts.getFont(
                                             'Open Sans',
                                             color: Color(0xFF565656),
                                           ),
                                           hintText: 'المستوى ',
                                           fillColor: Color(0xFFE1D7C6),
-                                          elevation: 2,
+                                          elevation: 2.0,
                                           borderColor: Colors.transparent,
-                                          borderWidth: 0,
-                                          borderRadius: 25,
+                                          borderWidth: 0.0,
+                                          borderRadius: 25.0,
                                           margin:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  12, 4, 12, 4),
+                                                  12.0, 4.0, 12.0, 4.0),
                                           hidesUnderline: true,
+                                          isSearchable: false,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 15.0, 20.0, 30.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            final usersUpdateData =
+                                                createUsersRecordData(
+                                              displayName:
+                                                  _model.nameController.text,
+                                              college: _model.collegeValue,
+                                              level: _model.levelValue,
+                                              type: 'student',
+                                            );
+                                            await currentUserReference!
+                                                .update(usersUpdateData);
+
+                                            context.goNamed(
+                                              'Settinginterests2',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          text: 'التالي',
+                                          options: FFButtonOptions(
+                                            width: 300.0,
+                                            height: 50.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF7EAEBD),
+                                            textStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFFFFFAF1),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18.0,
+                                            ),
+                                            elevation: 2.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
                                         ),
                                       ),
                                     ],
-                                  ).animateOnPageLoad(animationsMap[
-                                      'columnOnPageLoadAnimation']!),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 20),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      final usersUpdateData =
-                                          createUsersRecordData(
-                                        displayName: _model.nameController.text,
-                                        college: _model.collegeValue,
-                                        level: _model.levelValue,
-                                      );
-                                      await currentUserReference!
-                                          .update(usersUpdateData);
-
-                                      context.goNamed(
-                                        'Settinginterests2',
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                          ),
-                                        },
-                                      );
-                                    },
-                                    text: 'التالي',
-                                    options: FFButtonOptions(
-                                      width: 300,
-                                      height: 50,
-                                      color: Color(0xFF579BB1),
-                                      textStyle: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFFFFFAF1),
-                                        fontSize: 16,
-                                      ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25),
-                                    ),
                                   ),
                                 ),
                               ],

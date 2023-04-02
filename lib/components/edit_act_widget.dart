@@ -1,10 +1,10 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +39,12 @@ class _EditActWidgetState extends State<EditActWidget> {
     super.initState();
     _model = createModel(context, () => EditActModel());
 
-    _model.textController4 = TextEditingController();
+    _model.textController2 ??= TextEditingController();
   }
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }
@@ -55,13 +55,23 @@ class _EditActWidgetState extends State<EditActWidget> {
 
     return Container(
       width: double.infinity,
-      height: double.infinity,
+      height: 590.0,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        shape: BoxShape.rectangle,
-        border: Border.all(
-          color: FlutterFlowTheme.of(context).backgroundComponents,
+        color: Color(0xFFF4F3F0),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 4.0,
+            color: Color(0x33000000),
+            offset: Offset(0.0, 2.0),
+          )
+        ],
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(0.0),
+          bottomRight: Radius.circular(0.0),
+          topLeft: Radius.circular(50.0),
+          topRight: Radius.circular(50.0),
         ),
+        shape: BoxShape.rectangle,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -70,12 +80,18 @@ class _EditActWidgetState extends State<EditActWidget> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                child: Text(
-                  'ما الذي تريد ان تقدم طلب بتعديله',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).title1,
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 0.0),
+                  child: Text(
+                    'يمكنك تقديم طلب لتعديل المعلومات أدناه',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                          fontFamily: 'Poppins',
+                          color: Color(0xFF7EAEBD),
+                        ),
+                  ),
                 ),
               ),
             ],
@@ -85,8 +101,8 @@ class _EditActWidgetState extends State<EditActWidget> {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).primaryBtnText,
-                borderRadius: BorderRadius.circular(9),
+                color: Color(0xFFF4F3F0),
+                borderRadius: BorderRadius.circular(9.0),
               ),
               child: StreamBuilder<List<ExtraActsRecord>>(
                 stream: queryExtraActsRecord(
@@ -99,8 +115,8 @@ class _EditActWidgetState extends State<EditActWidget> {
                   if (!snapshot.hasData) {
                     return Center(
                       child: SizedBox(
-                        width: 50,
-                        height: 50,
+                        width: 50.0,
+                        height: 50.0,
                         child: CircularProgressIndicator(
                           color: Color(0xFF0184BD),
                         ),
@@ -124,79 +140,8 @@ class _EditActWidgetState extends State<EditActWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 15, 20, 15),
-                          child: Container(
-                            width: 400,
-                            child: TextFormField(
-                              controller: _model.actNameController ??=
-                                  TextEditingController(
-                                text: formExtraActsRecord!.actName,
-                              ),
-                              autofocus: true,
-                              readOnly: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'اسم نشاط',
-                                labelStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color: Color(0xFF0283BC),
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                filled: true,
-                                fillColor: Color(0xFFF0F0F0),
-                              ),
-                              style: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: Color(0xFF565656),
-                                fontWeight: FontWeight.normal,
-                              ),
-                              textAlign: TextAlign.center,
-                              validator: _model.actNameControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
                           child: Container(
                             width: double.infinity,
                             child: TextFormField(
@@ -213,41 +158,41 @@ class _EditActWidgetState extends State<EditActWidget> {
                                   fontWeight: FontWeight.normal,
                                 ),
                                 hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
+                                    .bodySmall
                                     .override(
                                       fontFamily: 'Outfit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 20,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 20.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xFF0283BC),
-                                    width: 2,
+                                    width: 2.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
+                                    color: Color(0x00000000),
+                                    width: 2.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
-                                    width: 2,
+                                    width: 2.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
-                                    width: 2,
+                                    width: 2.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
                                 filled: true,
                                 fillColor: Color(0xFFF0F0F0),
@@ -266,97 +211,25 @@ class _EditActWidgetState extends State<EditActWidget> {
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
                           child: Container(
-                            width: 400,
-                            child: TextFormField(
-                              controller: _model.actBioController ??=
-                                  TextEditingController(
-                                text: formExtraActsRecord!.actDec,
-                              ),
-                              readOnly: true,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                labelText: 'وصف النشاط',
-                                labelStyle: GoogleFonts.getFont(
-                                  'Open Sans',
-                                  color: Color(0xFF0283BC),
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Outfit',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 2,
-                                  ),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                filled: true,
-                                fillColor: Color(0xFFF0F0F0),
-                              ),
-                              style: GoogleFonts.getFont(
-                                'Open Sans',
-                                color: Color(0xFF565656),
-                                fontWeight: FontWeight.normal,
-                              ),
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              keyboardType: TextInputType.multiline,
-                              validator: _model.actBioControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
-                          child: Container(
-                            width: 400,
-                            height: 50,
+                            width: double.infinity,
+                            height: 50.0,
                             decoration: BoxDecoration(
                               color: Color(0xFFF0F0F0),
                               boxShadow: [
                                 BoxShadow(
-                                  blurRadius: 4,
+                                  blurRadius: 4.0,
                                   color: Color(0x33000000),
-                                  offset: Offset(0, 2),
+                                  offset: Offset(0.0, 2.0),
                                 )
                               ],
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                               shape: BoxShape.rectangle,
                               border: Border.all(
                                 color: Color(0xFF0283BC),
-                                width: 2,
+                                width: 2.0,
                               ),
                             ),
                             child: InkWell(
@@ -370,8 +243,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     selectedMedia.every((m) =>
                                         validateFileFormat(
                                             m.storagePath, context))) {
-                                  setState(
-                                      () => _model.isMediaUploading = true);
+                                  setState(() => _model.isDataUploading = true);
                                   var selectedUploadedFiles =
                                       <FFUploadedFile>[];
                                   var downloadUrls = <String>[];
@@ -396,7 +268,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                         .map((u) => u!)
                                         .toList();
                                   } finally {
-                                    _model.isMediaUploading = false;
+                                    _model.isDataUploading = false;
                                   }
                                   if (selectedUploadedFiles.length ==
                                           selectedMedia.length &&
@@ -421,11 +293,11 @@ class _EditActWidgetState extends State<EditActWidget> {
                                   Icon(
                                     Icons.image_outlined,
                                     color: Color(0xFF57636C),
-                                    size: 24,
+                                    size: 24.0,
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
+                                        5.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'شعار النشاط',
                                       textAlign: TextAlign.end,
@@ -433,7 +305,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                         'Open Sans',
                                         color: Color(0xFF0283BC),
                                         fontWeight: FontWeight.normal,
-                                        fontSize: 16,
+                                        fontSize: 16.0,
                                       ),
                                     ),
                                   ),
@@ -443,185 +315,89 @@ class _EditActWidgetState extends State<EditActWidget> {
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
-                          child: Container(
-                            width: 400,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF0F0F0),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(25),
-                              shape: BoxShape.rectangle,
-                              border: Border.all(
-                                color: Color(0xFF575F6C),
-                                width: 2,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.category_outlined,
-                                  color: Color(0xFF57636C),
-                                  size: 24,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 0, 0),
-                                  child: Text(
-                                    ' تصنيف النشاط',
-                                    textAlign: TextAlign.end,
-                                    style: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFF565656),
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.44,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFF0F0F0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x33000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.date_range_outlined,
-                                      color: Color(0xFF57636C),
-                                      size: 24,
+                              Expanded(
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFF0F0F0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    border: Border.all(
+                                      color: Color(0xFF0283BC),
+                                      width: 2.0,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5, 0, 0, 0),
-                                      child: Text(
-                                        'بداية النشاط',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.44,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFF0F0F0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x33000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(
-                                    color: Color(0xFF0283BC),
-                                    width: 2,
                                   ),
-                                ),
-                                child: InkWell(
-                                  onTap: () async {
-                                    final _datePickedDate =
-                                        await showDatePicker(
-                                      context: context,
-                                      initialDate: formExtraActsRecord!.edate!,
-                                      firstDate: formExtraActsRecord!.edate!,
-                                      lastDate: DateTime(2050),
-                                    );
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final _datePickedDate =
+                                          await showDatePicker(
+                                        context: context,
+                                        initialDate:
+                                            formExtraActsRecord!.edate!,
+                                        firstDate: formExtraActsRecord!.edate!,
+                                        lastDate: DateTime(2050),
+                                      );
 
-                                    if (_datePickedDate != null) {
-                                      setState(() {
-                                        _model.datePicked = DateTime(
-                                          _datePickedDate.year,
-                                          _datePickedDate.month,
-                                          _datePickedDate.day,
-                                        );
-                                      });
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.date_range_outlined,
-                                        color: Color(0xFF57636C),
-                                        size: 24,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 0, 0, 0),
-                                        child: Text(
-                                          'نهاية النشاط',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF0283BC),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16,
+                                      if (_datePickedDate != null) {
+                                        setState(() {
+                                          _model.datePicked = DateTime(
+                                            _datePickedDate.year,
+                                            _datePickedDate.month,
+                                            _datePickedDate.day,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.date_range_outlined,
+                                          color: Color(0xFF57636C),
+                                          size: 24.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'نهاية النشاط',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF0283BC),
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16.0,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
-                          child: Container(
-                            width: 400,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                          ),
-                        ),
                         if (formExtraActsRecord!.seats == true)
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 15.0),
                             child: Container(
                               decoration: BoxDecoration(),
                               child: Row(
@@ -629,80 +405,82 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: 400,
-                                      child: TextFormField(
-                                        controller: _model.textController4,
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'عدد المقاعد',
-                                          labelStyle: GoogleFonts.getFont(
+                                  if (formExtraActsRecord!.seats ?? true)
+                                    Expanded(
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: TextFormField(
+                                          controller: _model.textController2,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'عدد المقاعد',
+                                            labelStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF0283BC),
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0xFF0283BC),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            filled: true,
+                                            fillColor: Color(0xFFF0F0F0),
+                                            prefixIcon: Icon(
+                                              Icons.event_seat_rounded,
+                                            ),
+                                          ),
+                                          style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0xFF0283BC),
+                                            color: Color(0xFF565656),
                                             fontWeight: FontWeight.normal,
                                           ),
-                                          hintStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2,
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0xFF0283BC),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0xFF0283BC),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          filled: true,
-                                          fillColor: Color(0xFFF0F0F0),
-                                          prefixIcon: Icon(
-                                            Icons.event_seat_rounded,
-                                          ),
+                                          textAlign: TextAlign.start,
+                                          keyboardType: TextInputType.number,
+                                          validator: _model
+                                              .textController2Validator
+                                              .asValidator(context),
                                         ),
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                        textAlign: TextAlign.start,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .textController4Validator
-                                            .asValidator(context),
                                       ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ),
                           ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 30.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.actLocController.text != null &&
@@ -714,7 +492,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 await formExtraActsRecord!.reference
                                     .update(extraActsUpdateData1);
                               }
-                              if (_model.isMediaUploading) {
+                              if (_model.isDataUploading) {
                                 final extraActsUpdateData2 =
                                     createExtraActsRecordData(
                                   actPic: _model.uploadedFileUrl,
@@ -730,12 +508,12 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 await formExtraActsRecord!.reference
                                     .update(extraActsUpdateData3);
                               }
-                              if (_model.textController4.text != null &&
-                                  _model.textController4.text != '') {
+                              if (_model.textController2.text != null &&
+                                  _model.textController2.text != '') {
                                 final extraActsUpdateData4 =
                                     createExtraActsRecordData(
                                   numSeats:
-                                      int.tryParse(_model.textController4.text),
+                                      int.tryParse(_model.textController2.text),
                                 );
                                 await formExtraActsRecord!.reference
                                     .update(extraActsUpdateData4);
@@ -764,20 +542,25 @@ class _EditActWidgetState extends State<EditActWidget> {
                             },
                             text: 'إرسال طلب التعديل',
                             options: FFButtonOptions(
-                              width: 270,
-                              height: 50,
-                              color: Color(0xFF1C8EC1),
+                              width: double.infinity,
+                              height: 50.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF7EAEBD),
                               textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle1
+                                  .titleMedium
                                   .override(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
                                   ),
-                              elevation: 2,
+                              elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                           ),
                         ),

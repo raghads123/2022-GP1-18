@@ -119,6 +119,14 @@ class _$ExtraActsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.actRate;
+    if (value != null) {
+      result
+        ..add('act_Rate')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(double)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -200,6 +208,12 @@ class _$ExtraActsRecordSerializer
           result.actProviderEmail = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'act_Rate':
+          result.actRate.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(double)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -243,6 +257,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final String? actProviderEmail;
   @override
+  final BuiltList<double>? actRate;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ExtraActsRecord([void Function(ExtraActsRecordBuilder)? updates]) =>
@@ -263,6 +279,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actProvider,
       this.actID,
       this.actProviderEmail,
+      this.actRate,
       this.ffRef})
       : super._();
 
@@ -292,43 +309,31 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actProvider == other.actProvider &&
         actID == other.actID &&
         actProviderEmail == other.actProviderEmail &&
+        actRate == other.actRate &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                0,
-                                                                actType
-                                                                    .hashCode),
-                                                            actName.hashCode),
-                                                        actDec.hashCode),
-                                                    actPic.hashCode),
-                                                status.hashCode),
-                                            sdate.hashCode),
-                                        edate.hashCode),
-                                    actLoc.hashCode),
-                                seats.hashCode),
-                            numSeats.hashCode),
-                        actCategory.hashCode),
-                    actProvider.hashCode),
-                actID.hashCode),
-            actProviderEmail.hashCode),
-        ffRef.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, actType.hashCode);
+    _$hash = $jc(_$hash, actName.hashCode);
+    _$hash = $jc(_$hash, actDec.hashCode);
+    _$hash = $jc(_$hash, actPic.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, sdate.hashCode);
+    _$hash = $jc(_$hash, edate.hashCode);
+    _$hash = $jc(_$hash, actLoc.hashCode);
+    _$hash = $jc(_$hash, seats.hashCode);
+    _$hash = $jc(_$hash, numSeats.hashCode);
+    _$hash = $jc(_$hash, actCategory.hashCode);
+    _$hash = $jc(_$hash, actProvider.hashCode);
+    _$hash = $jc(_$hash, actID.hashCode);
+    _$hash = $jc(_$hash, actProviderEmail.hashCode);
+    _$hash = $jc(_$hash, actRate.hashCode);
+    _$hash = $jc(_$hash, ffRef.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -348,6 +353,7 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actProvider', actProvider)
           ..add('actID', actID)
           ..add('actProviderEmail', actProviderEmail)
+          ..add('actRate', actRate)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -416,6 +422,11 @@ class ExtraActsRecordBuilder
   set actProviderEmail(String? actProviderEmail) =>
       _$this._actProviderEmail = actProviderEmail;
 
+  ListBuilder<double>? _actRate;
+  ListBuilder<double> get actRate =>
+      _$this._actRate ??= new ListBuilder<double>();
+  set actRate(ListBuilder<double>? actRate) => _$this._actRate = actRate;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -441,6 +452,7 @@ class ExtraActsRecordBuilder
       _actProvider = $v.actProvider;
       _actID = $v.actID;
       _actProviderEmail = $v.actProviderEmail;
+      _actRate = $v.actRate?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -480,12 +492,16 @@ class ExtraActsRecordBuilder
               actProvider: actProvider,
               actID: actID,
               actProviderEmail: actProviderEmail,
+              actRate: _actRate?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'actCategory';
         _actCategory?.build();
+
+        _$failedField = 'actRate';
+        _actRate?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ExtraActsRecord', _$failedField, e.toString());
@@ -497,4 +513,4 @@ class ExtraActsRecordBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

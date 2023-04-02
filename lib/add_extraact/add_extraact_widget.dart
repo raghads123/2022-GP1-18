@@ -1,14 +1,16 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
-import '../components/category_widget.dart';
-import '../flutter_flow/flutter_flow_drop_down.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
+import '/backend/push_notifications/push_notifications_util.dart';
+import '/components/category_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,10 +37,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
     super.initState();
     _model = createModel(context, () => AddExtraactModel());
 
-    _model.actNameController = TextEditingController();
-    _model.actLocController = TextEditingController();
-    _model.actBioController = TextEditingController();
-    _model.textController4 = TextEditingController();
+    _model.actNameController ??= TextEditingController();
+    _model.actLocController ??= TextEditingController();
+    _model.actBioController ??= TextEditingController();
+    _model.textController4 ??= TextEditingController();
   }
 
   @override
@@ -56,46 +58,34 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFF4F3F0),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
-        child: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          leading: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-            child: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              borderWidth: 1,
-              buttonSize: 60,
-              icon: Icon(
-                Icons.chevron_left,
-                color: Color(0xFF777373),
-                size: 30,
-              ),
-              onPressed: () async {
-                if (Navigator.of(context).canPop()) {
-                  context.pop();
-                }
-                context.pushNamed('HomePage');
-              },
-            ),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF4F3F0),
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 52.0,
+          icon: Icon(
+            Icons.chevron_left_rounded,
+            color: Color(0xFF7EAEBD),
+            size: 30.0,
           ),
-          title: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-            child: Text(
-              'طلب إضافة نشاط جديد',
-              style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFF777373),
-                    fontSize: 22,
-                  ),
-            ),
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 2,
+          onPressed: () async {
+            context.pop();
+          },
         ),
+        title: Text(
+          'طلب إضافة نشاط جديد',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
+                fontFamily: 'Poppins',
+                color: Color(0xFF7EAEBD),
+                fontSize: 22.0,
+              ),
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 2.0,
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
@@ -108,8 +98,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).primaryBtnText,
-                borderRadius: BorderRadius.circular(9),
+                color: Color(0xFFF4F3F0),
+                borderRadius: BorderRadius.circular(9.0),
               ),
               child: SingleChildScrollView(
                 primary: false,
@@ -119,9 +109,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 15, 20, 15),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          20.0, 30.0, 20.0, 15.0),
                       child: Container(
-                        width: 400,
+                        width: double.infinity,
                         child: TextFormField(
                           controller: _model.actNameController,
                           obscureText: false,
@@ -129,48 +120,39 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             labelText: 'اسم نشاط',
                             labelStyle: GoogleFonts.getFont(
                               'Open Sans',
-                              color: Color(0xFF0283BC),
+                              color: Color(0xFF565656),
                               fontWeight: FontWeight.normal,
                             ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             filled: true,
-                            fillColor: Color(0xFFF0F0F0),
+                            fillColor: Color(0xFFE1D7C6),
                           ),
                           style: GoogleFonts.getFont(
                             'Open Sans',
@@ -184,7 +166,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: Container(
                         width: double.infinity,
                         child: TextFormField(
@@ -194,48 +177,39 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             labelText: 'موقع النشاط',
                             labelStyle: GoogleFonts.getFont(
                               'Open Sans',
-                              color: Color(0xFF0283BC),
+                              color: Color(0xFF565656),
                               fontWeight: FontWeight.normal,
                             ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             filled: true,
-                            fillColor: Color(0xFFF0F0F0),
+                            fillColor: Color(0xFFE1D7C6),
                           ),
                           style: GoogleFonts.getFont(
                             'Open Sans',
@@ -251,9 +225,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: Container(
-                        width: 400,
+                        width: double.infinity,
                         child: TextFormField(
                           controller: _model.actBioController,
                           obscureText: false,
@@ -261,48 +236,39 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             labelText: 'وصف النشاط',
                             labelStyle: GoogleFonts.getFont(
                               'Open Sans',
-                              color: Color(0xFF0283BC),
+                              color: Color(0xFF565656),
                               fontWeight: FontWeight.normal,
                             ),
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .bodyText2
-                                .override(
-                                  fontFamily: 'Outfit',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                                color: Color(0x00000000),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             focusedErrorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2,
+                                color: Color(0xFF7EAEBD),
+                                width: 2.0,
                               ),
-                              borderRadius: BorderRadius.circular(25),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                             filled: true,
-                            fillColor: Color(0xFFF0F0F0),
+                            fillColor: Color(0xFFE1D7C6),
                           ),
                           style: GoogleFonts.getFont(
                             'Open Sans',
@@ -318,52 +284,57 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: FlutterFlowDropDown<String>(
+                        controller: _model.actTypeController ??=
+                            FormFieldController<String>(null),
                         options: ['دورة تدريبية', 'ورشة عمل', 'فعالية'],
                         onChanged: (val) =>
                             setState(() => _model.actTypeValue = val),
-                        width: 400,
-                        height: 50,
+                        width: double.infinity,
+                        height: 55.0,
                         textStyle: GoogleFonts.getFont(
                           'Open Sans',
-                          color: Color(0xFF0283BC),
+                          color: Color(0xFF565656),
                           fontWeight: FontWeight.normal,
                         ),
                         hintText: 'نوع النشاط',
                         icon: Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: Color(0xFF57636C),
-                          size: 15,
+                          size: 15.0,
                         ),
-                        fillColor: Color(0xFFF0F0F0),
-                        elevation: 2,
-                        borderColor: Color(0xFF0283BC),
-                        borderWidth: 2,
-                        borderRadius: 25,
-                        margin: EdgeInsetsDirectional.fromSTEB(24, 4, 12, 4),
+                        fillColor: Color(0xFFE1D7C6),
+                        elevation: 2.0,
+                        borderColor: Color(0xFFE1D7C6),
+                        borderWidth: 2.0,
+                        borderRadius: 25.0,
+                        margin: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 4.0, 12.0, 4.0),
                         hidesUnderline: true,
+                        isSearchable: false,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: Container(
-                        width: 400,
-                        height: 50,
+                        width: 400.0,
+                        height: 50.0,
                         decoration: BoxDecoration(
-                          color: Color(0xFFF0F0F0),
+                          color: Color(0xFFE1D7C6),
                           boxShadow: [
                             BoxShadow(
-                              blurRadius: 4,
+                              blurRadius: 4.0,
                               color: Color(0x33000000),
-                              offset: Offset(0, 2),
+                              offset: Offset(0.0, 2.0),
                             )
                           ],
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(25.0),
                           shape: BoxShape.rectangle,
                           border: Border.all(
-                            color: Color(0xFF0283BC),
-                            width: 2,
+                            color: Color(0xFFE1D7C6),
                           ),
                         ),
                         child: InkWell(
@@ -376,7 +347,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             if (selectedMedia != null &&
                                 selectedMedia.every((m) => validateFileFormat(
                                     m.storagePath, context))) {
-                              setState(() => _model.isMediaUploading = true);
+                              setState(() => _model.isDataUploading = true);
                               var selectedUploadedFiles = <FFUploadedFile>[];
                               var downloadUrls = <String>[];
                               try {
@@ -399,7 +370,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     .map((u) => u!)
                                     .toList();
                               } finally {
-                                _model.isMediaUploading = false;
+                                _model.isDataUploading = false;
                               }
                               if (selectedUploadedFiles.length ==
                                       selectedMedia.length &&
@@ -422,19 +393,19 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               Icon(
                                 Icons.image_outlined,
                                 color: Color(0xFF57636C),
-                                size: 24,
+                                size: 24.0,
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'شعار النشاط',
                                   textAlign: TextAlign.end,
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
-                                    color: Color(0xFF0283BC),
+                                    color: Color(0xFF565656),
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 16,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ),
@@ -444,12 +415,14 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: InkWell(
                         onTap: () async {
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,
+                            barrierColor: Color(0x00000000),
                             enableDrag: false,
                             context: context,
                             builder: (context) {
@@ -461,22 +434,21 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           ).then((value) => setState(() {}));
                         },
                         child: Container(
-                          width: 400,
-                          height: 50,
+                          width: 400.0,
+                          height: 50.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFF0F0F0),
+                            color: Color(0xFFE1D7C6),
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 4,
+                                blurRadius: 4.0,
                                 color: Color(0x33000000),
-                                offset: Offset(0, 2),
+                                offset: Offset(0.0, 2.0),
                               )
                             ],
-                            borderRadius: BorderRadius.circular(25),
+                            borderRadius: BorderRadius.circular(25.0),
                             shape: BoxShape.rectangle,
                             border: Border.all(
-                              color: Color(0xFF0283BC),
-                              width: 2,
+                              color: Color(0xFFE1D7C6),
                             ),
                           ),
                           child: Row(
@@ -486,19 +458,19 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               Icon(
                                 Icons.category_outlined,
                                 color: Color(0xFF57636C),
-                                size: 24,
+                                size: 24.0,
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   ' تصنيف النشاط',
                                   textAlign: TextAlign.end,
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
-                                    color: Color(0xFF0283BC),
+                                    color: Color(0xFF565656),
                                     fontWeight: FontWeight.normal,
-                                    fontSize: 16,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ),
@@ -508,158 +480,85 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.44,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF0F0F0),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(25),
-                              border: Border.all(
-                                color: Color(0xFF0283BC),
-                                width: 2,
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.44,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE1D7C6),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0.0, 2.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: Color(0xFFE1D7C6),
+                                ),
                               ),
-                            ),
-                            child: InkWell(
-                              onTap: () async {
-                                final _datePicked1Date = await showDatePicker(
-                                  context: context,
-                                  initialDate: getCurrentTimestamp,
-                                  firstDate: getCurrentTimestamp,
-                                  lastDate: DateTime(2050),
-                                );
-
-                                TimeOfDay? _datePicked1Time;
-                                if (_datePicked1Date != null) {
-                                  _datePicked1Time = await showTimePicker(
+                              child: InkWell(
+                                onTap: () async {
+                                  final _datePicked1Date = await showDatePicker(
                                     context: context,
-                                    initialTime: TimeOfDay.fromDateTime(
-                                        getCurrentTimestamp),
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
                                   );
-                                }
 
-                                if (_datePicked1Date != null &&
-                                    _datePicked1Time != null) {
-                                  setState(() {
-                                    _model.datePicked1 = DateTime(
-                                      _datePicked1Date.year,
-                                      _datePicked1Date.month,
-                                      _datePicked1Date.day,
-                                      _datePicked1Time!.hour,
-                                      _datePicked1Time.minute,
+                                  TimeOfDay? _datePicked1Time;
+                                  if (_datePicked1Date != null) {
+                                    _datePicked1Time = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
                                     );
-                                  });
-                                }
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.date_range_outlined,
-                                    color: Color(0xFF57636C),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
-                                    child: Text(
-                                      'بداية النشاط',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF0283BC),
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 16,
+                                  }
+
+                                  if (_datePicked1Date != null &&
+                                      _datePicked1Time != null) {
+                                    setState(() {
+                                      _model.datePicked1 = DateTime(
+                                        _datePicked1Date.year,
+                                        _datePicked1Date.month,
+                                        _datePicked1Date.day,
+                                        _datePicked1Time!.hour,
+                                        _datePicked1Time.minute,
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'بداية النشاط',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.44,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF0F0F0),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 4,
-                                  color: Color(0x33000000),
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(25),
-                              border: Border.all(
-                                color: Color(0xFF0283BC),
-                                width: 2,
-                              ),
-                            ),
-                            child: InkWell(
-                              onTap: () async {
-                                final _datePicked2Date = await showDatePicker(
-                                  context: context,
-                                  initialDate: getCurrentTimestamp,
-                                  firstDate: getCurrentTimestamp,
-                                  lastDate: DateTime(2050),
-                                );
-
-                                TimeOfDay? _datePicked2Time;
-                                if (_datePicked2Date != null) {
-                                  _datePicked2Time = await showTimePicker(
-                                    context: context,
-                                    initialTime: TimeOfDay.fromDateTime(
-                                        getCurrentTimestamp),
-                                  );
-                                }
-
-                                if (_datePicked2Date != null &&
-                                    _datePicked2Time != null) {
-                                  setState(() {
-                                    _model.datePicked2 = DateTime(
-                                      _datePicked2Date.year,
-                                      _datePicked2Date.month,
-                                      _datePicked2Date.day,
-                                      _datePicked2Time!.hour,
-                                      _datePicked2Time.minute,
-                                    );
-                                  });
-                                }
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.date_range_outlined,
-                                    color: Color(0xFF57636C),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
-                                    child: Text(
-                                      'نهاية النشاط',
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF0283BC),
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -667,14 +566,101 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.44,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE1D7C6),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0.0, 2.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: Color(0xFFE1D7C6),
+                                ),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  final _datePicked2Date = await showDatePicker(
+                                    context: context,
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
+                                  );
+
+                                  TimeOfDay? _datePicked2Time;
+                                  if (_datePicked2Date != null) {
+                                    _datePicked2Time = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
+                                    );
+                                  }
+
+                                  if (_datePicked2Date != null &&
+                                      _datePicked2Time != null) {
+                                    setState(() {
+                                      _model.datePicked2 = DateTime(
+                                        _datePicked2Date.year,
+                                        _datePicked2Date.month,
+                                        _datePicked2Date.day,
+                                        _datePicked2Time!.hour,
+                                        _datePicked2Time.minute,
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'نهاية النشاط',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                       child: Container(
-                        width: 400,
+                        width: 400.0,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(25.0),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Theme(
                             data: ThemeData(
                               checkboxTheme: CheckboxThemeData(
@@ -700,7 +686,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                 ),
                               ),
                               tileColor: Color(0xFFF0F0F0),
-                              activeColor: Color(0xFF0283BC),
+                              activeColor: Color(0xFFF4F3F0),
+                              checkColor: Color(0xFF7EAEBD),
                               dense: false,
                               controlAffinity: ListTileControlAffinity.leading,
                             ),
@@ -710,7 +697,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                     ),
                     if (_model.checkboxListTileValue == true)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 15),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 15.0),
                         child: Container(
                           decoration: BoxDecoration(),
                           child: Row(
@@ -720,7 +708,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               if (_model.checkboxListTileValue == true)
                                 Expanded(
                                   child: Container(
-                                    width: 400,
+                                    width: double.infinity,
                                     child: TextFormField(
                                       controller: _model.textController4,
                                       obscureText: false,
@@ -728,47 +716,49 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                         labelText: 'عدد المقاعد',
                                         labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
-                                          color: Color(0xFF0283BC),
+                                          color: Color(0xFF565656),
                                           fontWeight: FontWeight.normal,
                                         ),
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .bodyText2,
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Color(0xFF0283BC),
-                                            width: 2,
+                                            color: Color(0xFFE1D7C6),
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(25),
+                                              BorderRadius.circular(25.0),
                                         ),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
-                                            color: Color(0xFF0283BC),
-                                            width: 2,
+                                            color: Color(0x00000000),
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(25),
+                                              BorderRadius.circular(25.0),
                                         ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(25),
+                                              BorderRadius.circular(25.0),
                                         ),
                                         focusedErrorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: Color(0x00000000),
-                                            width: 2,
+                                            width: 1.0,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(25),
+                                              BorderRadius.circular(25.0),
                                         ),
                                         filled: true,
-                                        fillColor: Color(0xFFF0F0F0),
+                                        fillColor: Color(0xFFE1D7C6),
+                                        contentPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                5.0, 0.0, 0.0, 0.0),
                                         prefixIcon: Icon(
                                           Icons.event_seat_rounded,
+                                          size: 20.0,
                                         ),
                                       ),
                                       style: GoogleFonts.getFont(
@@ -788,7 +778,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                         ),
                       ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          20.0, 15.0, 20.0, 30.0),
                       child: StreamBuilder<List<UsersRecord>>(
                         stream: queryUsersRecord(
                           queryBuilder: (usersRecord) => usersRecord
@@ -800,8 +791,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           if (!snapshot.hasData) {
                             return Center(
                               child: SizedBox(
-                                width: 50,
-                                height: 50,
+                                width: 50.0,
+                                height: 50.0,
                                 child: CircularProgressIndicator(
                                   color: Color(0xFF0184BD),
                                 ),
@@ -830,9 +821,6 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               if (_model.datePicked1 == null) {
                                 return;
                               }
-                              if (_model.datePicked2 == null) {
-                                return;
-                              }
 
                               final extraActsCreateData = {
                                 ...createExtraActsRecordData(
@@ -841,8 +829,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   actDec: _model.actBioController.text,
                                   actPic: _model.uploadedFileUrl,
                                   status: 'معلق',
-                                  sdate: _model.datePicked2,
-                                  edate: _model.datePicked1,
+                                  sdate: _model.datePicked1,
+                                  edate: _model.datePicked2,
                                   actLoc: _model.actLocController.text,
                                   seats: _model.checkboxListTileValue,
                                   numSeats:
@@ -862,6 +850,14 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               await ExtraActsRecord.collection
                                   .doc()
                                   .set(extraActsCreateData);
+                              triggerPushNotification(
+                                notificationTitle: 'طلب إضافة نشاط بعنوان',
+                                notificationText: _model.actNameController.text,
+                                notificationSound: 'default',
+                                userRefs: [FFAppState().notifysuperadmin!],
+                                initialPageName: 'HomePage',
+                                parameterData: {},
+                              );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -878,21 +874,25 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             },
                             text: 'إرسال طلب الإضافة',
                             options: FFButtonOptions(
-                              width: 270,
-                              height: 50,
-                              color: Color(0xFF1C8EC1),
+                              width: double.infinity,
+                              height: 50.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF7EAEBD),
                               textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle1
+                                  .titleMedium
                                   .override(
                                     fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                    fontSize: 20,
+                                    color: Color(0xFFF4F3F0),
+                                    fontSize: 18.0,
                                   ),
-                              elevation: 2,
+                              elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
                               ),
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                           );
                         },

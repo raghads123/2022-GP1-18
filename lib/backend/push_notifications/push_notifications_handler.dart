@@ -81,8 +81,8 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
           color: Colors.white,
           child: Center(
             child: Image.asset(
-              'assets/images/9hsjc_2.png',
-              width: 200,
+              'assets/images/mmfwi_2.png',
+              width: 200.0,
               fit: BoxFit.contain,
             ),
           ),
@@ -112,10 +112,12 @@ class ParameterData {
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'FirstPage': ParameterData.none(),
+  'studentlogin': ParameterData.none(),
   'SignUp': ParameterData.none(),
+  'Emailauth': ParameterData.none(),
   'SettingUpProfile': ParameterData.none(),
-  'LogIn': ParameterData.none(),
   'Settinginterests2': ParameterData.none(),
+  'notificationSettings': ParameterData.none(),
   'HomePage': ParameterData.none(),
   'courses': ParameterData.none(),
   'course_info': (data) async => ParameterData(
@@ -126,13 +128,13 @@ final parametersBuilderMap =
   'workshops': ParameterData.none(),
   'workshope_info': (data) async => ParameterData(
         allParams: {
-          'workshopid': getParameter<String>(data, 'workshopid'),
+          'workshopID': getParameter<String>(data, 'workshopID'),
         },
       ),
   'events': ParameterData.none(),
   'event_info': (data) async => ParameterData(
         allParams: {
-          'eventid': getParameter<String>(data, 'eventid'),
+          'eventID': getParameter<String>(data, 'eventID'),
         },
       ),
   'Opportunities': ParameterData.none(),
@@ -141,11 +143,15 @@ final parametersBuilderMap =
           'opportunityID': getParameter<String>(data, 'opportunityID'),
         },
       ),
-  'Profile': ParameterData.none(),
-  'EditInterests': ParameterData.none(),
   'myActivities': ParameterData.none(),
+  'Profile': ParameterData.none(),
   'ActivityAdminSignup': ParameterData.none(),
+  'EmailauthCopy': ParameterData.none(),
   'ActivityAdminLogin': ParameterData.none(),
+  'SettingUpProfileCopy': ParameterData.none(),
+  'coursesCopy': ParameterData.none(),
+  'workshopsCopy': ParameterData.none(),
+  'eventsCopy': ParameterData.none(),
   'AddExtraact': ParameterData.none(),
   'Addopp': ParameterData.none(),
   'MyActDetails': (data) async => ParameterData(
@@ -158,9 +164,18 @@ final parametersBuilderMap =
           'opportunityID': getParameter<String>(data, 'opportunityID'),
         },
       ),
-  'SettingUpProfileCopy': ParameterData.none(),
-  'coursesCopy': ParameterData.none(),
-  'SyncInCalender': ParameterData.none(),
+  'workshope_info_draft': (data) async => ParameterData(
+        allParams: {
+          'workshopid': getParameter<String>(data, 'workshopid'),
+        },
+      ),
+  'event_info_draft': (data) async => ParameterData(
+        allParams: {
+          'eventid': getParameter<String>(data, 'eventid'),
+        },
+      ),
+  'EditInterests': ParameterData.none(),
+  'ProfileCopy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

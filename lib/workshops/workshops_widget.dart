@@ -1,15 +1,17 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
+import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'workshops_model.dart';
 export 'workshops_model.dart';
@@ -32,7 +34,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
     super.initState();
     _model = createModel(context, () => WorkshopsModel());
 
-    _model.fieldSearchController = TextEditingController();
+    _model.fieldSearchController ??= TextEditingController();
   }
 
   @override
@@ -51,17 +53,17 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
       key: scaffoldKey,
       backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF4F3F0),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
+          borderRadius: 30.0,
+          borderWidth: 1.0,
+          buttonSize: 60.0,
           icon: Icon(
-            Icons.chevron_left,
-            color: Color(0xFF777373),
-            size: 30,
+            Icons.chevron_left_rounded,
+            color: Color(0xFF7EAEBD),
+            size: 30.0,
           ),
           onPressed: () async {
             if (Navigator.of(context).canPop()) {
@@ -80,15 +82,16 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
         ),
         title: Text(
           'ورش العمل',
-          style: FlutterFlowTheme.of(context).title2.override(
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFF777373),
-                fontSize: 22,
+                color: Color(0xFF7EAEBD),
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
               ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 2.0,
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -99,38 +102,40 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           Icons.search,
                           color: Color(0xFF777373),
-                          size: 20,
+                          size: 20.0,
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          width: 40,
-                          height: 35,
+                          width: 140.0,
+                          height: 35.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 4,
+                                blurRadius: 4.0,
                                 color: Color(0x33000000),
-                                offset: Offset(0, 2),
+                                offset: Offset(0.0, 2.0),
                               )
                             ],
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25.0),
                           ),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 12.0, 0.0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -151,16 +156,16 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   textHighlightStyle: TextStyle(),
-                                  elevation: 4,
+                                  elevation: 4.0,
                                   optionBackgroundColor:
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                   optionHighlightColor:
                                       FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                  maxHeight: 200,
+                                  maxHeight: 200.0,
                                 );
                               },
                               onSelected: (String selection) {
@@ -188,13 +193,17 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'ابحثِ هنا',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintText: 'أبحث هنا',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodySmall
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF777373),
+                                        ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -204,7 +213,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -214,7 +223,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -224,7 +233,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -232,7 +241,12 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                       ),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF7EAEBD),
+                                      ),
                                   textAlign: TextAlign.start,
                                   validator: _model
                                       .fieldSearchControllerValidator
@@ -255,8 +269,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.0,
+                          height: 50.0,
                           child: CircularProgressIndicator(
                             color: Color(0xFF0184BD),
                           ),
@@ -288,54 +302,108 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                   ).toString()),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        6, 6, 6, 6),
+                                        15.0, 0.0, 15.0, 15.0),
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
                                         boxShadow: [
                                           BoxShadow(
-                                            blurRadius: 7,
-                                            color: Color(0xFF777373),
-                                            offset: Offset(0, 3),
+                                            blurRadius: 4.0,
+                                            color: Color(0x33000000),
+                                            offset: Offset(0.0, 2.0),
                                           )
                                         ],
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: Color(0xFFE4DFDA),
-                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
                                       ),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 12, 12, 12),
+                                            15.0, 15.0, 15.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              child: Image.network(
-                                                valueOrDefault<String>(
-                                                  getJsonField(
-                                                    workshopMBdataItem,
-                                                    r'''$.Act_pic''',
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 10.0, 10.0),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .fade,
+                                                      child:
+                                                          FlutterFlowExpandedImageView(
+                                                        image: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            getJsonField(
+                                                              workshopMBdataItem,
+                                                              r'''$.Act_pic''',
+                                                            ),
+                                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                          ),
+                                                          fit: BoxFit.contain,
+                                                        ),
+                                                        allowRotation: false,
+                                                        tag: valueOrDefault<
+                                                            String>(
+                                                          getJsonField(
+                                                            workshopMBdataItem,
+                                                            r'''$.Act_pic''',
+                                                          ),
+                                                          'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png' +
+                                                              '$workshopMBdataIndex',
+                                                        ),
+                                                        useHeroAnimation: true,
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                child: Hero(
+                                                  tag: valueOrDefault<String>(
+                                                    getJsonField(
+                                                      workshopMBdataItem,
+                                                      r'''$.Act_pic''',
+                                                    ),
+                                                    'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png' +
+                                                        '$workshopMBdataIndex',
                                                   ),
-                                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                  transitionOnUserGestures:
+                                                      true,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5.0),
+                                                    child: Image.network(
+                                                      valueOrDefault<String>(
+                                                        getJsonField(
+                                                          workshopMBdataItem,
+                                                          r'''$.Act_pic''',
+                                                        ),
+                                                        'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                      ),
+                                                      width: double.infinity,
+                                                      height: 110.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
-                                                width: double.infinity,
-                                                height: 110,
-                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 0),
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 8, 0, 8),
+                                                    .fromSTEB(
+                                                        10.0, 10.0, 10.0, 10.0),
                                                 child: SingleChildScrollView(
                                                   scrollDirection:
                                                       Axis.horizontal,
@@ -353,16 +421,12 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .title3
+                                                                .headlineSmall
                                                                 .override(
                                                                   fontFamily:
-                                                                      'Outfit',
+                                                                      'Poppins',
                                                                   color: Color(
-                                                                      0xFF1C8EC1),
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
+                                                                      0xFF565656),
                                                                 ),
                                                       ),
                                                     ],
@@ -370,59 +434,38 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                 ),
                                               ),
                                             ),
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'تبدأ',
-                                                  textAlign: TextAlign.end,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF777373),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                120, 0, 0, 0),
-                                                    child: Text(
-                                                      'تنتهي',
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Lexend Deca',
-                                                                color: Color(
-                                                                    0xFF777373),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                    ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 10.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'الموقع',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              Color(0xFF777373),
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 10.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -430,41 +473,19 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                     child: Text(
                                                       getJsonField(
                                                         workshopMBdataItem,
-                                                        r'''$.Sdate''',
+                                                        r'''$.Act_loc''',
                                                       ).toString(),
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: FlutterFlowTheme
                                                               .of(context)
-                                                          .subtitle2
+                                                          .titleSmall
                                                           .override(
                                                             fontFamily:
                                                                 'Roboto Mono',
                                                             color: Color(
                                                                 0xFF1C8EC1),
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      getJsonField(
-                                                        workshopMBdataItem,
-                                                        r'''$.Edate''',
-                                                      ).toString(),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                'Roboto Mono',
-                                                            color: Color(
-                                                                0xFF1C8EC1),
-                                                            fontSize: 14,
+                                                            fontSize: 16.0,
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                           ),
@@ -488,8 +509,8 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                       if (!snapshot.hasData) {
                                                         return Center(
                                                           child: SizedBox(
-                                                            width: 50,
-                                                            height: 50,
+                                                            width: 50.0,
+                                                            height: 50.0,
                                                             child:
                                                                 CircularProgressIndicator(
                                                               color: Color(
@@ -501,11 +522,6 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                       List<UserHistoryRecord>
                                                           textUserHistoryRecordList =
                                                           snapshot.data!;
-                                                      // Return an empty Container when the item does not exist.
-                                                      if (snapshot
-                                                          .data!.isEmpty) {
-                                                        return Container();
-                                                      }
                                                       final textUserHistoryRecord =
                                                           textUserHistoryRecordList
                                                                   .isNotEmpty
@@ -514,15 +530,10 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                               : null;
                                                       return InkWell(
                                                         onTap: () async {
-                                                          if (Navigator.of(
-                                                                  context)
-                                                              .canPop()) {
-                                                            context.pop();
-                                                          }
-                                                          context.pushNamed(
+                                                          context.goNamed(
                                                             'workshope_info',
                                                             queryParams: {
-                                                              'workshopid':
+                                                              'workshopID':
                                                                   serializeParam(
                                                                 getJsonField(
                                                                   workshopMBdataItem,
@@ -532,44 +543,49 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                     .String,
                                                               ),
                                                             }.withoutNulls,
-                                                            extra: <String,
-                                                                dynamic>{
-                                                              kTransitionInfoKey:
-                                                                  TransitionInfo(
-                                                                hasTransition:
-                                                                    true,
-                                                                transitionType:
-                                                                    PageTransitionType
-                                                                        .leftToRight,
-                                                              ),
-                                                            },
                                                           );
 
-                                                          final userHistoryUpdateData =
-                                                              createUserHistoryRecordData(
-                                                            userEmail:
-                                                                currentUserEmail,
-                                                            extraActivityID:
-                                                                getJsonField(
-                                                              workshopMBdataItem,
-                                                              r'''$.Act_ID''',
-                                                            ).toString(),
-                                                            aCTType:
-                                                                getJsonField(
-                                                              workshopMBdataItem,
-                                                              r'''$.Act_type''',
-                                                            ).toString(),
-                                                          );
-                                                          await textUserHistoryRecord!
-                                                              .reference
-                                                              .update(
-                                                                  userHistoryUpdateData);
+                                                          if (textUserHistoryRecord !=
+                                                              null) {
+                                                            final userHistoryUpdateData =
+                                                                createUserHistoryRecordData(
+                                                              extraActivityID:
+                                                                  getJsonField(
+                                                                workshopMBdataItem,
+                                                                r'''$.Act_ID''',
+                                                              ).toString(),
+                                                              aCTType:
+                                                                  'ورشة عمل',
+                                                            );
+                                                            await textUserHistoryRecord!
+                                                                .reference
+                                                                .update(
+                                                                    userHistoryUpdateData);
+                                                          } else {
+                                                            final userHistoryCreateData =
+                                                                createUserHistoryRecordData(
+                                                              userEmail:
+                                                                  currentUserEmail,
+                                                              extraActivityID:
+                                                                  getJsonField(
+                                                                workshopMBdataItem,
+                                                                r'''$.Act_ID''',
+                                                              ).toString(),
+                                                              aCTType:
+                                                                  'ورشة عمل',
+                                                            );
+                                                            await UserHistoryRecord
+                                                                .collection
+                                                                .doc()
+                                                                .set(
+                                                                    userHistoryCreateData);
+                                                          }
                                                         },
                                                         child: Text(
                                                           'للمزيد',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyText1
+                                                              .bodyMedium
                                                               .override(
                                                                 fontFamily:
                                                                     'Poppins',
@@ -586,7 +602,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                   Icon(
                                                     Icons.chevron_right,
                                                     color: Color(0xFF777373),
-                                                    size: 24,
+                                                    size: 24.0,
                                                   ),
                                                 ],
                                               ),

@@ -1,9 +1,11 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -36,8 +38,8 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
           curve: Curves.easeInOut,
           delay: 400.ms,
           duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
+          begin: Offset(0.0, 0.0),
+          end: Offset(0.0, -82.0),
         ),
       ],
     ),
@@ -48,15 +50,15 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
           curve: Curves.easeIn,
           delay: 400.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 1200.ms,
           duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
+          begin: Offset(0.0, 0.0),
+          end: Offset(0.0, -82.0),
         ),
       ],
     ),
@@ -67,34 +69,15 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
           curve: Curves.easeIn,
           delay: 400.ms,
           duration: 600.ms,
-          begin: 0,
-          end: 1,
+          begin: 0.0,
+          end: 1.0,
         ),
         MoveEffect(
           curve: Curves.easeInOut,
           delay: 1300.ms,
           duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'columnOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
+          begin: Offset(0.0, 0.0),
+          end: Offset(0.0, -82.0),
         ),
       ],
     ),
@@ -105,7 +88,7 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
     super.initState();
     _model = createModel(context, () => SettingUpProfileCopyModel());
 
-    _model.nameController = TextEditingController();
+    _model.nameController ??= TextEditingController();
   }
 
   @override
@@ -128,40 +111,42 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
         child: Stack(
           children: [
             Align(
-              alignment: AlignmentDirectional(0, -1),
+              alignment: AlignmentDirectional(0.0, -1.0),
               child: Image.asset(
-                'assets/images/mcatd_1.png',
+                'assets/images/40vyp_1.JPG',
                 width: double.infinity,
-                height: 250,
+                height: 250.0,
                 fit: BoxFit.cover,
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: AlignmentDirectional(0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
                     flex: 3,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 180, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 180.0, 0.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 100.0,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(30.0),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 25.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset(
-                                  'assets/images/9hsjc_2.png',
-                                  width: 190,
+                                  'assets/images/2logo.JPG',
+                                  width: 190.0,
                                   fit: BoxFit.cover,
                                 ).animateOnPageLoad(
                                     animationsMap['imageOnPageLoadAnimation']!),
@@ -169,142 +154,269 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
                                     child: Text(
                                   '!اهلًا ِبك',
                                   style: FlutterFlowTheme.of(context)
-                                      .bodyText1
+                                      .bodyMedium
                                       .override(
                                         fontFamily: 'Poppins',
                                         color: Color(0xFF0184BD),
-                                        fontSize: 24,
+                                        fontSize: 24.0,
                                       ),
                                 )).animateOnPageLoad(
                                     animationsMap['textOnPageLoadAnimation1']!),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 10),
+                                      20.0, 0.0, 20.0, 10.0),
                                   child: SelectionArea(
                                       child: Text(
                                     'الرجاء إدخال اسم الجهة المسؤولة عن الأنشطة',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                        .bodyMedium
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF0184BD),
-                                          fontSize: 20,
+                                          fontSize: 20.0,
                                         ),
                                   )).animateOnPageLoad(animationsMap[
                                       'textOnPageLoadAnimation2']!),
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 0, 20, 15),
-                                      child: Container(
-                                        width: 300,
-                                        child: TextFormField(
-                                          controller: _model.nameController,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            hintText: 'الأسم',
-                                            hintStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFF565656),
-                                            ),
-                                            enabledBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0x6CE1D7C6),
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 30.0, 0.0, 15.0),
+                                            child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
+                                                  BorderRadius.circular(25.0),
+                                              child: Image.network(
+                                                valueOrDefault<String>(
+                                                  _model.uploadedFileUrl,
+                                                  'https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg',
+                                                ),
+                                                width: 120.0,
+                                                height: 120.0,
+                                                fit: BoxFit.scaleDown,
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
                                             ),
-                                            errorBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            focusedErrorBorder:
-                                                UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            filled: true,
-                                            fillColor: Color(0xFFE0E0E0),
                                           ),
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF565656),
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          validator: _model
-                                              .nameControllerValidator
-                                              .asValidator(context),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 20),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          final usersUpdateData =
-                                              createUsersRecordData(
-                                            displayName:
-                                                _model.nameController.text,
-                                          );
-                                          await currentUserReference!
-                                              .update(usersUpdateData);
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 90.0, 0.0, 0.0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                final selectedMedia =
+                                                    await selectMediaWithSourceBottomSheet(
+                                                  context: context,
+                                                  maxWidth: 120.00,
+                                                  maxHeight: 120.00,
+                                                  allowPhoto: true,
+                                                );
+                                                if (selectedMedia != null &&
+                                                    selectedMedia.every((m) =>
+                                                        validateFileFormat(
+                                                            m.storagePath,
+                                                            context))) {
+                                                  setState(() => _model
+                                                      .isDataUploading = true);
+                                                  var selectedUploadedFiles =
+                                                      <FFUploadedFile>[];
+                                                  var downloadUrls = <String>[];
+                                                  try {
+                                                    selectedUploadedFiles =
+                                                        selectedMedia
+                                                            .map((m) =>
+                                                                FFUploadedFile(
+                                                                  name: m
+                                                                      .storagePath
+                                                                      .split(
+                                                                          '/')
+                                                                      .last,
+                                                                  bytes:
+                                                                      m.bytes,
+                                                                  height: m
+                                                                      .dimensions
+                                                                      ?.height,
+                                                                  width: m
+                                                                      .dimensions
+                                                                      ?.width,
+                                                                ))
+                                                            .toList();
 
-                                          context.goNamed(
-                                            'Settinginterests2',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
+                                                    downloadUrls = (await Future
+                                                            .wait(
+                                                      selectedMedia.map(
+                                                        (m) async =>
+                                                            await uploadData(
+                                                                m.storagePath,
+                                                                m.bytes),
+                                                      ),
+                                                    ))
+                                                        .where((u) => u != null)
+                                                        .map((u) => u!)
+                                                        .toList();
+                                                  } finally {
+                                                    _model.isDataUploading =
+                                                        false;
+                                                  }
+                                                  if (selectedUploadedFiles
+                                                              .length ==
+                                                          selectedMedia
+                                                              .length &&
+                                                      downloadUrls.length ==
+                                                          selectedMedia
+                                                              .length) {
+                                                    setState(() {
+                                                      _model.uploadedLocalFile =
+                                                          selectedUploadedFiles
+                                                              .first;
+                                                      _model.uploadedFileUrl =
+                                                          downloadUrls.first;
+                                                    });
+                                                  } else {
+                                                    setState(() {});
+                                                    return;
+                                                  }
+                                                }
+                                              },
+                                              child: Icon(
+                                                Icons.edit_rounded,
+                                                color: Color(0xFF7EAEBD),
+                                                size: 30.0,
                                               ),
-                                            },
-                                          );
-                                        },
-                                        text: 'التالي',
-                                        options: FFButtonOptions(
-                                          width: 300,
-                                          height: 50,
-                                          color: Color(0xFFFF5757),
-                                          textStyle: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Colors.white,
-                                            fontSize: 16,
+                                            ),
                                           ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0,
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 15.0, 20.0, 15.0),
+                                        child: Container(
+                                          width: 300.0,
+                                          child: TextFormField(
+                                            controller: _model.nameController,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              hintText: 'الأسم',
+                                              hintStyle: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF565656),
+                                              ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(25.0),
+                                              ),
+                                              filled: true,
+                                              fillColor: Color(0xFFE1D7C6),
+                                            ),
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF7EAEBD),
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            validator: _model
+                                                .nameControllerValidator
+                                                .asValidator(context),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(25),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ).animateOnPageLoad(animationsMap[
-                                    'columnOnPageLoadAnimation']!),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 15.0, 20.0, 30.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            final usersUpdateData =
+                                                createUsersRecordData(
+                                              displayName:
+                                                  _model.nameController.text,
+                                              type: 'student',
+                                              photoUrl: _model.uploadedFileUrl,
+                                            );
+                                            await currentUserReference!
+                                                .update(usersUpdateData);
+
+                                            context.goNamed(
+                                              'HomePage',
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          text: 'التالي',
+                                          options: FFButtonOptions(
+                                            width: 300.0,
+                                            height: 50.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF7EAEBD),
+                                            textStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFFFFFAF1),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18.0,
+                                            ),
+                                            elevation: 2.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),

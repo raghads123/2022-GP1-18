@@ -51,6 +51,9 @@ abstract class ExtraActsRecord
   @BuiltValueField(wireName: 'Act_provider_email')
   String? get actProviderEmail;
 
+  @BuiltValueField(wireName: 'act_Rate')
+  BuiltList<double>? get actRate;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -67,7 +70,8 @@ abstract class ExtraActsRecord
     ..actCategory = ListBuilder()
     ..actProvider = ''
     ..actID = ''
-    ..actProviderEmail = '';
+    ..actProviderEmail = ''
+    ..actRate = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('extra_acts');
@@ -122,7 +126,8 @@ Map<String, dynamic> createExtraActsRecordData({
         ..actCategory = null
         ..actProvider = actProvider
         ..actID = actID
-        ..actProviderEmail = actProviderEmail,
+        ..actProviderEmail = actProviderEmail
+        ..actRate = null,
     ),
   );
 

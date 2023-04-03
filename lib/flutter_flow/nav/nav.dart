@@ -85,9 +85,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => FirstPageWidget(),
             ),
             FFRoute(
+              name: 'studentlogin',
+              path: 'studentlogin',
+              builder: (context, params) => StudentloginWidget(),
+            ),
+            FFRoute(
               name: 'SignUp',
               path: 'signUp',
               builder: (context, params) => SignUpWidget(),
+            ),
+            FFRoute(
+              name: 'Emailauth',
+              path: 'emailauth',
+              requireAuth: true,
+              builder: (context, params) => EmailauthWidget(),
             ),
             FFRoute(
               name: 'SettingUpProfile',
@@ -96,15 +107,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SettingUpProfileWidget(),
             ),
             FFRoute(
-              name: 'LogIn',
-              path: 'logIn',
-              builder: (context, params) => LogInWidget(),
-            ),
-            FFRoute(
               name: 'Settinginterests2',
               path: 'settinginterests2',
               requireAuth: true,
               builder: (context, params) => Settinginterests2Widget(),
+            ),
+            FFRoute(
+              name: 'notificationSettings',
+              path: 'notificationSettings',
+              requireAuth: true,
+              builder: (context, params) => NotificationSettingsWidget(),
             ),
             FFRoute(
               name: 'HomePage',
@@ -139,7 +151,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'workshopeInfo',
               requireAuth: true,
               builder: (context, params) => WorkshopeInfoWidget(
-                workshopid: params.getParam('workshopid', ParamType.String),
+                workshopID: params.getParam('workshopID', ParamType.String),
               ),
             ),
             FFRoute(
@@ -153,7 +165,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               path: 'eventInfo',
               requireAuth: true,
               builder: (context, params) => EventInfoWidget(
-                eventid: params.getParam('eventid', ParamType.String),
+                eventID: params.getParam('eventID', ParamType.String),
               ),
             ),
             FFRoute(
@@ -172,20 +184,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'Profile',
-              path: 'profile',
-              requireAuth: true,
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Profile')
-                  : ProfileWidget(),
-            ),
-            FFRoute(
-              name: 'EditInterests',
-              path: 'editInterests',
-              requireAuth: true,
-              builder: (context, params) => EditInterestsWidget(),
-            ),
-            FFRoute(
               name: 'myActivities',
               path: 'myActivities',
               requireAuth: true,
@@ -194,14 +192,52 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : MyActivitiesWidget(),
             ),
             FFRoute(
+              name: 'Profile',
+              path: 'profile',
+              requireAuth: true,
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Profile')
+                  : ProfileWidget(),
+            ),
+            FFRoute(
               name: 'ActivityAdminSignup',
               path: 'activityAdminSignup',
               builder: (context, params) => ActivityAdminSignupWidget(),
             ),
             FFRoute(
+              name: 'EmailauthCopy',
+              path: 'emailauthCopy',
+              requireAuth: true,
+              builder: (context, params) => EmailauthCopyWidget(),
+            ),
+            FFRoute(
               name: 'ActivityAdminLogin',
               path: 'activityAdminLogin',
               builder: (context, params) => ActivityAdminLoginWidget(),
+            ),
+            FFRoute(
+              name: 'SettingUpProfileCopy',
+              path: 'settingUpProfileCopy',
+              requireAuth: true,
+              builder: (context, params) => SettingUpProfileCopyWidget(),
+            ),
+            FFRoute(
+              name: 'coursesCopy',
+              path: 'coursesCopy',
+              requireAuth: true,
+              builder: (context, params) => CoursesCopyWidget(),
+            ),
+            FFRoute(
+              name: 'workshopsCopy',
+              path: 'workshopsCopy',
+              requireAuth: true,
+              builder: (context, params) => WorkshopsCopyWidget(),
+            ),
+            FFRoute(
+              name: 'eventsCopy',
+              path: 'eventsCopy',
+              requireAuth: true,
+              builder: (context, params) => EventsCopyWidget(),
             ),
             FFRoute(
               name: 'AddExtraact',
@@ -233,26 +269,36 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'SettingUpProfileCopy',
-              path: 'settingUpProfileCopy',
+              name: 'workshope_info_draft',
+              path: 'workshopeInfoDraft',
               requireAuth: true,
-              builder: (context, params) => SettingUpProfileCopyWidget(),
+              builder: (context, params) => WorkshopeInfoDraftWidget(
+                workshopid: params.getParam('workshopid', ParamType.String),
+              ),
             ),
             FFRoute(
-              name: 'coursesCopy',
-              path: 'coursesCopy',
+              name: 'event_info_draft',
+              path: 'eventInfoDraft',
               requireAuth: true,
-              builder: (context, params) => CoursesCopyWidget(),
+              builder: (context, params) => EventInfoDraftWidget(
+                eventid: params.getParam('eventid', ParamType.String),
+              ),
             ),
             FFRoute(
-              name: 'SyncInCalender',
-              path: 'syncInCalender',
+              name: 'EditInterests',
+              path: 'editInterests',
               requireAuth: true,
-              builder: (context, params) => SyncInCalenderWidget(),
+              builder: (context, params) => EditInterestsWidget(),
+            ),
+            FFRoute(
+              name: 'ProfileCopy',
+              path: 'profileCopy',
+              requireAuth: true,
+              builder: (context, params) => ProfileCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
-        ).toRoute(appStateNotifier),
-      ],
+        ),
+      ].map((r) => r.toRoute(appStateNotifier)).toList(),
       urlPathStrategy: UrlPathStrategy.path,
     );
 
@@ -298,6 +344,16 @@ extension NavigationExtensions on BuildContext {
               queryParams: queryParams,
               extra: extra,
             );
+
+  void safePop() {
+    // If there is only one route on the stack, navigate to the initial
+    // page instead of popping.
+    if (GoRouter.of(this).routerDelegate.matches.length <= 1) {
+      go('/');
+    } else {
+      pop();
+    }
+  }
 }
 
 extension GoRouterExtensions on GoRouter {
@@ -309,6 +365,7 @@ extension GoRouterExtensions on GoRouter {
           : appState.updateNotifyOnAuthChange(false);
   bool shouldRedirect(bool ignoreRedirect) =>
       !ignoreRedirect && appState.hasRedirect();
+  void clearRedirectLocation() => appState.clearRedirectLocation();
   void setRedirectLocationIfUnset(String location) =>
       (routerDelegate.refreshListenable as AppStateNotifier)
           .updateNotifyOnAuthChange(false);
@@ -425,8 +482,8 @@ class FFRoute {
                   color: Colors.white,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/9hsjc_2.png',
-                      width: 200,
+                      'assets/images/mmfwi_2.png',
+                      width: 200.0,
                       fit: BoxFit.contain,
                     ),
                   ),

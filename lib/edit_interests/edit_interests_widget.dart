@@ -1,10 +1,11 @@
-import '../auth/auth_util.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_checkbox_group.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import '/auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_checkbox_group.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -53,8 +54,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
+              width: 50.0,
+              height: 50.0,
               child: CircularProgressIndicator(
                 color: Color(0xFF0184BD),
               ),
@@ -69,11 +70,11 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
             backgroundColor: FlutterFlowTheme.of(context).alternate,
             automaticallyImplyLeading: false,
             title: Align(
-              alignment: AlignmentDirectional(0.35, 0),
+              alignment: AlignmentDirectional(0.35, 0.0),
               child: Text(
                 'إهتماماتك',
                 textAlign: TextAlign.end,
-                style: FlutterFlowTheme.of(context).title1.override(
+                style: FlutterFlowTheme.of(context).displaySmall.override(
                       fontFamily: 'Poppins',
                       color: FlutterFlowTheme.of(context).primaryBtnText,
                     ),
@@ -82,13 +83,13 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
             actions: [
               FlutterFlowIconButton(
                 borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 60,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 60.0,
                 icon: Icon(
                   Icons.arrow_forward_rounded,
                   color: Colors.white,
-                  size: 30,
+                  size: 30.0,
                 ),
                 onPressed: () async {
                   if (Navigator.of(context).canPop()) {
@@ -107,7 +108,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
               ),
             ],
             centerTitle: false,
-            elevation: 0,
+            elevation: 0.0,
           ),
           body: SafeArea(
             child: GestureDetector(
@@ -119,10 +120,11 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          10.0, 10.0, 10.0, 10.0),
                       child: Container(
                         width: double.infinity,
-                        height: 120,
+                        height: 120.0,
                         decoration: BoxDecoration(),
                         child: StreamBuilder<List<UsersRecord>>(
                           stream: queryUsersRecord(
@@ -135,8 +137,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                             if (!snapshot.hasData) {
                               return Center(
                                 child: SizedBox(
-                                  width: 50,
-                                  height: 50,
+                                  width: 50.0,
+                                  height: 50.0,
                                   child: CircularProgressIndicator(
                                     color: Color(0xFF0184BD),
                                   ),
@@ -154,11 +156,11 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                     ? stackUsersRecordList.first
                                     : null;
                             return Container(
-                              height: 160,
+                              height: 160.0,
                               child: Stack(
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(0, 0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Builder(
                                       builder: (context) {
                                         final intrestslist = stackUsersRecord!
@@ -176,27 +178,29 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                 intrestslist[intrestslistIndex];
                                             return Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 0, 0, 0),
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 0.0, 0.0),
                                               child: Container(
-                                                width: 200,
+                                                width: 200.0,
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
                                                   boxShadow: [
                                                     BoxShadow(
-                                                      blurRadius: 4,
+                                                      blurRadius: 4.0,
                                                       color: Color(0x1F000000),
-                                                      offset: Offset(0, 2),
+                                                      offset: Offset(0.0, 2.0),
                                                     )
                                                   ],
                                                   borderRadius:
-                                                      BorderRadius.circular(8),
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                   border: Border.all(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    width: 1,
+                                                    width: 1.0,
                                                   ),
                                                 ),
                                                 child: Column(
@@ -209,7 +213,10 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 5, 5, 0),
+                                                                  0.0,
+                                                                  5.0,
+                                                                  5.0,
+                                                                  0.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -220,15 +227,15 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                           Align(
                                                             alignment:
                                                                 AlignmentDirectional(
-                                                                    -1, -0.9),
+                                                                    -1.0, -0.9),
                                                             child: Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          8),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0),
                                                               child: StreamBuilder<
                                                                   List<
                                                                       UsersRecord>>(
@@ -246,9 +253,9 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                       child:
                                                                           SizedBox(
                                                                         width:
-                                                                            50,
+                                                                            50.0,
                                                                         height:
-                                                                            50,
+                                                                            50.0,
                                                                         child:
                                                                             CircularProgressIndicator(
                                                                           color:
@@ -291,7 +298,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                           .cancel,
                                                                       color: Color(
                                                                           0xFFFF5757),
-                                                                      size: 30,
+                                                                      size:
+                                                                          30.0,
                                                                     ),
                                                                   );
                                                                 },
@@ -317,10 +325,10 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child:
                                                                   SelectionArea(
                                                                       child:
@@ -331,7 +339,7 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                                                         .center,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText1
+                                                                    .bodyMedium
                                                                     .override(
                                                                       fontFamily:
                                                                           'Poppins',
@@ -361,14 +369,16 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: Text(
                         'الإهتمامات',
                         textAlign: TextAlign.start,
-                        style: FlutterFlowTheme.of(context).subtitle1.override(
-                              fontFamily: 'Poppins',
-                              color: Color(0xFF494646),
-                            ),
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Poppins',
+                                  color: Color(0xFF494646),
+                                ),
                       ),
                     ),
                     StreamBuilder<List<UsersRecord>>(
@@ -382,8 +392,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                         if (!snapshot.hasData) {
                           return Center(
                             child: SizedBox(
-                              width: 50,
-                              height: 50,
+                              width: 50.0,
+                              height: 50.0,
                               child: CircularProgressIndicator(
                                 color: Color(0xFF0184BD),
                               ),
@@ -402,15 +412,15 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                 : null;
                         return Container(
                           width: double.infinity,
-                          height: 500,
+                          height: 500.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(0),
-                              bottomRight: Radius.circular(0),
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
+                              bottomLeft: Radius.circular(0.0),
+                              bottomRight: Radius.circular(0.0),
+                              topLeft: Radius.circular(30.0),
+                              topRight: Radius.circular(30.0),
                             ),
                           ),
                           child: StreamBuilder<List<CategoryRecord>>(
@@ -422,8 +432,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                               if (!snapshot.hasData) {
                                 return Center(
                                   child: SizedBox(
-                                    width: 50,
-                                    height: 50,
+                                    width: 50.0,
+                                    height: 50.0,
                                     child: CircularProgressIndicator(
                                       color: Color(0xFF0184BD),
                                     ),
@@ -449,11 +459,8 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 55, 0),
+                                          0.0, 0.0, 55.0, 0.0),
                                       child: FlutterFlowCheckboxGroup(
-                                        initiallySelected: containerUsersRecord!
-                                            .intrests!
-                                            .toList(),
                                         options: columnCategoryRecord!.name!
                                             .toList(),
                                         onChanged: (val) async {
@@ -466,24 +473,30 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
                                           await containerUsersRecord!.reference
                                               .update(usersUpdateData);
                                         },
-                                        activeColor: Color(0x00000000),
+                                        controller: _model
+                                                .checkboxGroupController ??=
+                                            FormFieldController<List<String>>(
+                                          containerUsersRecord!.intrests!
+                                              .toList(),
+                                        ),
+                                        activeColor: Color(0xFF95A1AC),
                                         checkColor: FlutterFlowTheme.of(context)
                                             .alternate,
                                         checkboxBorderColor: Color(0xFF95A1AC),
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .title3
+                                            .headlineSmall
                                             .override(
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF565656),
                                             ),
                                         itemPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                10, 0, 0, 20),
+                                                10.0, 0.0, 0.0, 20.0),
                                         checkboxBorderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(0),
-                                          bottomRight: Radius.circular(0),
-                                          topLeft: Radius.circular(3),
-                                          topRight: Radius.circular(0),
+                                          bottomLeft: Radius.circular(0.0),
+                                          bottomRight: Radius.circular(0.0),
+                                          topLeft: Radius.circular(3.0),
+                                          topRight: Radius.circular(0.0),
                                         ),
                                         initialized:
                                             _model.checkboxGroupValues != null,

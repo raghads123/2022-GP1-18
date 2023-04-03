@@ -1,10 +1,7 @@
-import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'first_page_model.dart';
@@ -17,65 +14,11 @@ class FirstPageWidget extends StatefulWidget {
   _FirstPageWidgetState createState() => _FirstPageWidgetState();
 }
 
-class _FirstPageWidgetState extends State<FirstPageWidget>
-    with TickerProviderStateMixin {
+class _FirstPageWidgetState extends State<FirstPageWidget> {
   late FirstPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-
-  final animationsMap = {
-    'imageOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1200.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-    'columnOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeIn,
-          delay: 400.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 1400.ms,
-          duration: 600.ms,
-          begin: Offset(0, 0),
-          end: Offset(0, -82),
-        ),
-      ],
-    ),
-  };
 
   @override
   void initState() {
@@ -104,124 +47,111 @@ class _FirstPageWidgetState extends State<FirstPageWidget>
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0, -1),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Image.asset(
-                  'assets/images/mcatd_1.png',
+                  'assets/images/WhatsApp_Image_2023-03-13_at_11.53.36_PM.jpeg',
                   width: double.infinity,
-                  height: 250,
+                  height: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 180, 0, 0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF4F3F0),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/9hsjc_2.png',
-                                    width: 190,
-                                    fit: BoxFit.cover,
-                                  ).animateOnPageLoad(animationsMap[
-                                      'imageOnPageLoadAnimation']!),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 14),
-                                    child: SelectionArea(
-                                        child: Text(
-                                      'لإثراء التجربة الجامعية ',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFF0184BD),
-                                            fontSize: 24,
-                                          ),
-                                    )).animateOnPageLoad(animationsMap[
-                                        'textOnPageLoadAnimation']!),
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  height: 550.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xACE1D7C6),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/2logo.JPG',
+                        width: 190.0,
+                        fit: BoxFit.cover,
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 15.0, 0.0, 15.0),
+                        child: SelectionArea(
+                            child: Text(
+                          'لإثراء التجربة الجامعية ',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFF0184BD),
+                                    fontSize: 24.0,
                                   ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 20, 20, 20),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed('LogIn');
-                                          },
-                                          text: 'طالب/ة',
-                                          options: FFButtonOptions(
-                                            width: 300,
-                                            height: 50,
-                                            color: Color(0xBF579BB1),
-                                            textStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFFFFFAF1),
-                                              fontSize: 20,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20, 20, 20, 20),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                                'ActivityAdminLogin');
-                                          },
-                                          text: 'رائد/ة  نشاط',
-                                          options: FFButtonOptions(
-                                            width: 300,
-                                            height: 50,
-                                            color: Color(0xBF579BB1),
-                                            textStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFFFFFAF1),
-                                              fontSize: 20,
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ).animateOnPageLoad(animationsMap[
-                                      'columnOnPageLoadAnimation']!),
-                                ],
+                        )),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 15.0, 20.0, 15.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.goNamed('studentlogin');
+                              },
+                              text: 'طالب/ة',
+                              options: FFButtonOptions(
+                                width: 300.0,
+                                height: 50.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Color(0xFF7EAEBD),
+                                textStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFFFFFAF1),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20.0,
+                                ),
+                                elevation: 2.0,
+                                borderRadius: BorderRadius.circular(25.0),
                               ),
                             ),
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 15.0, 20.0, 30.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                context.goNamed('ActivityAdminLogin');
+                              },
+                              text: 'رائد/ة  نشاط',
+                              options: FFButtonOptions(
+                                width: 300.0,
+                                height: 50.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Color(0xFF7EAEBD),
+                                textStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFFFFFAF1),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20.0,
+                                ),
+                                elevation: 2.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 0.0,
+                                ),
+                                borderRadius: BorderRadius.circular(25.0),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

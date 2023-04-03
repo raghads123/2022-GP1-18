@@ -1,16 +1,14 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../flutter_flow/flutter_flow_autocomplete_options_list.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'courses_copy_model.dart';
 export 'courses_copy_model.dart';
@@ -33,7 +31,7 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
     super.initState();
     _model = createModel(context, () => CoursesCopyModel());
 
-    _model.fieldSearchController = TextEditingController();
+    _model.fieldSearchController ??= TextEditingController();
   }
 
   @override
@@ -52,17 +50,15 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
       key: scaffoldKey,
       backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFF4F3F0),
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
+          borderRadius: 30.0,
+          buttonSize: 60.0,
           icon: Icon(
-            Icons.chevron_left,
-            color: Color(0xFF777373),
-            size: 30,
+            Icons.chevron_left_rounded,
+            color: Color(0xFF7EAEBD),
+            size: 30.0,
           ),
           onPressed: () async {
             if (Navigator.of(context).canPop()) {
@@ -81,15 +77,16 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
         ),
         title: Text(
           'الدورات',
-          style: FlutterFlowTheme.of(context).title2.override(
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
-                color: Color(0xFF777373),
-                fontSize: 22,
+                color: Color(0xFF7EAEBD),
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
               ),
         ),
         actions: [],
         centerTitle: true,
-        elevation: 2,
+        elevation: 2.0,
       ),
       body: SafeArea(
         child: GestureDetector(
@@ -100,38 +97,40 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           Icons.search,
                           color: Color(0xFF777373),
-                          size: 20,
+                          size: 20.0,
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          width: 140,
-                          height: 35,
+                          width: 140.0,
+                          height: 35.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 4,
+                                blurRadius: 4.0,
                                 color: Color(0x33000000),
-                                offset: Offset(0, 2),
+                                offset: Offset(0.0, 2.0),
                               )
                             ],
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25.0),
                           ),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 12.0, 0.0),
                             child: Autocomplete<String>(
                               initialValue: TextEditingValue(),
                               optionsBuilder: (textEditingValue) {
@@ -152,16 +151,16 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                   options: options.toList(),
                                   onSelected: onSelected,
                                   textStyle:
-                                      FlutterFlowTheme.of(context).bodyText1,
+                                      FlutterFlowTheme.of(context).bodyMedium,
                                   textHighlightStyle: TextStyle(),
-                                  elevation: 4,
+                                  elevation: 4.0,
                                   optionBackgroundColor:
                                       FlutterFlowTheme.of(context)
                                           .primaryBackground,
                                   optionHighlightColor:
                                       FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                  maxHeight: 200,
+                                  maxHeight: 200.0,
                                 );
                               },
                               onSelected: (String selection) {
@@ -189,13 +188,17 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    hintText: 'ابحثِ هنا',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodyText2,
+                                    hintText: 'أبحث هنا',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF777373),
+                                        ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -205,7 +208,7 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -215,7 +218,7 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                     errorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -225,7 +228,7 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                     focusedErrorBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1,
+                                        width: 1.0,
                                       ),
                                       borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(4.0),
@@ -233,7 +236,12 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                       ),
                                     ),
                                   ),
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Poppins',
+                                        color: Color(0xFF7EAEBD),
+                                      ),
                                   textAlign: TextAlign.start,
                                   validator: _model
                                       .fieldSearchControllerValidator
@@ -247,314 +255,267 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                     ],
                   ),
                 ),
-                FutureBuilder<ApiCallResponse>(
-                  future: (_model.apiRequestCompleter ??=
-                          Completer<ApiCallResponse>()
-                            ..complete(CousesMBCall.call(
-                              userID: currentUserEmail,
-                            )))
-                      .future,
+                StreamBuilder<List<ExtraActsRecord>>(
+                  stream: queryExtraActsRecord(
+                    queryBuilder: (extraActsRecord) => extraActsRecord
+                        .where('Act_type', isEqualTo: 'دورة تدريبية')
+                        .where('status', isEqualTo: 'موافق عليها')
+                        .orderBy('Edate', descending: true),
+                  ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.0,
+                          height: 50.0,
                           child: CircularProgressIndicator(
                             color: Color(0xFF0184BD),
                           ),
                         ),
                       );
                     }
-                    final listViewCousesMBResponse = snapshot.data!;
-                    return Builder(
-                      builder: (context) {
-                        final coursesMBdata = getJsonField(
-                          listViewCousesMBResponse.jsonBody,
-                          r'''$.data''',
-                        ).toList();
-                        return RefreshIndicator(
-                          onRefresh: () async {
-                            setState(() => _model.apiRequestCompleter = null);
-                            await _model.waitForApiRequestCompleter();
-                          },
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            primary: false,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: coursesMBdata.length,
-                            itemBuilder: (context, coursesMBdataIndex) {
-                              final coursesMBdataItem =
-                                  coursesMBdata[coursesMBdataIndex];
-                              return Visibility(
-                                visible: functions.showSearchResultCourse(
-                                    _model.fieldSearchController.text,
-                                    getJsonField(
-                                      listViewCousesMBResponse.jsonBody,
-                                      r'''$.Act_name''',
-                                    ).toString()),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          6, 6, 6, 6),
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 7,
-                                              color: Color(0xFF777373),
-                                              offset: Offset(0, 3),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          border: Border.all(
-                                            color: Color(0xFFE4DFDA),
-                                          ),
-                                        ),
-                                        child: Padding(
+                    List<ExtraActsRecord> listViewExtraActsRecordList =
+                        snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewExtraActsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewExtraActsRecord =
+                            listViewExtraActsRecordList[listViewIndex];
+                        return Visibility(
+                          visible: functions.showSearchResultCourse(
+                              _model.fieldSearchController.text,
+                              listViewExtraActsRecord.actName!),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 15.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        15.0, 15.0, 15.0, 15.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  12, 12, 12, 12),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              ClipRRect(
+                                                  10.0, 10.0, 10.0, 10.0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.fade,
+                                                  child:
+                                                      FlutterFlowExpandedImageView(
+                                                    image: Image.network(
+                                                      valueOrDefault<String>(
+                                                        listViewExtraActsRecord
+                                                            .actPic,
+                                                        'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                      ),
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                    allowRotation: false,
+                                                    tag: valueOrDefault<String>(
+                                                      listViewExtraActsRecord
+                                                          .actPic,
+                                                      'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png' +
+                                                          '$listViewIndex',
+                                                    ),
+                                                    useHeroAnimation: true,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Hero(
+                                              tag: valueOrDefault<String>(
+                                                listViewExtraActsRecord.actPic,
+                                                'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png' +
+                                                    '$listViewIndex',
+                                              ),
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
                                                 borderRadius:
-                                                    BorderRadius.circular(8),
+                                                    BorderRadius.circular(5.0),
                                                 child: Image.network(
                                                   valueOrDefault<String>(
-                                                    getJsonField(
-                                                      coursesMBdataItem,
-                                                      r'''$.Act_pic''',
-                                                    ),
+                                                    listViewExtraActsRecord
+                                                        .actPic,
                                                     'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
                                                   ),
                                                   width: double.infinity,
-                                                  height: 110,
+                                                  height: 110.0,
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
-                                              Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 8, 0, 8),
-                                                  child: SingleChildScrollView(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          getJsonField(
-                                                            coursesMBdataItem,
-                                                            r'''$.Act_name''',
-                                                          ).toString(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .title3
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Outfit',
-                                                                color: Color(
-                                                                    0xFF1C8EC1),
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Row(
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 10.0, 10.0, 10.0),
+                                            child: SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'موقع الدورة',
+                                                    listViewExtraActsRecord
+                                                        .actName!,
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1
+                                                        .headlineSmall
                                                         .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
+                                                          fontFamily: 'Poppins',
                                                           color:
-                                                              Color(0xFF777373),
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.normal,
+                                                              Color(0xFF565656),
                                                         ),
                                                   ),
                                                 ],
                                               ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 4, 0, 0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          getJsonField(
-                                                            coursesMBdataItem,
-                                                            r'''$.Act_loc''',
-                                                          ).toString(),
-                                                          'جامعة الملك سعود',
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto Mono',
-                                                                  color: Color(
-                                                                      0xFF1C8EC1),
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                    StreamBuilder<
-                                                        List<
-                                                            UserHistoryRecord>>(
-                                                      stream:
-                                                          queryUserHistoryRecord(
-                                                        queryBuilder:
-                                                            (userHistoryRecord) =>
-                                                                userHistoryRecord.where(
-                                                                    'user_email',
-                                                                    isEqualTo:
-                                                                        currentUserEmail),
-                                                        singleRecord: true,
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50,
-                                                              height: 50,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                color: Color(
-                                                                    0xFF0184BD),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        List<UserHistoryRecord>
-                                                            textUserHistoryRecordList =
-                                                            snapshot.data!;
-                                                        // Return an empty Container when the item does not exist.
-                                                        if (snapshot
-                                                            .data!.isEmpty) {
-                                                          return Container();
-                                                        }
-                                                        final textUserHistoryRecord =
-                                                            textUserHistoryRecordList
-                                                                    .isNotEmpty
-                                                                ? textUserHistoryRecordList
-                                                                    .first
-                                                                : null;
-                                                        return InkWell(
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'course_info',
-                                                              queryParams: {
-                                                                'courseid':
-                                                                    serializeParam(
-                                                                  getJsonField(
-                                                                    coursesMBdataItem,
-                                                                    r'''$.Act_ID''',
-                                                                  ).toString(),
-                                                                  ParamType
-                                                                      .String,
-                                                                ),
-                                                              }.withoutNulls,
-                                                            );
-
-                                                            final userHistoryUpdateData =
-                                                                createUserHistoryRecordData(
-                                                              extraActivityID:
-                                                                  getJsonField(
-                                                                coursesMBdataItem,
-                                                                r'''$.Act_ID''',
-                                                              ).toString(),
-                                                              aCTType:
-                                                                  getJsonField(
-                                                                coursesMBdataItem,
-                                                                r'''$.Act_type''',
-                                                              ).toString(),
-                                                            );
-                                                            await textUserHistoryRecord!
-                                                                .reference
-                                                                .update(
-                                                                    userHistoryUpdateData);
-                                                          },
-                                                          child: Text(
-                                                            'للمزيد',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Color(
-                                                                      0xFF777373),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        );
-                                                      },
-                                                    ),
-                                                    Icon(
-                                                      Icons
-                                                          .chevron_right_rounded,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 10.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'الموقع',
+                                                textAlign: TextAlign.start,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Lexend Deca',
                                                       color: Color(0xFF777373),
-                                                      size: 24,
+                                                      fontSize: 14.0,
+                                                      fontWeight:
+                                                          FontWeight.normal,
                                                     ),
-                                                  ],
-                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 10.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  listViewExtraActsRecord
+                                                      .actLoc!,
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Roboto Mono',
+                                                        color:
+                                                            Color(0xFF1C8EC1),
+                                                        fontSize: 16.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () async {
+                                                  if (Navigator.of(context)
+                                                      .canPop()) {
+                                                    context.pop();
+                                                  }
+                                                  context.pushNamed(
+                                                    'course_info',
+                                                    queryParams: {
+                                                      'courseid':
+                                                          serializeParam(
+                                                        listViewExtraActsRecord
+                                                            .actID,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      kTransitionInfoKey:
+                                                          TransitionInfo(
+                                                        hasTransition: true,
+                                                        transitionType:
+                                                            PageTransitionType
+                                                                .leftToRight,
+                                                      ),
+                                                    },
+                                                  );
+                                                },
+                                                child: Text(
+                                                  'للمزيد',
+                                                  textAlign: TextAlign.start,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Poppins',
+                                                        color:
+                                                            Color(0xFF777373),
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.chevron_right_rounded,
+                                                color: Color(0xFF777373),
+                                                size: 24.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                            ],
                           ),
                         );
                       },

@@ -138,24 +138,32 @@ class _NavBarPageState extends State<NavBarPage> {
           _currentPageName = tabs.keys.toList()[i];
         }),
         backgroundColor: Colors.white,
-        selectedItemColor: Color(0xFF1C8EC1),
-        unselectedItemColor: Color(0x8A000000),
+        selectedItemColor: Color(0xFF7EAEBD),
+        unselectedItemColor: Color(0xFF777373),
         showSelectedLabels: true,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
-              size: 24,
+              size: 24.0,
+            ),
+            activeIcon: Icon(
+              Icons.home_sharp,
+              size: 28.0,
             ),
             label: 'الرئيسية',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.dashboard,
-              size: 24,
+              Icons.dashboard_outlined,
+              size: 24.0,
+            ),
+            activeIcon: Icon(
+              Icons.dashboard_rounded,
+              size: 24.0,
             ),
             label: 'أنشطتي',
             tooltip: '',
@@ -163,7 +171,11 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_outline_rounded,
-              size: 24,
+              size: 24.0,
+            ),
+            activeIcon: Icon(
+              Icons.person_rounded,
+              size: 24.0,
             ),
             label: 'حسابي',
             tooltip: '',

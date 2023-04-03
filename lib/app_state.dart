@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'backend/backend.dart';
+import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/lat_lng.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static final FFAppState _instance = FFAppState._internal();
@@ -28,12 +30,6 @@ class FFAppState extends ChangeNotifier {
   String get userSigned => _userSigned;
   set userSigned(String _value) {
     _userSigned = _value;
-  }
-
-  int _numskills = 1;
-  int get numskills => _numskills;
-  set numskills(int _value) {
-    _numskills = _value;
   }
 
   List<String> _ActCategory = [];
@@ -70,6 +66,31 @@ class FFAppState extends ChangeNotifier {
 
   void removeAtIndexFromSkilllist(int _index) {
     _Skilllist.removeAt(_index);
+  }
+
+  DocumentReference? _notifysuperadmin =
+      FirebaseFirestore.instance.doc('/users/aQxAnDiiifMIfqFd3AmdEUfxOSz2');
+  DocumentReference? get notifysuperadmin => _notifysuperadmin;
+  set notifysuperadmin(DocumentReference? _value) {
+    _notifysuperadmin = _value;
+  }
+
+  List<String> _numskills = [];
+  List<String> get numskills => _numskills;
+  set numskills(List<String> _value) {
+    _numskills = _value;
+  }
+
+  void addToNumskills(String _value) {
+    _numskills.add(_value);
+  }
+
+  void removeFromNumskills(String _value) {
+    _numskills.remove(_value);
+  }
+
+  void removeAtIndexFromNumskills(int _index) {
+    _numskills.removeAt(_index);
   }
 }
 

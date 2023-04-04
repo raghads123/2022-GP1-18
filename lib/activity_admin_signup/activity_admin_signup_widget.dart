@@ -94,7 +94,7 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                 ),
                                 Form(
                                   key: _model.formKey,
-                                  autovalidateMode: AutovalidateMode.disabled,
+                                  autovalidateMode: AutovalidateMode.always,
                                   child: Container(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,

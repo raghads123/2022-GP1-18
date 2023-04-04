@@ -1,10 +1,8 @@
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -94,9 +92,9 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
           ),
           child: Container(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 5.5,
+            height: 590.0,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFFF4F3F0),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0.0),
                 bottomRight: Radius.circular(0.0),
@@ -108,7 +106,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -130,142 +128,135 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 15.0),
                     child: Text(
                       'هل وافقت الفعالية توقعاتك؟',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
-                            color: Color(0xFFFF5757),
+                            color: Color(0xFF7EAEBD),
                             fontSize: 20.0,
                           ),
                     ),
                   ),
-                  RatingBar.builder(
-                    onRatingUpdate: (newValue) =>
-                        setState(() => _model.ratingBar1Value = newValue),
-                    itemBuilder: (context, index) => Icon(
-                      Icons.star_rate_rounded,
-                      color: Color(0xFFFFC40C),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                    child: RatingBar.builder(
+                      onRatingUpdate: (newValue) =>
+                          setState(() => _model.ratingBar1Value = newValue),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Color(0xFFFFC40C),
+                      ),
+                      direction: Axis.horizontal,
+                      initialRating: _model.ratingBar1Value ??= 0.0,
+                      unratedColor: Color(0xFF9E9E9E),
+                      itemCount: 5,
+                      itemSize: 40.0,
+                      glowColor: Color(0xFFFFC40C),
                     ),
-                    direction: Axis.horizontal,
-                    initialRating: _model.ratingBar1Value ??= 0.0,
-                    unratedColor: Color(0xFF9E9E9E),
-                    itemCount: 5,
-                    itemSize: 40.0,
-                    glowColor: Color(0xFFFFC40C),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(2.0, 2.0, 2.0, 2.0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                     child: Text(
                       'هل استفدت من الفعالية؟',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
-                            color: Color(0xFFFF5757),
+                            color: Color(0xFF7EAEBD),
                             fontSize: 20.0,
                           ),
                     ),
                   ),
-                  RatingBar.builder(
-                    onRatingUpdate: (newValue) =>
-                        setState(() => _model.ratingBar2Value = newValue),
-                    itemBuilder: (context, index) => Icon(
-                      Icons.star_rate_rounded,
-                      color: Color(0xFFFFC40C),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                    child: RatingBar.builder(
+                      onRatingUpdate: (newValue) =>
+                          setState(() => _model.ratingBar2Value = newValue),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Color(0xFFFFC40C),
+                      ),
+                      direction: Axis.horizontal,
+                      initialRating: _model.ratingBar2Value ??= 0.0,
+                      unratedColor: Color(0xFF9E9E9E),
+                      itemCount: 5,
+                      itemSize: 40.0,
+                      glowColor: Color(0xFFFFC40C),
                     ),
-                    direction: Axis.horizontal,
-                    initialRating: _model.ratingBar2Value ??= 0.0,
-                    unratedColor: Color(0xFF9E9E9E),
-                    itemCount: 5,
-                    itemSize: 40.0,
-                    glowColor: Color(0xFFFFC40C),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                     child: Text(
                       'كيف كان التنظيم؟',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
-                            color: Color(0xFFFF5757),
+                            color: Color(0xFF7EAEBD),
                             fontSize: 20.0,
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w600,
                           ),
                     ),
                   ),
-                  RatingBar.builder(
-                    onRatingUpdate: (newValue) =>
-                        setState(() => _model.ratingBar3Value = newValue),
-                    itemBuilder: (context, index) => Icon(
-                      Icons.star_rate_rounded,
-                      color: Color(0xFFFFC40C),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                    child: RatingBar.builder(
+                      onRatingUpdate: (newValue) =>
+                          setState(() => _model.ratingBar3Value = newValue),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Color(0xFFFFC40C),
+                      ),
+                      direction: Axis.horizontal,
+                      initialRating: _model.ratingBar3Value ??= 0.0,
+                      unratedColor: Color(0xFF9E9E9E),
+                      itemCount: 5,
+                      itemSize: 40.0,
+                      glowColor: Color(0xFFFFC40C),
                     ),
-                    direction: Axis.horizontal,
-                    initialRating: _model.ratingBar3Value ??= 0.0,
-                    unratedColor: Color(0xFF9E9E9E),
-                    itemCount: 5,
-                    itemSize: 40.0,
-                    glowColor: Color(0xFFFFC40C),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
                     child: Text(
-                      'هل تقترح هذا النشاط لأشخاص اخرين؟',
+                      'مدى إقتراحك النشاط لأشخاص اخرين؟',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Poppins',
-                            color: Color(0xFFFF5757),
+                            color: Color(0xFF7EAEBD),
                             fontSize: 20.0,
                           ),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
-                    child: FlutterFlowChoiceChips(
-                      options: [ChipData('نعم'), ChipData('لا')],
-                      onChanged: (val) =>
-                          setState(() => _model.choiceChipsValue = val?.first),
-                      selectedChipStyle: ChipStyle(
-                        backgroundColor: Color(0xFF323B45),
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white,
-                                ),
-                        iconColor: Colors.white,
-                        iconSize: 18.0,
-                        elevation: 4.0,
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: RatingBar.builder(
+                      onRatingUpdate: (newValue) =>
+                          setState(() => _model.ratingBar4Value = newValue),
+                      itemBuilder: (context, index) => Icon(
+                        Icons.star_rate_rounded,
+                        color: Color(0xFFFFC40C),
                       ),
-                      unselectedChipStyle: ChipStyle(
-                        backgroundColor: Colors.white,
-                        textStyle:
-                            FlutterFlowTheme.of(context).bodySmall.override(
-                                  fontFamily: 'Poppins',
-                                  color: Color(0xFF323B45),
-                                ),
-                        iconColor: Color(0xFF323B45),
-                        iconSize: 18.0,
-                        elevation: 4.0,
-                      ),
-                      chipSpacing: 20.0,
-                      multiselect: false,
-                      alignment: WrapAlignment.start,
-                      controller: _model.choiceChipsController ??=
-                          FormFieldController<List<String>>(
-                        [],
-                      ),
+                      direction: Axis.horizontal,
+                      initialRating: _model.ratingBar4Value ??= 0.0,
+                      unratedColor: Color(0xFF9E9E9E),
+                      itemCount: 5,
+                      itemSize: 40.0,
+                      glowColor: Color(0xFFFFC40C),
                     ),
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 30.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         Navigator.pop(context);
 
                         final ratingCreateData = createRatingRecordData(
                           actID: widget.ratingactID,
-                          rating: _model.ratingBar1Value?.round(),
+                          rating: _model.ratingBar4Value?.round(),
                           useremail: currentUserEmail,
                           actType: widget.ratingtype,
                         );
@@ -279,9 +270,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                                 _model.ratingBar1Value!,
                                 _model.ratingBar2Value!,
                                 _model.ratingBar3Value!,
-                                _model.choiceChipsValue == 'option1'
-                                    ? 1.0
-                                    : 0.0)
+                                _model.ratingBar4Value!)
                           ]),
                         };
                         await containerExtraActsRecord!.reference
@@ -289,13 +278,13 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                       },
                       text: 'إرسال',
                       options: FFButtonOptions(
-                        width: 270.0,
+                        width: double.infinity,
                         height: 50.0,
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: Color(0xFF1C8EC1),
+                        color: Color(0xFF7EAEBD),
                         textStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Poppins',
@@ -306,6 +295,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                           color: Colors.transparent,
                           width: 1.0,
                         ),
+                        borderRadius: BorderRadius.circular(25.0),
                       ),
                     ),
                   ),

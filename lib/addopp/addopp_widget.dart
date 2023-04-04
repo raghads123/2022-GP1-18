@@ -71,7 +71,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            context.pop();
+            context.goNamed('HomePage');
           },
         ),
         title: Text(
@@ -627,7 +627,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               color: Color(0xFF7EAEBD),
                               size: 20.0,
                             ),
-                            onPressed: FFAppState().numskills.contains('1234')
+                            onPressed: FFAppState().numskills.length == 4
                                 ? null
                                 : () async {
                                     if (FFAppState().numskills.contains('1')) {
@@ -826,6 +826,25 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                         ),
                                       ),
                                     ),
+                                    if (_model.datePicked1 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked1,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -913,6 +932,131 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                         ),
                                       ),
                                     ),
+                                    if (_model.datePicked2 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked2,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.44,
+                              height: 51.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE1D7C6),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0.0, 2.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: Color(0xFFE1D7C6),
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  final _datePicked3Date = await showDatePicker(
+                                    context: context,
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
+                                  );
+
+                                  TimeOfDay? _datePicked3Time;
+                                  if (_datePicked3Date != null) {
+                                    _datePicked3Time = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
+                                    );
+                                  }
+
+                                  if (_datePicked3Date != null &&
+                                      _datePicked3Time != null) {
+                                    setState(() {
+                                      _model.datePicked3 = DateTime(
+                                        _datePicked3Date.year,
+                                        _datePicked3Date.month,
+                                        _datePicked3Date.day,
+                                        _datePicked3Time!.hour,
+                                        _datePicked3Time.minute,
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'نهاية فترة التقديم',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                    if (_model.datePicked3 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked3,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -943,6 +1087,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                 true,
                               ),
                               opProviderEmail: currentUserEmail,
+                              lastD2apply: _model.datePicked3,
                             ),
                             'OpSkills': FFAppState().Skilllist,
                           };
@@ -952,8 +1097,9 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                           FFAppState().numskills = [];
                           FFAppState().Skilllist = [];
                           triggerPushNotification(
-                            notificationTitle: 'طلب إضافة فرصة بعنوان',
-                            notificationText: _model.oppNameController.text,
+                            notificationTitle: 'طلب إضافة فرصة ',
+                            notificationText:
+                                'بعنوان${_model.oppNameController.text}',
                             notificationSound: 'default',
                             userRefs: [FFAppState().notifysuperadmin!],
                             initialPageName: 'HomePage',
@@ -973,6 +1119,16 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               duration: Duration(milliseconds: 4000),
                               backgroundColor: Color(0xFF22C11C),
                             ),
+                          );
+
+                          context.goNamed(
+                            'HomePage',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.rightToLeft,
+                              ),
+                            },
                           );
                         },
                         text: 'إرسال طلب الإضافة',

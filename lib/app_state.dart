@@ -92,6 +92,24 @@ class FFAppState extends ChangeNotifier {
   void removeAtIndexFromNumskills(int _index) {
     _numskills.removeAt(_index);
   }
+
+  List<String> _testtheaory = ['الإدارة', 'التقنية', 'الثقافة'];
+  List<String> get testtheaory => _testtheaory;
+  set testtheaory(List<String> _value) {
+    _testtheaory = _value;
+  }
+
+  void addToTesttheaory(String _value) {
+    _testtheaory.add(_value);
+  }
+
+  void removeFromTesttheaory(String _value) {
+    _testtheaory.remove(_value);
+  }
+
+  void removeAtIndexFromTesttheaory(int _index) {
+    _testtheaory.removeAt(_index);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

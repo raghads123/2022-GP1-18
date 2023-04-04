@@ -37,6 +37,14 @@ class _$NotifyRecordSerializer implements StructuredSerializer<NotifyRecord> {
                   DocumentReference, const [const FullType.nullable(Object)])
             ])));
     }
+    value = object.notifybyintrest;
+    if (value != null) {
+      result
+        ..add('notifybyintrest')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -71,6 +79,12 @@ class _$NotifyRecordSerializer implements StructuredSerializer<NotifyRecord> {
                     DocumentReference, const [const FullType.nullable(Object)])
               ]))! as BuiltList<Object?>);
           break;
+        case 'notifybyintrest':
+          result.notifybyintrest.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -90,12 +104,16 @@ class _$NotifyRecord extends NotifyRecord {
   @override
   final BuiltList<DocumentReference<Object?>>? multiuser;
   @override
+  final BuiltList<String>? notifybyintrest;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$NotifyRecord([void Function(NotifyRecordBuilder)? updates]) =>
       (new NotifyRecordBuilder()..update(updates))._build();
 
-  _$NotifyRecord._({this.actID, this.multiuser, this.ffRef}) : super._();
+  _$NotifyRecord._(
+      {this.actID, this.multiuser, this.notifybyintrest, this.ffRef})
+      : super._();
 
   @override
   NotifyRecord rebuild(void Function(NotifyRecordBuilder) updates) =>
@@ -110,6 +128,7 @@ class _$NotifyRecord extends NotifyRecord {
     return other is NotifyRecord &&
         actID == other.actID &&
         multiuser == other.multiuser &&
+        notifybyintrest == other.notifybyintrest &&
         ffRef == other.ffRef;
   }
 
@@ -118,6 +137,7 @@ class _$NotifyRecord extends NotifyRecord {
     var _$hash = 0;
     _$hash = $jc(_$hash, actID.hashCode);
     _$hash = $jc(_$hash, multiuser.hashCode);
+    _$hash = $jc(_$hash, notifybyintrest.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -128,6 +148,7 @@ class _$NotifyRecord extends NotifyRecord {
     return (newBuiltValueToStringHelper(r'NotifyRecord')
           ..add('actID', actID)
           ..add('multiuser', multiuser)
+          ..add('notifybyintrest', notifybyintrest)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -147,6 +168,12 @@ class NotifyRecordBuilder
   set multiuser(ListBuilder<DocumentReference<Object?>>? multiuser) =>
       _$this._multiuser = multiuser;
 
+  ListBuilder<String>? _notifybyintrest;
+  ListBuilder<String> get notifybyintrest =>
+      _$this._notifybyintrest ??= new ListBuilder<String>();
+  set notifybyintrest(ListBuilder<String>? notifybyintrest) =>
+      _$this._notifybyintrest = notifybyintrest;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -160,6 +187,7 @@ class NotifyRecordBuilder
     if ($v != null) {
       _actID = $v.actID;
       _multiuser = $v.multiuser?.toBuilder();
+      _notifybyintrest = $v.notifybyintrest?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -185,12 +213,17 @@ class NotifyRecordBuilder
     try {
       _$result = _$v ??
           new _$NotifyRecord._(
-              actID: actID, multiuser: _multiuser?.build(), ffRef: ffRef);
+              actID: actID,
+              multiuser: _multiuser?.build(),
+              notifybyintrest: _notifybyintrest?.build(),
+              ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'multiuser';
         _multiuser?.build();
+        _$failedField = 'notifybyintrest';
+        _notifybyintrest?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'NotifyRecord', _$failedField, e.toString());

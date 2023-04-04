@@ -127,6 +127,20 @@ class _$ExtraActsRecordSerializer
             specifiedType:
                 const FullType(BuiltList, const [const FullType(double)])));
     }
+    value = object.lastD2enroll;
+    if (value != null) {
+      result
+        ..add('LastD2enroll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.lastD2disenroll;
+    if (value != null) {
+      result
+        ..add('LastD2disenroll')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -214,6 +228,14 @@ class _$ExtraActsRecordSerializer
                       BuiltList, const [const FullType(double)]))!
               as BuiltList<Object?>);
           break;
+        case 'LastD2enroll':
+          result.lastD2enroll = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'LastD2disenroll':
+          result.lastD2disenroll = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -259,6 +281,10 @@ class _$ExtraActsRecord extends ExtraActsRecord {
   @override
   final BuiltList<double>? actRate;
   @override
+  final DateTime? lastD2enroll;
+  @override
+  final DateTime? lastD2disenroll;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ExtraActsRecord([void Function(ExtraActsRecordBuilder)? updates]) =>
@@ -280,6 +306,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
       this.actID,
       this.actProviderEmail,
       this.actRate,
+      this.lastD2enroll,
+      this.lastD2disenroll,
       this.ffRef})
       : super._();
 
@@ -310,6 +338,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
         actID == other.actID &&
         actProviderEmail == other.actProviderEmail &&
         actRate == other.actRate &&
+        lastD2enroll == other.lastD2enroll &&
+        lastD2disenroll == other.lastD2disenroll &&
         ffRef == other.ffRef;
   }
 
@@ -331,6 +361,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
     _$hash = $jc(_$hash, actID.hashCode);
     _$hash = $jc(_$hash, actProviderEmail.hashCode);
     _$hash = $jc(_$hash, actRate.hashCode);
+    _$hash = $jc(_$hash, lastD2enroll.hashCode);
+    _$hash = $jc(_$hash, lastD2disenroll.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -354,6 +386,8 @@ class _$ExtraActsRecord extends ExtraActsRecord {
           ..add('actID', actID)
           ..add('actProviderEmail', actProviderEmail)
           ..add('actRate', actRate)
+          ..add('lastD2enroll', lastD2enroll)
+          ..add('lastD2disenroll', lastD2disenroll)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -427,6 +461,16 @@ class ExtraActsRecordBuilder
       _$this._actRate ??= new ListBuilder<double>();
   set actRate(ListBuilder<double>? actRate) => _$this._actRate = actRate;
 
+  DateTime? _lastD2enroll;
+  DateTime? get lastD2enroll => _$this._lastD2enroll;
+  set lastD2enroll(DateTime? lastD2enroll) =>
+      _$this._lastD2enroll = lastD2enroll;
+
+  DateTime? _lastD2disenroll;
+  DateTime? get lastD2disenroll => _$this._lastD2disenroll;
+  set lastD2disenroll(DateTime? lastD2disenroll) =>
+      _$this._lastD2disenroll = lastD2disenroll;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -453,6 +497,8 @@ class ExtraActsRecordBuilder
       _actID = $v.actID;
       _actProviderEmail = $v.actProviderEmail;
       _actRate = $v.actRate?.toBuilder();
+      _lastD2enroll = $v.lastD2enroll;
+      _lastD2disenroll = $v.lastD2disenroll;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -493,6 +539,8 @@ class ExtraActsRecordBuilder
               actID: actID,
               actProviderEmail: actProviderEmail,
               actRate: _actRate?.build(),
+              lastD2enroll: lastD2enroll,
+              lastD2disenroll: lastD2disenroll,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

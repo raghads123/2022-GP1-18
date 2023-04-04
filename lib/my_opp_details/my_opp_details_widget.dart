@@ -648,7 +648,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                       height: 30.0,
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                                                                       iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                      color: Color(0xFF22C11C),
+                                                                                      color: FlutterFlowTheme.of(context).success,
                                                                                       textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                             fontFamily: 'Poppins',
                                                                                             color: Colors.white,

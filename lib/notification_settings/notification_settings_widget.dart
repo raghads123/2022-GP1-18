@@ -176,13 +176,11 @@ class _NotificationSettingsWidgetState
                                                   child: StreamBuilder<
                                                       List<NotifyRecord>>(
                                                     stream: queryNotifyRecord(
-                                                      queryBuilder:
-                                                          (notifyRecord) =>
-                                                              notifyRecord
-                                                                  .where(
-                                                                      'act_ID',
-                                                                      isEqualTo:
-                                                                          '1'),
+                                                      queryBuilder: (notifyRecord) =>
+                                                          notifyRecord.where(
+                                                              'act_ID',
+                                                              isEqualTo:
+                                                                  'all activities'),
                                                       singleRecord: true,
                                                     ),
                                                     builder:
@@ -281,13 +279,11 @@ class _NotificationSettingsWidgetState
                                                   child: StreamBuilder<
                                                       List<NotifyRecord>>(
                                                     stream: queryNotifyRecord(
-                                                      queryBuilder:
-                                                          (notifyRecord) =>
-                                                              notifyRecord
-                                                                  .where(
-                                                                      'act_ID',
-                                                                      isEqualTo:
-                                                                          '2'),
+                                                      queryBuilder: (notifyRecord) =>
+                                                          notifyRecord.where(
+                                                              'act_ID',
+                                                              isEqualTo:
+                                                                  'all opportunities'),
                                                       singleRecord: true,
                                                     ),
                                                     builder:

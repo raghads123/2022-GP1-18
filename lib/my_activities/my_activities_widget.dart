@@ -821,190 +821,184 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   ],
                                                                 ),
                                                               ),
-                                                              Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        20.0,
-                                                                        15.0),
-                                                                child: Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                  children: [
-                                                                    Expanded(
-                                                                      child: StreamBuilder<
-                                                                          List<
-                                                                              NotifyRecord>>(
-                                                                        stream:
-                                                                            queryNotifyRecord(
-                                                                          queryBuilder: (notifyRecord) => notifyRecord.where(
-                                                                              'act_ID',
-                                                                              isEqualTo: columnExtraActsRecord!.actID),
-                                                                          singleRecord:
-                                                                              true,
-                                                                        ),
-                                                                        builder:
-                                                                            (context,
-                                                                                snapshot) {
-                                                                          // Customize what your widget looks like when it's loading.
-                                                                          if (!snapshot
-                                                                              .hasData) {
-                                                                            return Center(
-                                                                              child: SizedBox(
-                                                                                width: 50.0,
-                                                                                height: 50.0,
-                                                                                child: CircularProgressIndicator(
-                                                                                  color: Color(0xFF0184BD),
+                                                              if (getCurrentTimestamp <
+                                                                  columnExtraActsRecord!
+                                                                      .lastD2disenroll!)
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          20.0,
+                                                                          15.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child: StreamBuilder<
+                                                                            List<NotifyRecord>>(
+                                                                          stream:
+                                                                              queryNotifyRecord(
+                                                                            queryBuilder: (notifyRecord) =>
+                                                                                notifyRecord.where('act_ID', isEqualTo: columnExtraActsRecord!.actID),
+                                                                            singleRecord:
+                                                                                true,
+                                                                          ),
+                                                                          builder:
+                                                                              (context, snapshot) {
+                                                                            // Customize what your widget looks like when it's loading.
+                                                                            if (!snapshot.hasData) {
+                                                                              return Center(
+                                                                                child: SizedBox(
+                                                                                  width: 50.0,
+                                                                                  height: 50.0,
+                                                                                  child: CircularProgressIndicator(
+                                                                                    color: Color(0xFF0184BD),
+                                                                                  ),
                                                                                 ),
+                                                                              );
+                                                                            }
+                                                                            List<NotifyRecord>
+                                                                                buttonNotifyRecordList =
+                                                                                snapshot.data!;
+                                                                            // Return an empty Container when the item does not exist.
+                                                                            if (snapshot.data!.isEmpty) {
+                                                                              return Container();
+                                                                            }
+                                                                            final buttonNotifyRecord = buttonNotifyRecordList.isNotEmpty
+                                                                                ? buttonNotifyRecordList.first
+                                                                                : null;
+                                                                            return FFButtonWidget(
+                                                                              onPressed: () async {
+                                                                                if (columnExtraActsRecord!.seats!) {
+                                                                                  var confirmDialogResponse = await showDialog<bool>(
+                                                                                        context: context,
+                                                                                        builder: (alertDialogContext) {
+                                                                                          return AlertDialog(
+                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
+                                                                                            actions: [
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                child: Text('لا'),
+                                                                                              ),
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                child: Text('نعم'),
+                                                                                              ),
+                                                                                            ],
+                                                                                          );
+                                                                                        },
+                                                                                      ) ??
+                                                                                      false;
+                                                                                  if (confirmDialogResponse) {
+                                                                                    final usersUpdateData1 = {
+                                                                                      'users_acts': FieldValue.arrayRemove([
+                                                                                        columnExtraActsRecord!.actID
+                                                                                      ]),
+                                                                                    };
+                                                                                    await tabBarUsersRecord!.reference.update(usersUpdateData1);
+
+                                                                                    final extraActsUpdateData = {
+                                                                                      'num_seats': FieldValue.increment(1),
+                                                                                    };
+                                                                                    await columnExtraActsRecord!.reference.update(extraActsUpdateData);
+                                                                                    triggerPushNotification(
+                                                                                      notificationTitle: 'حياك!!',
+                                                                                      notificationText: 'لقينا لك مقعد في${columnExtraActsRecord!.actName}',
+                                                                                      notificationSound: 'default',
+                                                                                      userRefs: buttonNotifyRecord!.multiuser!.toList(),
+                                                                                      initialPageName: 'course_info',
+                                                                                      parameterData: {
+                                                                                        'courseid': columnExtraActsRecord!.actID,
+                                                                                      },
+                                                                                    );
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'تم إلغاء تسجيلك بنجاح!',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: Duration(milliseconds: 4000),
+                                                                                        backgroundColor: Color(0xE15BD85B),
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                } else {
+                                                                                  var confirmDialogResponse = await showDialog<bool>(
+                                                                                        context: context,
+                                                                                        builder: (alertDialogContext) {
+                                                                                          return AlertDialog(
+                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
+                                                                                            actions: [
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                child: Text('لا'),
+                                                                                              ),
+                                                                                              TextButton(
+                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                child: Text('نعم'),
+                                                                                              ),
+                                                                                            ],
+                                                                                          );
+                                                                                        },
+                                                                                      ) ??
+                                                                                      false;
+                                                                                  if (confirmDialogResponse) {
+                                                                                    final usersUpdateData2 = {
+                                                                                      'users_acts': FieldValue.arrayRemove([
+                                                                                        columnExtraActsRecord!.actID
+                                                                                      ]),
+                                                                                    };
+                                                                                    await tabBarUsersRecord!.reference.update(usersUpdateData2);
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'تم إلغاء تسجيلك بنجاح!',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: Duration(milliseconds: 4000),
+                                                                                        backgroundColor: Color(0xE15BD85B),
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                }
+                                                                              },
+                                                                              text: 'إلغاء التسجيل',
+                                                                              options: FFButtonOptions(
+                                                                                width: 130.0,
+                                                                                height: 35.0,
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                color: Color(0xE1FF2323),
+                                                                                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: Colors.white,
+                                                                                      fontSize: 16.0,
+                                                                                    ),
+                                                                                elevation: 2.0,
+                                                                                borderSide: BorderSide(
+                                                                                  color: Colors.transparent,
+                                                                                ),
+                                                                                borderRadius: BorderRadius.circular(25.0),
                                                                               ),
                                                                             );
-                                                                          }
-                                                                          List<NotifyRecord>
-                                                                              buttonNotifyRecordList =
-                                                                              snapshot.data!;
-                                                                          // Return an empty Container when the item does not exist.
-                                                                          if (snapshot
-                                                                              .data!
-                                                                              .isEmpty) {
-                                                                            return Container();
-                                                                          }
-                                                                          final buttonNotifyRecord = buttonNotifyRecordList.isNotEmpty
-                                                                              ? buttonNotifyRecordList.first
-                                                                              : null;
-                                                                          return FFButtonWidget(
-                                                                            onPressed:
-                                                                                () async {
-                                                                              if (columnExtraActsRecord!.seats!) {
-                                                                                var confirmDialogResponse = await showDialog<bool>(
-                                                                                      context: context,
-                                                                                      builder: (alertDialogContext) {
-                                                                                        return AlertDialog(
-                                                                                          title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
-                                                                                          actions: [
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                              child: Text('لا'),
-                                                                                            ),
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                              child: Text('نعم'),
-                                                                                            ),
-                                                                                          ],
-                                                                                        );
-                                                                                      },
-                                                                                    ) ??
-                                                                                    false;
-                                                                                if (confirmDialogResponse) {
-                                                                                  final usersUpdateData1 = {
-                                                                                    'users_acts': FieldValue.arrayRemove([
-                                                                                      columnExtraActsRecord!.actID
-                                                                                    ]),
-                                                                                  };
-                                                                                  await tabBarUsersRecord!.reference.update(usersUpdateData1);
-
-                                                                                  final extraActsUpdateData = {
-                                                                                    'num_seats': FieldValue.increment(1),
-                                                                                  };
-                                                                                  await columnExtraActsRecord!.reference.update(extraActsUpdateData);
-                                                                                  triggerPushNotification(
-                                                                                    notificationTitle: 'حياك!!',
-                                                                                    notificationText: 'لقينا لك مقعد في${columnExtraActsRecord!.actName}',
-                                                                                    notificationSound: 'default',
-                                                                                    userRefs: buttonNotifyRecord!.multiuser!.toList(),
-                                                                                    initialPageName: 'course_info',
-                                                                                    parameterData: {
-                                                                                      'courseid': columnExtraActsRecord!.actID,
-                                                                                    },
-                                                                                  );
-                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                    SnackBar(
-                                                                                      content: Text(
-                                                                                        'تم إلغاء تسجيلك بنجاح!',
-                                                                                        style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                        ),
-                                                                                      ),
-                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                      backgroundColor: Color(0xE15BD85B),
-                                                                                    ),
-                                                                                  );
-                                                                                }
-                                                                              } else {
-                                                                                var confirmDialogResponse = await showDialog<bool>(
-                                                                                      context: context,
-                                                                                      builder: (alertDialogContext) {
-                                                                                        return AlertDialog(
-                                                                                          title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
-                                                                                          actions: [
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                              child: Text('لا'),
-                                                                                            ),
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                              child: Text('نعم'),
-                                                                                            ),
-                                                                                          ],
-                                                                                        );
-                                                                                      },
-                                                                                    ) ??
-                                                                                    false;
-                                                                                if (confirmDialogResponse) {
-                                                                                  final usersUpdateData2 = {
-                                                                                    'users_acts': FieldValue.arrayRemove([
-                                                                                      columnExtraActsRecord!.actID
-                                                                                    ]),
-                                                                                  };
-                                                                                  await tabBarUsersRecord!.reference.update(usersUpdateData2);
-                                                                                  ScaffoldMessenger.of(context).showSnackBar(
-                                                                                    SnackBar(
-                                                                                      content: Text(
-                                                                                        'تم إلغاء تسجيلك بنجاح!',
-                                                                                        style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                        ),
-                                                                                      ),
-                                                                                      duration: Duration(milliseconds: 4000),
-                                                                                      backgroundColor: Color(0xE15BD85B),
-                                                                                    ),
-                                                                                  );
-                                                                                }
-                                                                              }
-                                                                            },
-                                                                            text:
-                                                                                'إلغاء التسجيل',
-                                                                            options:
-                                                                                FFButtonOptions(
-                                                                              width: 130.0,
-                                                                              height: 35.0,
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                              color: Color(0xE1FF2323),
-                                                                              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                    fontFamily: 'Poppins',
-                                                                                    color: Colors.white,
-                                                                                    fontSize: 16.0,
-                                                                                  ),
-                                                                              elevation: 2.0,
-                                                                              borderSide: BorderSide(
-                                                                                color: Colors.transparent,
-                                                                              ),
-                                                                              borderRadius: BorderRadius.circular(25.0),
-                                                                            ),
-                                                                          );
-                                                                        },
+                                                                          },
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ],
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                              ),
                                                               Padding(
                                                                 padding: EdgeInsetsDirectional
                                                                     .fromSTEB(

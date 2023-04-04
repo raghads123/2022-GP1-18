@@ -106,6 +106,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.actRate;
+    if (value != null) {
+      result
+        ..add('act_Rate')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -182,6 +189,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.photoUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'act_Rate':
+          result.actRate = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -221,6 +232,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? photoUrl;
   @override
+  final double? actRate;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -239,6 +252,7 @@ class _$UsersRecord extends UsersRecord {
       this.usersOpp,
       this.type,
       this.photoUrl,
+      this.actRate,
       this.ffRef})
       : super._();
 
@@ -265,6 +279,7 @@ class _$UsersRecord extends UsersRecord {
         usersOpp == other.usersOpp &&
         type == other.type &&
         photoUrl == other.photoUrl &&
+        actRate == other.actRate &&
         ffRef == other.ffRef;
   }
 
@@ -283,6 +298,7 @@ class _$UsersRecord extends UsersRecord {
     _$hash = $jc(_$hash, usersOpp.hashCode);
     _$hash = $jc(_$hash, type.hashCode);
     _$hash = $jc(_$hash, photoUrl.hashCode);
+    _$hash = $jc(_$hash, actRate.hashCode);
     _$hash = $jc(_$hash, ffRef.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -303,6 +319,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('usersOpp', usersOpp)
           ..add('type', type)
           ..add('photoUrl', photoUrl)
+          ..add('actRate', actRate)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -363,6 +380,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get photoUrl => _$this._photoUrl;
   set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
+  double? _actRate;
+  double? get actRate => _$this._actRate;
+  set actRate(double? actRate) => _$this._actRate = actRate;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -386,6 +407,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _usersOpp = $v.usersOpp?.toBuilder();
       _type = $v.type;
       _photoUrl = $v.photoUrl;
+      _actRate = $v.actRate;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -423,6 +445,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
               usersOpp: _usersOpp?.build(),
               type: type,
               photoUrl: photoUrl,
+              actRate: actRate,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

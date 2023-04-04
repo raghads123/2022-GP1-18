@@ -14,13 +14,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AddoppModel extends FlutterFlowModel {
-  ///  Local state fields for this page.
-
-  List<int> roles = [];
-  void addToRoles(int item) => roles.add(item);
-  void removeFromRoles(int item) => roles.remove(item);
-  void removeAtIndexFromRoles(int index) => roles.removeAt(index);
-
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
@@ -47,6 +40,7 @@ class AddoppModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? oppdesControllerValidator;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  DateTime? datePicked3;
 
   /// Initialization and disposal methods.
 

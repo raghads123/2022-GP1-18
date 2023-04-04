@@ -64,22 +64,15 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            if (Navigator.of(context).canPop()) {
-              context.pop();
+            if (valueOrDefault(currentUserDocument?.type, '') == 'student') {
+              context.goNamed('events');
+            } else {
+              context.goNamed('eventsCopy');
             }
-            context.pushNamed(
-              'HomePage',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.rightToLeft,
-                ),
-              },
-            );
           },
         ),
         title: Text(
-          'معلومات الورشة',
+          'معلومات الفعالية',
           style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFF7EAEBD),
@@ -309,6 +302,43 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 20.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 4.0),
+                                      child: Icon(
+                                        Icons.schedule,
+                                        color: Color(0xFF0184BD),
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'آخر فرصة للإلتحاق${dateTimeFormat(
+                                          'M/d h:mm a',
+                                          scrollingContainerExtraActsRecord!
+                                              .lastD2enroll,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
+                                        )}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF0184BD),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 5.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -421,7 +451,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                 ),
                               ),
                               if (getCurrentTimestamp >=
-                                  scrollingContainerExtraActsRecord!.edate!)
+                                  scrollingContainerExtraActsRecord!
+                                      .lastD2enroll!)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 15.0),
@@ -429,13 +460,9 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      if ((valueOrDefault(
-                                                  currentUserDocument?.type,
-                                                  '') ==
-                                              'student') &&
-                                          (getCurrentTimestamp >=
-                                              scrollingContainerExtraActsRecord!
-                                                  .edate!))
+                                      if (valueOrDefault(
+                                              currentUserDocument?.type, '') ==
+                                          'student')
                                         Expanded(
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Text(
@@ -456,7 +483,8 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   ),
                                 ),
                               if (getCurrentTimestamp <
-                                  scrollingContainerExtraActsRecord!.edate!)
+                                  scrollingContainerExtraActsRecord!
+                                      .lastD2enroll!)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 15.0, 20.0, 15.0),
@@ -541,6 +569,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                                 );
                                                               },
                                                             );
+                                                            return;
                                                           } else {
                                                             final usersUpdateData1 =
                                                                 {
@@ -603,6 +632,46 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                                     0xE15BD85B),
                                                           ),
                                                         );
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'إضافة للتقويم'),
+                                                                      content: Text(
+                                                                          'هل تريد إضافة هذه الفعالية لتقومك الخاص؟'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              Text('لا'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              Text('نعم'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          // replace this with sync in calendar
+                                                          Navigator.pop(
+                                                              context);
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
+                                                        }
                                                       },
                                                 text: 'إلتحاق',
                                                 options: FFButtonOptions(
@@ -754,26 +823,32 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     ),
                                   ),
                                 ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 0.0, 20.0, 5.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'ورش مشابهة',
-                                      textAlign: TextAlign.end,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodySmall
-                                          .override(
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                              if (valueOrDefault(
+                                      currentUserDocument?.type, '') ==
+                                  'student')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 0.0, 20.0, 5.0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'ورش مشابهة',
+                                          textAlign: TextAlign.end,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodySmall
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
                               if (valueOrDefault(
                                       currentUserDocument?.type, '') ==
                                   'student')

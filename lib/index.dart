@@ -5,10 +5,10 @@ export '/sign_up/sign_up_widget.dart' show SignUpWidget;
 export '/emailauth/emailauth_widget.dart' show EmailauthWidget;
 export '/setting_up_profile/setting_up_profile_widget.dart'
     show SettingUpProfileWidget;
-export '/settinginterests2/settinginterests2_widget.dart'
-    show Settinginterests2Widget;
 export '/notification_settings/notification_settings_widget.dart'
     show NotificationSettingsWidget;
+export '/settinginterests2/settinginterests2_widget.dart'
+    show Settinginterests2Widget;
 export '/home_page/home_page_widget.dart' show HomePageWidget;
 export '/courses/courses_widget.dart' show CoursesWidget;
 export '/course_info/course_info_widget.dart' show CourseInfoWidget;

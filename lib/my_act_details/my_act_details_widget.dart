@@ -62,7 +62,7 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            context.pop();
+            context.goNamed('myActivities');
           },
         ),
         title: Text(
@@ -177,42 +177,44 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 5.0, 0.0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  barrierColor:
-                                                      Color(0x00000000),
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: EditActWidget(
-                                                        actID:
-                                                            scrollingContainerExtraActsRecord!
-                                                                .actID,
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: Icon(
-                                                Icons.edit_outlined,
-                                                color: Color(0xFF0184BD),
-                                                size: 30.0,
+                                          if (scrollingContainerExtraActsRecord!
+                                                  .status ==
+                                              'موافق عليها')
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    barrierColor:
+                                                        Color(0x00000000),
+                                                    enableDrag: false,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return Padding(
+                                                        padding: MediaQuery.of(
+                                                                context)
+                                                            .viewInsets,
+                                                        child: EditActWidget(
+                                                          actID:
+                                                              scrollingContainerExtraActsRecord!
+                                                                  .actID,
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      setState(() {}));
+                                                },
+                                                child: Icon(
+                                                  Icons.edit_outlined,
+                                                  color: Color(0xFF0184BD),
+                                                  size: 30.0,
+                                                ),
                                               ),
                                             ),
-                                          ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(

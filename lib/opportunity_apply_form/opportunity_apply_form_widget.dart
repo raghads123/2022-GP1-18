@@ -429,6 +429,63 @@ class _OpportunityApplyFormWidgetState
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        4.0),
+                                                            child: Icon(
+                                                              Icons.schedule,
+                                                              color: Color(
+                                                                  0xFF0184BD),
+                                                              size: 20.0,
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'آخر فترة للتقديم${dateTimeFormat(
+                                                                'M/d h:mm a',
+                                                                containerOpportunitiesRecord!
+                                                                    .lastD2apply,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              )}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Poppins',
+                                                                    color: Color(
+                                                                        0xFF0184BD),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20.0,
                                                                   15.0,
                                                                   20.0,
                                                                   5.0),
@@ -501,93 +558,96 @@ class _OpportunityApplyFormWidgetState
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20.0,
-                                                                          15.0,
-                                                                          20.0,
-                                                                          30.0),
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed: (currentUserDocument?.usersOpp?.toList() ??
-                                                                            [])
-                                                                        .contains(
-                                                                            widget.opportunityID)
-                                                                    ? null
-                                                                    : () async {
-                                                                        showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          barrierColor:
-                                                                              Color(0x00000000),
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return Padding(
-                                                                              padding: MediaQuery.of(context).viewInsets,
-                                                                              child: OppapplicationformWidget(
-                                                                                oppappform: containerOpportunitiesRecord!.opID,
-                                                                                oppappemail: containerOpportunitiesRecord!.opProviderEmail,
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            setState(() {}));
-                                                                      },
-                                                                text: 'تقديم',
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  width: 270.0,
-                                                                  height: 50.0,
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  iconPadding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: Color(
-                                                                      0xFF7EAEBD),
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Poppins',
-                                                                        color: Color(
-                                                                            0xFFF4F3F0),
-                                                                      ),
-                                                                  elevation:
-                                                                      2.0,
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1.0,
+                                                            if (getCurrentTimestamp <
+                                                                containerOpportunitiesRecord!
+                                                                    .lastD2apply!)
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        15.0,
+                                                                        20.0,
+                                                                        30.0),
+                                                                child:
+                                                                    FFButtonWidget(
+                                                                  onPressed: (currentUserDocument?.usersOpp?.toList() ??
+                                                                              [])
+                                                                          .contains(
+                                                                              widget.opportunityID)
+                                                                      ? null
+                                                                      : () async {
+                                                                          showModalBottomSheet(
+                                                                            isScrollControlled:
+                                                                                true,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            barrierColor:
+                                                                                Color(0x00000000),
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (context) {
+                                                                              return Padding(
+                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                child: OppapplicationformWidget(
+                                                                                  oppappform: containerOpportunitiesRecord!.opID,
+                                                                                  oppappemail: containerOpportunitiesRecord!.opProviderEmail,
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              setState(() {}));
+                                                                        },
+                                                                  text: 'تقديم',
+                                                                  options:
+                                                                      FFButtonOptions(
+                                                                    width:
+                                                                        270.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    iconPadding:
+                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    color: Color(
+                                                                        0xFF7EAEBD),
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFFF4F3F0),
+                                                                        ),
+                                                                    elevation:
+                                                                        2.0,
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25.0),
+                                                                    disabledColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .grayIcon,
                                                                   ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              25.0),
-                                                                  disabledColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .grayIcon,
+                                                                  showLoadingIndicator:
+                                                                      false,
                                                                 ),
-                                                                showLoadingIndicator:
-                                                                    false,
                                                               ),
-                                                            ),
                                                           ],
                                                         ),
                                                       ),

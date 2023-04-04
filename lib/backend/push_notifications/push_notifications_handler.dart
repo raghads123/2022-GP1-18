@@ -116,8 +116,8 @@ final parametersBuilderMap =
   'SignUp': ParameterData.none(),
   'Emailauth': ParameterData.none(),
   'SettingUpProfile': ParameterData.none(),
-  'Settinginterests2': ParameterData.none(),
   'notificationSettings': ParameterData.none(),
+  'Settinginterests2': ParameterData.none(),
   'HomePage': ParameterData.none(),
   'courses': ParameterData.none(),
   'course_info': (data) async => ParameterData(

@@ -45,6 +45,9 @@ abstract class OpportunitiesRecord
   @BuiltValueField(wireName: 'OpProvider_email')
   String? get opProviderEmail;
 
+  @BuiltValueField(wireName: 'LastD2apply')
+  DateTime? get lastD2apply;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -94,6 +97,7 @@ Map<String, dynamic> createOpportunitiesRecordData({
   String? status,
   String? opID,
   String? opProviderEmail,
+  DateTime? lastD2apply,
 }) {
   final firestoreData = serializers.toFirestore(
     OpportunitiesRecord.serializer,
@@ -110,7 +114,8 @@ Map<String, dynamic> createOpportunitiesRecordData({
         ..status = status
         ..opSkills = null
         ..opID = opID
-        ..opProviderEmail = opProviderEmail,
+        ..opProviderEmail = opProviderEmail
+        ..lastD2apply = lastD2apply,
     ),
   );
 

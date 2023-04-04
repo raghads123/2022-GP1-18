@@ -452,7 +452,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               await sendEmailVerification();
 
                                               context.goNamedAuth(
-                                                  'Emailauth', mounted);
+                                                  'SettingUpProfile', mounted);
                                             },
                                             text: 'إنشاء حساب',
                                             options: FFButtonOptions(

@@ -64,6 +64,8 @@ class AddExtraactModel extends FlutterFlowModel {
 
   DateTime? datePicked1;
   DateTime? datePicked2;
+  DateTime? datePicked3;
+  DateTime? datePicked4;
   // State field(s) for CheckboxListTile widget.
   bool? checkboxListTileValue;
   // State field(s) for TextField widget.

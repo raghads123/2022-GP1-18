@@ -72,7 +72,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
             size: 30.0,
           ),
           onPressed: () async {
-            context.pop();
+            context.goNamed('HomePage');
           },
         ),
         title: Text(
@@ -390,11 +390,13 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.image_outlined,
-                                color: Color(0xFF57636C),
-                                size: 24.0,
-                              ),
+                              if (_model.uploadedFileUrl == null ||
+                                  _model.uploadedFileUrl == '')
+                                Icon(
+                                  Icons.image_outlined,
+                                  color: Color(0xFF57636C),
+                                  size: 24.0,
+                                ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 0.0),
@@ -409,6 +411,18 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   ),
                                 ),
                               ),
+                              if (_model.uploadedFileUrl != null &&
+                                  _model.uploadedFileUrl != '')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      40.0, 0.0, 0.0, 0.0),
+                                  child: Image.network(
+                                    _model.uploadedFileUrl,
+                                    width: 30.0,
+                                    height: 30.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -451,28 +465,49 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               color: Color(0xFFE1D7C6),
                             ),
                           ),
-                          child: Row(
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.category_outlined,
-                                color: Color(0xFF57636C),
-                                size: 24.0,
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    5.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  ' تصنيف النشاط',
-                                  textAlign: TextAlign.end,
-                                  style: GoogleFonts.getFont(
-                                    'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 16.0,
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.category_outlined,
+                                    color: Color(0xFF57636C),
+                                    size: 24.0,
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      ' تصنيف النشاط',
+                                      textAlign: TextAlign.end,
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                  if (FFAppState().ActCategory.length != 0)
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        '${FFAppState().ActCategory.length.toString()}تصنيفات',
+                                        textAlign: TextAlign.end,
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF7EAEBD),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ],
                           ),
@@ -557,6 +592,25 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                         ),
                                       ),
                                     ),
+                                    if (_model.datePicked1 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked1,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -643,6 +697,235 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                         ),
                                       ),
                                     ),
+                                    if (_model.datePicked2 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked2,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.44,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE1D7C6),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0.0, 2.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: Color(0xFFE1D7C6),
+                                ),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  final _datePicked3Date = await showDatePicker(
+                                    context: context,
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
+                                  );
+
+                                  TimeOfDay? _datePicked3Time;
+                                  if (_datePicked3Date != null) {
+                                    _datePicked3Time = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
+                                    );
+                                  }
+
+                                  if (_datePicked3Date != null &&
+                                      _datePicked3Time != null) {
+                                    setState(() {
+                                      _model.datePicked3 = DateTime(
+                                        _datePicked3Date.year,
+                                        _datePicked3Date.month,
+                                        _datePicked3Date.day,
+                                        _datePicked3Time!.hour,
+                                        _datePicked3Time.minute,
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'أخر فرصة للإلتحاق',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                    if (_model.datePicked3 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked3,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.44,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE1D7C6),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 4.0,
+                                    color: Color(0x33000000),
+                                    offset: Offset(0.0, 2.0),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(25.0),
+                                border: Border.all(
+                                  color: Color(0xFFE1D7C6),
+                                ),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  final _datePicked4Date = await showDatePicker(
+                                    context: context,
+                                    initialDate: getCurrentTimestamp,
+                                    firstDate: getCurrentTimestamp,
+                                    lastDate: DateTime(2050),
+                                  );
+
+                                  TimeOfDay? _datePicked4Time;
+                                  if (_datePicked4Date != null) {
+                                    _datePicked4Time = await showTimePicker(
+                                      context: context,
+                                      initialTime: TimeOfDay.fromDateTime(
+                                          getCurrentTimestamp),
+                                    );
+                                  }
+
+                                  if (_datePicked4Date != null &&
+                                      _datePicked4Time != null) {
+                                    setState(() {
+                                      _model.datePicked4 = DateTime(
+                                        _datePicked4Date.year,
+                                        _datePicked4Date.month,
+                                        _datePicked4Date.day,
+                                        _datePicked4Time!.hour,
+                                        _datePicked4Time.minute,
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.date_range_outlined,
+                                      color: Color(0xFF57636C),
+                                      size: 24.0,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'آخر فرصة لإلغاء الإلتحاق',
+                                        style: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                    if (_model.datePicked4 != null)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          dateTimeFormat(
+                                            'M/d h:mm a',
+                                            _model.datePicked4,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          style: GoogleFonts.getFont(
+                                            'Open Sans',
+                                            color: Color(0xFF7EAEBD),
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16.0,
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -844,6 +1127,8 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     true,
                                   ),
                                   actProviderEmail: currentUserEmail,
+                                  lastD2enroll: _model.datePicked3,
+                                  lastD2disenroll: _model.datePicked4,
                                 ),
                                 'Act_category': FFAppState().ActCategory,
                               };
@@ -851,8 +1136,9 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   .doc()
                                   .set(extraActsCreateData);
                               triggerPushNotification(
-                                notificationTitle: 'طلب إضافة نشاط بعنوان',
-                                notificationText: _model.actNameController.text,
+                                notificationTitle: 'طلب إضافة نشاط ',
+                                notificationText:
+                                    'بعنوان${_model.actNameController.text}',
                                 notificationSound: 'default',
                                 userRefs: [FFAppState().notifysuperadmin!],
                                 initialPageName: 'HomePage',
@@ -871,6 +1157,21 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   backgroundColor: Color(0xE15BD85B),
                                 ),
                               );
+
+                              context.goNamed(
+                                'HomePage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+
+                              setState(() {
+                                FFAppState().ActCategory = [];
+                              });
                             },
                             text: 'إرسال طلب الإضافة',
                             options: FFButtonOptions(

@@ -137,6 +137,21 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                     onPressed: () async {
                                       if (currentUserEmailVerified) {
                                         context.goNamed('SettingUpProfileCopy');
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'الرجاء تأكيد البريد الجامعي أولاً!',
+                                              style: TextStyle(
+                                                color: Color(0xFFF4F3F9),
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor: Color(0xFF579BB1),
+                                          ),
+                                        );
                                       }
                                     },
                                     text: 'تم التوثيق',

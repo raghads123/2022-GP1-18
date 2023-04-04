@@ -39,6 +39,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'photo_url')
   String? get photoUrl;
 
+  @BuiltValueField(wireName: 'act_Rate')
+  double? get actRate;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -54,7 +57,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..usersActs = ListBuilder()
     ..usersOpp = ListBuilder()
     ..type = ''
-    ..photoUrl = '';
+    ..photoUrl = ''
+    ..actRate = 0.0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -87,6 +91,7 @@ Map<String, dynamic> createUsersRecordData({
   String? level,
   String? type,
   String? photoUrl,
+  double? actRate,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -103,7 +108,8 @@ Map<String, dynamic> createUsersRecordData({
         ..usersActs = null
         ..usersOpp = null
         ..type = type
-        ..photoUrl = photoUrl,
+        ..photoUrl = photoUrl
+        ..actRate = actRate,
     ),
   );
 

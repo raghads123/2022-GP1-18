@@ -90,11 +90,14 @@ class _FirstPageWidgetState extends State<FirstPageWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          // button to navigate to student log in
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 15.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                // the navigation action
+
                                 context.goNamed('studentlogin');
                               },
                               text: 'طالب/ة',
@@ -117,11 +120,15 @@ class _FirstPageWidgetState extends State<FirstPageWidget> {
                               ),
                             ),
                           ),
+
+                          // Button to navigate to admin log in
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 30.0),
                             child: FFButtonWidget(
                               onPressed: () async {
+                                // Navigation action
+
                                 context.goNamed('ActivityAdminLogin');
                               },
                               text: 'رائد/ة  نشاط',

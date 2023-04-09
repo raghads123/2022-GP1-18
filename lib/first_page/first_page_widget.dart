@@ -50,8 +50,8 @@ class _FirstPageWidgetState extends State<FirstPageWidget> {
                 alignment: AlignmentDirectional(0.0, -1.0),
                 child: Image.asset(
                   'assets/images/WhatsApp_Image_2023-03-13_at_11.53.36_PM.jpeg',
-                  width: double.infinity,
-                  height: double.infinity,
+                  width: MediaQuery.of(context).size.width * 1.0,
+                  height: MediaQuery.of(context).size.height * 1.0,
                   fit: BoxFit.cover,
                 ),
               ),

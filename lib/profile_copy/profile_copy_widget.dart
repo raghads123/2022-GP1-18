@@ -233,10 +233,11 @@ class _ProfileCopyWidgetState extends State<ProfileCopyWidget> {
                                     isScrollControlled: true,
                                     backgroundColor: Color(0x00FFFFFF),
                                     context: context,
-                                    builder: (context) {
+                                    builder: (bottomSheetContext) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.of(bottomSheetContext)
+                                                .viewInsets,
                                         child: EditInterestsComponentWidget(),
                                       );
                                     },
@@ -284,10 +285,11 @@ class _ProfileCopyWidgetState extends State<ProfileCopyWidget> {
                                     isScrollControlled: true,
                                     backgroundColor: Color(0x00FFFFFF),
                                     context: context,
-                                    builder: (context) {
+                                    builder: (bottomSheetContext) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.of(bottomSheetContext)
+                                                .viewInsets,
                                         child: EditInfoComponentWidget(),
                                       );
                                     },
@@ -335,10 +337,11 @@ class _ProfileCopyWidgetState extends State<ProfileCopyWidget> {
                                     isScrollControlled: true,
                                     backgroundColor: Color(0x00FFFFFF),
                                     context: context,
-                                    builder: (context) {
+                                    builder: (bottomSheetContext) {
                                       return Padding(
                                         padding:
-                                            MediaQuery.of(context).viewInsets,
+                                            MediaQuery.of(bottomSheetContext)
+                                                .viewInsets,
                                         child:
                                             EditNotificationComponentWidget(),
                                       );

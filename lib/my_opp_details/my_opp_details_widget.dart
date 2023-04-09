@@ -47,41 +47,41 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Color(0xFFF4F3F0),
-      appBar: AppBar(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
         backgroundColor: Color(0xFFF4F3F0),
-        automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30.0,
-          borderWidth: 1.0,
-          buttonSize: 52.0,
-          icon: Icon(
-            Icons.chevron_left_rounded,
-            color: Color(0xFF7EAEBD),
-            size: 30.0,
+        appBar: AppBar(
+          backgroundColor: Color(0xFFF4F3F0),
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 52.0,
+            icon: Icon(
+              Icons.chevron_left_rounded,
+              color: Color(0xFF7EAEBD),
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.goNamed('myActivities');
+            },
           ),
-          onPressed: () async {
-            context.goNamed('myActivities');
-          },
+          title: Text(
+            'تفاصيل الفرصة',
+            style: FlutterFlowTheme.of(context).displaySmall.override(
+                  fontFamily: 'Poppins',
+                  color: Color(0xFF7EAEBD),
+                  fontSize: 22.0,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2.0,
         ),
-        title: Text(
-          'تفاصيل الفرصة',
-          style: FlutterFlowTheme.of(context).displaySmall.override(
-                fontFamily: 'Poppins',
-                color: Color(0xFF7EAEBD),
-                fontSize: 22.0,
-              ),
-        ),
-        actions: [],
-        centerTitle: true,
-        elevation: 2.0,
-      ),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Stack(
+        body: Stack(
           children: [
             Column(
               mainAxisSize: MainAxisSize.max,

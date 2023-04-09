@@ -63,56 +63,56 @@ class _EditInterestsWidgetState extends State<EditInterestsWidget>
           );
         }
         List<CategoryRecord> editInterestsCategoryRecordList = snapshot.data!;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: Color(0xFFF4F3F0),
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).alternate,
-            automaticallyImplyLeading: false,
-            title: Align(
-              alignment: AlignmentDirectional(0.35, 0.0),
-              child: Text(
-                'إهتماماتك',
-                textAlign: TextAlign.end,
-                style: FlutterFlowTheme.of(context).displaySmall.override(
-                      fontFamily: 'Poppins',
-                      color: FlutterFlowTheme.of(context).primaryBtnText,
-                    ),
-              ),
-            ),
-            actions: [
-              FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.arrow_forward_rounded,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  if (Navigator.of(context).canPop()) {
-                    context.pop();
-                  }
-                  context.pushNamed(
-                    'Profile',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.rightToLeft,
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Color(0xFFF4F3F0),
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).alternate,
+              automaticallyImplyLeading: false,
+              title: Align(
+                alignment: AlignmentDirectional(0.35, 0.0),
+                child: Text(
+                  'إهتماماتك',
+                  textAlign: TextAlign.end,
+                  style: FlutterFlowTheme.of(context).displaySmall.override(
+                        fontFamily: 'Poppins',
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
                       ),
-                    },
-                  );
-                },
+                ),
               ),
-            ],
-            centerTitle: false,
-            elevation: 0.0,
-          ),
-          body: SafeArea(
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+              actions: [
+                FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30.0,
+                  borderWidth: 1.0,
+                  buttonSize: 60.0,
+                  icon: Icon(
+                    Icons.arrow_forward_rounded,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                  onPressed: () async {
+                    if (Navigator.of(context).canPop()) {
+                      context.pop();
+                    }
+                    context.pushNamed(
+                      'Profile',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.rightToLeft,
+                        ),
+                      },
+                    );
+                  },
+                ),
+              ],
+              centerTitle: false,
+              elevation: 0.0,
+            ),
+            body: SafeArea(
               child: SingleChildScrollView(
                 primary: false,
                 child: Column(

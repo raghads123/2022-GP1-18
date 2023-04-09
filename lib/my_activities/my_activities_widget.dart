@@ -44,12 +44,12 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Color(0xFFF4F3F0),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Stack(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: Color(0xFFF4F3F0),
+        body: Stack(
           children: [
             StreamBuilder<List<UsersRecord>>(
               stream: queryUsersRecord(
@@ -1027,14 +1027,17 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                               backgroundColor: Color(0x00000000),
                                                                               barrierColor: Color(0x00000000),
                                                                               context: context,
-                                                                              builder: (context) {
-                                                                                return Padding(
-                                                                                  padding: MediaQuery.of(context).viewInsets,
-                                                                                  child: Container(
-                                                                                    height: 500.0,
-                                                                                    child: RatecollectionWidget(
-                                                                                      ratingactID: columnExtraActsRecord!.actID,
-                                                                                      ratingtype: columnExtraActsRecord!.actType,
+                                                                              builder: (bottomSheetContext) {
+                                                                                return GestureDetector(
+                                                                                  onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                  child: Padding(
+                                                                                    padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                    child: Container(
+                                                                                      height: 500.0,
+                                                                                      child: RatecollectionWidget(
+                                                                                        ratingactID: columnExtraActsRecord!.actID,
+                                                                                        ratingtype: columnExtraActsRecord!.actType,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 );

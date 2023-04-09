@@ -103,12 +103,12 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Color(0xFFF4F3F0),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-        child: Stack(
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: Color(0xFFF4F3F0),
+        body: Stack(
           children: [
             Align(
               alignment: AlignmentDirectional(0.0, -1.0),
@@ -291,7 +291,8 @@ class _SettingUpProfileCopyWidgetState extends State<SettingUpProfileCopyWidget>
                                                 }
                                               },
                                               child: Icon(
-                                                Icons.edit_rounded,
+                                                Icons
+                                                    .photo_size_select_actual_outlined,
                                                 color: Color(0xFF7EAEBD),
                                                 size: 30.0,
                                               ),

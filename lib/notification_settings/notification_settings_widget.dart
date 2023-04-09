@@ -60,12 +60,12 @@ class _NotificationSettingsWidgetState
         }
         List<CategoryRecord> notificationSettingsCategoryRecordList =
             snapshot.data!;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          body: GestureDetector(
-            onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-            child: Stack(
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Stack(
               children: [
                 Align(
                   alignment: AlignmentDirectional(0.0, -1.0),

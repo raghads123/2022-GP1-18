@@ -215,6 +215,40 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                 ],
               ),
             ),
+            Align(
+              alignment: AlignmentDirectional(-0.9, -0.95),
+              child: InkWell(
+                onTap: () async {
+                  if (Navigator.of(context).canPop()) {
+                    context.pop();
+                  }
+                  context.pushNamed(
+                    'ActivityAdminSignup',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.rightToLeft,
+                      ),
+                    },
+                  );
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 3.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Color(0xFF7EAEBD),
+                      size: 24.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

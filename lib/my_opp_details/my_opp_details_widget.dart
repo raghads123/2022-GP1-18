@@ -460,14 +460,16 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                           OppApplicationsRecord>>(
                                                     stream:
                                                         queryOppApplicationsRecord(
-                                                      queryBuilder:
-                                                          (oppApplicationsRecord) =>
-                                                              oppApplicationsRecord
-                                                                  .where(
-                                                                      'oppIDDD',
-                                                                      isEqualTo:
-                                                                          widget
-                                                                              .opportunityID),
+                                                      queryBuilder: (oppApplicationsRecord) =>
+                                                          oppApplicationsRecord
+                                                              .where('oppIDDD',
+                                                                  isEqualTo: widget
+                                                                      .opportunityID)
+                                                              .where('status',
+                                                                  isNotEqualTo:
+                                                                      'معلق')
+                                                              .orderBy(
+                                                                  'status'),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {
@@ -637,7 +639,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                           false;
                                                                                       if (confirmDialogResponse) {
                                                                                         final oppApplicationsUpdateData = createOppApplicationsRecordData(
-                                                                                          status: 'تم قبول الطلب',
+                                                                                          status: 'تمت الموافقة على الطلب',
                                                                                         );
                                                                                         await listViewOppApplicationsRecord.reference.update(oppApplicationsUpdateData);
                                                                                       }
@@ -685,7 +687,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                         false;
                                                                                     if (confirmDialogResponse) {
                                                                                       final oppApplicationsUpdateData = createOppApplicationsRecordData(
-                                                                                        status: 'تم رفض الطلب ',
+                                                                                        status: 'تم رفض الطلب',
                                                                                       );
                                                                                       await listViewOppApplicationsRecord.reference.update(oppApplicationsUpdateData);
                                                                                     }
@@ -711,6 +713,192 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                               ],
                                                                             ),
                                                                           ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      SelectionArea(
+                                                          child: Text(
+                                                        'طلبات سابقة:',
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              fontSize: 14.0,
+                                                            ),
+                                                      )),
+                                                    ],
+                                                  ),
+                                                  StreamBuilder<
+                                                      List<
+                                                          OppApplicationsRecord>>(
+                                                    stream:
+                                                        queryOppApplicationsRecord(
+                                                      queryBuilder: (oppApplicationsRecord) =>
+                                                          oppApplicationsRecord
+                                                              .where('oppIDDD',
+                                                                  isEqualTo: widget
+                                                                      .opportunityID)
+                                                              .where('status',
+                                                                  isNotEqualTo:
+                                                                      'معلق')
+                                                              .orderBy(
+                                                                  'status'),
+                                                    ),
+                                                    builder:
+                                                        (context, snapshot) {
+                                                      // Customize what your widget looks like when it's loading.
+                                                      if (!snapshot.hasData) {
+                                                        return Center(
+                                                          child: SizedBox(
+                                                            width: 50.0,
+                                                            height: 50.0,
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              color: Color(
+                                                                  0xFF0184BD),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }
+                                                      List<OppApplicationsRecord>
+                                                          listViewOppApplicationsRecordList =
+                                                          snapshot.data!;
+                                                      return ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        primary: false,
+                                                        shrinkWrap: true,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemCount:
+                                                            listViewOppApplicationsRecordList
+                                                                .length,
+                                                        itemBuilder: (context,
+                                                            listViewIndex) {
+                                                          final listViewOppApplicationsRecord =
+                                                              listViewOppApplicationsRecordList[
+                                                                  listViewIndex];
+                                                          return Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        15.0,
+                                                                        15.0,
+                                                                        15.0,
+                                                                        15.0),
+                                                                child:
+                                                                    Container(
+                                                                  width: double
+                                                                      .infinity,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    boxShadow: [
+                                                                      BoxShadow(
+                                                                        blurRadius:
+                                                                            4.0,
+                                                                        color: Color(
+                                                                            0x33000000),
+                                                                        offset: Offset(
+                                                                            0.0,
+                                                                            2.0),
+                                                                      )
+                                                                    ],
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25.0),
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            15.0,
+                                                                            15.0,
+                                                                            15.0,
+                                                                            15.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      children: [
+                                                                        Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.center,
+                                                                          children: [
+                                                                            Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                  child: Text(
+                                                                                    listViewOppApplicationsRecord.appEmail!,
+                                                                                    textAlign: TextAlign.justify,
+                                                                                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                          fontFamily: 'Outfit',
+                                                                                          color: Color(0xFF1C8EC1),
+                                                                                          fontSize: 20.0,
+                                                                                          fontWeight: FontWeight.w500,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                  child: Text(
+                                                                                    listViewOppApplicationsRecord.appSkills!,
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Poppins',
+                                                                                          color: Color(0xFF57636C),
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                                Text(
+                                                                                  listViewOppApplicationsRecord.appBio!,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Poppins',
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                      ),
+                                                                                ),
+                                                                                Text(
+                                                                                  listViewOppApplicationsRecord.status!,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Poppins',
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                      ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ],
                                                                     ),
                                                                   ),

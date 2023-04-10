@@ -281,7 +281,8 @@ class _OpportunityApplyFormWidgetState
                                                                     child: Text(
                                                               '${containerOpportunitiesRecord!.opProvider} تقدم فرصة',
                                                               textAlign:
-                                                                  TextAlign.end,
+                                                                  TextAlign
+                                                                      .center,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium

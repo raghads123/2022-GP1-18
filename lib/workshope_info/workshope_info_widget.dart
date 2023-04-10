@@ -50,7 +50,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFF4F3F0),
       appBar: AppBar(
         backgroundColor: Color(0xFFF4F3F0),
         automaticallyImplyLeading: false,

@@ -425,14 +425,10 @@ class _EventsCopyWidgetState extends State<EventsCopyWidget> {
                                               ),
                                               InkWell(
                                                 onTap: () async {
-                                                  if (Navigator.of(context)
-                                                      .canPop()) {
-                                                    context.pop();
-                                                  }
-                                                  context.pushNamed(
-                                                    'event_info_draft',
+                                                  context.goNamed(
+                                                    'event_info',
                                                     queryParams: {
-                                                      'eventid': serializeParam(
+                                                      'eventID': serializeParam(
                                                         listViewExtraActsRecord
                                                             .actID,
                                                         ParamType.String,

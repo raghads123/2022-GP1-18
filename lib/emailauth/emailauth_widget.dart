@@ -130,14 +130,19 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                         ),
                                   )),
                                 ),
+
+                                // button to check email verification
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       if (currentUserEmailVerified) {
+                                        // when the email is verified
+
                                         context.goNamed('SettingUpProfile');
                                       } else {
+                                        // when the email is not verified
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -213,6 +218,37 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(-0.9, -0.95),
+              child: InkWell(
+                onTap: () async {
+                  context.goNamed(
+                    'SignUp',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.rightToLeft,
+                      ),
+                    },
+                  );
+                },
+                child: Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 3.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Color(0xFF7EAEBD),
+                      size: 24.0,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

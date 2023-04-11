@@ -20,9 +20,25 @@ class AddoppModel extends FlutterFlowModel {
   // State field(s) for oppName widget.
   TextEditingController? oppNameController;
   String? Function(BuildContext, String?)? oppNameControllerValidator;
+  String? _oppNameControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'يجب تعبئة الحقل';
+    }
+
+    return null;
+  }
+
   // State field(s) for oppskill1 widget.
   TextEditingController? oppskill1Controller;
   String? Function(BuildContext, String?)? oppskill1ControllerValidator;
+  String? _oppskill1ControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'يجب تعبئة الحقل';
+    }
+
+    return null;
+  }
+
   // State field(s) for oppskill2 widget.
   TextEditingController? oppskill2Controller;
   String? Function(BuildContext, String?)? oppskill2ControllerValidator;
@@ -38,13 +54,25 @@ class AddoppModel extends FlutterFlowModel {
   // State field(s) for oppdes widget.
   TextEditingController? oppdesController;
   String? Function(BuildContext, String?)? oppdesControllerValidator;
+  String? _oppdesControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   DateTime? datePicked1;
   DateTime? datePicked2;
   DateTime? datePicked3;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    oppNameControllerValidator = _oppNameControllerValidator;
+    oppskill1ControllerValidator = _oppskill1ControllerValidator;
+    oppdesControllerValidator = _oppdesControllerValidator;
+  }
 
   void dispose() {
     oppNameController?.dispose();

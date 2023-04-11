@@ -267,34 +267,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 opportunityID:
                     params.getParam('opportunityID', ParamType.String),
               ),
-            ),
-            FFRoute(
-              name: 'workshope_info_draft',
-              path: 'workshopeInfoDraft',
-              requireAuth: true,
-              builder: (context, params) => WorkshopeInfoDraftWidget(
-                workshopid: params.getParam('workshopid', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'event_info_draft',
-              path: 'eventInfoDraft',
-              requireAuth: true,
-              builder: (context, params) => EventInfoDraftWidget(
-                eventid: params.getParam('eventid', ParamType.String),
-              ),
-            ),
-            FFRoute(
-              name: 'EditInterests',
-              path: 'editInterests',
-              requireAuth: true,
-              builder: (context, params) => EditInterestsWidget(),
-            ),
-            FFRoute(
-              name: 'ProfileCopy',
-              path: 'profileCopy',
-              requireAuth: true,
-              builder: (context, params) => ProfileCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -479,13 +451,10 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: Colors.white,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/mmfwi_2.png',
-                      width: 200.0,
-                      fit: BoxFit.contain,
-                    ),
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/2logo.JPG',
+                    fit: BoxFit.contain,
                   ),
                 )
               : PushNotificationsHandler(child: page);

@@ -315,14 +315,14 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xFF7EAEBD),
+                                        color: Color(0xFFB72F31),
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
-                                        color: Color(0xFF7EAEBD),
+                                        color: Color(0xFFB72F31),
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(25.0),
@@ -332,7 +332,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                   ),
                                   style: GoogleFonts.getFont(
                                     'Open Sans',
-                                    color: Color(0xFF7EAEBD),
+                                    color: Color(0xFF565656),
                                     fontWeight: FontWeight.normal,
                                     fontSize: 16.0,
                                   ),

@@ -466,10 +466,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                   isEqualTo: widget
                                                                       .opportunityID)
                                                               .where('status',
-                                                                  isNotEqualTo:
-                                                                      'معلق')
-                                                              .orderBy(
-                                                                  'status'),
+                                                                  isEqualTo:
+                                                                      'معلق'),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {
@@ -759,8 +757,9 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                               .where('status',
                                                                   isNotEqualTo:
                                                                       'معلق')
-                                                              .orderBy(
-                                                                  'status'),
+                                                              .orderBy('status',
+                                                                  descending:
+                                                                      true),
                                                     ),
                                                     builder:
                                                         (context, snapshot) {

@@ -378,45 +378,6 @@ class _NotificationSettingsWidgetState
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 15.0,
-                                                          20.0, 15.0),
-                                                  child: SwitchListTile(
-                                                    value: _model
-                                                            .switchListTileValue3 ??=
-                                                        false,
-                                                    onChanged:
-                                                        (newValue) async {
-                                                      setState(() => _model
-                                                              .switchListTileValue3 =
-                                                          newValue!);
-                                                    },
-                                                    title: Text(
-                                                      'أشعرني عن أنشطة تهمنتي ',
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Open Sans',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 18.0,
-                                                      ),
-                                                    ),
-                                                    subtitle: Text(
-                                                      'سيتم إشعارك في حال تمت إضافة أي نشاط يوافق إهتماماتك التي حددتها مسبقاً',
-                                                      style:
-                                                          GoogleFonts.getFont(
-                                                        'Open Sans',
-                                                      ),
-                                                    ),
-                                                    tileColor:
-                                                        Color(0xFFFFFAF1),
-                                                    dense: false,
-                                                    controlAffinity:
-                                                        ListTileControlAffinity
-                                                            .trailing,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20.0, 15.0,
                                                           20.0, 30.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {

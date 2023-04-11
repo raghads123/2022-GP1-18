@@ -343,14 +343,13 @@ class _EventsCopyWidgetState extends State<EventsCopyWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 10.0, 10.0, 10.0),
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
                                                     listViewExtraActsRecord
                                                         .actName!,
                                                     style: FlutterFlowTheme.of(
@@ -362,8 +361,8 @@ class _EventsCopyWidgetState extends State<EventsCopyWidget> {
                                                               Color(0xFF565656),
                                                         ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),

@@ -2,27 +2,27 @@ import '/auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class SignUpModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  final formKey = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
+  final formKey3 = GlobalKey<FormState>();
   // State field(s) for Email widget.
   TextEditingController? emailController;
-  final emailMask =
-      MaskTextInputFormatter(mask: '#########AAAAAAAAAAAAAAAAAAA');
   String? Function(BuildContext, String?)? emailControllerValidator;
   String? _emailControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'يجب تعبئة الحقل';
     }
 
-    if (!RegExp('^([0-9]{9})+@student\\.ksu\\.edu\\.sa\$').hasMatch(val)) {
-      return 'الرجاء التأكد من صيغة البريد الجامعي';
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'الرجاء التأكد من صيغة البريد الإلكتروني';
     }
     return null;
   }
@@ -33,7 +33,7 @@ class SignUpModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'يجب تعبئة الحقل';
+      return 'الرجاء تعبئة الحقل';
     }
 
     if (val.length < 8) {
@@ -59,9 +59,14 @@ class SignUpModel extends FlutterFlowModel {
     }
 
     if (val.length < 8) {
-      return 'الرجاء تأكيد كلمة المرور';
+      return 'الرجاء التحقق من كلمة المرور';
     }
 
+    if (!RegExp(
+            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&/><.,~`\':;{}[+=_#^*()±§|-])[A-Za-z\\d@\$!%*?&/><.,~`\':;{}[+=_#^*()±§|-]{8,}\$')
+        .hasMatch(val)) {
+      return 'الرجاء تأكيد كلمة المرور';
+    }
     return null;
   }
 

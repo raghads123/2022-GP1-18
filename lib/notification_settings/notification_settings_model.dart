@@ -15,8 +15,6 @@ class NotificationSettingsModel extends FlutterFlowModel {
   bool? switchListTileValue1;
   // State field(s) for SwitchListTile widget.
   bool? switchListTileValue2;
-  // State field(s) for SwitchListTile widget.
-  bool? switchListTileValue3;
 
   /// Initialization and disposal methods.
 

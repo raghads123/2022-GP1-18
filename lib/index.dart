@@ -35,9 +35,3 @@ export '/add_extraact/add_extraact_widget.dart' show AddExtraactWidget;
 export '/addopp/addopp_widget.dart' show AddoppWidget;
 export '/my_act_details/my_act_details_widget.dart' show MyActDetailsWidget;
 export '/my_opp_details/my_opp_details_widget.dart' show MyOppDetailsWidget;
-export '/workshope_info_draft/workshope_info_draft_widget.dart'
-    show WorkshopeInfoDraftWidget;
-export '/event_info_draft/event_info_draft_widget.dart'
-    show EventInfoDraftWidget;
-export '/edit_interests/edit_interests_widget.dart' show EditInterestsWidget;
-export '/profile_copy/profile_copy_widget.dart' show ProfileCopyWidget;

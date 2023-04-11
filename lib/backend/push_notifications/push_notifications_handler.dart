@@ -78,13 +78,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: Colors.white,
-          child: Center(
-            child: Image.asset(
-              'assets/images/mmfwi_2.png',
-              width: 200.0,
-              fit: BoxFit.contain,
-            ),
+          color: Colors.transparent,
+          child: Image.asset(
+            'assets/images/2logo.JPG',
+            fit: BoxFit.contain,
           ),
         )
       : widget.child;
@@ -164,18 +161,6 @@ final parametersBuilderMap =
           'opportunityID': getParameter<String>(data, 'opportunityID'),
         },
       ),
-  'workshope_info_draft': (data) async => ParameterData(
-        allParams: {
-          'workshopid': getParameter<String>(data, 'workshopid'),
-        },
-      ),
-  'event_info_draft': (data) async => ParameterData(
-        allParams: {
-          'eventid': getParameter<String>(data, 'eventid'),
-        },
-      ),
-  'EditInterests': ParameterData.none(),
-  'ProfileCopy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

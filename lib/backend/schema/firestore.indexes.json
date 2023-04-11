@@ -28,7 +28,7 @@
         },
         {
           "fieldPath": "status",
-          "order": "ASCENDING"
+          "order": "DESCENDING"
         }
       ]
     }

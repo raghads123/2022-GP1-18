@@ -150,333 +150,308 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (valueOrDefault(
-                                      currentUserDocument?.type, '') ==
-                                  'admin')
-                                AuthUserStreamWidget(
-                                  builder: (context) => Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 15.0, 0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                          child: Image.network(
-                                            valueOrDefault<String>(
-                                              currentUserPhoto,
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
-                                            ),
-                                            width: 120.0,
-                                            height: 120.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 90.0, 0.0, 0.0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            final selectedMedia =
-                                                await selectMediaWithSourceBottomSheet(
-                                              context: context,
-                                              maxWidth: 120.00,
-                                              maxHeight: 120.00,
-                                              allowPhoto: true,
-                                            );
-                                            if (selectedMedia != null &&
-                                                selectedMedia.every((m) =>
-                                                    validateFileFormat(
-                                                        m.storagePath,
-                                                        context))) {
-                                              setState(() => _model
-                                                  .isDataUploading = true);
-                                              var selectedUploadedFiles =
-                                                  <FFUploadedFile>[];
-                                              var downloadUrls = <String>[];
-                                              try {
-                                                selectedUploadedFiles =
-                                                    selectedMedia
-                                                        .map((m) =>
-                                                            FFUploadedFile(
-                                                              name: m
-                                                                  .storagePath
-                                                                  .split('/')
-                                                                  .last,
-                                                              bytes: m.bytes,
-                                                              height: m
-                                                                  .dimensions
-                                                                  ?.height,
-                                                              width: m
-                                                                  .dimensions
-                                                                  ?.width,
-                                                            ))
-                                                        .toList();
-
-                                                downloadUrls =
-                                                    (await Future.wait(
-                                                  selectedMedia.map(
-                                                    (m) async =>
-                                                        await uploadData(
-                                                            m.storagePath,
-                                                            m.bytes),
-                                                  ),
-                                                ))
-                                                        .where((u) => u != null)
-                                                        .map((u) => u!)
-                                                        .toList();
-                                              } finally {
-                                                _model.isDataUploading = false;
-                                              }
-                                              if (selectedUploadedFiles
-                                                          .length ==
-                                                      selectedMedia.length &&
-                                                  downloadUrls.length ==
-                                                      selectedMedia.length) {
-                                                setState(() {
-                                                  _model.uploadedLocalFile =
-                                                      selectedUploadedFiles
-                                                          .first;
-                                                  _model.uploadedFileUrl =
-                                                      downloadUrls.first;
-                                                });
-                                              } else {
-                                                setState(() {});
-                                                return;
-                                              }
-                                            }
-                                          },
-                                          child: Icon(
-                                            Icons
-                                                .photo_size_select_actual_outlined,
-                                            color: Color(0xFF7EAEBD),
-                                            size: 30.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 15.0, 20.0, 15.0),
-                                child: AuthUserStreamWidget(
-                                  builder: (context) => Container(
-                                    width: 300.0,
-                                    child: TextFormField(
-                                      controller: _model.nameController,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        hintText: 'الأسم',
-                                        hintStyle: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Color(0x00000000),
-                                            width: 1.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(25.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: Color(0xFFE1D7C6),
-                                      ),
-                                      style: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF565656),
-                                      ),
-                                      textAlign: TextAlign.start,
-                                      validator: _model.nameControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              if (valueOrDefault(
-                                      currentUserDocument?.type, '') ==
-                                  'student')
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) =>
-                                        FlutterFlowDropDown<String>(
-                                      controller: _model.collegeController ??=
-                                          FormFieldController<String>(
-                                        _model.collegeValue ??= valueOrDefault(
-                                            currentUserDocument?.college, ''),
-                                      ),
-                                      options: [
-                                        'كلية الآداب',
-                                        'كلية التربية',
-                                        'كلية اللغات والترجمة',
-                                        'كلية الهندسة',
-                                        'كلية العلوم',
-                                        'كلية علوم الحاسب والمعلومات',
-                                        'كلية العمارة والتخطيط',
-                                        'كلية إدارة الأعمال',
-                                        'كلية الطب',
-                                        'كلية طب الأسنان',
-                                        'كلية الصيدلة',
-                                        'كلية العلوم الطبية التطبيقية',
-                                        'كلية التمريض'
-                                      ],
-                                      onChanged: (val) => setState(
-                                          () => _model.collegeValue = val),
-                                      width: 300.0,
-                                      height: 50.0,
-                                      textStyle: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF565656),
-                                      ),
-                                      hintText: 'الكلية ',
-                                      fillColor: Color(0xFFE1D7C6),
-                                      elevation: 2.0,
-                                      borderColor: Colors.transparent,
-                                      borderWidth: 0.0,
-                                      borderRadius: 25.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 4.0, 12.0, 4.0),
-                                      hidesUnderline: true,
-                                      isSearchable: false,
-                                    ),
-                                  ),
-                                ),
-                              if (valueOrDefault(
-                                      currentUserDocument?.type, '') ==
-                                  'student')
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 15.0),
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) =>
-                                        FlutterFlowDropDown<String>(
-                                      controller: _model.levelController ??=
-                                          FormFieldController<String>(
-                                        _model.levelValue ??= valueOrDefault(
-                                            currentUserDocument?.level, ''),
-                                      ),
-                                      options: [
-                                        'المستوى الأول',
-                                        'المستوى الثاني',
-                                        'المستوى الثالث',
-                                        'المستوى الرابع',
-                                        'المستوى الخامس',
-                                        'المستوى السادس',
-                                        'المستوى السابع',
-                                        'المستوى الثامن',
-                                        'المستوى التاسع',
-                                        'المستوى العاشر',
-                                        'المستوى الحادي عشر',
-                                        'المستوى الثاني عشر'
-                                      ],
-                                      onChanged: (val) => setState(
-                                          () => _model.levelValue = val),
-                                      width: 300.0,
-                                      height: 50.0,
-                                      textStyle: GoogleFonts.getFont(
-                                        'Open Sans',
-                                        color: Color(0xFF565656),
-                                      ),
-                                      hintText: 'المستوى ',
-                                      fillColor: Color(0xFFE1D7C6),
-                                      elevation: 2.0,
-                                      borderColor: Colors.transparent,
-                                      borderWidth: 0.0,
-                                      borderRadius: 25.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 4.0, 12.0, 4.0),
-                                      hidesUnderline: true,
-                                      isSearchable: false,
-                                    ),
-                                  ),
-                                ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    20.0, 15.0, 20.0, 30.0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    final usersUpdateData =
-                                        createUsersRecordData(
-                                      displayName: _model.nameController.text,
-                                      college: _model.collegeValue,
-                                      level: _model.levelValue,
-                                    );
-                                    await currentUserReference!
-                                        .update(usersUpdateData);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'تم تحديث معلوماتك بنجاح',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        duration: Duration(milliseconds: 4000),
-                                        backgroundColor: Color(0xE15BD85B),
-                                      ),
-                                    );
-                                    Navigator.pop(context);
-                                  },
-                                  text: 'تم',
-                                  options: FFButtonOptions(
-                                    width: 300.0,
-                                    height: 50.0,
+                          if (valueOrDefault(currentUserDocument?.type, '') ==
+                              'admin')
+                            AuthUserStreamWidget(
+                              builder: (context) => Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: Color(0xFF7EAEBD),
-                                    textStyle: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFFFFFAF1),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18.0,
+                                        0.0, 15.0, 0.0, 0.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(25.0),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
+                                          currentUserPhoto,
+                                          'https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg',
+                                        ),
+                                        width: 120.0,
+                                        height: 120.0,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                    elevation: 2.0,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 0.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 90.0, 0.0, 0.0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        final selectedMedia =
+                                            await selectMediaWithSourceBottomSheet(
+                                          context: context,
+                                          maxWidth: 120.00,
+                                          maxHeight: 120.00,
+                                          allowPhoto: true,
+                                        );
+                                        if (selectedMedia != null &&
+                                            selectedMedia.every((m) =>
+                                                validateFileFormat(
+                                                    m.storagePath, context))) {
+                                          setState(() =>
+                                              _model.isDataUploading = true);
+                                          var selectedUploadedFiles =
+                                              <FFUploadedFile>[];
+                                          var downloadUrls = <String>[];
+                                          try {
+                                            selectedUploadedFiles =
+                                                selectedMedia
+                                                    .map((m) => FFUploadedFile(
+                                                          name: m.storagePath
+                                                              .split('/')
+                                                              .last,
+                                                          bytes: m.bytes,
+                                                          height: m.dimensions
+                                                              ?.height,
+                                                          width: m.dimensions
+                                                              ?.width,
+                                                        ))
+                                                    .toList();
+
+                                            downloadUrls = (await Future.wait(
+                                              selectedMedia.map(
+                                                (m) async => await uploadData(
+                                                    m.storagePath, m.bytes),
+                                              ),
+                                            ))
+                                                .where((u) => u != null)
+                                                .map((u) => u!)
+                                                .toList();
+                                          } finally {
+                                            _model.isDataUploading = false;
+                                          }
+                                          if (selectedUploadedFiles.length ==
+                                                  selectedMedia.length &&
+                                              downloadUrls.length ==
+                                                  selectedMedia.length) {
+                                            setState(() {
+                                              _model.uploadedLocalFile =
+                                                  selectedUploadedFiles.first;
+                                              _model.uploadedFileUrl =
+                                                  downloadUrls.first;
+                                            });
+                                          } else {
+                                            setState(() {});
+                                            return;
+                                          }
+                                        }
+                                      },
+                                      child: Icon(
+                                        Icons.photo_size_select_actual_outlined,
+                                        color: Color(0xFF7EAEBD),
+                                        size: 30.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 15.0, 20.0, 15.0),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => Container(
+                                width: 300.0,
+                                child: TextFormField(
+                                  controller: _model.nameController,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'الأسم',
+                                    hintStyle: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: Color(0xFF565656),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    filled: true,
+                                    fillColor: Color(0xFFE1D7C6),
+                                  ),
+                                  style: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF565656),
+                                  ),
+                                  textAlign: TextAlign.start,
+                                  validator: _model.nameControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
-                            ],
+                            ),
+                          ),
+                          if (valueOrDefault(currentUserDocument?.type, '') ==
+                              'student')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 15.0),
+                              child: AuthUserStreamWidget(
+                                builder: (context) =>
+                                    FlutterFlowDropDown<String>(
+                                  controller: _model.collegeController ??=
+                                      FormFieldController<String>(
+                                    _model.collegeValue ??= valueOrDefault(
+                                        currentUserDocument?.college, ''),
+                                  ),
+                                  options: [
+                                    'كلية الآداب',
+                                    'كلية التربية',
+                                    'كلية اللغات والترجمة',
+                                    'كلية الهندسة',
+                                    'كلية العلوم',
+                                    'كلية علوم الحاسب والمعلومات',
+                                    'كلية العمارة والتخطيط',
+                                    'كلية إدارة الأعمال',
+                                    'كلية الطب',
+                                    'كلية طب الأسنان',
+                                    'كلية الصيدلة',
+                                    'كلية العلوم الطبية التطبيقية',
+                                    'كلية التمريض'
+                                  ],
+                                  onChanged: (val) =>
+                                      setState(() => _model.collegeValue = val),
+                                  width: 300.0,
+                                  height: 50.0,
+                                  textStyle: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF565656),
+                                  ),
+                                  hintText: 'الكلية ',
+                                  fillColor: Color(0xFFE1D7C6),
+                                  elevation: 2.0,
+                                  borderColor: Colors.transparent,
+                                  borderWidth: 0.0,
+                                  borderRadius: 25.0,
+                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 4.0, 12.0, 4.0),
+                                  hidesUnderline: true,
+                                  isSearchable: false,
+                                ),
+                              ),
+                            ),
+                          if (valueOrDefault(currentUserDocument?.type, '') ==
+                              'student')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 15.0, 20.0, 15.0),
+                              child: AuthUserStreamWidget(
+                                builder: (context) =>
+                                    FlutterFlowDropDown<String>(
+                                  controller: _model.levelController ??=
+                                      FormFieldController<String>(
+                                    _model.levelValue ??= valueOrDefault(
+                                        currentUserDocument?.level, ''),
+                                  ),
+                                  options: [
+                                    'المستوى الأول',
+                                    'المستوى الثاني',
+                                    'المستوى الثالث',
+                                    'المستوى الرابع',
+                                    'المستوى الخامس',
+                                    'المستوى السادس',
+                                    'المستوى السابع',
+                                    'المستوى الثامن',
+                                    'المستوى التاسع',
+                                    'المستوى العاشر',
+                                    'المستوى الحادي عشر',
+                                    'المستوى الثاني عشر'
+                                  ],
+                                  onChanged: (val) =>
+                                      setState(() => _model.levelValue = val),
+                                  width: 300.0,
+                                  height: 50.0,
+                                  textStyle: GoogleFonts.getFont(
+                                    'Open Sans',
+                                    color: Color(0xFF565656),
+                                  ),
+                                  hintText: 'المستوى ',
+                                  fillColor: Color(0xFFE1D7C6),
+                                  elevation: 2.0,
+                                  borderColor: Colors.transparent,
+                                  borderWidth: 0.0,
+                                  borderRadius: 25.0,
+                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                      12.0, 4.0, 12.0, 4.0),
+                                  hidesUnderline: true,
+                                  isSearchable: false,
+                                ),
+                              ),
+                            ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 15.0, 20.0, 30.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                final usersUpdateData = createUsersRecordData(
+                                  displayName: _model.nameController.text,
+                                  college: _model.collegeValue,
+                                  level: _model.levelValue,
+                                );
+                                await currentUserReference!
+                                    .update(usersUpdateData);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'تم تحديث معلوماتك بنجاح',
+                                      style: TextStyle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBtnText,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    duration: Duration(milliseconds: 4000),
+                                    backgroundColor: Color(0xE15BD85B),
+                                  ),
+                                );
+                                Navigator.pop(context);
+                              },
+                              text: 'تم',
+                              options: FFButtonOptions(
+                                width: 300.0,
+                                height: 50.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: Color(0xFF7EAEBD),
+                                textStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFFFFFAF1),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.0,
+                                ),
+                                elevation: 2.0,
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 0.0,
+                                ),
+                                borderRadius: BorderRadius.circular(25.0),
+                              ),
+                            ),
                           ),
                         ],
                       ),

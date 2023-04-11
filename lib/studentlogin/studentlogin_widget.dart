@@ -95,19 +95,23 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                 ),
                                 Container(
                                   width: 350.0,
-                                  child: Form(
-                                    key: _model.formKey,
-                                    autovalidateMode: AutovalidateMode.always,
-                                    child: Container(
-                                      width: 350.0,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.5,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x6CE1D7C6),
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                      ),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                  constraints: BoxConstraints(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            0.56,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0x6CE1D7C6),
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Container(
+                                    width: 350.0,
+                                    child: Form(
+                                      key: _model.formKey,
+                                      autovalidateMode:
+                                          AutovalidateMode.disabled,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -124,7 +128,8 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                     _model.emailController,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
-                                                  labelText: 'البريد الجامعي ',
+                                                  labelText:
+                                                      'البريد الإلكتروني ',
                                                   labelStyle:
                                                       GoogleFonts.getFont(
                                                     'Open Sans',
@@ -132,8 +137,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
-                                                  hintText:
-                                                      'ID@student.ksu.edu.sa',
+                                                  hintText: 'example@email.com',
                                                   hintStyle:
                                                       GoogleFonts.getFont(
                                                     'Open Sans',
@@ -164,7 +168,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   errorBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFF7EAEBD),
+                                                      color: Color(0xFFB72F31),
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
@@ -174,7 +178,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFF7EAEBD),
+                                                      color: Color(0xFFB72F31),
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
@@ -216,7 +220,8 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
-                                                  hintText: 'ادخلي كلمة المرور',
+                                                  hintText:
+                                                      'الرجاء إدخال كلمة المرور',
                                                   hintStyle:
                                                       GoogleFonts.getFont(
                                                     'Open Sans',
@@ -247,7 +252,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   errorBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color: Color(0xE1FF2323),
+                                                      color: Color(0xFFB72F31),
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
@@ -257,7 +262,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   focusedErrorBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color: Color(0xE1FF2323),
+                                                      color: Color(0xFFB72F31),
                                                       width: 1.0,
                                                     ),
                                                     borderRadius:
@@ -288,7 +293,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                 ),
                                                 style: GoogleFonts.getFont(
                                                   'Open Sans',
-                                                  color: Color(0xFF579BB1),
+                                                  color: Color(0xFF7EAEBD),
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                                 textAlign: TextAlign.start,
@@ -304,6 +309,14 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                     20.0, 15.0, 20.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
                                                 GoRouter.of(context)
                                                     .prepareAuthEvent();
 
@@ -386,10 +399,10 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 15.0, 0.0, 0.0),
+                                                    0.0, 15.0, 0.0, 20.0),
                                             child: InkWell(
                                               onTap: () async {
-                                                context.pushNamed(
+                                                context.goNamed(
                                                   'SignUp',
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:

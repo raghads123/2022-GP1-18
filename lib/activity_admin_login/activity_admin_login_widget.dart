@@ -93,282 +93,316 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                                       MediaQuery.of(context).size.width * 0.9,
                                   height:
                                       MediaQuery.of(context).size.height * 0.5,
+                                  constraints: BoxConstraints(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            0.56,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Color(0x6CE1D7C6),
                                     borderRadius: BorderRadius.circular(25.0),
                                   ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 15.0),
-                                        child: Container(
-                                          width: 300.0,
-                                          child: TextFormField(
-                                            controller: _model.emailController,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              labelText: 'البريد الإلكتروني',
-                                              labelStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFF565656),
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                              hintText: 'example@email.com',
-                                              hintStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFF565656),
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFF7EAEBD),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFF7EAEBD),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              filled: true,
-                                              fillColor: Color(0xFFE1D7C6),
-                                            ),
-                                            style: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFF565656),
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                            textAlign: TextAlign.start,
-                                            validator: _model
-                                                .emailControllerValidator
-                                                .asValidator(context),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 15.0),
-                                        child: Container(
-                                          width: 300.0,
-                                          child: TextFormField(
-                                            controller:
-                                                _model.passwordController,
-                                            obscureText:
-                                                !_model.passwordVisibility,
-                                            decoration: InputDecoration(
-                                              labelText: 'كلمة المرور',
-                                              labelStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFF565656),
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                              hintText: 'ادخلي كلمة المرور',
-                                              hintStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFF565656),
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x00000000),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFF7EAEBD),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0xFF7EAEBD),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
-                                              ),
-                                              filled: true,
-                                              fillColor: Color(0xFFE1D7C6),
-                                              suffixIcon: InkWell(
-                                                onTap: () => setState(
-                                                  () => _model
-                                                          .passwordVisibility =
-                                                      !_model
-                                                          .passwordVisibility,
-                                                ),
-                                                focusNode: FocusNode(
-                                                    skipTraversal: true),
-                                                child: Icon(
-                                                  _model.passwordVisibility
-                                                      ? Icons
-                                                          .visibility_outlined
-                                                      : Icons
-                                                          .visibility_off_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .grayIcon,
-                                                  size: 16.0,
-                                                ),
-                                              ),
-                                            ),
-                                            style: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFF565656),
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                            textAlign: TextAlign.start,
-                                            validator: _model
-                                                .passwordControllerValidator
-                                                .asValidator(context),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-
-                                            final user = await signInWithEmail(
-                                              context,
-                                              _model.emailController.text,
-                                              _model.passwordController.text,
-                                            );
-                                            if (user == null) {
-                                              return;
-                                            }
-
-                                            context.pushNamedAuth(
-                                                'HomePage', mounted);
-                                          },
-                                          text: 'تسجيل الدخول',
-                                          options: FFButtonOptions(
+                                  child: Form(
+                                    key: _model.formKey,
+                                    autovalidateMode: AutovalidateMode.disabled,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 0.0, 20.0, 15.0),
+                                          child: Container(
                                             width: 300.0,
-                                            height: 50.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: Color(0xFF7EAEBD),
-                                            textStyle: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFFFFFAF1),
-                                              fontSize: 16.0,
+                                            child: TextFormField(
+                                              controller:
+                                                  _model.emailController,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                labelText: 'البريد الإلكتروني',
+                                                labelStyle: GoogleFonts.getFont(
+                                                  'Open Sans',
+                                                  color: Color(0xFF565656),
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                hintText: 'example@email.com',
+                                                hintStyle: GoogleFonts.getFont(
+                                                  'Open Sans',
+                                                  color: Color(0xFF565656),
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFB72F31),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFB72F31),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                filled: true,
+                                                fillColor: Color(0xFFE1D7C6),
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .emailControllerValidator
+                                                  .asValidator(context),
                                             ),
-                                            elevation: 2.0,
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              width: 0.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
                                           ),
                                         ),
-                                      ),
-                                      InkWell(
-                                        onTap: () async {
-                                          if (_model
-                                              .emailController.text.isEmpty) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'يجب إدخال البريد الإلكتروني',
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 15.0, 20.0, 15.0),
+                                          child: Container(
+                                            width: 300.0,
+                                            child: TextFormField(
+                                              controller:
+                                                  _model.passwordController,
+                                              obscureText:
+                                                  !_model.passwordVisibility,
+                                              decoration: InputDecoration(
+                                                labelText: 'كلمة المرور',
+                                                labelStyle: GoogleFonts.getFont(
+                                                  'Open Sans',
+                                                  color: Color(0xFF565656),
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                hintText: 'ادخلي كلمة المرور',
+                                                hintStyle: GoogleFonts.getFont(
+                                                  'Open Sans',
+                                                  color: Color(0xFF565656),
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x00000000),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFB72F31),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFB72F31),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
+                                                ),
+                                                filled: true,
+                                                fillColor: Color(0xFFE1D7C6),
+                                                suffixIcon: InkWell(
+                                                  onTap: () => setState(
+                                                    () => _model
+                                                            .passwordVisibility =
+                                                        !_model
+                                                            .passwordVisibility,
+                                                  ),
+                                                  focusNode: FocusNode(
+                                                      skipTraversal: true),
+                                                  child: Icon(
+                                                    _model.passwordVisibility
+                                                        ? Icons
+                                                            .visibility_outlined
+                                                        : Icons
+                                                            .visibility_off_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .grayIcon,
+                                                    size: 16.0,
+                                                  ),
                                                 ),
                                               ),
-                                            );
-                                            return;
-                                          }
-                                          await resetPassword(
-                                            email: _model.emailController.text,
-                                            context: context,
-                                          );
-                                        },
-                                        child: Text(
-                                          'استرجاع كلمة المرور؟',
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF494646),
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            if (Navigator.of(context)
-                                                .canPop()) {
-                                              context.pop();
-                                            }
-                                            context.pushNamed(
-                                              'ActivityAdminSignup',
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType.fade,
-                                                  duration:
-                                                      Duration(milliseconds: 0),
-                                                ),
-                                              },
-                                            );
-                                          },
-                                          child: Text(
-                                            'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
-                                            style: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color: Color(0xFF494646),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              validator: _model
+                                                  .passwordControllerValidator
+                                                  .asValidator(context),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20.0, 15.0, 20.0, 0.0),
+                                          child: FFButtonWidget(
+                                            onPressed: () async {
+                                              if (_model.formKey.currentState ==
+                                                      null ||
+                                                  !_model.formKey.currentState!
+                                                      .validate()) {
+                                                return;
+                                              }
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+
+                                              final user =
+                                                  await signInWithEmail(
+                                                context,
+                                                _model.emailController.text,
+                                                _model.passwordController.text,
+                                              );
+                                              if (user == null) {
+                                                return;
+                                              }
+
+                                              context.pushNamedAuth(
+                                                  'HomePage', mounted);
+                                            },
+                                            text: 'تسجيل الدخول',
+                                            options: FFButtonOptions(
+                                              width: 300.0,
+                                              height: 50.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color: Color(0xFF7EAEBD),
+                                              textStyle: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFFFFFAF1),
+                                                fontSize: 16.0,
+                                              ),
+                                              elevation: 2.0,
+                                              borderSide: BorderSide(
+                                                color: Colors.transparent,
+                                                width: 0.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 15.0, 0.0, 5.0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              if (_model.emailController.text
+                                                  .isEmpty) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'يجب إدخال البريد الإلكتروني',
+                                                    ),
+                                                  ),
+                                                );
+                                                return;
+                                              }
+                                              await resetPassword(
+                                                email:
+                                                    _model.emailController.text,
+                                                context: context,
+                                              );
+                                            },
+                                            child: Text(
+                                              'استرجاع كلمة المرور؟',
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF494646),
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 15.0, 0.0, 20.0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.goNamed(
+                                                'ActivityAdminSignup',
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            },
+                                            child: Text(
+                                              'لم يسبق لك إنشاء حساب؟ إنشاء حساب جديد',
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF494646),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -384,10 +418,7 @@ class _ActivityAdminLoginWidgetState extends State<ActivityAdminLoginWidget> {
                 alignment: AlignmentDirectional(-0.9, -0.95),
                 child: InkWell(
                   onTap: () async {
-                    if (Navigator.of(context).canPop()) {
-                      context.pop();
-                    }
-                    context.pushNamed(
+                    context.goNamed(
                       'FirstPage',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(

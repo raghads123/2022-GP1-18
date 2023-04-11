@@ -2,9 +2,9 @@ import '/auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
 export 'sign_up_model.dart';
@@ -95,24 +95,26 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   width: 190.0,
                                   fit: BoxFit.cover,
                                 ),
-                                Form(
-                                  key: _model.formKey,
-                                  autovalidateMode: AutovalidateMode.always,
-                                  child: Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.9,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.5,
-                                    decoration: BoxDecoration(
-                                      color: Color(0x6CE1D7C6),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
+                                Container(
+                                  width: 350.0,
+                                  constraints: BoxConstraints(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            0.54,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Color(0x91E1D7C6),
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Form(
+                                        key: _model.formKey1,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 15.0),
@@ -121,16 +123,30 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             child: TextFormField(
                                               controller:
                                                   _model.emailController,
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.emailController',
+                                                Duration(milliseconds: 2000),
+                                                () async {
+                                                  if (_model.formKey1
+                                                              .currentState ==
+                                                          null ||
+                                                      !_model.formKey1
+                                                          .currentState!
+                                                          .validate()) {
+                                                    return;
+                                                  }
+                                                },
+                                              ),
                                               obscureText: false,
                                               decoration: InputDecoration(
-                                                labelText: 'البريد الجامعي ',
+                                                labelText: 'البريد الإلكتروني ',
                                                 labelStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
                                                   fontWeight: FontWeight.normal,
                                                 ),
-                                                hintText:
-                                                    'ID@student.ksu.edu.sa',
+                                                hintText: 'example@email.com',
                                                 hintStyle: GoogleFonts.getFont(
                                                   'Open Sans',
                                                   color: Color(0xFF565656),
@@ -158,7 +174,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -168,7 +184,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -187,13 +203,15 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               validator: _model
                                                   .emailControllerValidator
                                                   .asValidator(context),
-                                              inputFormatters: [
-                                                _model.emailMask
-                                              ],
                                             ),
                                           ),
                                         ),
-                                        Padding(
+                                      ),
+                                      Form(
+                                        key: _model.formKey2,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 15.0, 20.0, 15.0),
@@ -202,16 +220,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             child: TextFormField(
                                               controller:
                                                   _model.passwordController,
-                                              onFieldSubmitted: (_) async {
-                                                if (_model.formKey
-                                                            .currentState ==
-                                                        null ||
-                                                    !_model
-                                                        .formKey.currentState!
-                                                        .validate()) {
-                                                  return;
-                                                }
-                                              },
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.passwordController',
+                                                Duration(milliseconds: 2000),
+                                                () async {
+                                                  if (_model.formKey2
+                                                              .currentState ==
+                                                          null ||
+                                                      !_model.formKey2
+                                                          .currentState!
+                                                          .validate()) {
+                                                    return;
+                                                  }
+                                                },
+                                              ),
                                               obscureText:
                                                   !_model.passwordVisibility,
                                               decoration: InputDecoration(
@@ -250,7 +273,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -260,7 +283,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -301,7 +324,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
+                                      ),
+                                      Form(
+                                        key: _model.formKey3,
+                                        autovalidateMode:
+                                            AutovalidateMode.always,
+                                        child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 15.0, 20.0, 15.0),
@@ -310,16 +338,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             child: TextFormField(
                                               controller: _model
                                                   .confirmpasswordController,
-                                              onFieldSubmitted: (_) async {
-                                                if (_model.formKey
-                                                            .currentState ==
-                                                        null ||
-                                                    !_model
-                                                        .formKey.currentState!
-                                                        .validate()) {
-                                                  return;
-                                                }
-                                              },
+                                              onChanged: (_) =>
+                                                  EasyDebounce.debounce(
+                                                '_model.confirmpasswordController',
+                                                Duration(milliseconds: 2000),
+                                                () async {
+                                                  if (_model.formKey3
+                                                              .currentState ==
+                                                          null ||
+                                                      !_model.formKey3
+                                                          .currentState!
+                                                          .validate()) {
+                                                    return;
+                                                  }
+                                                },
+                                              ),
                                               obscureText: !_model
                                                   .confirmpasswordVisibility,
                                               decoration: InputDecoration(
@@ -358,7 +391,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 ),
                                                 errorBorder: OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -368,7 +401,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 focusedErrorBorder:
                                                     OutlineInputBorder(
                                                   borderSide: BorderSide(
-                                                    color: Color(0xFF7EAEBD),
+                                                    color: Color(0xFFB72F31),
                                                     width: 1.0,
                                                   ),
                                                   borderRadius:
@@ -409,95 +442,106 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 15.0, 20.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              if (_model.formKey.currentState ==
-                                                      null ||
-                                                  !_model.formKey.currentState!
-                                                      .validate()) {
-                                                return;
-                                              }
-                                              GoRouter.of(context)
-                                                  .prepareAuthEvent();
-                                              if (_model.passwordController
-                                                      .text !=
-                                                  _model
-                                                      .confirmpasswordController
-                                                      .text) {
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                      'كلمة المرور لا تتطابق',
-                                                    ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 15.0, 20.0, 0.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            if (_model.formKey1.currentState ==
+                                                    null ||
+                                                !_model.formKey1.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
+                                            if (_model.formKey2.currentState ==
+                                                    null ||
+                                                !_model.formKey2.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
+                                            if (_model.formKey3.currentState ==
+                                                    null ||
+                                                !_model.formKey3.currentState!
+                                                    .validate()) {
+                                              return;
+                                            }
+                                            GoRouter.of(context)
+                                                .prepareAuthEvent();
+                                            if (_model
+                                                    .passwordController.text !=
+                                                _model.confirmpasswordController
+                                                    .text) {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'كلمة المرور لا تتطابق',
                                                   ),
-                                                );
-                                                return;
-                                              }
-
-                                              final user =
-                                                  await createAccountWithEmail(
-                                                context,
-                                                _model.emailController.text,
-                                                _model.passwordController.text,
+                                                ),
                                               );
-                                              if (user == null) {
-                                                return;
-                                              }
+                                              return;
+                                            }
 
-                                              await sendEmailVerification();
+                                            final user =
+                                                await createAccountWithEmail(
+                                              context,
+                                              _model.emailController.text,
+                                              _model.passwordController.text,
+                                            );
+                                            if (user == null) {
+                                              return;
+                                            }
 
-                                              context.goNamedAuth(
-                                                  'SettingUpProfile', mounted);
-                                            },
-                                            text: 'إنشاء حساب',
-                                            options: FFButtonOptions(
-                                              width: 300.0,
-                                              height: 50.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color: Color(0xFF7EAEBD),
-                                              textStyle: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFFFFFAF1),
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18.0,
-                                              ),
-                                              elevation: 2.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 0.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(25.0),
+                                            await sendEmailVerification();
+
+                                            context.goNamedAuth(
+                                                'Emailauth', mounted);
+                                          },
+                                          text: 'إنشاء حساب',
+                                          options: FFButtonOptions(
+                                            width: 300.0,
+                                            height: 50.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0xFF7EAEBD),
+                                            textStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFFFFFAF1),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18.0,
+                                            ),
+                                            elevation: 2.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 0.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(25.0),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.goNamed('studentlogin');
+                                          },
+                                          child: Text(
+                                            'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF494646),
                                             ),
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 0.0),
-                                          child: InkWell(
-                                            onTap: () async {
-                                              context.goNamed('studentlogin');
-                                            },
-                                            child: Text(
-                                              'تم إنشاء حساب مسبقاً؟ تسجيل  الدخول',
-                                              style: GoogleFonts.getFont(
-                                                'Open Sans',
-                                                color: Color(0xFF494646),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

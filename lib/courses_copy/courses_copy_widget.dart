@@ -381,14 +381,13 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 10.0, 10.0, 10.0),
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Text(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
                                                     listViewExtraActsRecord
                                                         .actName!,
                                                     textAlign: TextAlign.start,
@@ -401,8 +400,8 @@ class _CoursesCopyWidgetState extends State<CoursesCopyWidget> {
                                                               Color(0xFF565656),
                                                         ),
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),

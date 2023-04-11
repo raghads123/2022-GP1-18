@@ -438,19 +438,15 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                     10.0,
                                                                     10.0,
                                                                     10.0),
-                                                        child:
-                                                            SingleChildScrollView(
-                                                          scrollDirection:
-                                                              Axis.horizontal,
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
                                                                 getJsonField(
                                                                   eventMBdataItem,
                                                                   r'''$.Act_name''',
@@ -465,8 +461,8 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                           0xFF565656),
                                                                     ),
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ),

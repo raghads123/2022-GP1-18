@@ -135,6 +135,8 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                       20.0, 20.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 1000));
                                       if (currentUserEmailVerified) {
                                         context.goNamed('SettingUpProfileCopy');
                                       } else {

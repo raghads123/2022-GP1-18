@@ -15,7 +15,7 @@ class StudentloginModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? emailControllerValidator;
   String? _emailControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'يجب إدخال البريد الجامعي';
+      return 'يجب إدخال البريد الإلكتروني';
     }
 
     return null;

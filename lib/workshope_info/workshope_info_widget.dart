@@ -665,13 +665,23 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                                 ) ??
                                                                 false;
                                                         if (confirmDialogResponse) {
-                                                          // replace this with sync in calendar
-                                                          Navigator.pop(
-                                                              context);
-                                                        } else {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }
+                                                          addToCalendar(
+                                                         sdate:
+                                                         scrollingContainerExtraActsRecord
+                                                             .sdate!,
+                                                         edate:
+                                                         scrollingContainerExtraActsRecord
+                                                             .edate,
+                                                         type:
+                                                         scrollingContainerExtraActsRecord
+                                                             .actType,
+                                                         title:
+                                                         scrollingContainerExtraActsRecord
+                                                             .actName,
+                                                         location:
+                                                         scrollingContainerExtraActsRecord
+                                                             .actLoc,
+                                                    
                                                       },
                                                 text: 'إلتحاق',
                                                 options: FFButtonOptions(

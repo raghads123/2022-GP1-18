@@ -1,3 +1,4 @@
+import 'package:count_me_in/utils/utility.dart';
 import '/auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -26,7 +27,8 @@ class WorkshopeInfoWidget extends StatefulWidget {
   _WorkshopeInfoWidgetState createState() => _WorkshopeInfoWidgetState();
 }
 
-class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
+class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget>
+    with Utility {
   late WorkshopeInfoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -666,22 +668,26 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                                 false;
                                                         if (confirmDialogResponse) {
                                                           addToCalendar(
-                                                         sdate:
-                                                         scrollingContainerExtraActsRecord
-                                                             .sdate!,
-                                                         edate:
-                                                         scrollingContainerExtraActsRecord
-                                                             .edate,
-                                                         type:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actType,
-                                                         title:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actName,
-                                                         location:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actLoc,
-                                                    
+                                                            sdate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .sdate!,
+                                                            edate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .edate,
+                                                            type:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actType,
+                                                            title:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actName,
+                                                            location:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actLoc,
+                                                          );
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
+                                                        }
                                                       },
                                                 text: 'إلتحاق',
                                                 options: FFButtonOptions(

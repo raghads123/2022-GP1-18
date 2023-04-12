@@ -15,7 +15,7 @@ class ActivityAdminLoginModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? emailControllerValidator;
   String? _emailControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'يجب تعبئة الحقل';
+      return 'الرجاء إدخال البريد الإلكتروني';
     }
 
     return null;
@@ -27,7 +27,7 @@ class ActivityAdminLoginModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'يجب تعبئة الحقل';
+      return 'الرجاء إدخال كلمة المرور';
     }
 
     return null;

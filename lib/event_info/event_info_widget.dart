@@ -1,3 +1,4 @@
+import 'package:count_me_in/utils/utility.dart';
 import '/auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -26,7 +27,7 @@ class EventInfoWidget extends StatefulWidget {
   _EventInfoWidgetState createState() => _EventInfoWidgetState();
 }
 
-class _EventInfoWidgetState extends State<EventInfoWidget> {
+class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
   late EventInfoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -665,23 +666,24 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                                 ) ??
                                                                 false;
                                                         if (confirmDialogResponse) {
-                                                           addToCalendar(
-                                                         sdate:
-                                                         scrollingContainerExtraActsRecord
-                                                             .sdate!,
-                                                         edate:
-                                                         scrollingContainerExtraActsRecord
-                                                             .edate,
-                                                         type:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actType,
-                                                         title:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actName,
-                                                         location:
-                                                         scrollingContainerExtraActsRecord
-                                                             .actLoc,
-                                                       );
+                                                          addToCalendar(
+                                                            sdate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .sdate!,
+                                                            edate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .edate,
+                                                            type:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actType,
+                                                            title:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actName,
+                                                            location:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actLoc,
+                                                          );
+                                                        }
                                                       },
                                                 text: 'إلتحاق',
                                                 options: FFButtonOptions(

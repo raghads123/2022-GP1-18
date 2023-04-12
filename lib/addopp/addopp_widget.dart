@@ -176,12 +176,6 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                             Duration(milliseconds: 2000),
                             () => setState(() {}),
                           ),
-                          onFieldSubmitted: (_) async {
-                            setState(() {
-                              FFAppState().addToSkilllist(
-                                  _model.oppskill1Controller.text);
-                            });
-                          },
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'المهارة المطلوبة',

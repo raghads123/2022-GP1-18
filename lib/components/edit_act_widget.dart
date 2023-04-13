@@ -265,7 +265,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                             ),
                                           ),
                                         ),
-                                        if (_model.datePicked3 != null)
+                                        if (_model.datePicked1 != null)
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -274,6 +274,27 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               dateTimeFormat(
                                                 'M/d h:mm a',
                                                 _model.datePicked1,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
+                                        if (_model.datePicked1 == null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                formExtraActsRecord!.sdate!,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -371,6 +392,27 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               dateTimeFormat(
                                                 'M/d h:mm a',
                                                 _model.datePicked2,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
+                                        if (_model.datePicked2 == null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                formExtraActsRecord!.edate!,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -494,6 +536,28 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               ),
                                             ),
                                           ),
+                                        if (_model.datePicked3 == null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                formExtraActsRecord!
+                                                    .lastD2enroll!,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),
@@ -605,6 +669,28 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               ),
                                             ),
                                           ),
+                                        if (_model.datePicked4 == null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                formExtraActsRecord!
+                                                    .lastD2disenroll!,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),
@@ -624,75 +710,76 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(
-                                    child: Container(
-                                      width: double.infinity,
-                                      child: TextFormField(
-                                        controller: _model.textController2 ??=
-                                            TextEditingController(
-                                          text: formExtraActsRecord!.numSeats
-                                              ?.toString(),
-                                        ),
-                                        obscureText: false,
-                                        decoration: InputDecoration(
-                                          labelText: 'عدد المقاعد',
-                                          labelStyle: GoogleFonts.getFont(
+                                  if (formExtraActsRecord!.seats ?? true)
+                                    Expanded(
+                                      child: Container(
+                                        width: double.infinity,
+                                        child: TextFormField(
+                                          controller: _model.textController2 ??=
+                                              TextEditingController(
+                                            text: formExtraActsRecord!.numSeats
+                                                ?.toString(),
+                                          ),
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            labelText: 'عدد المقاعد',
+                                            labelStyle: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF565656),
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x00000000),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(25.0),
+                                            ),
+                                            filled: true,
+                                            fillColor: Color(0xFFE1D7C6),
+                                            prefixIcon: Icon(
+                                              Icons.event_seat_rounded,
+                                            ),
+                                          ),
+                                          style: GoogleFonts.getFont(
                                             'Open Sans',
                                             color: Color(0xFF565656),
                                             fontWeight: FontWeight.normal,
                                           ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x00000000),
-                                              width: 2.0,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
-                                          ),
-                                          filled: true,
-                                          fillColor: Color(0xFFE1D7C6),
-                                          prefixIcon: Icon(
-                                            Icons.event_seat_rounded,
-                                          ),
+                                          textAlign: TextAlign.start,
+                                          keyboardType: TextInputType.number,
+                                          validator: _model
+                                              .textController2Validator
+                                              .asValidator(context),
                                         ),
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                        textAlign: TextAlign.start,
-                                        keyboardType: TextInputType.number,
-                                        validator: _model
-                                            .textController2Validator
-                                            .asValidator(context),
                                       ),
                                     ),
-                                  ),
                                 ],
                               ),
                             ),
@@ -743,21 +830,18 @@ class _EditActWidgetState extends State<EditActWidget> {
                                 await formExtraActsRecord!.reference
                                     .update(extraActsUpdateData5);
                               }
-                              if (_model.textController2.text != null &&
-                                  _model.textController2.text != '') {
-                                final extraActsUpdateData6 =
-                                    createExtraActsRecordData(
-                                  numSeats:
-                                      int.tryParse(_model.textController2.text),
-                                );
-                                await formExtraActsRecord!.reference
-                                    .update(extraActsUpdateData6);
+                              if (formExtraActsRecord!.seats!) {
+                                if (_model.textController2.text != null &&
+                                    _model.textController2.text != '') {
+                                  final extraActsUpdateData6 =
+                                      createExtraActsRecordData(
+                                    numSeats: int.tryParse(
+                                        _model.textController2.text),
+                                  );
+                                  await formExtraActsRecord!.reference
+                                      .update(extraActsUpdateData6);
+                                }
                               }
-
-                              final extraActsUpdateData7 =
-                                  createExtraActsRecordData();
-                              await formExtraActsRecord!.reference
-                                  .update(extraActsUpdateData7);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -792,7 +876,6 @@ class _EditActWidgetState extends State<EditActWidget> {
                               elevation: 2.0,
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(25.0),
                             ),

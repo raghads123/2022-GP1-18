@@ -492,13 +492,9 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      if ((valueOrDefault(
-                                                  currentUserDocument?.type,
-                                                  '') ==
-                                              'student') &&
-                                          (scrollingContainerExtraActsRecord!
-                                                  .numSeats !=
-                                              0))
+                                      if (valueOrDefault(
+                                              currentUserDocument?.type, '') ==
+                                          'student')
                                         AuthUserStreamWidget(
                                           builder: (context) =>
                                               StreamBuilder<List<UsersRecord>>(

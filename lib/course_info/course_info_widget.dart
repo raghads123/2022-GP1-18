@@ -693,6 +693,9 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                         color: Colors.white,
                                                       ),
                                                   elevation: 2.0,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                  ),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           25.0),

@@ -690,7 +690,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                       ),
                                                   elevation: 2.0,
                                                   borderSide: BorderSide(
-                                                    width: 0.0,
+                                                    color: Colors.transparent,
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(

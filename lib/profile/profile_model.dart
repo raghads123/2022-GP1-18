@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/components/edit_info_component_widget.dart';
 import '/components/edit_interests_component_widget.dart';
 import '/components/edit_notification_component_widget.dart';

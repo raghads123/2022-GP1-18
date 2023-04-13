@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
@@ -56,7 +56,7 @@ class AddExtraactModel extends FlutterFlowModel {
 
   // State field(s) for actType widget.
   String? actTypeValue;
-  FormFieldController<String>? actTypeController;
+  FormFieldController<String>? actTypeValueController;
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));

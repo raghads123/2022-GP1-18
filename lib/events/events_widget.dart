@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -140,7 +140,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                         multiselect: false,
                         initialized: _model.choiceChipsValue != null,
                         alignment: WrapAlignment.start,
-                        controller: _model.choiceChipsController ??=
+                        controller: _model.choiceChipsValueController ??=
                             FormFieldController<List<String>>(
                           ['الفعاليات المقترحة'],
                         ),

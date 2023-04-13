@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -160,7 +160,7 @@ class _Settinginterests2WidgetState extends State<Settinginterests2Widget> {
                                                     _model.checkboxGroupValues =
                                                         val),
                                                 controller: _model
-                                                        .checkboxGroupController ??=
+                                                        .checkboxGroupValueController ??=
                                                     FormFieldController<
                                                         List<String>>(
                                                   [],

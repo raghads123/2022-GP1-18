@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -481,8 +481,8 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                               return;
                                             }
 
-                                            final user =
-                                                await createAccountWithEmail(
+                                            final user = await authManager
+                                                .createAccountWithEmail(
                                               context,
                                               _model.emailController.text,
                                               _model.passwordController.text,
@@ -491,7 +491,8 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                               return;
                                             }
 
-                                            await sendEmailVerification();
+                                            await authManager
+                                                .sendEmailVerification();
 
                                             context.goNamedAuth(
                                                 'EmailauthCopy', mounted);

@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -312,7 +312,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               child: AuthUserStreamWidget(
                                 builder: (context) =>
                                     FlutterFlowDropDown<String>(
-                                  controller: _model.collegeController ??=
+                                  controller: _model.collegeValueController ??=
                                       FormFieldController<String>(
                                     _model.collegeValue ??= valueOrDefault(
                                         currentUserDocument?.college, ''),
@@ -361,7 +361,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               child: AuthUserStreamWidget(
                                 builder: (context) =>
                                     FlutterFlowDropDown<String>(
-                                  controller: _model.levelController ??=
+                                  controller: _model.levelValueController ??=
                                       FormFieldController<String>(
                                     _model.levelValue ??= valueOrDefault(
                                         currentUserDocument?.level, ''),

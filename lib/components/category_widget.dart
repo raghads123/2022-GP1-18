@@ -145,7 +145,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                                     _model.checkboxGroupValues!.toList();
                               });
                             },
-                            controller: _model.checkboxGroupController ??=
+                            controller: _model.checkboxGroupValueController ??=
                                 FormFieldController<List<String>>(
                               FFAppState().ActCategory,
                             ),

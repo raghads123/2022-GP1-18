@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -257,7 +257,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 15.0, 20.0, 15.0),
                                 child: FlutterFlowDropDown<String>(
-                                  controller: _model.skillController ??=
+                                  controller: _model.skillValueController ??=
                                       FormFieldController<String>(null),
                                   options: containerOpportunitiesRecord!
                                       .opSkills!

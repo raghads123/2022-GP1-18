@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -54,1128 +54,1204 @@ class _AddoppWidgetState extends State<AddoppWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Color(0xFFF4F3F0),
-        appBar: AppBar(
-          backgroundColor: Color(0xFFF4F3F0),
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 52.0,
-            icon: Icon(
-              Icons.chevron_left_rounded,
-              color: Color(0xFF7EAEBD),
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.goNamed('HomePage');
-            },
-          ),
-          title: Text(
-            'طلب إضافة فرصة جديدة',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Poppins',
-                  color: Color(0xFF7EAEBD),
-                  fontSize: 22.0,
-                ),
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 2.0,
-        ),
-        body: Container(
-          width: double.infinity,
-          child: Form(
-            key: _model.formKey,
-            autovalidateMode: AutovalidateMode.always,
-            child: Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).primaryBtnText,
-                borderRadius: BorderRadius.circular(9.0),
+    return StreamBuilder<List<NotifyRecord>>(
+      stream: queryNotifyRecord(
+        queryBuilder: (notifyRecord) =>
+            notifyRecord.where('act_ID', isEqualTo: 'Super Admin'),
+        singleRecord: true,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50.0,
+              height: 50.0,
+              child: CircularProgressIndicator(
+                color: Color(0xFF0184BD),
               ),
-              child: SingleChildScrollView(
-                primary: false,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 30.0, 20.0, 15.0),
-                      child: Container(
-                        width: double.infinity,
-                        child: TextFormField(
-                          controller: _model.oppNameController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'اسم الفرصة',
-                            labelStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF565656),
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFE1D7C6),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFE1D7C6),
-                          ),
-                          style: GoogleFonts.getFont(
-                            'Open Sans',
-                            color: Color(0xFF565656),
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.start,
-                          validator: _model.oppNameControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
+            ),
+          );
+        }
+        List<NotifyRecord> addoppNotifyRecordList = snapshot.data!;
+        // Return an empty Container when the item does not exist.
+        if (snapshot.data!.isEmpty) {
+          return Container();
+        }
+        final addoppNotifyRecord = addoppNotifyRecordList.isNotEmpty
+            ? addoppNotifyRecordList.first
+            : null;
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: Color(0xFFF4F3F0),
+            appBar: AppBar(
+              backgroundColor: Color(0xFFF4F3F0),
+              automaticallyImplyLeading: false,
+              leading: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
+                borderWidth: 1.0,
+                buttonSize: 52.0,
+                icon: Icon(
+                  Icons.chevron_left_rounded,
+                  color: Color(0xFF7EAEBD),
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  context.goNamed('HomePage');
+                },
+              ),
+              title: Text(
+                'طلب إضافة فرصة جديدة',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFF7EAEBD),
+                      fontSize: 22.0,
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 5.0),
-                      child: Container(
-                        width: double.infinity,
-                        child: TextFormField(
-                          controller: _model.oppskill1Controller,
-                          onChanged: (_) => EasyDebounce.debounce(
-                            '_model.oppskill1Controller',
-                            Duration(milliseconds: 2000),
-                            () => setState(() {}),
-                          ),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'المهارة المطلوبة',
-                            labelStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF565656),
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFE1D7C6),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFE1D7C6),
-                          ),
-                          style: GoogleFonts.getFont(
-                            'Open Sans',
-                            color: Color(0xFF565656),
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.start,
-                          maxLines: null,
-                          keyboardType: TextInputType.multiline,
-                          validator: _model.oppskill1ControllerValidator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                    if (FFAppState().numskills.contains('1'))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                child: TextFormField(
-                                  controller: _model.oppskill2Controller,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.oppskill2Controller',
-                                    Duration(milliseconds: 2000),
-                                    () => setState(() {}),
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'المهارة المطلوبة',
-                                    labelStyle: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFF565656),
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFE1D7C6),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Color(0xFFE1D7C6),
-                                  ),
-                                  style: GoogleFonts.getFont(
-                                    'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: null,
-                                  keyboardType: TextInputType.multiline,
-                                  validator: _model.oppskill2ControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() {
-                                    FFAppState().removeFromNumskills('1');
-                                  });
-                                  setState(() {
-                                    _model.oppskill2Controller?.clear();
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.clear_rounded,
-                                  color: Color(0xFF57636C),
-                                  size: 20.0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (FFAppState().numskills.contains('2'))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                controller: _model.oppskill3Controller,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.oppskill3Controller',
-                                  Duration(milliseconds: 2000),
-                                  () => setState(() {}),
-                                ),
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'المهارة المطلوبة',
-                                  labelStyle: GoogleFonts.getFont(
-                                    'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFE1D7C6),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xFFE1D7C6),
-                                ),
-                                style: GoogleFonts.getFont(
+              ),
+              actions: [],
+              centerTitle: true,
+              elevation: 2.0,
+            ),
+            body: Container(
+              width: double.infinity,
+              child: Form(
+                key: _model.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).primaryBtnText,
+                    borderRadius: BorderRadius.circular(9.0),
+                  ),
+                  child: SingleChildScrollView(
+                    primary: false,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 30.0, 20.0, 15.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: TextFormField(
+                              controller: _model.oppNameController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'اسم الفرصة',
+                                labelStyle: GoogleFonts.getFont(
                                   'Open Sans',
                                   color: Color(0xFF565656),
                                   fontWeight: FontWeight.normal,
                                 ),
-                                textAlign: TextAlign.start,
-                                maxLines: null,
-                                keyboardType: TextInputType.multiline,
-                                validator: _model.oppskill3ControllerValidator
-                                    .asValidator(context),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() {
-                                    FFAppState().removeFromNumskills('2');
-                                  });
-                                  setState(() {
-                                    _model.oppskill3Controller?.clear();
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.clear_rounded,
-                                  color: Color(0xFF57636C),
-                                  size: 20.0,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFE1D7C6),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFE1D7C6),
                               ),
+                              style: GoogleFonts.getFont(
+                                'Open Sans',
+                                color: Color(0xFF565656),
+                                fontWeight: FontWeight.normal,
+                              ),
+                              textAlign: TextAlign.start,
+                              validator: _model.oppNameControllerValidator
+                                  .asValidator(context),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    if (FFAppState().numskills.contains('3'))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                width: double.infinity,
-                                child: TextFormField(
-                                  controller: _model.oppskill4Controller,
-                                  onChanged: (_) => EasyDebounce.debounce(
-                                    '_model.oppskill4Controller',
-                                    Duration(milliseconds: 2000),
-                                    () => setState(() {}),
-                                  ),
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'المهارة المطلوبة',
-                                    labelStyle: GoogleFonts.getFont(
-                                      'Open Sans',
-                                      color: Color(0xFF565656),
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFE1D7C6),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    filled: true,
-                                    fillColor: Color(0xFFE1D7C6),
-                                  ),
-                                  style: GoogleFonts.getFont(
-                                    'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                  maxLines: null,
-                                  keyboardType: TextInputType.multiline,
-                                  validator: _model.oppskill4ControllerValidator
-                                      .asValidator(context),
-                                ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 5.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: TextFormField(
+                              controller: _model.oppskill1Controller,
+                              onChanged: (_) => EasyDebounce.debounce(
+                                '_model.oppskill1Controller',
+                                Duration(milliseconds: 2000),
+                                () => setState(() {}),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() {
-                                    FFAppState().removeFromNumskills('3');
-                                  });
-                                  setState(() {
-                                    _model.oppskill4Controller?.clear();
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.clear_rounded,
-                                  color: Color(0xFF57636C),
-                                  size: 20.0,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    if (FFAppState().numskills.contains('4'))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 5.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                              child: TextFormField(
-                                controller: _model.oppskill5Controller,
-                                onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.oppskill5Controller',
-                                  Duration(milliseconds: 2000),
-                                  () => setState(() {}),
-                                ),
-                                obscureText: false,
-                                decoration: InputDecoration(
-                                  labelText: 'المهارة المطلوبة',
-                                  labelStyle: GoogleFonts.getFont(
-                                    'Open Sans',
-                                    color: Color(0xFF565656),
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFE1D7C6),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0xFFE1D7C6),
-                                ),
-                                style: GoogleFonts.getFont(
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'المهارة المطلوبة',
+                                labelStyle: GoogleFonts.getFont(
                                   'Open Sans',
                                   color: Color(0xFF565656),
                                   fontWeight: FontWeight.normal,
                                 ),
-                                textAlign: TextAlign.start,
-                                maxLines: null,
-                                keyboardType: TextInputType.multiline,
-                                validator: _model.oppskill5ControllerValidator
-                                    .asValidator(context),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFE1D7C6),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFE1D7C6),
                               ),
+                              style: GoogleFonts.getFont(
+                                'Open Sans',
+                                color: Color(0xFF565656),
+                                fontWeight: FontWeight.normal,
+                              ),
+                              textAlign: TextAlign.start,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              validator: _model.oppskill1ControllerValidator
+                                  .asValidator(context),
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  5.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                onTap: () async {
-                                  setState(() {
-                                    FFAppState().removeFromNumskills('4');
-                                  });
-                                  setState(() {
-                                    _model.oppskill5Controller?.clear();
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.clear_rounded,
-                                  color: Color(0xFF57636C),
+                          ),
+                        ),
+                        if (FFAppState().numskills.contains('1'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 5.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: TextFormField(
+                                      controller: _model.oppskill2Controller,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.oppskill2Controller',
+                                        Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'المهارة المطلوبة',
+                                        labelStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFFE1D7C6),
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        filled: true,
+                                        fillColor: Color(0xFFE1D7C6),
+                                      ),
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      maxLines: null,
+                                      keyboardType: TextInputType.multiline,
+                                      validator: _model
+                                          .oppskill2ControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      setState(() {
+                                        FFAppState().removeFromNumskills('1');
+                                      });
+                                      setState(() {
+                                        _model.oppskill2Controller?.clear();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.clear_rounded,
+                                      color: Color(0xFF57636C),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (FFAppState().numskills.contains('2'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 5.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _model.oppskill3Controller,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.oppskill3Controller',
+                                      Duration(milliseconds: 2000),
+                                      () => setState(() {}),
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'المهارة المطلوبة',
+                                      labelStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE1D7C6),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xFFE1D7C6),
+                                    ),
+                                    style: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: Color(0xFF565656),
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    maxLines: null,
+                                    keyboardType: TextInputType.multiline,
+                                    validator: _model
+                                        .oppskill3ControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      setState(() {
+                                        FFAppState().removeFromNumskills('2');
+                                      });
+                                      setState(() {
+                                        _model.oppskill3Controller?.clear();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.clear_rounded,
+                                      color: Color(0xFF57636C),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (FFAppState().numskills.contains('3'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 5.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    child: TextFormField(
+                                      controller: _model.oppskill4Controller,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.oppskill4Controller',
+                                        Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
+                                      obscureText: false,
+                                      decoration: InputDecoration(
+                                        labelText: 'المهارة المطلوبة',
+                                        labelStyle: GoogleFonts.getFont(
+                                          'Open Sans',
+                                          color: Color(0xFF565656),
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0xFFE1D7C6),
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Color(0x00000000),
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(25.0),
+                                        ),
+                                        filled: true,
+                                        fillColor: Color(0xFFE1D7C6),
+                                      ),
+                                      style: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      maxLines: null,
+                                      keyboardType: TextInputType.multiline,
+                                      validator: _model
+                                          .oppskill4ControllerValidator
+                                          .asValidator(context),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      setState(() {
+                                        FFAppState().removeFromNumskills('3');
+                                      });
+                                      setState(() {
+                                        _model.oppskill4Controller?.clear();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.clear_rounded,
+                                      color: Color(0xFF57636C),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        if (FFAppState().numskills.contains('4'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 5.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _model.oppskill5Controller,
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.oppskill5Controller',
+                                      Duration(milliseconds: 2000),
+                                      () => setState(() {}),
+                                    ),
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText: 'المهارة المطلوبة',
+                                      labelStyle: GoogleFonts.getFont(
+                                        'Open Sans',
+                                        color: Color(0xFF565656),
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFE1D7C6),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(25.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: Color(0xFFE1D7C6),
+                                    ),
+                                    style: GoogleFonts.getFont(
+                                      'Open Sans',
+                                      color: Color(0xFF565656),
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    maxLines: null,
+                                    keyboardType: TextInputType.multiline,
+                                    validator: _model
+                                        .oppskill5ControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      setState(() {
+                                        FFAppState().removeFromNumskills('4');
+                                      });
+                                      setState(() {
+                                        _model.oppskill5Controller?.clear();
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.clear_rounded,
+                                      color: Color(0xFF57636C),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 25.0,
+                                borderWidth: 0.0,
+                                buttonSize: 35.0,
+                                disabledIconColor: Color(0xFF57636C),
+                                icon: Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Color(0xFF7EAEBD),
                                   size: 20.0,
                                 ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 25.0,
-                            borderWidth: 0.0,
-                            buttonSize: 35.0,
-                            disabledIconColor: Color(0xFF57636C),
-                            icon: Icon(
-                              Icons.add_circle_outline_rounded,
-                              color: Color(0xFF7EAEBD),
-                              size: 20.0,
-                            ),
-                            onPressed: FFAppState().numskills.length == 4
-                                ? null
-                                : () async {
-                                    if (FFAppState().numskills.contains('1')) {
-                                      if (FFAppState()
-                                          .numskills
-                                          .contains('2')) {
+                                onPressed: FFAppState().numskills.length == 4
+                                    ? null
+                                    : () async {
                                         if (FFAppState()
                                             .numskills
-                                            .contains('3')) {
+                                            .contains('1')) {
                                           if (FFAppState()
                                               .numskills
-                                              .contains('4')) {
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                              SnackBar(
-                                                content: Text(
-                                                  'لا يمكنك طلب أكثر من ٥ مهارات',
-                                                  style: TextStyle(
-                                                    color: Color(0xFFF4F3F9),
+                                              .contains('2')) {
+                                            if (FFAppState()
+                                                .numskills
+                                                .contains('3')) {
+                                              if (FFAppState()
+                                                  .numskills
+                                                  .contains('4')) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'لا يمكنك طلب أكثر من ٥ مهارات',
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xFFF4F3F9),
+                                                      ),
+                                                    ),
+                                                    duration: Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        Color(0xFF579BB1),
                                                   ),
-                                                ),
-                                                duration: Duration(
-                                                    milliseconds: 4000),
-                                                backgroundColor:
-                                                    Color(0xFF579BB1),
-                                              ),
-                                            );
+                                                );
+                                              } else {
+                                                setState(() {
+                                                  FFAppState()
+                                                      .addToNumskills('4');
+                                                });
+                                              }
+                                            } else {
+                                              setState(() {
+                                                FFAppState()
+                                                    .addToNumskills('3');
+                                              });
+                                            }
                                           } else {
                                             setState(() {
-                                              FFAppState().addToNumskills('4');
+                                              FFAppState().addToNumskills('2');
                                             });
                                           }
                                         } else {
                                           setState(() {
-                                            FFAppState().addToNumskills('3');
+                                            FFAppState().addToNumskills('1');
                                           });
                                         }
-                                      } else {
+                                      },
+                              ),
+                              Text(
+                                'إضافة حقل',
+                                style: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF7EAEBD),
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
+                          child: Container(
+                            width: double.infinity,
+                            child: TextFormField(
+                              controller: _model.oppdesController,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'وصف الفرصة',
+                                labelStyle: GoogleFonts.getFont(
+                                  'Open Sans',
+                                  color: Color(0xFF565656),
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFE1D7C6),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFB72F31),
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                filled: true,
+                                fillColor: Color(0xFFE1D7C6),
+                              ),
+                              style: GoogleFonts.getFont(
+                                'Open Sans',
+                                color: Color(0xFF565656),
+                                fontWeight: FontWeight.normal,
+                              ),
+                              textAlign: TextAlign.start,
+                              maxLines: 4,
+                              keyboardType: TextInputType.multiline,
+                              validator: _model.oppdesControllerValidator
+                                  .asValidator(context),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
+                                  height: 51.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFE1D7C6),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    border: Border.all(
+                                      color: Color(0xFFE1D7C6),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final _datePicked1Date =
+                                          await showDatePicker(
+                                        context: context,
+                                        initialDate: getCurrentTimestamp,
+                                        firstDate: getCurrentTimestamp,
+                                        lastDate: DateTime(2050),
+                                      );
+
+                                      TimeOfDay? _datePicked1Time;
+                                      if (_datePicked1Date != null) {
+                                        _datePicked1Time = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.fromDateTime(
+                                              getCurrentTimestamp),
+                                        );
+                                      }
+
+                                      if (_datePicked1Date != null &&
+                                          _datePicked1Time != null) {
                                         setState(() {
-                                          FFAppState().addToNumskills('2');
+                                          _model.datePicked1 = DateTime(
+                                            _datePicked1Date.year,
+                                            _datePicked1Date.month,
+                                            _datePicked1Date.day,
+                                            _datePicked1Time!.hour,
+                                            _datePicked1Time.minute,
+                                          );
                                         });
                                       }
-                                    } else {
-                                      setState(() {
-                                        FFAppState().addToNumskills('1');
-                                      });
-                                    }
-                                  },
-                          ),
-                          Text(
-                            'إضافة حقل',
-                            style: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF7EAEBD),
-                              fontSize: 16.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
-                      child: Container(
-                        width: double.infinity,
-                        child: TextFormField(
-                          controller: _model.oppdesController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'وصف الفرصة',
-                            labelStyle: GoogleFonts.getFont(
-                              'Open Sans',
-                              color: Color(0xFF565656),
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFE1D7C6),
-                                width: 2.0,
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.date_range_outlined,
+                                          color: Color(0xFF57636C),
+                                          size: 24.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'بداية الفرصة',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF565656),
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16.0,
+                                            ),
+                                          ),
+                                        ),
+                                        if (_model.datePicked1 != null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                _model.datePicked1,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFFB72F31),
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(25.0),
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFE1D7C6),
+                            ],
                           ),
-                          style: GoogleFonts.getFont(
-                            'Open Sans',
-                            color: Color(0xFF565656),
-                            fontWeight: FontWeight.normal,
-                          ),
-                          textAlign: TextAlign.start,
-                          maxLines: 4,
-                          keyboardType: TextInputType.multiline,
-                          validator: _model.oppdesControllerValidator
-                              .asValidator(context),
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.44,
-                              height: 51.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFE1D7C6),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(25.0),
-                                border: Border.all(
-                                  color: Color(0xFFE1D7C6),
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: InkWell(
-                                onTap: () async {
-                                  final _datePicked1Date = await showDatePicker(
-                                    context: context,
-                                    initialDate: getCurrentTimestamp,
-                                    firstDate: getCurrentTimestamp,
-                                    lastDate: DateTime(2050),
-                                  );
-
-                                  TimeOfDay? _datePicked1Time;
-                                  if (_datePicked1Date != null) {
-                                    _datePicked1Time = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          getCurrentTimestamp),
-                                    );
-                                  }
-
-                                  if (_datePicked1Date != null &&
-                                      _datePicked1Time != null) {
-                                    setState(() {
-                                      _model.datePicked1 = DateTime(
-                                        _datePicked1Date.year,
-                                        _datePicked1Date.month,
-                                        _datePicked1Date.day,
-                                        _datePicked1Time!.hour,
-                                        _datePicked1Time.minute,
-                                      );
-                                    });
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.date_range_outlined,
-                                      color: Color(0xFF57636C),
-                                      size: 24.0,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'بداية الفرصة',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                    ),
-                                    if (_model.datePicked1 != null)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          dateTimeFormat(
-                                            'M/d h:mm a',
-                                            _model.datePicked1,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          ),
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF7EAEBD),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16.0,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.44,
-                              height: 51.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFE1D7C6),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(25.0),
-                                border: Border.all(
-                                  color: Color(0xFFE1D7C6),
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: InkWell(
-                                onTap: () async {
-                                  final _datePicked2Date = await showDatePicker(
-                                    context: context,
-                                    initialDate: getCurrentTimestamp,
-                                    firstDate: getCurrentTimestamp,
-                                    lastDate: DateTime(2050),
-                                  );
-
-                                  TimeOfDay? _datePicked2Time;
-                                  if (_datePicked2Date != null) {
-                                    _datePicked2Time = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          getCurrentTimestamp),
-                                    );
-                                  }
-
-                                  if (_datePicked2Date != null &&
-                                      _datePicked2Time != null) {
-                                    setState(() {
-                                      _model.datePicked2 = DateTime(
-                                        _datePicked2Date.year,
-                                        _datePicked2Date.month,
-                                        _datePicked2Date.day,
-                                        _datePicked2Time!.hour,
-                                        _datePicked2Time.minute,
-                                      );
-                                    });
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.date_range_outlined,
-                                      color: Color(0xFF57636C),
-                                      size: 24.0,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'نهاية الفرصة',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                    ),
-                                    if (_model.datePicked2 != null)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          dateTimeFormat(
-                                            'M/d h:mm a',
-                                            _model.datePicked2,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          ),
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF7EAEBD),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16.0,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.44,
-                              height: 51.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFE1D7C6),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 4.0,
-                                    color: Color(0x33000000),
-                                    offset: Offset(0.0, 2.0),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(25.0),
-                                border: Border.all(
-                                  color: Color(0xFFE1D7C6),
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: InkWell(
-                                onTap: () async {
-                                  final _datePicked3Date = await showDatePicker(
-                                    context: context,
-                                    initialDate: getCurrentTimestamp,
-                                    firstDate: getCurrentTimestamp,
-                                    lastDate: DateTime(2050),
-                                  );
-
-                                  TimeOfDay? _datePicked3Time;
-                                  if (_datePicked3Date != null) {
-                                    _datePicked3Time = await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.fromDateTime(
-                                          getCurrentTimestamp),
-                                    );
-                                  }
-
-                                  if (_datePicked3Date != null &&
-                                      _datePicked3Time != null) {
-                                    setState(() {
-                                      _model.datePicked3 = DateTime(
-                                        _datePicked3Date.year,
-                                        _datePicked3Date.month,
-                                        _datePicked3Date.day,
-                                        _datePicked3Time!.hour,
-                                        _datePicked3Time.minute,
-                                      );
-                                    });
-                                  }
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.date_range_outlined,
-                                      color: Color(0xFF57636C),
-                                      size: 24.0,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'نهاية فترة التقديم',
-                                        style: GoogleFonts.getFont(
-                                          'Open Sans',
-                                          color: Color(0xFF565656),
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16.0,
-                                        ),
-                                      ),
-                                    ),
-                                    if (_model.datePicked3 != null)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          dateTimeFormat(
-                                            'M/d h:mm a',
-                                            _model.datePicked3,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
-                                          ),
-                                          style: GoogleFonts.getFont(
-                                            'Open Sans',
-                                            color: Color(0xFF7EAEBD),
-                                            fontWeight: FontWeight.normal,
-                                            fontSize: 16.0,
-                                          ),
-                                        ),
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 30.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          setState(() {
-                            FFAppState().addToSkilllist(
-                                _model.oppskill1Controller.text);
-                          });
-                          if (_model.oppskill2Controller.text != null &&
-                              _model.oppskill2Controller.text != '') {
-                            setState(() {
-                              FFAppState().addToSkilllist(
-                                  _model.oppskill2Controller.text);
-                            });
-                          }
-                          if (_model.oppskill3Controller.text != null &&
-                              _model.oppskill3Controller.text != '') {
-                            setState(() {
-                              FFAppState().addToSkilllist(
-                                  _model.oppskill3Controller.text);
-                            });
-                          }
-                          if (_model.oppskill4Controller.text != null &&
-                              _model.oppskill4Controller.text != '') {
-                            setState(() {
-                              FFAppState().addToSkilllist(
-                                  _model.oppskill4Controller.text);
-                            });
-                          }
-                          if (_model.oppskill5Controller.text != null &&
-                              _model.oppskill5Controller.text != '') {
-                            setState(() {
-                              FFAppState().addToSkilllist(
-                                  _model.oppskill5Controller.text);
-                            });
-                          }
-
-                          final opportunitiesCreateData = {
-                            ...createOpportunitiesRecordData(
-                              opDesc: _model.oppdesController.text,
-                              sdate: _model.datePicked1,
-                              edate: _model.datePicked2,
-                              opProvider: currentUserDisplayName,
-                              opProviderLogo: currentUserPhoto,
-                              oppName: _model.oppNameController.text,
-                              status: 'معلق',
-                              opID: random_data.randomString(
-                                20,
-                                20,
-                                true,
-                                true,
-                                true,
-                              ),
-                              opProviderEmail: currentUserEmail,
-                              lastD2apply: _model.datePicked3,
-                            ),
-                            'OpSkills': FFAppState().Skilllist,
-                          };
-                          await OpportunitiesRecord.collection
-                              .doc()
-                              .set(opportunitiesCreateData);
-                          FFAppState().numskills = [];
-                          FFAppState().Skilllist = [];
-                          triggerPushNotification(
-                            notificationTitle: 'طلب إضافة فرصة ',
-                            notificationText:
-                                'بعنوان${_model.oppNameController.text}',
-                            notificationSound: 'default',
-                            userRefs: [FFAppState().notifysuperadmin!],
-                            initialPageName: 'HomePage',
-                            parameterData: {},
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'تم إضافة النشاط بنجاح',
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineSmall
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                    ),
-                              ),
-                              duration: Duration(milliseconds: 4000),
-                              backgroundColor: Color(0xFF22C11C),
-                            ),
-                          );
-
-                          context.goNamed(
-                            'HomePage',
-                            extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
-                                hasTransition: true,
-                                transitionType: PageTransitionType.rightToLeft,
-                              ),
-                            },
-                          );
-                        },
-                        text: 'إرسال طلب الإضافة',
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 50.0,
+                        Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF7EAEBD),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
+                              20.0, 0.0, 20.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
+                                  height: 51.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFE1D7C6),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    border: Border.all(
+                                      color: Color(0xFFE1D7C6),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final _datePicked2Date =
+                                          await showDatePicker(
+                                        context: context,
+                                        initialDate: getCurrentTimestamp,
+                                        firstDate: getCurrentTimestamp,
+                                        lastDate: DateTime(2050),
+                                      );
+
+                                      TimeOfDay? _datePicked2Time;
+                                      if (_datePicked2Date != null) {
+                                        _datePicked2Time = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.fromDateTime(
+                                              getCurrentTimestamp),
+                                        );
+                                      }
+
+                                      if (_datePicked2Date != null &&
+                                          _datePicked2Time != null) {
+                                        setState(() {
+                                          _model.datePicked2 = DateTime(
+                                            _datePicked2Date.year,
+                                            _datePicked2Date.month,
+                                            _datePicked2Date.day,
+                                            _datePicked2Time!.hour,
+                                            _datePicked2Time.minute,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.date_range_outlined,
+                                          color: Color(0xFF57636C),
+                                          size: 24.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'نهاية الفرصة',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF565656),
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16.0,
+                                            ),
+                                          ),
+                                        ),
+                                        if (_model.datePicked2 != null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                _model.datePicked2,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.44,
+                                  height: 51.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFE1D7C6),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0.0, 2.0),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(25.0),
+                                    border: Border.all(
+                                      color: Color(0xFFE1D7C6),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final _datePicked3Date =
+                                          await showDatePicker(
+                                        context: context,
+                                        initialDate: getCurrentTimestamp,
+                                        firstDate: getCurrentTimestamp,
+                                        lastDate: DateTime(2050),
+                                      );
+
+                                      TimeOfDay? _datePicked3Time;
+                                      if (_datePicked3Date != null) {
+                                        _datePicked3Time = await showTimePicker(
+                                          context: context,
+                                          initialTime: TimeOfDay.fromDateTime(
+                                              getCurrentTimestamp),
+                                        );
+                                      }
+
+                                      if (_datePicked3Date != null &&
+                                          _datePicked3Time != null) {
+                                        setState(() {
+                                          _model.datePicked3 = DateTime(
+                                            _datePicked3Date.year,
+                                            _datePicked3Date.month,
+                                            _datePicked3Date.day,
+                                            _datePicked3Time!.hour,
+                                            _datePicked3Time.minute,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.date_range_outlined,
+                                          color: Color(0xFF57636C),
+                                          size: 24.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'نهاية فترة التقديم',
+                                            style: GoogleFonts.getFont(
+                                              'Open Sans',
+                                              color: Color(0xFF565656),
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16.0,
+                                            ),
+                                          ),
+                                        ),
+                                        if (_model.datePicked3 != null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              dateTimeFormat(
+                                                'M/d h:mm a',
+                                                _model.datePicked3,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              style: GoogleFonts.getFont(
+                                                'Open Sans',
+                                                color: Color(0xFF7EAEBD),
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 30.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              setState(() {
+                                FFAppState().addToSkilllist(
+                                    _model.oppskill1Controller.text);
+                              });
+                              if (_model.oppskill2Controller.text != null &&
+                                  _model.oppskill2Controller.text != '') {
+                                setState(() {
+                                  FFAppState().addToSkilllist(
+                                      _model.oppskill2Controller.text);
+                                });
+                              }
+                              if (_model.oppskill3Controller.text != null &&
+                                  _model.oppskill3Controller.text != '') {
+                                setState(() {
+                                  FFAppState().addToSkilllist(
+                                      _model.oppskill3Controller.text);
+                                });
+                              }
+                              if (_model.oppskill4Controller.text != null &&
+                                  _model.oppskill4Controller.text != '') {
+                                setState(() {
+                                  FFAppState().addToSkilllist(
+                                      _model.oppskill4Controller.text);
+                                });
+                              }
+                              if (_model.oppskill5Controller.text != null &&
+                                  _model.oppskill5Controller.text != '') {
+                                setState(() {
+                                  FFAppState().addToSkilllist(
+                                      _model.oppskill5Controller.text);
+                                });
+                              }
+
+                              final opportunitiesCreateData = {
+                                ...createOpportunitiesRecordData(
+                                  opDesc: _model.oppdesController.text,
+                                  sdate: _model.datePicked1,
+                                  edate: _model.datePicked2,
+                                  opProvider: currentUserDisplayName,
+                                  opProviderLogo: currentUserPhoto,
+                                  oppName: _model.oppNameController.text,
+                                  status: 'معلق',
+                                  opID: random_data.randomString(
+                                    20,
+                                    20,
+                                    true,
+                                    true,
+                                    true,
+                                  ),
+                                  opProviderEmail: currentUserEmail,
+                                  lastD2apply: _model.datePicked3,
+                                ),
+                                'OpSkills': FFAppState().Skilllist,
+                              };
+                              await OpportunitiesRecord.collection
+                                  .doc()
+                                  .set(opportunitiesCreateData);
+                              FFAppState().numskills = [];
+                              FFAppState().Skilllist = [];
+                              triggerPushNotification(
+                                notificationTitle: 'طلب إضافة فرصة ',
+                                notificationText:
+                                    'بعنوان${_model.oppNameController.text}',
+                                notificationSound: 'default',
+                                userRefs: [
+                                  addoppNotifyRecord!.multiuser!.toList().first
+                                ],
+                                initialPageName: 'HomePage',
+                                parameterData: {},
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'تم إضافة النشاط بنجاح',
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Colors.white,
+                                        ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor: Color(0xFF22C11C),
+                                ),
+                              );
+
+                              context.goNamed(
+                                'HomePage',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+                            },
+                            text: 'إرسال طلب الإضافة',
+                            options: FFButtonOptions(
+                              width: double.infinity,
+                              height: 50.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF7EAEBD),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
                                     fontFamily: 'Poppins',
                                     color: Color(0xFFF4F3F0),
                                     fontSize: 18.0,
                                   ),
-                          elevation: 2.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                              elevation: 2.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(25.0),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -450,7 +450,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                   ],
                                 ),
                               ),
-                              if (getCurrentTimestamp >=
+                              if (getCurrentTimestamp >
                                   scrollingContainerExtraActsRecord!
                                       .lastD2enroll!)
                                 Padding(
@@ -482,7 +482,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     ],
                                   ),
                                 ),
-                              if (getCurrentTimestamp <
+                              if (getCurrentTimestamp <=
                                   scrollingContainerExtraActsRecord!
                                       .lastD2enroll!)
                                 Padding(
@@ -492,13 +492,9 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      if ((valueOrDefault(
-                                                  currentUserDocument?.type,
-                                                  '') ==
-                                              'student') &&
-                                          (scrollingContainerExtraActsRecord!
-                                                  .numSeats !=
-                                              0))
+                                      if (valueOrDefault(
+                                              currentUserDocument?.type, '') ==
+                                          'student')
                                         AuthUserStreamWidget(
                                           builder: (context) =>
                                               StreamBuilder<List<UsersRecord>>(
@@ -711,116 +707,156 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                     ],
                                   ),
                                 ),
-                              if ((valueOrDefault(
-                                          currentUserDocument?.type, '') ==
-                                      'student') &&
-                                  (scrollingContainerExtraActsRecord!
-                                          .numSeats ==
-                                      0))
+                              if (getCurrentTimestamp <=
+                                  scrollingContainerExtraActsRecord!
+                                      .lastD2disenroll!)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 15.0, 20.0, 15.0),
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) =>
-                                        StreamBuilder<List<NotifyRecord>>(
-                                      stream: queryNotifyRecord(
-                                        queryBuilder: (notifyRecord) =>
-                                            notifyRecord.where('act_ID',
-                                                isEqualTo:
-                                                    scrollingContainerExtraActsRecord!
-                                                        .actID),
-                                        singleRecord: true,
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                color: Color(0xFF0184BD),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      if ((valueOrDefault(
+                                                  currentUserDocument?.type,
+                                                  '') ==
+                                              'student') &&
+                                          (scrollingContainerExtraActsRecord!
+                                                  .numSeats ==
+                                              0))
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 15.0, 20.0, 15.0),
+                                            child: AuthUserStreamWidget(
+                                              builder: (context) =>
+                                                  StreamBuilder<
+                                                      List<NotifyRecord>>(
+                                                stream: queryNotifyRecord(
+                                                  queryBuilder: (notifyRecord) =>
+                                                      notifyRecord.where(
+                                                          'act_ID',
+                                                          isEqualTo:
+                                                              scrollingContainerExtraActsRecord!
+                                                                  .actID),
+                                                  singleRecord: true,
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color:
+                                                              Color(0xFF0184BD),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  List<NotifyRecord>
+                                                      switchListTileNotifyRecordList =
+                                                      snapshot.data!;
+                                                  // Return an empty Container when the item does not exist.
+                                                  if (snapshot.data!.isEmpty) {
+                                                    return Container();
+                                                  }
+                                                  final switchListTileNotifyRecord =
+                                                      switchListTileNotifyRecordList
+                                                              .isNotEmpty
+                                                          ? switchListTileNotifyRecordList
+                                                              .first
+                                                          : null;
+                                                  return SwitchListTile(
+                                                    value: _model
+                                                            .switchListTileValue ??=
+                                                        false,
+                                                    onChanged:
+                                                        (newValue) async {
+                                                      setState(() => _model
+                                                              .switchListTileValue =
+                                                          newValue!);
+                                                      if (newValue!) {
+                                                        if (switchListTileNotifyRecord !=
+                                                            null) {
+                                                          final notifyUpdateData =
+                                                              {
+                                                            'multiuser':
+                                                                FieldValue
+                                                                    .arrayUnion([
+                                                              currentUserReference
+                                                            ]),
+                                                          };
+                                                          await switchListTileNotifyRecord!
+                                                              .reference
+                                                              .update(
+                                                                  notifyUpdateData);
+                                                        } else {
+                                                          final notifyCreateData =
+                                                              {
+                                                            ...createNotifyRecordData(
+                                                              actID: widget
+                                                                  .eventID,
+                                                            ),
+                                                            'multiuser': [
+                                                              currentUserReference
+                                                            ],
+                                                          };
+                                                          await NotifyRecord
+                                                              .collection
+                                                              .doc()
+                                                              .set(
+                                                                  notifyCreateData);
+                                                        }
+                                                      } else {
+                                                        final notifyUpdateData =
+                                                            {
+                                                          ...createNotifyRecordData(
+                                                            actID:
+                                                                widget.eventID,
+                                                          ),
+                                                          'multiuser':
+                                                              FieldValue
+                                                                  .arrayRemove([
+                                                            currentUserReference
+                                                          ]),
+                                                        };
+                                                        await switchListTileNotifyRecord!
+                                                            .reference
+                                                            .update(
+                                                                notifyUpdateData);
+                                                      }
+                                                    },
+                                                    title: Text(
+                                                      'نبهني في حال توفرت مقاعد',
+                                                      style:
+                                                          GoogleFonts.getFont(
+                                                        'Open Sans',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 18.0,
+                                                      ),
+                                                    ),
+                                                    tileColor:
+                                                        Color(0xFFF5F5F5),
+                                                    dense: false,
+                                                    controlAffinity:
+                                                        ListTileControlAffinity
+                                                            .trailing,
+                                                  );
+                                                },
                                               ),
                                             ),
-                                          );
-                                        }
-                                        List<NotifyRecord>
-                                            switchListTileNotifyRecordList =
-                                            snapshot.data!;
-                                        // Return an empty Container when the item does not exist.
-                                        if (snapshot.data!.isEmpty) {
-                                          return Container();
-                                        }
-                                        final switchListTileNotifyRecord =
-                                            switchListTileNotifyRecordList
-                                                    .isNotEmpty
-                                                ? switchListTileNotifyRecordList
-                                                    .first
-                                                : null;
-                                        return SwitchListTile(
-                                          value: _model.switchListTileValue ??=
-                                              false,
-                                          onChanged: (newValue) async {
-                                            setState(() =>
-                                                _model.switchListTileValue =
-                                                    newValue!);
-                                            if (newValue!) {
-                                              if (switchListTileNotifyRecord !=
-                                                  null) {
-                                                final notifyUpdateData = {
-                                                  'multiuser':
-                                                      FieldValue.arrayUnion([
-                                                    currentUserReference
-                                                  ]),
-                                                };
-                                                await switchListTileNotifyRecord!
-                                                    .reference
-                                                    .update(notifyUpdateData);
-                                              } else {
-                                                final notifyCreateData = {
-                                                  ...createNotifyRecordData(
-                                                    actID: widget.eventID,
-                                                  ),
-                                                  'multiuser': [
-                                                    currentUserReference
-                                                  ],
-                                                };
-                                                await NotifyRecord.collection
-                                                    .doc()
-                                                    .set(notifyCreateData);
-                                              }
-                                            } else {
-                                              final notifyUpdateData = {
-                                                ...createNotifyRecordData(
-                                                  actID: widget.eventID,
-                                                ),
-                                                'multiuser':
-                                                    FieldValue.arrayRemove(
-                                                        [currentUserReference]),
-                                              };
-                                              await switchListTileNotifyRecord!
-                                                  .reference
-                                                  .update(notifyUpdateData);
-                                            }
-                                          },
-                                          title: Text(
-                                            'نبهني في حال توفرت مقاعد',
-                                            style: GoogleFonts.getFont(
-                                              'Open Sans',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 18.0,
-                                            ),
                                           ),
-                                          tileColor: Color(0xFFF5F5F5),
-                                          dense: false,
-                                          controlAffinity:
-                                              ListTileControlAffinity.trailing,
-                                        );
-                                      },
-                                    ),
+                                        ),
+                                    ],
                                   ),
                                 ),
                               if (valueOrDefault(

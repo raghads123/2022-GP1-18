@@ -679,6 +679,9 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                                 scrollingContainerExtraActsRecord
                                                                     .actLoc,
                                                           );
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
                                                         }
                                                       },
                                                 text: 'إلتحاق',

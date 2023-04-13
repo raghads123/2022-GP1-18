@@ -679,6 +679,9 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                                                 scrollingContainerExtraActsRecord
                                                                     .actLoc,
                                                           );
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
                                                         }
                                                       },
                                                 text: 'إلتحاق',

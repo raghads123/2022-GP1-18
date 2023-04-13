@@ -6,12 +6,15 @@
 
 #import "GeneratedPluginRegistrant.h"
 
+<<<<<<< Updated upstream
 #if __has_include(<add_2_calendar/Add2CalendarPlugin.h>)
 #import <add_2_calendar/Add2CalendarPlugin.h>
 #else
 @import add_2_calendar;
 #endif
 
+=======
+>>>>>>> Stashed changes
 #if __has_include(<cloud_firestore/FLTFirebaseFirestorePlugin.h>)
 #import <cloud_firestore/FLTFirebaseFirestorePlugin.h>
 #else
@@ -105,7 +108,10 @@
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
+<<<<<<< Updated upstream
   [Add2CalendarPlugin registerWithRegistrar:[registry registrarForPlugin:@"Add2CalendarPlugin"]];
+=======
+>>>>>>> Stashed changes
   [FLTFirebaseFirestorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseFirestorePlugin"]];
   [FLTFirebaseFunctionsPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseFunctionsPlugin"]];
   [FilePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FilePickerPlugin"]];

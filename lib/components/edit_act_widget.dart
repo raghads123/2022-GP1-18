@@ -774,7 +774,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                               );
                               Navigator.pop(context);
                             },
-                            text: 'إرسال طلب التعديل',
+                            text: 'تعديل',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 50.0,

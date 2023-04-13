@@ -684,6 +684,9 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget>
                                                                 scrollingContainerExtraActsRecord
                                                                     .actLoc,
                                                           );
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
                                                         }
                                                       },
                                                 text: 'إلتحاق',

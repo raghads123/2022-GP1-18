@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sign_up_model.dart';
 export 'sign_up_model.dart';
+import 'dart:ui' as ui;
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -199,6 +200,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textDirection:
+                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .emailControllerValidator
@@ -317,6 +320,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textDirection:
+                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .passwordControllerValidator
@@ -435,6 +440,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
+                                              textDirection:
+                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .confirmpasswordControllerValidator

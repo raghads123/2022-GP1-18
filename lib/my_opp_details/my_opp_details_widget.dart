@@ -564,6 +564,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                             Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
+                                                                                // fix direction
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                   child: Text(

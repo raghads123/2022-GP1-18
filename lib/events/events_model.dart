@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
@@ -19,7 +19,7 @@ class EventsModel extends FlutterFlowModel {
 
   // State field(s) for ChoiceChips widget.
   String? choiceChipsValue;
-  FormFieldController<List<String>>? choiceChipsController;
+  FormFieldController<List<String>>? choiceChipsValueController;
   // State field(s) for fieldSearch widget.
   final fieldSearchKey1 = GlobalKey();
   TextEditingController? fieldSearchController1;

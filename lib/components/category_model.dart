@@ -13,7 +13,7 @@ class CategoryModel extends FlutterFlowModel {
 
   // State field(s) for CheckboxGroup widget.
   List<String>? checkboxGroupValues;
-  FormFieldController<List<String>>? checkboxGroupController;
+  FormFieldController<List<String>>? checkboxGroupValueController;
 
   /// Initialization and disposal methods.
 

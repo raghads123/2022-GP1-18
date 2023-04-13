@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/ratecollection_widget.dart';
@@ -777,6 +777,78 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                         20.0,
                                                                         0.0,
                                                                         20.0,
+                                                                        5.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          5.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          4.0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .schedule,
+                                                                        color: Color(
+                                                                            0xFF0184BD),
+                                                                        size:
+                                                                            20.0,
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'آخر فرصة لإلغاء الإلتحاق',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              color: Color(0xFF0184BD),
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Text(
+                                                                      dateTimeFormat(
+                                                                        'M/d h:mm a',
+                                                                        columnExtraActsRecord!
+                                                                            .lastD2disenroll!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Poppins',
+                                                                            color:
+                                                                                Color(0xFF0184BD),
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20.0,
+                                                                        0.0,
+                                                                        20.0,
                                                                         15.0),
                                                                 child: Row(
                                                                   mainAxisSize:
@@ -821,7 +893,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   ],
                                                                 ),
                                                               ),
-                                                              if (getCurrentTimestamp <
+                                                              if (getCurrentTimestamp <=
                                                                   columnExtraActsRecord!
                                                                       .lastD2disenroll!)
                                                                 Padding(
@@ -974,7 +1046,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                   }
                                                                                 }
                                                                               },
-                                                                              text: 'إلغاء التسجيل',
+                                                                              text: 'إلغاء اللإلتحاق',
                                                                               options: FFButtonOptions(
                                                                                 width: 130.0,
                                                                                 height: 35.0,

@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -206,10 +206,10 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 15.0, 20.0, 15.0),
                                           child: FlutterFlowDropDown<String>(
-                                            controller:
-                                                _model.collegeController ??=
-                                                    FormFieldController<String>(
-                                                        null),
+                                            controller: _model
+                                                    .collegeValueController ??=
+                                                FormFieldController<String>(
+                                                    null),
                                             options: [
                                               'كلية الآداب',
                                               'كلية التربية',
@@ -252,7 +252,7 @@ class _SettingUpProfileWidgetState extends State<SettingUpProfileWidget> {
                                                   20.0, 15.0, 20.0, 15.0),
                                           child: FlutterFlowDropDown<String>(
                                             controller:
-                                                _model.levelController ??=
+                                                _model.levelValueController ??=
                                                     FormFieldController<String>(
                                                         null),
                                             options: [

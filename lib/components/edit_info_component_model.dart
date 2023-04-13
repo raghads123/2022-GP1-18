@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -26,10 +26,10 @@ class EditInfoComponentModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? nameControllerValidator;
   // State field(s) for college widget.
   String? collegeValue;
-  FormFieldController<String>? collegeController;
+  FormFieldController<String>? collegeValueController;
   // State field(s) for level widget.
   String? levelValue;
-  FormFieldController<String>? levelController;
+  FormFieldController<String>? levelValueController;
 
   /// Initialization and disposal methods.
 

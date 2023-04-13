@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -16,7 +16,7 @@ class EditInterestsComponentModel extends FlutterFlowModel {
   final formKey = GlobalKey<FormState>();
   // State field(s) for CheckboxGroup widget.
   List<String>? checkboxGroupValues;
-  FormFieldController<List<String>>? checkboxGroupController;
+  FormFieldController<List<String>>? checkboxGroupValueController;
 
   /// Initialization and disposal methods.
 

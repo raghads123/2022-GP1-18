@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -483,8 +483,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               return;
                                             }
 
-                                            final user =
-                                                await createAccountWithEmail(
+                                            final user = await authManager
+                                                .createAccountWithEmail(
                                               context,
                                               _model.emailController.text,
                                               _model.passwordController.text,
@@ -493,7 +493,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               return;
                                             }
 
-                                            await sendEmailVerification();
+                                            await authManager
+                                                .sendEmailVerification();
 
                                             context.goNamedAuth(
                                                 'Emailauth', mounted);

@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -185,7 +185,7 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                       20.0, 0.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await sendEmailVerification();
+                                      await authManager.sendEmailVerification();
                                     },
                                     text: 'إعادة إرسال البريد',
                                     options: FFButtonOptions(

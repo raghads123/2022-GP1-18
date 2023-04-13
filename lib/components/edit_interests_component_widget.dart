@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_checkbox_group.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -155,8 +155,9 @@ class _EditInterestsComponentWidgetState
                                 await currentUserReference!
                                     .update(usersUpdateData);
                               },
-                              controller: _model.checkboxGroupController ??=
-                                  FormFieldController<List<String>>(
+                              controller:
+                                  _model.checkboxGroupValueController ??=
+                                      FormFieldController<List<String>>(
                                 (currentUserDocument?.intrests?.toList() ?? []),
                               ),
                               activeColor: Color(0x0095A1AC),

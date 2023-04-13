@@ -15,16 +15,13 @@ abstract class NotifyRecord
 
   BuiltList<DocumentReference>? get multiuser;
 
-  BuiltList<String>? get notifybyintrest;
-
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(NotifyRecordBuilder builder) => builder
     ..actID = ''
-    ..multiuser = ListBuilder()
-    ..notifybyintrest = ListBuilder();
+    ..multiuser = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('Notify');
@@ -55,8 +52,7 @@ Map<String, dynamic> createNotifyRecordData({
     NotifyRecord(
       (n) => n
         ..actID = actID
-        ..multiuser = null
-        ..notifybyintrest = null,
+        ..multiuser = null,
     ),
   );
 

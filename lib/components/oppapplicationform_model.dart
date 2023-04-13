@@ -1,4 +1,4 @@
-import '/auth/auth_util.dart';
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -19,7 +19,7 @@ class OppapplicationformModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? userEmailControllerValidator;
   // State field(s) for Skill widget.
   String? skillValue;
-  FormFieldController<String>? skillController;
+  FormFieldController<String>? skillValueController;
   // State field(s) for shortbio widget.
   TextEditingController? shortbioController;
   String? Function(BuildContext, String?)? shortbioControllerValidator;

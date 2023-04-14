@@ -980,8 +980,8 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                     };
                                                                                     await columnExtraActsRecord!.reference.update(extraActsUpdateData);
                                                                                     triggerPushNotification(
-                                                                                      notificationTitle: 'حياك!!',
-                                                                                      notificationText: 'لقينا لك مقعد في${columnExtraActsRecord!.actName}',
+                                                                                      notificationTitle: 'أهلاً بك',
+                                                                                      notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
                                                                                       notificationSound: 'default',
                                                                                       userRefs: buttonNotifyRecord!.multiuser!.toList(),
                                                                                       initialPageName: 'course_info',

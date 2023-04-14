@@ -1183,7 +1183,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               triggerPushNotification(
                                 notificationTitle: 'طلب إضافة فرصة ',
                                 notificationText:
-                                    ' بعنوان${_model.oppNameController.text}',
+                                    'بعنوان ${_model.oppNameController.text}',
                                 notificationSound: 'default',
                                 userRefs: [
                                   addoppNotifyRecord!.multiuser!.toList().first

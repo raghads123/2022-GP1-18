@@ -870,6 +870,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                           fontSize: 20.0,
                                                                                           fontWeight: FontWeight.w500,
                                                                                         ),
+                                                                                    textDirection: ui.TextDirection.ltr,
                                                                                   ),
                                                                                 ),
                                                                                 Padding(

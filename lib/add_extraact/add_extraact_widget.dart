@@ -1212,20 +1212,20 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   triggerPushNotification(
                                     notificationTitle: 'طلب إضافة نشاط ',
                                     notificationText:
-                                        'بعنوان${_model.actNameController.text}',
+                                        ' بعنوان${_model.actNameController.text}',
                                     notificationSound: 'default',
                                     userRefs: [
                                       addExtraactNotifyRecord!.multiuser!
                                           .toList()
                                           .first
                                     ],
-                                    initialPageName: 'HomePage',
+                                    initialPageName: 'ManageRequests',
                                     parameterData: {},
                                   );
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'تم ارسال الطلب بنجاح',
+                                        'تم إرسال طلب إضافة النشاط بنجاح',
                                         style: TextStyle(
                                           color: Color(0xE1FFFFFF),
                                           fontWeight: FontWeight.bold,

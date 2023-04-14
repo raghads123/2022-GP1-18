@@ -992,7 +992,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                     ScaffoldMessenger.of(context).showSnackBar(
                                                                                       SnackBar(
                                                                                         content: Text(
-                                                                                          'تم إلغاء تسجيلك بنجاح!',
+                                                                                          'تم إلغاء إلتحاقك بنجاح!',
                                                                                           style: TextStyle(
                                                                                             color: FlutterFlowTheme.of(context).primaryBtnText,
                                                                                             fontWeight: FontWeight.bold,

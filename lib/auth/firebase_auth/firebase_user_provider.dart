@@ -32,7 +32,7 @@ class CountMeInFirebaseUser extends BaseAuthUser {
     if (loggedIn && user!.emailVerified) {
       user!.reload().then((_) => user = FirebaseAuth.instance.currentUser);
     }
-    return currentUser?.emailVerified ?? false;
+    return user?.emailVerified ?? false;
   }
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>

@@ -938,10 +938,6 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                             List<NotifyRecord>
                                                                                 buttonNotifyRecordList =
                                                                                 snapshot.data!;
-                                                                            // Return an empty Container when the item does not exist.
-                                                                            if (snapshot.data!.isEmpty) {
-                                                                              return Container();
-                                                                            }
                                                                             final buttonNotifyRecord = buttonNotifyRecordList.isNotEmpty
                                                                                 ? buttonNotifyRecordList.first
                                                                                 : null;

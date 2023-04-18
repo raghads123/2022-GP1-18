@@ -34,7 +34,7 @@ class CousesMBCall {
 
   static dynamic acceptedmbcourses(dynamic response) => getJsonField(
         response,
-        r'''$.data[?(@.status=='موافق عليها')]''',
+        r'''$.data[?(@.status=='ÙÙØ§ÙÙ Ø¹ÙÙÙØ§')]''',
         true,
       );
 }
@@ -88,7 +88,7 @@ class WorkshopMBCall {
 
   static dynamic acceptedworkshops(dynamic response) => getJsonField(
         response,
-        r'''$.data[?(@.status=='موافق عليها')]''',
+        r'''$.data[?(@.status=='ÙÙØ§ÙÙ Ø¹ÙÙÙØ§')]''',
         true,
       );
 }

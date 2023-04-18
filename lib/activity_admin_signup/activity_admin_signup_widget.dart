@@ -8,7 +8,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'activity_admin_signup_model.dart';
 export 'activity_admin_signup_model.dart';
-import 'dart:ui' as ui;
 
 class ActivityAdminSignupWidget extends StatefulWidget {
   const ActivityAdminSignupWidget({Key? key}) : super(key: key);
@@ -198,8 +197,6 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              textDirection:
-                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .emailControllerValidator
@@ -318,8 +315,6 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              textDirection:
-                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .passwordControllerValidator
@@ -438,8 +433,6 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                                 color: Color(0xFF7EAEBD),
                                                 fontWeight: FontWeight.normal,
                                               ),
-                                              textDirection:
-                                                  ui.TextDirection.ltr,
                                               textAlign: TextAlign.start,
                                               validator: _model
                                                   .confirmpasswordControllerValidator

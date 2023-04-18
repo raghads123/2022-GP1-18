@@ -10,7 +10,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_opp_details_model.dart';
 export 'my_opp_details_model.dart';
-import 'dart:ui' as ui;
 
 class MyOppDetailsWidget extends StatefulWidget {
   const MyOppDetailsWidget({
@@ -577,7 +576,6 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                           fontSize: 20.0,
                                                                                           fontWeight: FontWeight.w500,
                                                                                         ),
-                                                                                    textDirection: ui.TextDirection.ltr,
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
@@ -870,7 +868,6 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                           fontSize: 20.0,
                                                                                           fontWeight: FontWeight.w500,
                                                                                         ),
-                                                                                    textDirection: ui.TextDirection.ltr,
                                                                                   ),
                                                                                 ),
                                                                                 Padding(

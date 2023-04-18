@@ -88,7 +88,7 @@ class _FlutterFlowIconButtonState extends State<FlutterFlowIconButton> {
           );
         },
       ),
-      foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+      iconColor: MaterialStateProperty.resolveWith<Color?>(
         (states) {
           if (states.contains(MaterialState.disabled) &&
               widget.disabledIconColor != null) {

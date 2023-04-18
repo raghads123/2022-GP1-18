@@ -1183,18 +1183,18 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               triggerPushNotification(
                                 notificationTitle: 'طلب إضافة فرصة ',
                                 notificationText:
-                                    'بعنوان${_model.oppNameController.text}',
+                                    'بعنوان ${_model.oppNameController.text}',
                                 notificationSound: 'default',
                                 userRefs: [
                                   addoppNotifyRecord!.multiuser!.toList().first
                                 ],
-                                initialPageName: 'HomePage',
+                                initialPageName: 'ManageRequests',
                                 parameterData: {},
                               );
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'تم إضافة النشاط بنجاح',
+                                    'تم إرسال طلب إضافة الفرصة بنجاح',
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(

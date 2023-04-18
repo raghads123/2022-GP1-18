@@ -32,19 +32,33 @@ class ActivityAdminSignupModel extends FlutterFlowModel {
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   String? _passwordControllerValidator(BuildContext context, String? val) {
+    RegExp upper = RegExp(r"(?=.*[A-Z])");
+    RegExp num = RegExp(r"[0-9]");
+    RegExp small = RegExp(r"(?=.*[a-z])");
+    RegExp char = RegExp(r"(?=.*[(){}[+=:;~`'!?><@#$.%^&*_-])");
     if (val == null || val.isEmpty) {
       return 'الرجاء تعبئة الحقل';
-    }
-
-    if (val.length < 8) {
-      return 'كلمة المرور يجب أن تتكون من ٨ خانات على الأقل';
-    }
-
-    if (!RegExp(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&/><.,~`\':;{}[+=_#^*()±§|-])[A-Za-z\\d@\$!%*?&/><.,~`\':;{}[+=_#^*()±§|-]{8,}\$')
-        .hasMatch(val)) {
-      return 'الرجاء التحقق من جميع المتطلبات';
-    }
+    } else if (val.length < 8 &&
+        !upper.hasMatch(val) &&
+        !num.hasMatch(val) &&
+        !small.hasMatch(val)) {
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير وصغير على الأقل ";
+    } else if (val.length < 8 && !upper.hasMatch(val)) {
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير على الأقل ";
+    } else if (val.length < 8 && !small.hasMatch(val)) {
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف صغير على الأقل ";
+    } else if (!upper.hasMatch(val) && !small.hasMatch(val)) {
+      return "كلمة المرور يجب أن تحتوي على حرف كبير وصغير على الأقل ";
+    } else if (val.length < 8) {
+      return "كلمة المرور يجب أن تتكون من ٨ خانات على الأقل";
+    } else if (!upper.hasMatch(val)) {
+      return "كلمة المرور يجب ان تحتوي على حرف كبير على الأقل";
+    } else if (!small.hasMatch(val)) {
+      return "كلمة المرور يجب أن تحتوي على حرف صغير";
+    } else if (!num.hasMatch(val)) {
+      return "كلمة المرور يجب أن تحتوي على رقم على الأقل ";
+    } else if (!char.hasMatch(val))
+      return "كلمة المرور يجب أن تحتوي على رمز على الأقل";
     return null;
   }
 

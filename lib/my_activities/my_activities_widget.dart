@@ -975,25 +975,23 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                       'num_seats': FieldValue.increment(1),
                                                                                     };
                                                                                     await columnExtraActsRecord!.reference.update(extraActsUpdateData);
-                                                                                    if (buttonNotifyRecord != null) {
-                                                                                      triggerPushNotification(
-                                                                                        notificationTitle: 'أهلاً بك ',
-                                                                                        notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
-                                                                                        notificationSound: 'default',
-                                                                                        userRefs: buttonNotifyRecord!.multiuser!.toList(),
-                                                                                        initialPageName: 'course_info',
-                                                                                        parameterData: {
-                                                                                          'courseid': columnExtraActsRecord!.actID,
-                                                                                        },
-                                                                                      );
-                                                                                      ScaffoldMessenger.of(context).showSnackBar(
-                                                                                        SnackBar(
-                                                                                          content: Text(
-                                                                                            'تم إلغاء تسجيلك بنجاح!',
-                                                                                            style: TextStyle(
-                                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                              fontWeight: FontWeight.bold,
-                                                                                            ),
+                                                                                    triggerPushNotification(
+                                                                                      notificationTitle: 'أهلاً بك',
+                                                                                      notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
+                                                                                      notificationSound: 'default',
+                                                                                      userRefs: buttonNotifyRecord!.multiuser!.toList(),
+                                                                                      initialPageName: 'course_info',
+                                                                                      parameterData: {
+                                                                                        'courseid': columnExtraActsRecord!.actID,
+                                                                                      },
+                                                                                    );
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'تم إلغاء إلتحاقك بنجاح!',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                            fontWeight: FontWeight.bold,
                                                                                           ),
                                                                                           duration: Duration(milliseconds: 4000),
                                                                                           backgroundColor: Color(0xE15BD85B),

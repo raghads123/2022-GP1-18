@@ -897,14 +897,14 @@ packages:
     source: hosted
     version: "2.0.15"
   shared_preferences_android:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences_android
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
   shared_preferences_ios:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences_ios
       url: "https://pub.dartlang.org"
@@ -925,14 +925,14 @@ packages:
     source: hosted
     version: "2.0.5"
   shared_preferences_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
   shared_preferences_web:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shared_preferences_web
       url: "https://pub.dartlang.org"

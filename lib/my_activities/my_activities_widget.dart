@@ -975,29 +975,31 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                       'num_seats': FieldValue.increment(1),
                                                                                     };
                                                                                     await columnExtraActsRecord!.reference.update(extraActsUpdateData);
-                                                                                    triggerPushNotification(
-                                                                                      notificationTitle: 'حياك!!',
-                                                                                      notificationText: 'لقينا لك مقعد في${columnExtraActsRecord!.actName}',
-                                                                                      notificationSound: 'default',
-                                                                                      userRefs: buttonNotifyRecord!.multiuser!.toList(),
-                                                                                      initialPageName: 'course_info',
-                                                                                      parameterData: {
-                                                                                        'courseid': columnExtraActsRecord!.actID,
-                                                                                      },
-                                                                                    );
-                                                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                                                      SnackBar(
-                                                                                        content: Text(
-                                                                                          'تم إلغاء تسجيلك بنجاح!',
-                                                                                          style: TextStyle(
-                                                                                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                            fontWeight: FontWeight.bold,
+                                                                                    if (buttonNotifyRecord != null) {
+                                                                                      triggerPushNotification(
+                                                                                        notificationTitle: 'أهلاً بك ',
+                                                                                        notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
+                                                                                        notificationSound: 'default',
+                                                                                        userRefs: buttonNotifyRecord!.multiuser!.toList(),
+                                                                                        initialPageName: 'course_info',
+                                                                                        parameterData: {
+                                                                                          'courseid': columnExtraActsRecord!.actID,
+                                                                                        },
+                                                                                      );
+                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                        SnackBar(
+                                                                                          content: Text(
+                                                                                            'تم إلغاء تسجيلك بنجاح!',
+                                                                                            style: TextStyle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                            ),
                                                                                           ),
+                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                          backgroundColor: Color(0xE15BD85B),
                                                                                         ),
-                                                                                        duration: Duration(milliseconds: 4000),
-                                                                                        backgroundColor: Color(0xE15BD85B),
-                                                                                      ),
-                                                                                    );
+                                                                                      );
+                                                                                    }
                                                                                   }
                                                                                 } else {
                                                                                   var confirmDialogResponse = await showDialog<bool>(
@@ -1086,66 +1088,81 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                         columnExtraActsRecord!
                                                                             .edate!)
                                                                       Expanded(
-                                                                        child:
-                                                                            FFButtonWidget(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showModalBottomSheet(
-                                                                              isScrollControlled: true,
-                                                                              backgroundColor: Color(0x00000000),
-                                                                              barrierColor: Color(0x00000000),
-                                                                              context: context,
-                                                                              builder: (bottomSheetContext) {
-                                                                                return GestureDetector(
-                                                                                  onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-                                                                                  child: Padding(
-                                                                                    padding: MediaQuery.of(bottomSheetContext).viewInsets,
-                                                                                    child: Container(
-                                                                                      height: 500.0,
-                                                                                      child: RatecollectionWidget(
-                                                                                        ratingactID: columnExtraActsRecord!.actID,
-                                                                                        ratingtype: columnExtraActsRecord!.actType,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
-                                                                          },
-                                                                          text:
-                                                                              'قيمي النشاط',
-                                                                          options:
-                                                                              FFButtonOptions(
-                                                                            width:
-                                                                                130.0,
-                                                                            height:
-                                                                                35.0,
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            color:
-                                                                                Color(0xFF7EAEBD),
-                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                                                                  fontFamily: 'Poppins',
-                                                                                  color: Colors.white,
-                                                                                ),
-                                                                            elevation:
-                                                                                2.0,
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Colors.transparent,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(25.0),
+                                                                        child: StreamBuilder<
+                                                                            List<RatingRecord>>(
+                                                                          stream:
+                                                                              queryRatingRecord(
+                                                                            queryBuilder: (ratingRecord) =>
+                                                                                ratingRecord.where('Act_ID', isEqualTo: columnExtraActsRecord!.actID).where('useremail', isEqualTo: currentUserEmail),
+                                                                            singleRecord:
+                                                                                true,
                                                                           ),
+                                                                          builder:
+                                                                              (context, snapshot) {
+                                                                            // Customize what your widget looks like when it's loading.
+                                                                            if (!snapshot.hasData) {
+                                                                              return Center(
+                                                                                child: SizedBox(
+                                                                                  width: 50.0,
+                                                                                  height: 50.0,
+                                                                                  child: CircularProgressIndicator(
+                                                                                    color: Color(0xFF0184BD),
+                                                                                  ),
+                                                                                ),
+                                                                              );
+                                                                            }
+                                                                            List<RatingRecord>
+                                                                                buttonRatingRecordList =
+                                                                                snapshot.data!;
+                                                                            final buttonRatingRecord = buttonRatingRecordList.isNotEmpty
+                                                                                ? buttonRatingRecordList.first
+                                                                                : null;
+                                                                            return FFButtonWidget(
+                                                                              onPressed: buttonRatingRecord != null
+                                                                                  ? null
+                                                                                  : () async {
+                                                                                      await showModalBottomSheet(
+                                                                                        isScrollControlled: true,
+                                                                                        backgroundColor: Color(0x00000000),
+                                                                                        barrierColor: Color(0x00000000),
+                                                                                        context: context,
+                                                                                        builder: (bottomSheetContext) {
+                                                                                          return GestureDetector(
+                                                                                            onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+                                                                                            child: Padding(
+                                                                                              padding: MediaQuery.of(bottomSheetContext).viewInsets,
+                                                                                              child: Container(
+                                                                                                height: 500.0,
+                                                                                                child: RatecollectionWidget(
+                                                                                                  ratingactID: columnExtraActsRecord!.actID,
+                                                                                                  ratingtype: columnExtraActsRecord!.actType,
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          );
+                                                                                        },
+                                                                                      ).then((value) => setState(() {}));
+                                                                                    },
+                                                                              text: 'قيمي النشاط',
+                                                                              options: FFButtonOptions(
+                                                                                width: 130.0,
+                                                                                height: 35.0,
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                color: Color(0xFF7EAEBD),
+                                                                                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                      fontFamily: 'Poppins',
+                                                                                      color: Colors.white,
+                                                                                    ),
+                                                                                elevation: 2.0,
+                                                                                borderSide: BorderSide(
+                                                                                  color: Colors.transparent,
+                                                                                ),
+                                                                                borderRadius: BorderRadius.circular(25.0),
+                                                                                disabledColor: Color(0xFF95A1AC),
+                                                                              ),
+                                                                            );
+                                                                          },
                                                                         ),
                                                                       ),
                                                                   ],

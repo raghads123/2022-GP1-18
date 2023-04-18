@@ -69,8 +69,10 @@ class ApiCallResponse {
   ) {
     var jsonBody;
     try {
-      jsonBody =
-          returnBody ? jsonDecode(utf8.decode(response.bodyBytes)) : null;
+      final responseBody = decodeUtf8 && returnBody
+          ? const Utf8Decoder().convert(response.bodyBytes)
+          : response.body;
+      jsonBody = returnBody ? json.decode(responseBody) : null;
     } catch (_) {}
     return ApiCallResponse(
       jsonBody,

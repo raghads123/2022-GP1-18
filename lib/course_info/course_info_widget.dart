@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'course_info_model.dart';
 export 'course_info_model.dart';
 
-import 'package:count_me_in/utils/utility.dart';
-
 class CourseInfoWidget extends StatefulWidget {
   const CourseInfoWidget({
     Key? key,
@@ -28,7 +26,7 @@ class CourseInfoWidget extends StatefulWidget {
   _CourseInfoWidgetState createState() => _CourseInfoWidgetState();
 }
 
-class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
+class _CourseInfoWidgetState extends State<CourseInfoWidget> {
   late CourseInfoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -663,23 +661,9 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                                 ) ??
                                                                 false;
                                                         if (confirmDialogResponse) {
-                                                          addToCalendar(
-                                                            sdate:
-                                                                scrollingContainerExtraActsRecord
-                                                                    .sdate!,
-                                                            edate:
-                                                                scrollingContainerExtraActsRecord
-                                                                    .edate,
-                                                            type:
-                                                                scrollingContainerExtraActsRecord
-                                                                    .actType,
-                                                            title:
-                                                                scrollingContainerExtraActsRecord
-                                                                    .actName,
-                                                            location:
-                                                                scrollingContainerExtraActsRecord
-                                                                    .actLoc,
-                                                          );
+                                                          // replace this with sync in calendar
+                                                          Navigator.pop(
+                                                              context);
                                                         } else {
                                                           Navigator.pop(
                                                               context);

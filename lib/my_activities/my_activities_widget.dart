@@ -977,7 +977,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                     await columnExtraActsRecord!.reference.update(extraActsUpdateData);
                                                                                     if (buttonNotifyRecord != null) {
                                                                                       triggerPushNotification(
-                                                                                        notificationTitle: 'أهلاً بك ',
+                                                                                        notificationTitle: 'أهلاً بك',
                                                                                         notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
                                                                                         notificationSound: 'default',
                                                                                         userRefs: buttonNotifyRecord!.multiuser!.toList(),
@@ -989,7 +989,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                       ScaffoldMessenger.of(context).showSnackBar(
                                                                                         SnackBar(
                                                                                           content: Text(
-                                                                                            'تم إلغاء تسجيلك بنجاح!',
+                                                                                            'تم إلغاء إلتحاقك بنجاح!',
                                                                                             style: TextStyle(
                                                                                               color: FlutterFlowTheme.of(context).primaryBtnText,
                                                                                               fontWeight: FontWeight.bold,

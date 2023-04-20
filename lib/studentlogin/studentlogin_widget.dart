@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'studentlogin_model.dart';
 export 'studentlogin_model.dart';
+import 'dart:ui' as ui;
 
 class StudentloginWidget extends StatefulWidget {
   const StudentloginWidget({Key? key}) : super(key: key);
@@ -193,6 +194,8 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   color: Color(0xFF7EAEBD),
                                                   fontWeight: FontWeight.normal,
                                                 ),
+                                                textDirection:
+                                                    ui.TextDirection.ltr,
                                                 textAlign: TextAlign.start,
                                                 validator: _model
                                                     .emailControllerValidator
@@ -296,6 +299,8 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                   color: Color(0xFF7EAEBD),
                                                   fontWeight: FontWeight.normal,
                                                 ),
+                                                textDirection:
+                                                    ui.TextDirection.ltr,
                                                 textAlign: TextAlign.start,
                                                 validator: _model
                                                     .passwordControllerValidator

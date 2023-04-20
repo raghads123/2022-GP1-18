@@ -13,6 +13,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'workshope_info_model.dart';
 export 'workshope_info_model.dart';
+import 'package:count_me_in/utils/utility.dart';
 
 class WorkshopeInfoWidget extends StatefulWidget {
   const WorkshopeInfoWidget({
@@ -26,7 +27,8 @@ class WorkshopeInfoWidget extends StatefulWidget {
   _WorkshopeInfoWidgetState createState() => _WorkshopeInfoWidgetState();
 }
 
-class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
+class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget>
+    with Utility {
   late WorkshopeInfoModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -661,9 +663,23 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                                 ) ??
                                                                 false;
                                                         if (confirmDialogResponse) {
-                                                          // replace this with sync in calendar
-                                                          Navigator.pop(
-                                                              context);
+                                                          addToCalendar(
+                                                            sdate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .sdate!,
+                                                            edate:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .edate,
+                                                            type:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actType,
+                                                            title:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actName,
+                                                            location:
+                                                                scrollingContainerExtraActsRecord
+                                                                    .actLoc,
+                                                          );
                                                         } else {
                                                           Navigator.pop(
                                                               context);

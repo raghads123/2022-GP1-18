@@ -1304,7 +1304,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'تم إرسال الطلب بنجاح',
+                                        'تم إرسال طلب الإضافة بنجاح',
                                         style: TextStyle(
                                           color: Color(0xE1FFFFFF),
                                           fontWeight: FontWeight.bold,

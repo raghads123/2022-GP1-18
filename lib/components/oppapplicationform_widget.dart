@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'oppapplicationform_model.dart';
 export 'oppapplicationform_model.dart';
+import 'dart:ui' as ui;
 
 class OppapplicationformWidget extends StatefulWidget {
   const OppapplicationformWidget({
@@ -245,6 +246,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     color: Color(0xFF565656),
                                     fontWeight: FontWeight.normal,
                                   ),
+                                  textDirection: ui.TextDirection.ltr,
                                   textAlign: TextAlign.start,
                                   validator: _model.userEmailControllerValidator
                                       .asValidator(context),

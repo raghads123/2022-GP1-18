@@ -999,7 +999,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                         context: context,
                                                                                         builder: (alertDialogContext) {
                                                                                           return AlertDialog(
-                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
+                                                                                            title: Text('هل تريد إلغاء إلتحاقك في هذا النشاط؟'),
                                                                                             actions: [
                                                                                               TextButton(
                                                                                                 onPressed: () => Navigator.pop(alertDialogContext, false),

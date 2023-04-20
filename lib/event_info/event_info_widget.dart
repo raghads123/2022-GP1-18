@@ -934,7 +934,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                               final eventCBdata = getJsonField(
                                                 listViewEvetnCBResponse
                                                     .jsonBody,
-                                                r'''$.data''',
+                                                r'''$.data[?(@.status=='موافق عليها')]''',
                                               ).toList();
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,

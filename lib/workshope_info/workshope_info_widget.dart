@@ -936,7 +936,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget>
                                                   getJsonField(
                                                 listViewWorkshopCBResponse
                                                     .jsonBody,
-                                                r'''$.data''',
+                                                r'''$.data[?(@.status=='موافق عليها')]''',
                                               ).toList();
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,

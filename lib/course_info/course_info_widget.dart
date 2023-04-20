@@ -937,7 +937,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                   getJsonField(
                                                 listViewCoursesCBResponse
                                                     .jsonBody,
-                                                r'''$.data''',
+                                                r'''$.data[?(@.status=='موافق عليها')]''',
                                               ).toList();
                                               return ListView.builder(
                                                 padding: EdgeInsets.zero,

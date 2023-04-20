@@ -347,7 +347,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                               builder: (context) {
                                 final eventMBdata = getJsonField(
                                   listViewEventMBResponse.jsonBody,
-                                  r'''$.data''',
+                                  r'''$.data[?(@.status=='موافق عليها')]''',
                                 ).toList();
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,

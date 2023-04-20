@@ -65,7 +65,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
           ),
           onPressed: () async {
             if (valueOrDefault(currentUserDocument?.type, '') == 'student') {
-              context.goNamed('courses');
+              context.safePop();
             } else {
               context.goNamed('coursesCopy');
             }

@@ -65,7 +65,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
           ),
           onPressed: () async {
             if (valueOrDefault(currentUserDocument?.type, '') == 'student') {
-              context.goNamed('events');
+              context.safePop();
             } else {
               context.goNamed('eventsCopy');
             }

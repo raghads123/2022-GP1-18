@@ -66,7 +66,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.goNamed('myActivities');
+              context.safePop();
             },
           ),
           title: Text(

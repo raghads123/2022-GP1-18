@@ -105,7 +105,7 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                       0.0, 0.0, 0.0, 10.0),
                                   child: SelectionArea(
                                       child: Text(
-                                    'تم ارسال رابط توثيق على البريد الإلكتروني',
+                                    'تم إرسال رابط توثيق على البريد الإلكتروني',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

@@ -1,6 +1,6 @@
 {
-    "name": "CountMeIn",
-    "short_name": "CountMeIn",
+    "name": "Count Me In",
+    "short_name": "Count Me In",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -983,7 +983,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                     await columnExtraActsRecord!.reference.update(extraActsUpdateData);
                                                                                     if (buttonNotifyRecord != null) {
                                                                                       triggerPushNotification(
-                                                                                        notificationTitle: 'أهلاً بك ',
+                                                                                        notificationTitle: 'أهلاً بك',
                                                                                         notificationText: 'تم توفر مقعد في ${columnExtraActsRecord!.actName}',
                                                                                         notificationSound: 'default',
                                                                                         userRefs: buttonNotifyRecord!.multiuser!.toList(),
@@ -992,52 +992,22 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                           'courseid': columnExtraActsRecord!.actID,
                                                                                         },
                                                                                       );
+                                                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                                                        SnackBar(
+                                                                                          content: Text(
+                                                                                            'تم إلغاء إلتحاقك بنجاح!',
+                                                                                            style: TextStyle(
+                                                                                              color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                            ),
+                                                                                          ),
+                                                                                          duration: Duration(milliseconds: 4000),
+                                                                                          backgroundColor: Color(0xE15BD85B),
+                                                                                        ),
+                                                                                      );
                                                                                     }
                                                                                   }
-                                                                                } else {
-                                                                                  var confirmDialogResponse = await showDialog<bool>(
-                                                                                        context: context,
-                                                                                        builder: (alertDialogContext) {
-                                                                                          return AlertDialog(
-                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('لا'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('نعم'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      ) ??
-                                                                                      false;
-                                                                                  if (confirmDialogResponse) {
-                                                                                    final usersUpdateData2 = {
-                                                                                      'users_acts': FieldValue.arrayRemove([
-                                                                                        columnExtraActsRecord!.actID
-                                                                                      ]),
-                                                                                    };
-                                                                                    await tabBarUsersRecord!.reference.update(usersUpdateData2);
-                                                                                  }
-                                                                                }
-
-                                                                                ScaffoldMessenger.of(context).showSnackBar(
-                                                                                  SnackBar(
-                                                                                    content: Text(
-                                                                                      'تم إلغاء إلتحاقك بنجاح!',
-                                                                                      style: TextStyle(
-                                                                                        color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                      ),
-                                                                                    ),
-                                                                                    duration: Duration(milliseconds: 4000),
-                                                                                    backgroundColor: Color(0xE15BD85B),
-                                                                                  ),
-                                                                                );
-                                                                              },
+                                                                                } 
                                                                               text: 'إلغاء اللإلتحاق',
                                                                               options: FFButtonOptions(
                                                                                 width: 130.0,

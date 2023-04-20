@@ -174,7 +174,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 30.0),
               child: FFButtonWidget(
                 onPressed: () async {
                   Navigator.pop(context);

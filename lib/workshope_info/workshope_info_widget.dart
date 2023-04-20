@@ -65,7 +65,7 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
           ),
           onPressed: () async {
             if (valueOrDefault(currentUserDocument?.type, '') == 'student') {
-              context.goNamed('workshops');
+              context.safePop();
             } else {
               context.goNamed('workshopsCopy');
             }

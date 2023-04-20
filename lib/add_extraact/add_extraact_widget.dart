@@ -845,7 +845,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'أخر فرصة للإلتحاق',
+                                            'آخر فرصة للإلتحاق',
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),
@@ -1164,18 +1164,97 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     return;
                                   }
                                   if (_model.actTypeValue == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text('يجب تحديد تصنيف النشاط'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     return;
                                   }
                                   if (_model.datePicked1 == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'يجب تحديد تاريخ بداية النشاط'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     return;
                                   }
                                   if (_model.datePicked2 == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'يجب تحديد تاريخ نهاية النشاط'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     return;
                                   }
                                   if (_model.datePicked3 == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'يجب تحديد تاريخ آخر فرصة للإلتحاق '),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     return;
                                   }
                                   if (_model.datePicked4 == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              'يجب تحديد تاريخ آخر فرصة لإلغاء للإلتحاق '),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('تم'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                     return;
                                   }
 
@@ -1225,7 +1304,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'تم ارسال الطلب بنجاح',
+                                        'تم إرسال الطلب بنجاح',
                                         style: TextStyle(
                                           color: Color(0xE1FFFFFF),
                                           fontWeight: FontWeight.bold,

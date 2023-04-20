@@ -374,151 +374,157 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   15.0,
                                                                   15.0,
                                                                   15.0),
-                                                      child: Container(
-                                                        width: double.infinity,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: Colors.white,
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              blurRadius: 4.0,
-                                                              color: Color(
-                                                                  0x33000000),
-                                                              offset: Offset(
-                                                                  0.0, 2.0),
-                                                            )
-                                                          ],
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      25.0),
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      15.0,
-                                                                      15.0,
-                                                                      15.0,
-                                                                      15.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          15.0),
-                                                                      child:
-                                                                          Text(
-                                                                        listViewOpportunitiesRecord
-                                                                            .oppName!,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .displaySmall
-                                                                            .override(
-                                                                              fontFamily: 'Poppins',
-                                                                              color: Color(0xFF565656),
-                                                                              fontSize: 18.0,
-                                                                            ),
-                                                                      ),
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        SelectionArea(
-                                                                            child:
-                                                                                Text(
-                                                                          'حالة التقديم',
-                                                                          textAlign:
-                                                                              TextAlign.start,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .titleMedium
-                                                                              .override(
-                                                                                fontFamily: 'Poppins',
-                                                                                color: Color(0xFF777373),
-                                                                                fontSize: 14.0,
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                        )),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              20.0,
-                                                                              0.0,
-                                                                              5.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Icon(
-                                                                            Icons.flaky,
-                                                                            color:
-                                                                                Color(0xFF777373),
-                                                                            size:
-                                                                                24.0,
-                                                                          ),
-                                                                        ),
-                                                                        SelectionArea(
-                                                                            child:
-                                                                                Text(
-                                                                          listViewOpportunitiesRecord
-                                                                              .status!,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .override(
-                                                                                fontFamily: 'Poppins',
-                                                                                color: Color(0xFF7EAEBD),
-                                                                              ),
-                                                                        )),
-                                                                      ],
-                                                                    ),
-                                                                  ],
-                                                                ),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'MyOppDetails',
+                                                            queryParams: {
+                                                              'opportunityID':
+                                                                  serializeParam(
+                                                                listViewOpportunitiesRecord
+                                                                    .opID,
+                                                                ParamType
+                                                                    .String,
                                                               ),
-                                                              InkWell(
-                                                                onTap:
-                                                                    () async {
-                                                                  context
-                                                                      .goNamed(
-                                                                    'MyOppDetails',
-                                                                    queryParams:
-                                                                        {
-                                                                      'opportunityID':
-                                                                          serializeParam(
-                                                                        listViewOpportunitiesRecord
-                                                                            .opID,
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                  );
-                                                                },
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .chevron_right_rounded,
-                                                                  color: Color(
-                                                                      0xFF777373),
-                                                                  size: 30.0,
-                                                                ),
-                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        child: Container(
+                                                          width:
+                                                              double.infinity,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                blurRadius: 4.0,
+                                                                color: Color(
+                                                                    0x33000000),
+                                                                offset: Offset(
+                                                                    0.0, 2.0),
+                                                              )
                                                             ],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        25.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        15.0,
+                                                                        15.0,
+                                                                        15.0,
+                                                                        15.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            15.0),
+                                                                        child:
+                                                                            Text(
+                                                                          listViewOpportunitiesRecord
+                                                                              .oppName!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .displaySmall
+                                                                              .override(
+                                                                                fontFamily: 'Poppins',
+                                                                                color: Color(0xFF565656),
+                                                                                fontSize: 18.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.start,
+                                                                        children: [
+                                                                          SelectionArea(
+                                                                              child: Text(
+                                                                            'حالة التقديم',
+                                                                            textAlign:
+                                                                                TextAlign.start,
+                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  color: Color(0xFF777373),
+                                                                                  fontSize: 14.0,
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                          )),
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                20.0,
+                                                                                0.0,
+                                                                                5.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.flaky,
+                                                                              color: Color(0xFF777373),
+                                                                              size: 24.0,
+                                                                            ),
+                                                                          ),
+                                                                          SelectionArea(
+                                                                              child: Text(
+                                                                            listViewOpportunitiesRecord.status!,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  color: Color(0xFF7EAEBD),
+                                                                                ),
+                                                                          )),
+                                                                        ],
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    context
+                                                                        .pushNamed(
+                                                                      'MyOppDetails',
+                                                                      queryParams:
+                                                                          {
+                                                                        'opportunityID':
+                                                                            serializeParam(
+                                                                          listViewOpportunitiesRecord
+                                                                              .opID,
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                      }.withoutNulls,
+                                                                    );
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .chevron_right_rounded,
+                                                                    color: Color(
+                                                                        0xFF777373),
+                                                                    size: 30.0,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -1001,56 +1007,14 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                       );
                                                                                     }
                                                                                   }
-                                                                                } else {
-                                                                                  var confirmDialogResponse = await showDialog<bool>(
-                                                                                        context: context,
-                                                                                        builder: (alertDialogContext) {
-                                                                                          return AlertDialog(
-                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('لا'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('نعم'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          );
-                                                                                        },
-                                                                                      ) ??
-                                                                                      false;
-                                                                                  if (confirmDialogResponse) {
-                                                                                    final usersUpdateData2 = {
-                                                                                      'users_acts': FieldValue.arrayRemove([
-                                                                                        columnExtraActsRecord!.actID
-                                                                                      ]),
-                                                                                    };
-                                                                                    await tabBarUsersRecord!.reference.update(usersUpdateData2);
-                                                                                    ScaffoldMessenger.of(context).showSnackBar(
-                                                                                      SnackBar(
-                                                                                        content: Text(
-                                                                                          'تم إلغاء تسجيلك بنجاح!',
-                                                                                          style: TextStyle(
-                                                                                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                            fontWeight: FontWeight.bold,
-                                                                                          ),
-                                                                                        ),
-                                                                                        duration: Duration(milliseconds: 4000),
-                                                                                        backgroundColor: Color(0xE15BD85B),
-                                                                                      ),
-                                                                                    );
-                                                                                  }
-                                                                                }
-                                                                              },
+                                                                                } 
                                                                               text: 'إلغاء اللإلتحاق',
                                                                               options: FFButtonOptions(
                                                                                 width: 130.0,
                                                                                 height: 35.0,
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                                                                                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                color: Color(0xE1FF2323),
+                                                                                color: Color(0xFFB72F31),
                                                                                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                       fontFamily: 'Poppins',
                                                                                       color: Colors.white,
@@ -1221,71 +1185,66 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       15.0, 15.0, 15.0, 15.0),
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBtnText,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      blurRadius: 4.0,
-                                                      color: Color(0x33000000),
-                                                    )
-                                                  ],
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25.0),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(15.0, 15.0,
-                                                          15.0, 15.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          5.0),
-                                                              child: Text(
-                                                                listViewExtraActsRecord
-                                                                    .actName!,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      color: Color(
-                                                                          0xFF565656),
-                                                                      fontSize:
-                                                                          18.0,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            if (getCurrentTimestamp >=
-                                                                listViewExtraActsRecord
-                                                                    .edate!)
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  context.pushNamed(
+                                                    'MyActDetails',
+                                                    queryParams: {
+                                                      'actsdetails':
+                                                          serializeParam(
+                                                        listViewExtraActsRecord
+                                                            .actID,
+                                                        ParamType.String,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBtnText,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 4.0,
+                                                        color:
+                                                            Color(0x33000000),
+                                                        offset:
+                                                            Offset(0.0, 2.0),
+                                                      )
+                                                    ],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25.0),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                15.0,
+                                                                15.0,
+                                                                15.0,
+                                                                15.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
                                                               Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
@@ -1293,114 +1252,145 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
-                                                                            15.0),
+                                                                            5.0),
                                                                 child: Text(
-                                                                  functions
-                                                                      .avgratings(listViewExtraActsRecord
-                                                                          .actRate!
-                                                                          .toList())
-                                                                      .toString(),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .end,
+                                                                  listViewExtraActsRecord
+                                                                      .actName!,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Poppins',
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                SelectionArea(
-                                                                    child: Text(
-                                                                  'حالة التقديم',
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMedium
+                                                                      .displaySmall
                                                                       .override(
                                                                         fontFamily:
                                                                             'Poppins',
                                                                         color: Color(
-                                                                            0xFF777373),
+                                                                            0xFF565656),
                                                                         fontSize:
-                                                                            14.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
+                                                                            18.0,
                                                                       ),
-                                                                )),
+                                                                ),
+                                                              ),
+                                                              if (getCurrentTimestamp >=
+                                                                  listViewExtraActsRecord
+                                                                      .edate!)
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          20.0,
                                                                           0.0,
-                                                                          5.0,
-                                                                          0.0),
-                                                                  child: Icon(
-                                                                    Icons.flaky,
-                                                                    color: Color(
-                                                                        0xFF777373),
-                                                                    size: 24.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          15.0),
+                                                                  child: Text(
+                                                                    functions
+                                                                        .avgratings(listViewExtraActsRecord
+                                                                            .actRate!
+                                                                            .toList())
+                                                                        .toString(),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .end,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
                                                                   ),
                                                                 ),
-                                                                SelectionArea(
-                                                                    child: Text(
-                                                                  listViewExtraActsRecord
-                                                                      .status!,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Poppins',
-                                                                        color: Color(
-                                                                            0xFF7EAEBD),
-                                                                      ),
-                                                                )),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      InkWell(
-                                                        onTap: () async {
-                                                          context.goNamed(
-                                                            'MyActDetails',
-                                                            queryParams: {
-                                                              'actsdetails':
-                                                                  serializeParam(
-                                                                listViewExtraActsRecord
-                                                                    .actID,
-                                                                ParamType
-                                                                    .String,
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  SelectionArea(
+                                                                      child:
+                                                                          Text(
+                                                                    'حالة التقديم',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF777373),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  )),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .flaky,
+                                                                      color: Color(
+                                                                          0xFF777373),
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                  ),
+                                                                  SelectionArea(
+                                                                      child:
+                                                                          Text(
+                                                                    listViewExtraActsRecord
+                                                                        .status!,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF7EAEBD),
+                                                                        ),
+                                                                  )),
+                                                                ],
                                                               ),
-                                                            }.withoutNulls,
-                                                          );
-                                                        },
-                                                        child: Icon(
-                                                          Icons
-                                                              .chevron_right_rounded,
-                                                          color:
-                                                              Color(0xFF777373),
-                                                          size: 30.0,
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        InkWell(
+                                                          onTap: () async {
+                                                            context.pushNamed(
+                                                              'MyActDetails',
+                                                              queryParams: {
+                                                                'actsdetails':
+                                                                    serializeParam(
+                                                                  listViewExtraActsRecord
+                                                                      .actID,
+                                                                  ParamType
+                                                                      .String,
+                                                                ),
+                                                              }.withoutNulls,
+                                                            );
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .chevron_right_rounded,
+                                                            color: Color(
+                                                                0xFF777373),
+                                                            size: 30.0,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

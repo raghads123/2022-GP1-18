@@ -374,320 +374,424 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     15.0, 0.0, 15.0, 15.0),
-                                            child: Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 4.0,
-                                                    color: Color(0x33000000),
-                                                    offset: Offset(0.0, 2.0),
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(25.0),
+                                            child: StreamBuilder<
+                                                List<UserHistoryRecord>>(
+                                              stream: queryUserHistoryRecord(
+                                                queryBuilder:
+                                                    (userHistoryRecord) =>
+                                                        userHistoryRecord.where(
+                                                            'user_email',
+                                                            isEqualTo:
+                                                                currentUserEmail),
+                                                singleRecord: true,
                                               ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 15.0, 15.0, 15.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  10.0,
-                                                                  10.0,
-                                                                  10.0),
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(5.0),
-                                                        child: Image.network(
-                                                          valueOrDefault<
-                                                              String>(
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color:
+                                                            Color(0xFF0184BD),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<UserHistoryRecord>
+                                                    containerUserHistoryRecordList =
+                                                    snapshot.data!;
+                                                // Return an empty Container when the item does not exist.
+                                                if (snapshot.data!.isEmpty) {
+                                                  return Container();
+                                                }
+                                                final containerUserHistoryRecord =
+                                                    containerUserHistoryRecordList
+                                                            .isNotEmpty
+                                                        ? containerUserHistoryRecordList
+                                                            .first
+                                                        : null;
+                                                return InkWell(
+                                                  onTap: () async {
+                                                    context.goNamed(
+                                                      'event_info',
+                                                      queryParams: {
+                                                        'eventID':
+                                                            serializeParam(
+                                                          getJsonField(
+                                                            eventMBdataItem,
+                                                            r'''$.Act_ID''',
+                                                          ).toString(),
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .leftToRight,
+                                                        ),
+                                                      },
+                                                    );
+
+                                                    if (containerUserHistoryRecord !=
+                                                        null) {
+                                                      final userHistoryUpdateData =
+                                                          createUserHistoryRecordData(
+                                                        extraActivityID:
                                                             getJsonField(
-                                                              eventMBdataItem,
-                                                              r'''$.Act_pic''',
-                                                            ),
-                                                            'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
-                                                          ),
-                                                          width:
-                                                              double.infinity,
-                                                          height: 110.0,
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
+                                                          eventMBdataItem,
+                                                          r'''$.Act_ID''',
+                                                        ).toString(),
+                                                        aCTType: 'فعالية',
+                                                      );
+                                                      await containerUserHistoryRecord!
+                                                          .reference
+                                                          .update(
+                                                              userHistoryUpdateData);
+                                                    } else {
+                                                      final userHistoryCreateData =
+                                                          createUserHistoryRecordData(
+                                                        userEmail:
+                                                            currentUserEmail,
+                                                        extraActivityID:
+                                                            getJsonField(
+                                                          eventMBdataItem,
+                                                          r'''$.Act_ID''',
+                                                        ).toString(),
+                                                        aCTType: 'فعالية',
+                                                      );
+                                                      await UserHistoryRecord
+                                                          .collection
+                                                          .doc()
+                                                          .set(
+                                                              userHistoryCreateData);
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          blurRadius: 4.0,
+                                                          color:
+                                                              Color(0x33000000),
+                                                          offset:
+                                                              Offset(0.0, 2.0),
+                                                        )
+                                                      ],
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25.0),
                                                     ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    10.0,
-                                                                    10.0,
-                                                                    10.0,
-                                                                    10.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Text(
-                                                                getJsonField(
-                                                                  eventMBdataItem,
-                                                                  r'''$.Act_name''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Poppins',
-                                                                      color: Color(
-                                                                          0xFF565656),
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
+                                                    child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Row(
+                                                                  15.0,
+                                                                  15.0,
+                                                                  15.0,
+                                                                  15.0),
+                                                      child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'الموقع',
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Lexend Deca',
-                                                                  color: Color(
-                                                                      0xFF777373),
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          Expanded(
-                                                            child: Text(
-                                                              getJsonField(
-                                                                eventMBdataItem,
-                                                                r'''$.Act_loc''',
-                                                              ).toString(),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleSmall
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Roboto Mono',
-                                                                    color: Color(
-                                                                        0xFF1C8EC1),
-                                                                    fontSize:
-                                                                        16.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0),
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          5.0),
+                                                              child:
+                                                                  Image.network(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  getJsonField(
+                                                                    eventMBdataItem,
+                                                                    r'''$.Act_pic''',
                                                                   ),
+                                                                  'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                                ),
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 110.0,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
                                                             ),
                                                           ),
-                                                          StreamBuilder<
-                                                              List<
-                                                                  UserHistoryRecord>>(
-                                                            stream:
-                                                                queryUserHistoryRecord(
-                                                              queryBuilder: (userHistoryRecord) =>
-                                                                  userHistoryRecord.where(
-                                                                      'user_email',
-                                                                      isEqualTo:
-                                                                          currentUserEmail),
-                                                              singleRecord:
-                                                                  true,
-                                                            ),
-                                                            builder: (context,
-                                                                snapshot) {
-                                                              // Customize what your widget looks like when it's loading.
-                                                              if (!snapshot
-                                                                  .hasData) {
-                                                                return Center(
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: 50.0,
-                                                                    height:
-                                                                        50.0,
-                                                                    child:
-                                                                        CircularProgressIndicator(
-                                                                      color: Color(
-                                                                          0xFF0184BD),
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 0.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Text(
+                                                                      getJsonField(
+                                                                        eventMBdataItem,
+                                                                        r'''$.Act_name''',
+                                                                      ).toString(),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .headlineSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Poppins',
+                                                                            color:
+                                                                                Color(0xFF565656),
+                                                                          ),
                                                                     ),
                                                                   ),
-                                                                );
-                                                              }
-                                                              List<UserHistoryRecord>
-                                                                  textUserHistoryRecordList =
-                                                                  snapshot
-                                                                      .data!;
-                                                              final textUserHistoryRecord =
-                                                                  textUserHistoryRecordList
-                                                                          .isNotEmpty
-                                                                      ? textUserHistoryRecordList
-                                                                          .first
-                                                                      : null;
-                                                              return InkWell(
-                                                                onTap:
-                                                                    () async {
-                                                                  context
-                                                                      .goNamed(
-                                                                    'event_info',
-                                                                    queryParams:
-                                                                        {
-                                                                      'eventID':
-                                                                          serializeParam(
-                                                                        getJsonField(
-                                                                          eventMBdataItem,
-                                                                          r'''$.Act_ID''',
-                                                                        ).toString(),
-                                                                        ParamType
-                                                                            .String,
-                                                                      ),
-                                                                    }.withoutNulls,
-                                                                    extra: <
-                                                                        String,
-                                                                        dynamic>{
-                                                                      kTransitionInfoKey:
-                                                                          TransitionInfo(
-                                                                        hasTransition:
-                                                                            true,
-                                                                        transitionType:
-                                                                            PageTransitionType.leftToRight,
-                                                                      ),
-                                                                    },
-                                                                  );
-
-                                                                  if (textUserHistoryRecord !=
-                                                                      null) {
-                                                                    final userHistoryUpdateData =
-                                                                        createUserHistoryRecordData(
-                                                                      extraActivityID:
-                                                                          getJsonField(
-                                                                        eventMBdataItem,
-                                                                        r'''$.Act_ID''',
-                                                                      ).toString(),
-                                                                      aCTType:
-                                                                          'فعالية',
-                                                                    );
-                                                                    await textUserHistoryRecord!
-                                                                        .reference
-                                                                        .update(
-                                                                            userHistoryUpdateData);
-                                                                  } else {
-                                                                    final userHistoryCreateData =
-                                                                        createUserHistoryRecordData(
-                                                                      userEmail:
-                                                                          currentUserEmail,
-                                                                      extraActivityID:
-                                                                          getJsonField(
-                                                                        eventMBdataItem,
-                                                                        r'''$.Act_ID''',
-                                                                      ).toString(),
-                                                                      aCTType:
-                                                                          'فعالية',
-                                                                    );
-                                                                    await UserHistoryRecord
-                                                                        .collection
-                                                                        .doc()
-                                                                        .set(
-                                                                            userHistoryCreateData);
-                                                                  }
-                                                                },
-                                                                child: Text(
-                                                                  'للمزيد',
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  'الموقع',
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodySmall
+                                                                      .bodyMedium
                                                                       .override(
                                                                         fontFamily:
-                                                                            'Poppins',
+                                                                            'Lexend Deca',
                                                                         color: Color(
                                                                             0xFF777373),
+                                                                        fontSize:
+                                                                            14.0,
                                                                         fontWeight:
                                                                             FontWeight.normal,
                                                                       ),
                                                                 ),
-                                                              );
-                                                            },
+                                                              ],
+                                                            ),
                                                           ),
-                                                          Icon(
-                                                            Icons
-                                                                .chevron_right_rounded,
-                                                            color: Color(
-                                                                0xFF777373),
-                                                            size: 24.0,
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Text(
+                                                                    getJsonField(
+                                                                      eventMBdataItem,
+                                                                      r'''$.Act_loc''',
+                                                                    ).toString(),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Roboto Mono',
+                                                                          color:
+                                                                              Color(0xFF1C8EC1),
+                                                                          fontSize:
+                                                                              16.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                                StreamBuilder<
+                                                                    List<
+                                                                        UserHistoryRecord>>(
+                                                                  stream:
+                                                                      queryUserHistoryRecord(
+                                                                    queryBuilder: (userHistoryRecord) => userHistoryRecord.where(
+                                                                        'user_email',
+                                                                        isEqualTo:
+                                                                            currentUserEmail),
+                                                                    singleRecord:
+                                                                        true,
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
+                                                                        child:
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            color:
+                                                                                Color(0xFF0184BD),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    List<UserHistoryRecord>
+                                                                        textUserHistoryRecordList =
+                                                                        snapshot
+                                                                            .data!;
+                                                                    final textUserHistoryRecord = textUserHistoryRecordList
+                                                                            .isNotEmpty
+                                                                        ? textUserHistoryRecordList
+                                                                            .first
+                                                                        : null;
+                                                                    return InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        context
+                                                                            .goNamed(
+                                                                          'event_info',
+                                                                          queryParams:
+                                                                              {
+                                                                            'eventID':
+                                                                                serializeParam(
+                                                                              getJsonField(
+                                                                                eventMBdataItem,
+                                                                                r'''$.Act_ID''',
+                                                                              ).toString(),
+                                                                              ParamType.String,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <
+                                                                              String,
+                                                                              dynamic>{
+                                                                            kTransitionInfoKey:
+                                                                                TransitionInfo(
+                                                                              hasTransition: true,
+                                                                              transitionType: PageTransitionType.leftToRight,
+                                                                            ),
+                                                                          },
+                                                                        );
+
+                                                                        if (textUserHistoryRecord !=
+                                                                            null) {
+                                                                          final userHistoryUpdateData =
+                                                                              createUserHistoryRecordData(
+                                                                            extraActivityID:
+                                                                                getJsonField(
+                                                                              eventMBdataItem,
+                                                                              r'''$.Act_ID''',
+                                                                            ).toString(),
+                                                                            aCTType:
+                                                                                'فعالية',
+                                                                          );
+                                                                          await textUserHistoryRecord!
+                                                                              .reference
+                                                                              .update(userHistoryUpdateData);
+                                                                        } else {
+                                                                          final userHistoryCreateData =
+                                                                              createUserHistoryRecordData(
+                                                                            userEmail:
+                                                                                currentUserEmail,
+                                                                            extraActivityID:
+                                                                                getJsonField(
+                                                                              eventMBdataItem,
+                                                                              r'''$.Act_ID''',
+                                                                            ).toString(),
+                                                                            aCTType:
+                                                                                'فعالية',
+                                                                          );
+                                                                          await UserHistoryRecord
+                                                                              .collection
+                                                                              .doc()
+                                                                              .set(userHistoryCreateData);
+                                                                        }
+                                                                      },
+                                                                      child:
+                                                                          Text(
+                                                                        'للمزيد',
+                                                                        textAlign:
+                                                                            TextAlign.start,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .override(
+                                                                              fontFamily: 'Poppins',
+                                                                              color: Color(0xFF777373),
+                                                                              fontWeight: FontWeight.normal,
+                                                                            ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ),
+                                                                Icon(
+                                                                  Icons
+                                                                      .chevron_right_rounded,
+                                                                  color: Color(
+                                                                      0xFF777373),
+                                                                  size: 24.0,
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ],
@@ -921,282 +1025,493 @@ class _EventsWidgetState extends State<EventsWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 15.0, 15.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Color(0x33000000),
-                                                offset: Offset(0.0, 2.0),
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(25.0),
+                                        child: StreamBuilder<
+                                            List<UserHistoryRecord>>(
+                                          stream: queryUserHistoryRecord(
+                                            queryBuilder: (userHistoryRecord) =>
+                                                userHistoryRecord.where(
+                                                    'user_email',
+                                                    isEqualTo:
+                                                        currentUserEmail),
+                                            singleRecord: true,
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 15.0, 15.0, 15.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10.0, 10.0,
-                                                          10.0, 10.0),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5.0),
-                                                    child: Image.network(
-                                                      valueOrDefault<String>(
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: Color(0xFF0184BD),
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<UserHistoryRecord>
+                                                containerUserHistoryRecordList =
+                                                snapshot.data!;
+                                            // Return an empty Container when the item does not exist.
+                                            if (snapshot.data!.isEmpty) {
+                                              return Container();
+                                            }
+                                            final containerUserHistoryRecord =
+                                                containerUserHistoryRecordList
+                                                        .isNotEmpty
+                                                    ? containerUserHistoryRecordList
+                                                        .first
+                                                    : null;
+                                            return InkWell(
+                                              onTap: () async {
+                                                context.goNamed(
+                                                  'event_info',
+                                                  queryParams: {
+                                                    'eventID': serializeParam(
+                                                      listViewExtraActsRecord
+                                                          .actID,
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    kTransitionInfoKey:
+                                                        TransitionInfo(
+                                                      hasTransition: true,
+                                                      transitionType:
+                                                          PageTransitionType
+                                                              .leftToRight,
+                                                    ),
+                                                  },
+                                                );
+
+                                                if (containerUserHistoryRecord !=
+                                                    null) {
+                                                  final userHistoryUpdateData =
+                                                      createUserHistoryRecordData(
+                                                    extraActivityID:
                                                         listViewExtraActsRecord
-                                                            .actPic,
-                                                        'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
-                                                      ),
-                                                      width: double.infinity,
-                                                      height: 110.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
+                                                            .actID,
+                                                    aCTType: 'فعالية',
+                                                  );
+                                                  await containerUserHistoryRecord!
+                                                      .reference
+                                                      .update(
+                                                          userHistoryUpdateData);
+                                                } else {
+                                                  final userHistoryCreateData =
+                                                      createUserHistoryRecordData(
+                                                    userEmail: currentUserEmail,
+                                                    extraActivityID:
+                                                        listViewExtraActsRecord
+                                                            .actID,
+                                                    aCTType: 'فعالية',
+                                                  );
+                                                  await UserHistoryRecord
+                                                      .collection
+                                                      .doc()
+                                                      .set(
+                                                          userHistoryCreateData);
+                                                }
+                                              },
+                                              child: Container(
+                                                width: double.infinity,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 4.0,
+                                                      color: Color(0x33000000),
+                                                      offset: Offset(0.0, 2.0),
+                                                    )
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25.0),
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10.0,
-                                                                10.0,
-                                                                10.0,
-                                                                10.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Text(
-                                                            listViewExtraActsRecord
-                                                                .actName!,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: Color(
-                                                                      0xFF565656),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
+                                                child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 10.0, 0.0),
-                                                  child: Row(
+                                                      .fromSTEB(15.0, 15.0,
+                                                          15.0, 15.0),
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        'الموقع',
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Lexend Deca',
-                                                              color: Color(
-                                                                  0xFF777373),
-                                                              fontSize: 14.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                            ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 10.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .center,
                                                     children: [
-                                                      Expanded(
-                                                        child: Text(
-                                                          listViewExtraActsRecord
-                                                              .actLoc!,
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto Mono',
-                                                                color: Color(
-                                                                    0xFF1C8EC1),
-                                                                fontSize: 16.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                              ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    10.0,
+                                                                    10.0,
+                                                                    10.0),
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.0),
+                                                          child: Image.network(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              listViewExtraActsRecord
+                                                                  .actPic,
+                                                              'https://identity.ksu.edu.sa/themes/custom/gavias_enzio/logo.png',
+                                                            ),
+                                                            width:
+                                                                double.infinity,
+                                                            height: 110.0,
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
                                                       ),
-                                                      StreamBuilder<
-                                                          List<
-                                                              UserHistoryRecord>>(
-                                                        stream:
-                                                            queryUserHistoryRecord(
-                                                          queryBuilder: (userHistoryRecord) =>
-                                                              userHistoryRecord.where(
-                                                                  'user_email',
-                                                                  isEqualTo:
-                                                                      currentUserEmail),
-                                                          singleRecord: true,
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    CircularProgressIndicator(
-                                                                  color: Color(
-                                                                      0xFF0184BD),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                -1.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      10.0,
+                                                                      10.0,
+                                                                      0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Text(
+                                                                  listViewExtraActsRecord
+                                                                      .actName!,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Poppins',
+                                                                        color: Color(
+                                                                            0xFF565656),
+                                                                      ),
                                                                 ),
                                                               ),
-                                                            );
-                                                          }
-                                                          List<UserHistoryRecord>
-                                                              textUserHistoryRecordList =
-                                                              snapshot.data!;
-                                                          final textUserHistoryRecord =
-                                                              textUserHistoryRecordList
-                                                                      .isNotEmpty
-                                                                  ? textUserHistoryRecordList
-                                                                      .first
-                                                                  : null;
-                                                          return InkWell(
-                                                            onTap: () async {
-                                                              context.goNamed(
-                                                                'event_info',
-                                                                queryParams: {
-                                                                  'eventID':
-                                                                      serializeParam(
-                                                                    listViewExtraActsRecord
-                                                                        .actID,
-                                                                    ParamType
-                                                                        .String,
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      if (getCurrentTimestamp <=
+                                                          listViewExtraActsRecord
+                                                              .lastD2enroll!)
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                                  child: Text(
+                                                                    'متاحة',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).success,
+                                                                          fontSize:
+                                                                              16.0,
+                                                                        ),
                                                                   ),
-                                                                }.withoutNulls,
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  kTransitionInfoKey:
-                                                                      TransitionInfo(
-                                                                    hasTransition:
-                                                                        true,
-                                                                    transitionType:
-                                                                        PageTransitionType
-                                                                            .leftToRight,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      if (getCurrentTimestamp >
+                                                          listViewExtraActsRecord
+                                                              .lastD2enroll!)
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          10.0),
+                                                                  child: Text(
+                                                                    'غير متاحة',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFFB72F31),
+                                                                          fontSize:
+                                                                              16.0,
+                                                                        ),
                                                                   ),
-                                                                },
-                                                              );
-
-                                                              if (textUserHistoryRecord !=
-                                                                  null) {
-                                                                final userHistoryUpdateData =
-                                                                    createUserHistoryRecordData(
-                                                                  extraActivityID:
-                                                                      listViewExtraActsRecord
-                                                                          .actID,
-                                                                  aCTType:
-                                                                      'فعالية',
-                                                                );
-                                                                await textUserHistoryRecord!
-                                                                    .reference
-                                                                    .update(
-                                                                        userHistoryUpdateData);
-                                                              } else {
-                                                                final userHistoryCreateData =
-                                                                    createUserHistoryRecordData(
-                                                                  userEmail:
-                                                                      currentUserEmail,
-                                                                  extraActivityID:
-                                                                      listViewExtraActsRecord
-                                                                          .actID,
-                                                                  aCTType:
-                                                                      'فعالية',
-                                                                );
-                                                                await UserHistoryRecord
-                                                                    .collection
-                                                                    .doc()
-                                                                    .set(
-                                                                        userHistoryCreateData);
-                                                              }
-                                                            },
-                                                            child: Text(
-                                                              'للمزيد',
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                              'الموقع',
                                                               textAlign:
                                                                   TextAlign
                                                                       .start,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .bodySmall
+                                                                  .bodyMedium
                                                                   .override(
                                                                     fontFamily:
-                                                                        'Poppins',
+                                                                        'Lexend Deca',
                                                                     color: Color(
                                                                         0xFF777373),
+                                                                    fontSize:
+                                                                        14.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .normal,
                                                                   ),
                                                             ),
-                                                          );
-                                                        },
+                                                          ],
+                                                        ),
                                                       ),
-                                                      Icon(
-                                                        Icons
-                                                            .chevron_right_rounded,
-                                                        color:
-                                                            Color(0xFF777373),
-                                                        size: 24.0,
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                listViewExtraActsRecord
+                                                                    .actLoc!,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Roboto Mono',
+                                                                      color: Color(
+                                                                          0xFF1C8EC1),
+                                                                      fontSize:
+                                                                          16.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            StreamBuilder<
+                                                                List<
+                                                                    UserHistoryRecord>>(
+                                                              stream:
+                                                                  queryUserHistoryRecord(
+                                                                queryBuilder: (userHistoryRecord) =>
+                                                                    userHistoryRecord.where(
+                                                                        'user_email',
+                                                                        isEqualTo:
+                                                                            currentUserEmail),
+                                                                singleRecord:
+                                                                    true,
+                                                              ),
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
+                                                                    child:
+                                                                        SizedBox(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      child:
+                                                                          CircularProgressIndicator(
+                                                                        color: Color(
+                                                                            0xFF0184BD),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                List<UserHistoryRecord>
+                                                                    textUserHistoryRecordList =
+                                                                    snapshot
+                                                                        .data!;
+                                                                final textUserHistoryRecord =
+                                                                    textUserHistoryRecordList
+                                                                            .isNotEmpty
+                                                                        ? textUserHistoryRecordList
+                                                                            .first
+                                                                        : null;
+                                                                return InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    context
+                                                                        .goNamed(
+                                                                      'event_info',
+                                                                      queryParams:
+                                                                          {
+                                                                        'eventID':
+                                                                            serializeParam(
+                                                                          listViewExtraActsRecord
+                                                                              .actID,
+                                                                          ParamType
+                                                                              .String,
+                                                                        ),
+                                                                      }.withoutNulls,
+                                                                      extra: <
+                                                                          String,
+                                                                          dynamic>{
+                                                                        kTransitionInfoKey:
+                                                                            TransitionInfo(
+                                                                          hasTransition:
+                                                                              true,
+                                                                          transitionType:
+                                                                              PageTransitionType.leftToRight,
+                                                                        ),
+                                                                      },
+                                                                    );
+
+                                                                    if (textUserHistoryRecord !=
+                                                                        null) {
+                                                                      final userHistoryUpdateData =
+                                                                          createUserHistoryRecordData(
+                                                                        extraActivityID:
+                                                                            listViewExtraActsRecord.actID,
+                                                                        aCTType:
+                                                                            'فعالية',
+                                                                      );
+                                                                      await textUserHistoryRecord!
+                                                                          .reference
+                                                                          .update(
+                                                                              userHistoryUpdateData);
+                                                                    } else {
+                                                                      final userHistoryCreateData =
+                                                                          createUserHistoryRecordData(
+                                                                        userEmail:
+                                                                            currentUserEmail,
+                                                                        extraActivityID:
+                                                                            listViewExtraActsRecord.actID,
+                                                                        aCTType:
+                                                                            'فعالية',
+                                                                      );
+                                                                      await UserHistoryRecord
+                                                                          .collection
+                                                                          .doc()
+                                                                          .set(
+                                                                              userHistoryCreateData);
+                                                                    }
+                                                                  },
+                                                                  child: Text(
+                                                                    'للمزيد',
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Poppins',
+                                                                          color:
+                                                                              Color(0xFF777373),
+                                                                          fontWeight:
+                                                                              FontWeight.normal,
+                                                                        ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ),
+                                                            Icon(
+                                                              Icons
+                                                                  .chevron_right_rounded,
+                                                              color: Color(
+                                                                  0xFF777373),
+                                                              size: 24.0,
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
                                                 ),
-                                              ],
-                                            ),
-                                          ),
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ],

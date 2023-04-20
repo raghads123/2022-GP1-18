@@ -64,7 +64,7 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.goNamed('myActivities');
+              context.safePop();
             },
           ),
           title: Text(

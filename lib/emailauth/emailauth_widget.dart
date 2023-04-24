@@ -223,6 +223,10 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
             Align(
               alignment: AlignmentDirectional(-0.9, -0.95),
               child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () async {
                   context.goNamed(
                     'SignUp',

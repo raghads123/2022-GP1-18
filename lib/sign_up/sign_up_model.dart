@@ -40,10 +40,7 @@ class SignUpModel extends FlutterFlowModel {
     if (val == null || val.isEmpty) {
       return 'الرجاء تعبئة الحقل';
     }
-
-    if (val.length < 8) {
-      return 'كلمة المرور يجب أن تتكون من ٨ خانات على الأقل';
-    } else if (val.length < 8 &&
+    if (val.length < 8 &&
         !upper.hasMatch(val) &&
         !num.hasMatch(val) &&
         !small.hasMatch(val)) {
@@ -62,6 +59,9 @@ class SignUpModel extends FlutterFlowModel {
       return "كلمة المرور يجب أن تحتوي على رقم على الأقل ";
     } else if (!char.hasMatch(val))
       return "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل";
+    else if (val.length < 8) {
+      return 'كلمة المرور يجب أن تتكون من ٨ خانات على الأقل';
+    }
     return null;
   }
 

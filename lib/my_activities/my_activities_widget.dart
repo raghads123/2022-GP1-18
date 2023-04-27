@@ -83,23 +83,26 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                   initialIndex: 0,
                   child: Column(
                     children: [
-                      TabBar(
-                        labelColor: Color(0xFF7EAEBD),
-                        labelStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Poppins',
-                              fontSize: 16.0,
+                      Align(
+                        alignment: Alignment(0.0, 0),
+                        child: TabBar(
+                          labelColor: Color(0xFF7EAEBD),
+                          labelStyle: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Poppins',
+                                fontSize: 16.0,
+                              ),
+                          indicatorColor: Color(0xDFE1D7C6),
+                          tabs: [
+                            Tab(
+                              text: 'فرصي',
                             ),
-                        indicatorColor: Color(0xDFE1D7C6),
-                        tabs: [
-                          Tab(
-                            text: 'فرصي',
-                          ),
-                          Tab(
-                            text: 'أنشطتي',
-                          ),
-                        ],
+                            Tab(
+                              text: 'أنشطتي',
+                            ),
+                          ],
+                        ),
                       ),
                       Expanded(
                         child: TabBarView(
@@ -375,6 +378,14 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   15.0,
                                                                   15.0),
                                                       child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
                                                             'MyOppDetails',
@@ -498,6 +509,16 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   ),
                                                                 ),
                                                                 InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   onTap:
                                                                       () async {
                                                                     context
@@ -1115,6 +1136,10 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                               onPressed: buttonRatingRecord != null
                                                                                   ? null
                                                                                   : () async {
+                                                                                      final actRatingsCreateData = createActRatingsRecordData(
+                                                                                        actName: columnExtraActsRecord!.actID,
+                                                                                      );
+                                                                                      await ActRatingsRecord.collection.doc().set(actRatingsCreateData);
                                                                                       await showModalBottomSheet(
                                                                                         isScrollControlled: true,
                                                                                         backgroundColor: Color(0x00000000),
@@ -1216,6 +1241,11 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                   .fromSTEB(
                                                       15.0, 15.0, 15.0, 15.0),
                                               child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
                                                     'MyActDetails',
@@ -1397,6 +1427,14 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                           ),
                                                         ),
                                                         InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'MyActDetails',

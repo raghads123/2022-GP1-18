@@ -177,6 +177,10 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 90.0, 0.0, 0.0),
                                     child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
                                       onTap: () async {
                                         final selectedMedia =
                                             await selectMediaWithSourceBottomSheet(
@@ -206,6 +210,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                                               ?.height,
                                                           width: m.dimensions
                                                               ?.width,
+                                                          blurHash: m.blurHash,
                                                         ))
                                                     .toList();
 

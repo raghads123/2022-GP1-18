@@ -365,6 +365,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               ),
                             ),
                             child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 final selectedMedia =
                                     await selectMediaWithSourceBottomSheet(
@@ -387,6 +391,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                               bytes: m.bytes,
                                               height: m.dimensions?.height,
                                               width: m.dimensions?.width,
+                                              blurHash: m.blurHash,
                                             ))
                                         .toList();
 
@@ -462,6 +467,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 15.0),
                           child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
                             onTap: () async {
                               await showModalBottomSheet(
                                 isScrollControlled: true,
@@ -577,6 +586,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked1Date =
                                           await showDatePicker(
@@ -688,6 +701,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked2Date =
                                           await showDatePicker(
@@ -799,6 +816,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked3Date =
                                           await showDatePicker(
@@ -910,6 +931,10 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked4Date =
                                           await showDatePicker(

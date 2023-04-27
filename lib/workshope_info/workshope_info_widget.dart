@@ -126,6 +126,10 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                         Stack(
                           children: [
                             InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 await Navigator.push(
                                   context,
@@ -977,6 +981,14 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget> {
                                                                     .first
                                                                 : null;
                                                         return InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'workshope_info',

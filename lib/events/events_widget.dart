@@ -403,10 +403,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                 List<UserHistoryRecord>
                                                     containerUserHistoryRecordList =
                                                     snapshot.data!;
-                                                // Return an empty Container when the item does not exist.
-                                                if (snapshot.data!.isEmpty) {
-                                                  return Container();
-                                                }
                                                 final containerUserHistoryRecord =
                                                     containerUserHistoryRecordList
                                                             .isNotEmpty
@@ -414,6 +410,14 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                             .first
                                                         : null;
                                                 return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
                                                   onTap: () async {
                                                     context.goNamed(
                                                       'event_info',
@@ -699,6 +703,18 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                             .first
                                                                         : null;
                                                                     return InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       onTap:
                                                                           () async {
                                                                         context
@@ -1052,10 +1068,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                             List<UserHistoryRecord>
                                                 containerUserHistoryRecordList =
                                                 snapshot.data!;
-                                            // Return an empty Container when the item does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
                                             final containerUserHistoryRecord =
                                                 containerUserHistoryRecordList
                                                         .isNotEmpty
@@ -1063,6 +1075,11 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                         .first
                                                     : null;
                                             return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
                                               onTap: () async {
                                                 context.goNamed(
                                                   'event_info',
@@ -1418,6 +1435,16 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                             .first
                                                                         : null;
                                                                 return InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   onTap:
                                                                       () async {
                                                                     context

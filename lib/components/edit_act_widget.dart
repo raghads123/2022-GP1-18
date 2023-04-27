@@ -221,6 +221,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked1Date =
                                           await showDatePicker(
@@ -339,6 +343,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     borderRadius: BorderRadius.circular(25.0),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked2Date =
                                           await showDatePicker(
@@ -460,6 +468,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked3Date =
                                           await showDatePicker(
@@ -593,6 +605,10 @@ class _EditActWidgetState extends State<EditActWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked4Date =
                                           await showDatePicker(

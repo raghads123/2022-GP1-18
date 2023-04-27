@@ -334,6 +334,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       setState(() {
                                         FFAppState().removeFromNumskills('1');
@@ -428,6 +432,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       setState(() {
                                         FFAppState().removeFromNumskills('2');
@@ -525,6 +533,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       setState(() {
                                         FFAppState().removeFromNumskills('3');
@@ -619,6 +631,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       setState(() {
                                         FFAppState().removeFromNumskills('4');
@@ -808,6 +824,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked1Date =
                                           await showDatePicker(
@@ -920,6 +940,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked2Date =
                                           await showDatePicker(
@@ -1032,6 +1056,10 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                     ),
                                   ),
                                   child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
                                     onTap: () async {
                                       final _datePicked3Date =
                                           await showDatePicker(

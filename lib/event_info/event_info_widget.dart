@@ -126,6 +126,10 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                         Stack(
                           children: [
                             InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 await Navigator.push(
                                   context,
@@ -975,6 +979,14 @@ class _EventInfoWidgetState extends State<EventInfoWidget> {
                                                                     .first
                                                                 : null;
                                                         return InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.goNamed(
                                                               'event_info',

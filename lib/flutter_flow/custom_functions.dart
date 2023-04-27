@@ -58,3 +58,18 @@ double? avgratings(List<double>? raingList) {
   return raingList.reduce((value, element) => value + element) /
       raingList.length;
 }
+
+List<int> rateSave(
+  List<int> list,
+  int index,
+) {
+  list[index] += 1;
+
+  return list;
+}
+
+double rateDisplay(List<int> cRate) {
+  double sum = 0;
+  for (var i = 1; i < 6; i += 1) sum += i * cRate[i];
+  return sum;
+}

@@ -220,6 +220,10 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
             Align(
               alignment: AlignmentDirectional(-0.9, -0.95),
               child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () async {
                   if (Navigator.of(context).canPop()) {
                     context.pop();

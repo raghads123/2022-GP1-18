@@ -528,6 +528,10 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context
                                                 .goNamed('ActivityAdminLogin');
@@ -557,6 +561,10 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
             Align(
               alignment: AlignmentDirectional(-0.9, -0.95),
               child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
                 onTap: () async {
                   if (Navigator.of(context).canPop()) {
                     context.pop();

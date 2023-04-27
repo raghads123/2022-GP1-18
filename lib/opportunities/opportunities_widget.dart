@@ -288,6 +288,10 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               15.0, 0.0, 15.0, 15.0),
                           child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
                             onTap: () async {
                               context.pushNamed(
                                 'Opportunity_apply_form',
@@ -503,6 +507,14 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget> {
                                                   MainAxisAlignment.end,
                                               children: [
                                                 InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'Opportunity_apply_form',

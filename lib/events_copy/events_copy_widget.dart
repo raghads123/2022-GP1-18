@@ -423,6 +423,11 @@ class _EventsCopyWidgetState extends State<EventsCopyWidget> {
                                                 ),
                                               ),
                                               InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
                                                 onTap: () async {
                                                   context.goNamed(
                                                     'event_info',

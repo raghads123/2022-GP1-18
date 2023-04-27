@@ -13,6 +13,7 @@ import 'schema/opp_applications_record.dart';
 import 'schema/rating_record.dart';
 import 'schema/user_history_record.dart';
 import 'schema/notify_record.dart';
+import 'schema/act_ratings_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -28,6 +29,7 @@ export 'schema/opp_applications_record.dart';
 export 'schema/rating_record.dart';
 export 'schema/user_history_record.dart';
 export 'schema/notify_record.dart';
+export 'schema/act_ratings_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -439,6 +441,58 @@ Future<FFFirestorePage<NotifyRecord>> queryNotifyRecordPage({
     queryCollectionPage(
       NotifyRecord.collection,
       NotifyRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ActRatingsRecords (as a Stream and as a Future).
+Future<int> queryActRatingsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ActRatingsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ActRatingsRecord>> queryActRatingsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ActRatingsRecord.collection,
+      ActRatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ActRatingsRecord>> queryActRatingsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ActRatingsRecord.collection,
+      ActRatingsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ActRatingsRecord>> queryActRatingsRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ActRatingsRecord.collection,
+      ActRatingsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

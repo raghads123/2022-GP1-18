@@ -323,6 +323,10 @@ class _WorkshopsCopyWidgetState extends State<WorkshopsCopyWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 10.0, 10.0, 10.0),
                                           child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
                                             onTap: () async {
                                               await Navigator.push(
                                                 context,
@@ -457,6 +461,11 @@ class _WorkshopsCopyWidgetState extends State<WorkshopsCopyWidget> {
                                                 ),
                                               ),
                                               InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
                                                 onTap: () async {
                                                   context.goNamed(
                                                     'workshope_info',

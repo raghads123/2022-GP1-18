@@ -98,6 +98,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           if (valueOrDefault(
                                                   currentUserDocument?.type,
@@ -134,6 +138,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ),
                                       InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           if (valueOrDefault(
                                                   currentUserDocument?.type,
@@ -181,6 +189,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           if (valueOrDefault(
                                                   currentUserDocument?.type,
@@ -228,6 +240,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                       ),
                                       InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           context.goNamed(
                                             'Opportunities',
@@ -278,6 +294,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         20.0, 0.0, 20.0, 15.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
                                         onTap: () async {
                                           if (Navigator.of(context).canPop()) {
                                             context.pop();
@@ -311,6 +331,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 BorderRadius.circular(16.0),
                                           ),
                                           child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
                                             onTap: () async {
                                               context.goNamed('Addopp');
                                             },
@@ -364,6 +388,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               BorderRadius.circular(16.0),
                                         ),
                                         child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
                                           onTap: () async {
                                             context.goNamed('AddExtraact');
                                           },

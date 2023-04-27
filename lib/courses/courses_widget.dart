@@ -411,6 +411,14 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                             .first
                                                         : null;
                                                 return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'course_info',
@@ -503,6 +511,15 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                                         10.0,
                                                                         10.0),
                                                             child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
                                                               onTap: () async {
                                                                 await Navigator
                                                                     .push(
@@ -746,6 +763,18 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                                             .first
                                                                         : null;
                                                                     return InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       onTap:
                                                                           () async {
                                                                         context
@@ -1108,6 +1137,11 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                         .first
                                                     : null;
                                             return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
                                               onTap: () async {
                                                 context.pushNamed(
                                                   'course_info',
@@ -1184,6 +1218,14 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                                     10.0,
                                                                     10.0),
                                                         child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             await Navigator
                                                                 .push(
@@ -1507,6 +1549,16 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                                             .first
                                                                         : null;
                                                                 return InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   onTap:
                                                                       () async {
                                                                     context

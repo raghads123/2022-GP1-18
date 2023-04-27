@@ -126,6 +126,10 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                         Stack(
                           children: [
                             InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () async {
                                 await Navigator.push(
                                   context,
@@ -978,6 +982,14 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> {
                                                                     .first
                                                                 : null;
                                                         return InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'course_info',

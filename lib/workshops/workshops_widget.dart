@@ -415,6 +415,14 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                             .first
                                                         : null;
                                                 return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
                                                       'workshope_info',
@@ -502,6 +510,15 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                         10.0,
                                                                         10.0),
                                                             child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
                                                               onTap: () async {
                                                                 await Navigator
                                                                     .push(
@@ -739,6 +756,18 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                             .first
                                                                         : null;
                                                                     return InkWell(
+                                                                      splashColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      focusColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      hoverColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      highlightColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       onTap:
                                                                           () async {
                                                                         context
@@ -1081,10 +1110,6 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                             List<UserHistoryRecord>
                                                 containerUserHistoryRecordList =
                                                 snapshot.data!;
-                                            // Return an empty Container when the item does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
                                             final containerUserHistoryRecord =
                                                 containerUserHistoryRecordList
                                                         .isNotEmpty
@@ -1092,6 +1117,11 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                         .first
                                                     : null;
                                             return InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
                                               onTap: () async {
                                                 context.goNamed(
                                                   'workshope_info',
@@ -1166,6 +1196,14 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                     10.0,
                                                                     10.0),
                                                         child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             await Navigator
                                                                 .push(
@@ -1483,6 +1521,16 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                             .first
                                                                         : null;
                                                                 return InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   onTap:
                                                                       () async {
                                                                     context

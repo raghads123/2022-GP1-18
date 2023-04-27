@@ -74,10 +74,6 @@ class _AddoppWidgetState extends State<AddoppWidget> {
           );
         }
         List<NotifyRecord> addoppNotifyRecordList = snapshot.data!;
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
         final addoppNotifyRecord = addoppNotifyRecordList.isNotEmpty
             ? addoppNotifyRecordList.first
             : null;

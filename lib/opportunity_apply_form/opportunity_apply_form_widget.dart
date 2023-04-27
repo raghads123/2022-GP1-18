@@ -113,10 +113,6 @@ class _OpportunityApplyFormWidgetState
                         }
                         List<OpportunitiesRecord>
                             containerOpportunitiesRecordList = snapshot.data!;
-                        // Return an empty Container when the item does not exist.
-                        if (snapshot.data!.isEmpty) {
-                          return Container();
-                        }
                         final containerOpportunitiesRecord =
                             containerOpportunitiesRecordList.isNotEmpty
                                 ? containerOpportunitiesRecordList.first
@@ -157,10 +153,6 @@ class _OpportunityApplyFormWidgetState
                                       }
                                       List<UsersRecord> columnUsersRecordList =
                                           snapshot.data!;
-                                      // Return an empty Container when the item does not exist.
-                                      if (snapshot.data!.isEmpty) {
-                                        return Container();
-                                      }
                                       final columnUsersRecord =
                                           columnUsersRecordList.isNotEmpty
                                               ? columnUsersRecordList.first

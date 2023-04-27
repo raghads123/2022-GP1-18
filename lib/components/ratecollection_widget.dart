@@ -72,10 +72,6 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
           );
         }
         List<ExtraActsRecord> containerExtraActsRecordList = snapshot.data!;
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
         final containerExtraActsRecord = containerExtraActsRecordList.isNotEmpty
             ? containerExtraActsRecordList.first
             : null;

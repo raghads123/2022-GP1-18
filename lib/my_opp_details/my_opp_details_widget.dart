@@ -109,10 +109,6 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                       }
                       List<OpportunitiesRecord>
                           containerOpportunitiesRecordList = snapshot.data!;
-                      // Return an empty Container when the item does not exist.
-                      if (snapshot.data!.isEmpty) {
-                        return Container();
-                      }
                       final containerOpportunitiesRecord =
                           containerOpportunitiesRecordList.isNotEmpty
                               ? containerOpportunitiesRecordList.first
@@ -153,10 +149,6 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                     }
                                     List<UsersRecord> columnUsersRecordList =
                                         snapshot.data!;
-                                    // Return an empty Container when the item does not exist.
-                                    if (snapshot.data!.isEmpty) {
-                                      return Container();
-                                    }
                                     final columnUsersRecord =
                                         columnUsersRecordList.isNotEmpty
                                             ? columnUsersRecordList.first

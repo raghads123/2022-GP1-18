@@ -150,10 +150,6 @@ class _NotificationSettingsWidgetState
                                           List<CategoryRecord>
                                               columnCategoryRecordList =
                                               snapshot.data!;
-                                          // Return an empty Container when the item does not exist.
-                                          if (snapshot.data!.isEmpty) {
-                                            return Container();
-                                          }
                                           final columnCategoryRecord =
                                               columnCategoryRecordList
                                                       .isNotEmpty

@@ -101,10 +101,6 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
               }
               List<ExtraActsRecord> scrollingContainerExtraActsRecordList =
                   snapshot.data!;
-              // Return an empty Container when the item does not exist.
-              if (snapshot.data!.isEmpty) {
-                return Container();
-              }
               final scrollingContainerExtraActsRecord =
                   scrollingContainerExtraActsRecordList.isNotEmpty
                       ? scrollingContainerExtraActsRecordList.first

@@ -106,10 +106,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
           }
           List<ExtraActsRecord> scrollingContainerExtraActsRecordList =
               snapshot.data!;
-          // Return an empty Container when the item does not exist.
-          if (snapshot.data!.isEmpty) {
-            return Container();
-          }
+
           final scrollingContainerExtraActsRecord =
               scrollingContainerExtraActsRecordList.isNotEmpty
                   ? scrollingContainerExtraActsRecordList.first
@@ -523,10 +520,6 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                               List<UsersRecord>
                                                   buttonUsersRecordList =
                                                   snapshot.data!;
-                                              // Return an empty Container when the item does not exist.
-                                              if (snapshot.data!.isEmpty) {
-                                                return Container();
-                                              }
                                               final buttonUsersRecord =
                                                   buttonUsersRecordList
                                                           .isNotEmpty
@@ -775,10 +768,6 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                   List<NotifyRecord>
                                                       switchListTileNotifyRecordList =
                                                       snapshot.data!;
-                                                  // Return an empty Container when the item does not exist.
-                                                  if (snapshot.data!.isEmpty) {
-                                                    return Container();
-                                                  }
                                                   final switchListTileNotifyRecord =
                                                       switchListTileNotifyRecordList
                                                               .isNotEmpty

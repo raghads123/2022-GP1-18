@@ -71,10 +71,6 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                   );
                 }
                 List<UsersRecord> tabBarUsersRecordList = snapshot.data!;
-                // Return an empty Container when the item does not exist.
-                if (snapshot.data!.isEmpty) {
-                  return Container();
-                }
                 final tabBarUsersRecord = tabBarUsersRecordList.isNotEmpty
                     ? tabBarUsersRecordList.first
                     : null;
@@ -590,10 +586,6 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                 List<ExtraActsRecord>
                                                     columnExtraActsRecordList =
                                                     snapshot.data!;
-                                                // Return an empty Container when the item does not exist.
-                                                if (snapshot.data!.isEmpty) {
-                                                  return Container();
-                                                }
                                                 final columnExtraActsRecord =
                                                     columnExtraActsRecordList
                                                             .isNotEmpty

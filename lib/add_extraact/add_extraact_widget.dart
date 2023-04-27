@@ -75,10 +75,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
           );
         }
         List<NotifyRecord> addExtraactNotifyRecordList = snapshot.data!;
-        // Return an empty Container when the item does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
+
         final addExtraactNotifyRecord = addExtraactNotifyRecordList.isNotEmpty
             ? addExtraactNotifyRecordList.first
             : null;
@@ -1148,10 +1145,6 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                               }
                               List<UsersRecord> buttonUsersRecordList =
                                   snapshot.data!;
-                              // Return an empty Container when the item does not exist.
-                              if (snapshot.data!.isEmpty) {
-                                return Container();
-                              }
                               final buttonUsersRecord =
                                   buttonUsersRecordList.isNotEmpty
                                       ? buttonUsersRecordList.first

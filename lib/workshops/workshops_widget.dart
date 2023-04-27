@@ -1081,10 +1081,6 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                             List<UserHistoryRecord>
                                                 containerUserHistoryRecordList =
                                                 snapshot.data!;
-                                            // Return an empty Container when the item does not exist.
-                                            if (snapshot.data!.isEmpty) {
-                                              return Container();
-                                            }
                                             final containerUserHistoryRecord =
                                                 containerUserHistoryRecordList
                                                         .isNotEmpty

@@ -147,7 +147,7 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              'الرجاء تأكيد البريد الجامعي أولاً!',
+                                              'الرجاء تأكيد البريد الإلكتروني أولاً!',
                                               style: TextStyle(
                                                 color: Color(0xFFF4F3F9),
                                               ),

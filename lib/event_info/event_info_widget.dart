@@ -411,7 +411,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'وصف الورشة',
+                                        'وصف الفعالية',
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall

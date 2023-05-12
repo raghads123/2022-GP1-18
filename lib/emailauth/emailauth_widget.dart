@@ -137,11 +137,11 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                       20.0, 20.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      print(
+                                          currentUserEmailVerified); // calling it twice so that the user doesnt have to click the button twice.
                                       if (currentUserEmailVerified) {
                                         // when the email is verified
 
-                                        context.goNamed('SettingUpProfile');
-                                      } else if (currentUserEmailVerified) {
                                         context.goNamed('SettingUpProfile');
                                       } else {
                                         // when the email is not verified

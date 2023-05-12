@@ -141,6 +141,8 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                         // when the email is verified
 
                                         context.goNamed('SettingUpProfile');
+                                      } else if (currentUserEmailVerified) {
+                                        context.goNamed('SettingUpProfile');
                                       } else {
                                         // when the email is not verified
                                         ScaffoldMessenger.of(context)
@@ -154,7 +156,7 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                             ),
                                             duration:
                                                 Duration(milliseconds: 4000),
-                                            backgroundColor: Color(0xFF579BB1),
+                                            backgroundColor: Color(0xFFB72F31),
                                           ),
                                         );
                                       }

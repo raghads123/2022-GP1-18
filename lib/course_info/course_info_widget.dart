@@ -593,7 +593,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                                 FieldValue
                                                                     .arrayUnion([
                                                               scrollingContainerExtraActsRecord!
-                                                                  .actName
+                                                                  .actID
                                                             ]),
                                                           };
                                                           await currentUserReference!

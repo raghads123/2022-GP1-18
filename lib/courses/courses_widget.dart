@@ -762,15 +762,6 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                                                                               ParamType.String,
                                                                             ),
                                                                           }.withoutNulls,
-                                                                          extra: <
-                                                                              String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.leftToRight,
-                                                                            ),
-                                                                          },
                                                                         );
 
                                                                         if (textUserHistoryRecord !=
@@ -1037,7 +1028,7 @@ class _CoursesWidgetState extends State<CoursesWidget> {
                             queryBuilder: (extraActsRecord) => extraActsRecord
                                 .where('Act_type', isEqualTo: 'دورة تدريبية')
                                 .where('status', isEqualTo: 'موافق عليها')
-                                .orderBy('Edate', descending: true),
+                                .orderBy('LastD2disenroll', descending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

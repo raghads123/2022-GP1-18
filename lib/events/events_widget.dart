@@ -411,7 +411,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                         : null;
                                                 return InkWell(
                                                   onTap: () async {
-                                                    context.goNamed(
+                                                    context.pushNamed(
                                                       'event_info',
                                                       queryParams: {
                                                         'eventID':
@@ -698,7 +698,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         context
-                                                                            .goNamed(
+                                                                            .pushNamed(
                                                                           'event_info',
                                                                           queryParams:
                                                                               {
@@ -711,15 +711,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                               ParamType.String,
                                                                             ),
                                                                           }.withoutNulls,
-                                                                          extra: <
-                                                                              String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.leftToRight,
-                                                                            ),
-                                                                          },
                                                                         );
 
                                                                         if (textUserHistoryRecord !=
@@ -984,7 +975,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                             queryBuilder: (extraActsRecord) => extraActsRecord
                                 .where('Act_type', isEqualTo: 'فعالية')
                                 .where('status', isEqualTo: 'موافق عليها')
-                                .orderBy('Edate', descending: true),
+                                .orderBy('LastD2disenroll', descending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -1056,7 +1047,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                     : null;
                                             return InkWell(
                                               onTap: () async {
-                                                context.goNamed(
+                                                context.pushNamed(
                                                   'event_info',
                                                   queryParams: {
                                                     'eventID': serializeParam(
@@ -1065,15 +1056,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                       ParamType.String,
                                                     ),
                                                   }.withoutNulls,
-                                                  extra: <String, dynamic>{
-                                                    kTransitionInfoKey:
-                                                        TransitionInfo(
-                                                      hasTransition: true,
-                                                      transitionType:
-                                                          PageTransitionType
-                                                              .leftToRight,
-                                                    ),
-                                                  },
                                                 );
 
                                                 if (containerUserHistoryRecord !=
@@ -1413,7 +1395,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                   onTap:
                                                                       () async {
                                                                     context
-                                                                        .goNamed(
+                                                                        .pushNamed(
                                                                       'event_info',
                                                                       queryParams:
                                                                           {
@@ -1425,17 +1407,6 @@ class _EventsWidgetState extends State<EventsWidget> {
                                                                               .String,
                                                                         ),
                                                                       }.withoutNulls,
-                                                                      extra: <
-                                                                          String,
-                                                                          dynamic>{
-                                                                        kTransitionInfoKey:
-                                                                            TransitionInfo(
-                                                                          hasTransition:
-                                                                              true,
-                                                                          transitionType:
-                                                                              PageTransitionType.leftToRight,
-                                                                        ),
-                                                                      },
                                                                     );
 
                                                                     if (textUserHistoryRecord !=

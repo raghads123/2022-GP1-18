@@ -742,7 +742,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         context
-                                                                            .goNamed(
+                                                                            .pushNamed(
                                                                           'workshope_info',
                                                                           queryParams:
                                                                               {
@@ -1017,7 +1017,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                             queryBuilder: (extraActsRecord) => extraActsRecord
                                 .where('Act_type', isEqualTo: 'ورشة عمل')
                                 .where('status', isEqualTo: 'موافق عليها')
-                                .orderBy('Edate', descending: true),
+                                .orderBy('LastD2disenroll', descending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
@@ -1089,7 +1089,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                     : null;
                                             return InkWell(
                                               onTap: () async {
-                                                context.goNamed(
+                                                context.pushNamed(
                                                   'workshope_info',
                                                   queryParams: {
                                                     'workshopID':
@@ -1482,7 +1482,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                                                                   onTap:
                                                                       () async {
                                                                     context
-                                                                        .goNamed(
+                                                                        .pushNamed(
                                                                       'workshope_info',
                                                                       queryParams:
                                                                           {

@@ -220,7 +220,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'تفاصيل الورشة',
+                                        'تفاصيل الفعالية',
                                         textAlign: TextAlign.end,
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
@@ -463,7 +463,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                         Expanded(
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Text(
-                                              'لقد إنتهت فرصة الإلتحاق بهذه الورشة شكراً لاهتمامك!',
+                                              'لقد إنتهت فرصة الإلتحاق بهذه الفعالية شكراً لاهتمامك!',
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -979,7 +979,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                                                 : null;
                                                         return InkWell(
                                                           onTap: () async {
-                                                            context.goNamed(
+                                                            context.pushNamed(
                                                               'event_info',
                                                               queryParams: {
                                                                 'eventID':

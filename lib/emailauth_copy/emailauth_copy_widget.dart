@@ -151,7 +151,7 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                             ),
                                             duration:
                                                 Duration(milliseconds: 4000),
-                                            backgroundColor: Color(0xFF579BB1),
+                                            backgroundColor: Color(0xFFB72F31),
                                           ),
                                         );
                                       }

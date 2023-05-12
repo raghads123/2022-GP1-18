@@ -39,22 +39,16 @@ bool showSearchResultOp(
   return textSearchIn4.toLowerCase().contains(textSearchFor4.toLowerCase());
 }
 
-double actRatings(
-  double rate1,
-  double rate2,
-  double rate3,
-  double rate4,
+double rateDisplay(
+  int num1,
+  int num2,
+  int num3,
+  int num4,
+  int num5,
+  int count,
 ) {
-  // avarage number of ratings
+  // 5stars survay function
 
-  double? rate = (rate1 + rate2 + rate3 + rate4) / 4;
-  return rate;
-}
-
-double? avgratings(List<double>? raingList) {
-  if (raingList == null || raingList.isEmpty) {
-    return 0.0;
-  }
-  return raingList.reduce((value, element) => value + element) /
-      raingList.length;
+  return ((num1 + num2 * 2 + num3 * 3 + num4 * 4 + num5 * 5) / count)
+      .roundToDouble();
 }

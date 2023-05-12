@@ -9,6 +9,7 @@ import 'opp_applications_record.dart';
 import 'rating_record.dart';
 import 'user_history_record.dart';
 import 'notify_record.dart';
+import 'act_ratings_record.dart';
 
 import 'index.dart';
 
@@ -27,6 +28,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   RatingRecord,
   UserHistoryRecord,
   NotifyRecord,
+  ActRatingsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

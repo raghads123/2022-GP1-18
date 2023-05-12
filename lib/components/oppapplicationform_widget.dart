@@ -269,7 +269,7 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
-                                  hintText: 'حدد مهارتك',
+                                  hintText: 'حدد الوظيفة للتقديم عليها',
                                   fillColor: Color(0xFFE1D7C6),
                                   elevation: 2.0,
                                   borderColor: Colors.transparent,
@@ -356,7 +356,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: Text('يجب تحديد مهارتك'),
+                                          title:
+                                              Text('يجب تحديد وظيفة للتقديم'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(

@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'edit_info_component_model.dart';
 export 'edit_info_component_model.dart';
 
@@ -53,13 +54,13 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
 
     return Material(
       color: Colors.transparent,
-      elevation: 5.0,
+      elevation: 5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(0.0),
-          bottomRight: Radius.circular(0.0),
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
+          bottomLeft: Radius.circular(0),
+          bottomRight: Radius.circular(0),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
       ),
       child: Container(
@@ -68,10 +69,10 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
         decoration: BoxDecoration(
           color: Color(0xFFF4F3F0),
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(0.0),
-            bottomRight: Radius.circular(0.0),
-            topLeft: Radius.circular(30.0),
-            topRight: Radius.circular(30.0),
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(0),
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
           ),
         ),
         child: SingleChildScrollView(
@@ -86,21 +87,20 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Container(
-                      width: 50.0,
-                      height: 4.0,
+                      width: 50,
+                      height: 4,
                       decoration: BoxDecoration(
                         color: Color(0xFFE0E3E7),
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 30, 20, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -112,7 +112,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                             .override(
                               fontFamily: 'Outfit',
                               color: Color(0xFF7EAEBD),
-                              fontSize: 22.0,
+                              fontSize: 22,
                               fontWeight: FontWeight.w500,
                             ),
                       ),
@@ -132,8 +132,8 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
+                          width: 50,
+                          height: 50,
                           child: CircularProgressIndicator(
                             color: Color(0xFF0184BD),
                           ),
@@ -159,24 +159,28 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
+                                        0, 15, 0, 0),
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderRadius: BorderRadius.circular(25),
                                       child: Image.network(
                                         valueOrDefault<String>(
                                           currentUserPhoto,
                                           'https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg',
                                         ),
-                                        width: 120.0,
-                                        height: 120.0,
+                                        width: 120,
+                                        height: 120,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 90.0, 0.0, 0.0),
+                                        0, 90, 0, 0),
                                     child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
                                       onTap: () async {
                                         final selectedMedia =
                                             await selectMediaWithSourceBottomSheet(
@@ -240,7 +244,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                       child: Icon(
                                         Icons.photo_size_select_actual_outlined,
                                         color: Color(0xFF7EAEBD),
-                                        size: 30.0,
+                                        size: 30,
                                       ),
                                     ),
                                   ),
@@ -248,11 +252,11 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 15.0, 20.0, 15.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(20, 15, 20, 15),
                             child: AuthUserStreamWidget(
                               builder: (context) => Container(
-                                width: 300.0,
+                                width: 300,
                                 child: TextFormField(
                                   controller: _model.nameController,
                                   obscureText: false,
@@ -265,30 +269,30 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
                                     focusedErrorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0x00000000),
-                                        width: 1.0,
+                                        width: 1,
                                       ),
-                                      borderRadius: BorderRadius.circular(25.0),
+                                      borderRadius: BorderRadius.circular(25),
                                     ),
                                     filled: true,
                                     fillColor: Color(0xFFE1D7C6),
@@ -308,7 +312,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               'student')
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 15.0, 20.0, 15.0),
+                                  20, 15, 20, 15),
                               child: AuthUserStreamWidget(
                                 builder: (context) =>
                                     FlutterFlowDropDown<String>(
@@ -334,20 +338,20 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                   ],
                                   onChanged: (val) =>
                                       setState(() => _model.collegeValue = val),
-                                  width: 300.0,
-                                  height: 50.0,
+                                  width: 300,
+                                  height: 50,
                                   textStyle: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
                                   hintText: 'الكلية ',
                                   fillColor: Color(0xFFE1D7C6),
-                                  elevation: 2.0,
+                                  elevation: 2,
                                   borderColor: Colors.transparent,
-                                  borderWidth: 0.0,
-                                  borderRadius: 25.0,
+                                  borderWidth: 0,
+                                  borderRadius: 25,
                                   margin: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 4.0, 12.0, 4.0),
+                                      12, 4, 12, 4),
                                   hidesUnderline: true,
                                   isSearchable: false,
                                 ),
@@ -357,7 +361,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               'student')
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 15.0, 20.0, 15.0),
+                                  20, 15, 20, 15),
                               child: AuthUserStreamWidget(
                                 builder: (context) =>
                                     FlutterFlowDropDown<String>(
@@ -382,37 +386,51 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                   ],
                                   onChanged: (val) =>
                                       setState(() => _model.levelValue = val),
-                                  width: 300.0,
-                                  height: 50.0,
+                                  width: 300,
+                                  height: 50,
                                   textStyle: GoogleFonts.getFont(
                                     'Open Sans',
                                     color: Color(0xFF565656),
                                   ),
                                   hintText: 'المستوى ',
                                   fillColor: Color(0xFFE1D7C6),
-                                  elevation: 2.0,
+                                  elevation: 2,
                                   borderColor: Colors.transparent,
-                                  borderWidth: 0.0,
-                                  borderRadius: 25.0,
+                                  borderWidth: 0,
+                                  borderRadius: 25,
                                   margin: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 4.0, 12.0, 4.0),
+                                      12, 4, 12, 4),
                                   hidesUnderline: true,
                                   isSearchable: false,
                                 ),
                               ),
                             ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 15.0, 20.0, 30.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(20, 15, 20, 30),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                final usersUpdateData = createUsersRecordData(
-                                  displayName: _model.nameController.text,
-                                  college: _model.collegeValue,
-                                  level: _model.levelValue,
-                                );
-                                await currentUserReference!
-                                    .update(usersUpdateData);
+                                if (valueOrDefault(
+                                        currentUserDocument?.type, '') ==
+                                    'student') {
+                                  final usersUpdateData1 =
+                                      createUsersRecordData(
+                                    displayName: _model.nameController.text,
+                                    college: _model.collegeValue,
+                                    level: _model.levelValue,
+                                  );
+                                  await currentUserReference!
+                                      .update(usersUpdateData1);
+                                } else {
+                                  final usersUpdateData2 =
+                                      createUsersRecordData(
+                                    displayName: _model.nameController.text,
+                                    photoUrl: _model.uploadedFileUrl,
+                                  );
+                                  await currentUserReference!
+                                      .update(usersUpdateData2);
+                                }
+
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -431,25 +449,25 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                               },
                               text: 'تم',
                               options: FFButtonOptions(
-                                width: 300.0,
-                                height: 50.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
+                                width: 300,
+                                height: 50,
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                iconPadding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 color: Color(0xFF7EAEBD),
                                 textStyle: GoogleFonts.getFont(
                                   'Open Sans',
                                   color: Color(0xFFFFFAF1),
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 18.0,
+                                  fontSize: 18,
                                 ),
-                                elevation: 2.0,
+                                elevation: 2,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
-                                  width: 0.0,
+                                  width: 0,
                                 ),
-                                borderRadius: BorderRadius.circular(25.0),
+                                borderRadius: BorderRadius.circular(25),
                               ),
                             ),
                           ),

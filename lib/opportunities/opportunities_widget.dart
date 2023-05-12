@@ -258,7 +258,8 @@ class _OpportunitiesWidgetState extends State<OpportunitiesWidget> {
                 StreamBuilder<List<OpportunitiesRecord>>(
                   stream: queryOpportunitiesRecord(
                     queryBuilder: (opportunitiesRecord) => opportunitiesRecord
-                        .where('status', isEqualTo: 'موافق عليها'),
+                        .where('status', isEqualTo: 'موافق عليها')
+                        .orderBy('LastD2apply', descending: true),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.

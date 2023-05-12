@@ -5,7 +5,6 @@ import '/components/ratecollection_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -71,6 +70,10 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                   );
                 }
                 List<UsersRecord> tabBarUsersRecordList = snapshot.data!;
+                // Return an empty Container when the item does not exist.
+                if (snapshot.data!.isEmpty) {
+                  return Container();
+                }
                 final tabBarUsersRecord = tabBarUsersRecordList.isNotEmpty
                     ? tabBarUsersRecordList.first
                     : null;
@@ -79,23 +82,26 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                   initialIndex: 0,
                   child: Column(
                     children: [
-                      TabBar(
-                        labelColor: Color(0xFF7EAEBD),
-                        labelStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Poppins',
-                              fontSize: 16.0,
+                      Align(
+                        alignment: Alignment(0.0, 0),
+                        child: TabBar(
+                          labelColor: Color(0xFF7EAEBD),
+                          labelStyle: FlutterFlowTheme.of(context)
+                              .headlineMedium
+                              .override(
+                                fontFamily: 'Poppins',
+                                fontSize: 16.0,
+                              ),
+                          indicatorColor: Color(0xDFE1D7C6),
+                          tabs: [
+                            Tab(
+                              text: 'فرصي',
                             ),
-                        indicatorColor: Color(0xDFE1D7C6),
-                        tabs: [
-                          Tab(
-                            text: 'فرصي',
-                          ),
-                          Tab(
-                            text: 'أنشطتي',
-                          ),
-                        ],
+                            Tab(
+                              text: 'أنشطتي',
+                            ),
+                          ],
+                        ),
                       ),
                       Expanded(
                         child: TabBarView(
@@ -371,6 +377,14 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   15.0,
                                                                   15.0),
                                                       child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
                                                             'MyOppDetails',
@@ -494,6 +508,16 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                   ),
                                                                 ),
                                                                 InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   onTap:
                                                                       () async {
                                                                     context
@@ -586,6 +610,10 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                 List<ExtraActsRecord>
                                                     columnExtraActsRecordList =
                                                     snapshot.data!;
+                                                // Return an empty Container when the item does not exist.
+                                                if (snapshot.data!.isEmpty) {
+                                                  return Container();
+                                                }
                                                 final columnExtraActsRecord =
                                                     columnExtraActsRecordList
                                                             .isNotEmpty
@@ -991,7 +1019,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                         context: context,
                                                                                         builder: (alertDialogContext) {
                                                                                           return AlertDialog(
-                                                                                            title: Text('هل تريد إلغاء إلتحاقك في هذا النشاط؟'),
+                                                                                            title: Text('هل تريد إلغاء تسجيلك في هذا النشاط؟'),
                                                                                             actions: [
                                                                                               TextButton(
                                                                                                 onPressed: () => Navigator.pop(alertDialogContext, false),
@@ -1070,16 +1098,16 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                       MainAxisAlignment
                                                                           .center,
                                                                   children: [
-                                                                    if (getCurrentTimestamp >=
+                                                                    if (getCurrentTimestamp >
                                                                         columnExtraActsRecord!
                                                                             .edate!)
                                                                       Expanded(
                                                                         child: StreamBuilder<
-                                                                            List<RatingRecord>>(
+                                                                            List<ActRatingsRecord>>(
                                                                           stream:
-                                                                              queryRatingRecord(
-                                                                            queryBuilder: (ratingRecord) =>
-                                                                                ratingRecord.where('Act_ID', isEqualTo: columnExtraActsRecord!.actID).where('useremail', isEqualTo: currentUserEmail),
+                                                                              queryActRatingsRecord(
+                                                                            queryBuilder: (actRatingsRecord) =>
+                                                                                actRatingsRecord.where('act_id', isEqualTo: columnExtraActsRecord!.actID),
                                                                             singleRecord:
                                                                                 true,
                                                                           ),
@@ -1097,16 +1125,38 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                 ),
                                                                               );
                                                                             }
-                                                                            List<RatingRecord>
-                                                                                buttonRatingRecordList =
+                                                                            List<ActRatingsRecord>
+                                                                                buttonActRatingsRecordList =
                                                                                 snapshot.data!;
-                                                                            final buttonRatingRecord = buttonRatingRecordList.isNotEmpty
-                                                                                ? buttonRatingRecordList.first
+                                                                            final buttonActRatingsRecord = buttonActRatingsRecordList.isNotEmpty
+                                                                                ? buttonActRatingsRecordList.first
                                                                                 : null;
                                                                             return FFButtonWidget(
-                                                                              onPressed: buttonRatingRecord != null
+                                                                              onPressed: (buttonActRatingsRecord != null) && buttonActRatingsRecord!.raters!.toList().contains(currentUserUid)
                                                                                   ? null
                                                                                   : () async {
+                                                                                      if (!(buttonActRatingsRecord != null)) {
+                                                                                        final actRatingsCreateData = createActRatingsRecordData(
+                                                                                          actId: columnExtraActsRecord!.actID,
+                                                                                          num1: 0,
+                                                                                          num2: 0,
+                                                                                          num3: 0,
+                                                                                          num4: 0,
+                                                                                          num5: 0,
+                                                                                          count: 0,
+                                                                                          num21: 0,
+                                                                                          num22: 0,
+                                                                                          num23: 0,
+                                                                                          num24: 0,
+                                                                                          num25: 0,
+                                                                                          num31: 0,
+                                                                                          num32: 0,
+                                                                                          num33: 0,
+                                                                                          num34: 0,
+                                                                                          num35: 0,
+                                                                                        );
+                                                                                        await ActRatingsRecord.collection.doc().set(actRatingsCreateData);
+                                                                                      }
                                                                                       await showModalBottomSheet(
                                                                                         isScrollControlled: true,
                                                                                         backgroundColor: Color(0x00000000),
@@ -1208,6 +1258,11 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                   .fromSTEB(
                                                       15.0, 15.0, 15.0, 15.0),
                                               child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
                                                 onTap: () async {
                                                   context.pushNamed(
                                                     'MyActDetails',
@@ -1291,38 +1346,6 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                              if (getCurrentTimestamp >=
-                                                                  listViewExtraActsRecord
-                                                                      .edate!)
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          15.0),
-                                                                  child: Text(
-                                                                    functions
-                                                                        .avgratings(listViewExtraActsRecord
-                                                                            .actRate!
-                                                                            .toList())
-                                                                        .toString(),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .end,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Poppins',
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                  ),
-                                                                ),
                                                               Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -1389,6 +1412,14 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                           ),
                                                         ),
                                                         InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
                                                           onTap: () async {
                                                             context.pushNamed(
                                                               'MyActDetails',

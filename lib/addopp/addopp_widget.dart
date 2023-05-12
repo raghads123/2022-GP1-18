@@ -201,7 +201,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                               ),
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: 'المهارة المطلوبة',
+                                labelText: 'الوظيفة المطلوبة',
                                 labelStyle: GoogleFonts.getFont(
                                   'Open Sans',
                                   color: Color(0xFF565656),
@@ -271,7 +271,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                       ),
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'المهارة المطلوبة',
+                                        labelText: 'الوظيفة المطلوبة',
                                         labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
@@ -366,7 +366,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                     ),
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'المهارة المطلوبة',
+                                      labelText: 'الوظيفة المطلوبة',
                                       labelStyle: GoogleFonts.getFont(
                                         'Open Sans',
                                         color: Color(0xFF565656),
@@ -462,7 +462,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                       ),
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'المهارة المطلوبة',
+                                        labelText: 'الوظيفة المطلوبة',
                                         labelStyle: GoogleFonts.getFont(
                                           'Open Sans',
                                           color: Color(0xFF565656),
@@ -557,7 +557,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                     ),
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'المهارة المطلوبة',
+                                      labelText: 'الوظيفة المطلوبة',
                                       labelStyle: GoogleFonts.getFont(
                                         'Open Sans',
                                         color: Color(0xFF565656),
@@ -670,7 +670,7 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                                     .showSnackBar(
                                                   SnackBar(
                                                     content: Text(
-                                                      'لا يمكنك طلب أكثر من ٥ مهارات',
+                                                      'لا يمكنك طلب أكثر من ٥ وظائف',
                                                       style: TextStyle(
                                                         color:
                                                             Color(0xFFF4F3F9),

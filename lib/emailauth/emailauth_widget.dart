@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -137,8 +139,13 @@ class _EmailauthWidgetState extends State<EmailauthWidget> {
                                       20.0, 20.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      print(
-                                          currentUserEmailVerified); // calling it twice so that the user doesnt have to click the button twice.
+                                      await FirebaseAuth.instance.currentUser
+                                          ?.reload();
+                                      bool currentUserEmailVerified =
+                                          FirebaseAuth.instance.currentUser
+                                                  ?.emailVerified ??
+                                              false;
+
                                       if (currentUserEmailVerified) {
                                         // when the email is verified
 

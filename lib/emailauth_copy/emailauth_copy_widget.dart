@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -135,8 +137,12 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                       20.0, 20.0, 20.0, 20.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await Future.delayed(
-                                          const Duration(milliseconds: 1000));
+                                      await FirebaseAuth.instance.currentUser
+                                          ?.reload();
+                                      bool currentUserEmailVerified =
+                                          FirebaseAuth.instance.currentUser
+                                                  ?.emailVerified ??
+                                              false;
                                       if (currentUserEmailVerified) {
                                         context.goNamed('SettingUpProfileCopy');
                                       } else {

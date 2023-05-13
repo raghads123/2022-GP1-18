@@ -842,7 +842,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'آخر فرصة للإلتحاق',
+                                            'آخر فرصة للالتحاق',
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),
@@ -953,7 +953,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'آخر فرصة لإلغاء الإلتحاق',
+                                            'آخر فرصة لإلغاء الالتحاق',
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),
@@ -1218,7 +1218,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
                                           title: Text(
-                                              'يجب تحديد تاريخ آخر فرصة للإلتحاق '),
+                                              'يجب تحديد تاريخ آخر فرصة للالتحاق '),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -1237,7 +1237,7 @@ class _AddExtraactWidgetState extends State<AddExtraactWidget> {
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
                                           title: Text(
-                                              'يجب تحديد تاريخ آخر فرصة لإلغاء للإلتحاق '),
+                                              'يجب تحديد تاريخ آخر فرصة لإلغاء للالتحاق '),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(

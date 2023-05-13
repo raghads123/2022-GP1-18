@@ -975,7 +975,7 @@ class _EventsWidgetState extends State<EventsWidget> {
                             queryBuilder: (extraActsRecord) => extraActsRecord
                                 .where('Act_type', isEqualTo: 'فعالية')
                                 .where('status', isEqualTo: 'موافق عليها')
-                                .orderBy('LastD2disenroll', descending: true),
+                                .orderBy('LastD2enroll', descending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

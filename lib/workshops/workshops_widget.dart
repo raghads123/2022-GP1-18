@@ -1017,7 +1017,7 @@ class _WorkshopsWidgetState extends State<WorkshopsWidget> {
                             queryBuilder: (extraActsRecord) => extraActsRecord
                                 .where('Act_type', isEqualTo: 'ورشة عمل')
                                 .where('status', isEqualTo: 'موافق عليها')
-                                .orderBy('LastD2disenroll', descending: true),
+                                .orderBy('LastD2enroll', descending: true),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

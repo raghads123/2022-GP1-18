@@ -154,7 +154,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 30.0, 20.0, 15.0),
                         child: Text(
-                          'هل وافقت الفعالية توقعاتك؟',
+                          'مدى موافقة النشاط لتوقعاتك؟',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
@@ -185,7 +185,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 15.0),
                         child: Text(
-                          'هل استفدت من الفعالية؟',
+                          'مدى استفادتك من النشاط؟',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
@@ -216,7 +216,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 15.0),
                         child: Text(
-                          'كيف كان التنظيم؟',
+                          'مدى رضاك عن التنظيم؟',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
@@ -248,7 +248,7 @@ class _RatecollectionWidgetState extends State<RatecollectionWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 15.0),
                         child: Text(
-                          'مدى إقتراحك النشاط لأشخاص اخرين؟',
+                          'مدى إقتراحك النشاط للآخرين؟',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',

@@ -315,7 +315,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'آخر فرصة للإلتحاق${dateTimeFormat(
+                                        'آخر فرصة للالتحاق ${dateTimeFormat(
                                           'M/d h:mm a',
                                           scrollingContainerExtraActsRecord!
                                               .lastD2enroll,
@@ -463,7 +463,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                         Expanded(
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Text(
-                                              'لقد إنتهت فرصة الإلتحاق بهذه الفعالية شكراً لاهتمامك!',
+                                              'لقد إنتهت فرصة الالتحاق بهذه الفعالية شكراً لاهتمامك!',
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -605,7 +605,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                                             .showSnackBar(
                                                           SnackBar(
                                                             content: Text(
-                                                              'تم إلتحاقك في هذا النشاط بنجاح',
+                                                              'تم التحاقك في هذا النشاط بنجاح',
                                                               style: GoogleFonts
                                                                   .getFont(
                                                                 'Open Sans',
@@ -875,7 +875,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                           MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'ورش مشابهة',
+                                          'فعاليات مشابهة',
                                           textAlign: TextAlign.end,
                                           style: FlutterFlowTheme.of(context)
                                               .bodySmall
@@ -1004,7 +1004,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                                                   r'''$.Act_ID''',
                                                                 ).toString(),
                                                                 aCTType:
-                                                                    'ورشة عمل',
+                                                                    'فعالية',
                                                               );
                                                               await containerUserHistoryRecord!
                                                                   .reference
@@ -1021,7 +1021,7 @@ class _EventInfoWidgetState extends State<EventInfoWidget> with Utility {
                                                                   r'''$.Act_ID''',
                                                                 ).toString(),
                                                                 aCTType:
-                                                                    'ورشة عمل',
+                                                                    'فعالية',
                                                               );
                                                               await UserHistoryRecord
                                                                   .collection

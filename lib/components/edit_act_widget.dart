@@ -502,7 +502,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'أخر فرصة للإلتحاق',
+                                            'آخر فرصة للالتحاق',
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),
@@ -635,7 +635,7 @@ class _EditActWidgetState extends State<EditActWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'آخر فرصة لإلغاء الإلتحاق',
+                                            'آخر فرصة لإلغاء للالتحاق',
                                             style: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0xFF565656),

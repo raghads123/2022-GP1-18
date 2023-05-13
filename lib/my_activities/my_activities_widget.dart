@@ -1179,7 +1179,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                         },
                                                                                       ).then((value) => setState(() {}));
                                                                                     },
-                                                                              text: 'قيمي النشاط',
+                                                                              text: 'تقييم النشاط',
                                                                               options: FFButtonOptions(
                                                                                 width: 130.0,
                                                                                 height: 35.0,

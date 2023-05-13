@@ -422,13 +422,23 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                   await currentUserReference!
                                       .update(usersUpdateData1);
                                 } else {
-                                  final usersUpdateData2 =
-                                      createUsersRecordData(
-                                    displayName: _model.nameController.text,
-                                    photoUrl: _model.uploadedFileUrl,
-                                  );
-                                  await currentUserReference!
-                                      .update(usersUpdateData2);
+                                  if (_model.uploadedFileUrl != null &&
+                                      _model.uploadedFileUrl != '') {
+                                    final usersUpdateData2 =
+                                        createUsersRecordData(
+                                      displayName: _model.nameController.text,
+                                      photoUrl: _model.uploadedFileUrl,
+                                    );
+                                    await currentUserReference!
+                                        .update(usersUpdateData2);
+                                  } else {
+                                    final usersUpdateData3 =
+                                        createUsersRecordData(
+                                      displayName: _model.nameController.text,
+                                    );
+                                    await currentUserReference!
+                                        .update(usersUpdateData3);
+                                  }
                                 }
 
                                 ScaffoldMessenger.of(context).showSnackBar(

@@ -294,7 +294,8 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     labelText: ' نبذة عنك',
                                     labelStyle:
                                         FlutterFlowTheme.of(context).bodySmall,
-                                    hintText: ' نبذة بسيطة عنك )٢٨٠ حرف(',
+                                    hintText:
+                                        'نبذة بسيطة عنك (٢٧٠ حرف) تمنحك الافضلية من بين المتقدمين',
                                     hintStyle:
                                         FlutterFlowTheme.of(context).bodySmall,
                                     enabledBorder: OutlineInputBorder(

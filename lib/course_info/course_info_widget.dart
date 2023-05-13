@@ -316,7 +316,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                     ),
                                     Expanded(
                                       child: Text(
-                                        'آخر فرصة للإلتحاق${dateTimeFormat(
+                                        'آخر فرصة للالتحاق ${dateTimeFormat(
                                           'M/d h:mm a',
                                           scrollingContainerExtraActsRecord!
                                               .lastD2enroll,
@@ -464,7 +464,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                         Expanded(
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Text(
-                                              'لقد إنتهت فرصة الإلتحاق بهذه الدورة شكراً لاهتمامك!',
+                                              'لقد إنتهت فرصة الالتحاق بهذه الدورة شكراً لاهتمامك!',
                                               textAlign: TextAlign.start,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -606,7 +606,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                             .showSnackBar(
                                                           SnackBar(
                                                             content: Text(
-                                                              'تم إلتحاقك في هذا النشاط بنجاح',
+                                                              'تم التحاقك في هذا النشاط بنجاح',
                                                               style: GoogleFonts
                                                                   .getFont(
                                                                 'Open Sans',
@@ -677,7 +677,7 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                               context);
                                                         }
                                                       },
-                                                text: 'إلتحاق',
+                                                text: 'التحاق',
                                                 options: FFButtonOptions(
                                                   width: 270.0,
                                                   height: 50.0,

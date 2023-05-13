@@ -491,7 +491,7 @@ class _OpportunityApplyFormWidgetState
                                                         children: [
                                                           SelectionArea(
                                                               child: Text(
-                                                            'وفص الفرصة:',
+                                                            'وصف الفرصة:',
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme

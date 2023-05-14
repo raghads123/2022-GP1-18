@@ -41,18 +41,13 @@ class ActivityAdminSignupModel extends FlutterFlowModel {
     }
 
     if (val.length < 8) {
-      return 'كلمة المرور يجب أن تتكون من ٨ خانات على الأقل';
-    } else if (val.length < 8 &&
-        !upper.hasMatch(val) &&
-        !num.hasMatch(val) &&
-        !small.hasMatch(val)) {
-      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير وصغير على الأقل ";
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير وصغير";
     } else if (val.length < 8 && !upper.hasMatch(val)) {
-      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير على الأقل ";
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف كبير";
     } else if (val.length < 8 && !small.hasMatch(val)) {
-      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف صغير على الأقل ";
+      return "كلمة المرور يجب أن تتكون من ٨ خانات وحرف صغير";
     } else if (!upper.hasMatch(val) && !small.hasMatch(val)) {
-      return "كلمة المرور يجب أن تحتوي على حرف كبير وصغير على الأقل ";
+      return "كلمة المرور يجب أن تحتوي على حرف كبير وصغير";
     } else if (!upper.hasMatch(val)) {
       return "كلمة المرور يجب أن تحتوي على حرف كبير على الأقل";
     } else if (!small.hasMatch(val)) {
@@ -61,6 +56,9 @@ class ActivityAdminSignupModel extends FlutterFlowModel {
       return "كلمة المرور يجب أن تحتوي على رقم على الأقل ";
     } else if (!char.hasMatch(val))
       return "كلمة المرور يجب أن تحتوي على رمز خاص واحد على الأقل";
+    else if (val.length < 8) {
+      return 'كلمة المرور يجب أن تتكون من ٨ خانات على الأقل';
+    }
     return null;
   }
 

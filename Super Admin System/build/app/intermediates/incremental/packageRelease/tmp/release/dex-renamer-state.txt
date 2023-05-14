@@ -1,0 +1,4 @@
+#Sun May 14 08:40:20 AST 2023
+base.0=/Users/raghadalshamrani/Desktop/GP Super Admin System/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

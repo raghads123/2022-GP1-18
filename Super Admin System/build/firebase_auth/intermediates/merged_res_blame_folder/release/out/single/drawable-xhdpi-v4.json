@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/googleg_disabled_color_18.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/common_full_open_on_phone.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/common_full_open_on_phone.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable-xhdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/googleg_standard_color_18.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/4ece2795bc89330b62399ba38363eabc/transformed/jetified-play-services-base-17.1.0/res/drawable-xhdpi-v4/googleg_standard_color_18.png"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/firebase_auth/intermediates/res/merged/release/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+    }
+]

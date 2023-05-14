@@ -112,7 +112,7 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                       Form(
                                         key: _model.formKey3,
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.onUserInteraction,
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -211,7 +211,7 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                       Form(
                                         key: _model.formKey1,
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.onUserInteraction,
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -331,7 +331,7 @@ class _ActivityAdminSignupWidgetState extends State<ActivityAdminSignupWidget> {
                                       Form(
                                         key: _model.formKey2,
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.onUserInteraction,
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(

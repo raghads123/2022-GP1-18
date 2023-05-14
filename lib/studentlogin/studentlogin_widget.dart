@@ -112,7 +112,7 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                     child: Form(
                                       key: _model.formKey,
                                       autovalidateMode:
-                                          AutovalidateMode.disabled,
+                                          AutovalidateMode.onUserInteraction,
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -372,24 +372,14 @@ class _StudentloginWidgetState extends State<StudentloginWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 15.0, 0.0, 5.0),
                                             child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
                                               onTap: () async {
-                                                if (_model.emailController.text
-                                                    .isEmpty) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'يجب إدخال البريد الإلكتروني',
-                                                      ),
-                                                    ),
-                                                  );
-                                                  return;
-                                                }
-                                                await authManager.resetPassword(
-                                                  email: _model
-                                                      .emailController.text,
-                                                  context: context,
-                                                );
+                                                context
+                                                    .pushNamed('passwordreset');
                                               },
                                               child: Text(
                                                 'استرجاع كلمة المرور؟',

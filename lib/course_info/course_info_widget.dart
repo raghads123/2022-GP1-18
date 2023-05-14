@@ -607,11 +607,12 @@ class _CourseInfoWidgetState extends State<CourseInfoWidget> with Utility {
                                                           SnackBar(
                                                             content: Text(
                                                               'تم التحاقك في هذا النشاط بنجاح',
-                                                              style: GoogleFonts
-                                                                  .getFont(
-                                                                'Open Sans',
-                                                                color: Colors
-                                                                    .white,
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xE1FFFFFF),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                               ),
                                                             ),
                                                             duration: Duration(

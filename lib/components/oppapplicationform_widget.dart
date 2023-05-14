@@ -397,15 +397,10 @@ class _OppapplicationformWidgetState extends State<OppapplicationformWidget> {
                                     SnackBar(
                                       content: Text(
                                         'لقد تم تقديمك على هذه الفرصة بنجاح!',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              fontFamily: 'Poppins',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBtnText,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                        style: TextStyle(
+                                          color: Color(0xE1FFFFFF),
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                       duration: Duration(milliseconds: 4000),
                                       backgroundColor: Color(0xE15BD85B),

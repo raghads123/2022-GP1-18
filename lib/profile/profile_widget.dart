@@ -110,7 +110,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     content: Text(
                       'تم تسجيل خروجك بنجاح',
                       style: TextStyle(
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
+                        color: Color(0xE1FFFFFF),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -161,6 +161,8 @@ final parametersBuilderMap =
           'opportunityID': getParameter<String>(data, 'opportunityID'),
         },
       ),
+  'passwordreset': ParameterData.none(),
+  'passwordresetCopy': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

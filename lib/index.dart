@@ -35,3 +35,6 @@ export '/add_extraact/add_extraact_widget.dart' show AddExtraactWidget;
 export '/addopp/addopp_widget.dart' show AddoppWidget;
 export '/my_act_details/my_act_details_widget.dart' show MyActDetailsWidget;
 export '/my_opp_details/my_opp_details_widget.dart' show MyOppDetailsWidget;
+export '/passwordreset/passwordreset_widget.dart' show PasswordresetWidget;
+export '/passwordreset_copy/passwordreset_copy_widget.dart'
+    show PasswordresetCopyWidget;

@@ -67,12 +67,32 @@ class FirebaseAuthManager extends AuthManager
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.')),
+        SnackBar(
+          content: Text(
+            'حدث خطأ ، حاول مرة أخرى لاحقاً.',
+            style: TextStyle(
+              color: Color(0xE1FFFFFF),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          duration: Duration(milliseconds: 4000),
+          backgroundColor: Color(0xE1FF2323),
+        ),
       );
       return null;
     }
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('تم إرسال بريد إعادة تعيين كلمة المرور!')),
+      SnackBar(
+        content: Text(
+          'تم إرسال بريد إعادة تعيين كلمة المرور!',
+          style: TextStyle(
+            color: Color(0xE1FFFFFF),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: Color(0xE15BD85B),
+      ),
     );
   }
 
@@ -152,9 +172,19 @@ class FirebaseAuthManager extends AuthManager
       },
       verificationFailed: (e) {
         completer.complete(false);
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('حدث خطأ ، حاول مرة أخرى لاحقاً.'),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'حدث خطأ ، حاول مرة أخرى لاحقاً.',
+              style: TextStyle(
+                color: Color(0xE1FFFFFF),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: Color(0xE1FF2323),
+          ),
+        );
       },
       codeSent: (verificationId, _) {
         _phoneAuthVerificationCode = verificationId;

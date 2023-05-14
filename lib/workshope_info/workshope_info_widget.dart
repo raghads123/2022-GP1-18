@@ -607,11 +607,12 @@ class _WorkshopeInfoWidgetState extends State<WorkshopeInfoWidget>
                                                           SnackBar(
                                                             content: Text(
                                                               'تم إلتحاقك في هذا النشاط بنجاح',
-                                                              style: GoogleFonts
-                                                                  .getFont(
-                                                                'Open Sans',
-                                                                color: Colors
-                                                                    .white,
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xE1FFFFFF),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                               ),
                                                             ),
                                                             duration: Duration(

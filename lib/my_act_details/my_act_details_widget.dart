@@ -338,11 +338,9 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
                                                               content: Text(
                                                                 'تم حذف النشاط بنجاح',
                                                                 style:
-                                                                    GoogleFonts
-                                                                        .getFont(
-                                                                  'Open Sans',
-                                                                  color: Colors
-                                                                      .white,
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xE1FFFFFF),
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -353,7 +351,7 @@ class _MyActDetailsWidgetState extends State<MyActDetailsWidget> {
                                                                       4000),
                                                               backgroundColor:
                                                                   Color(
-                                                                      0xFF22C11C),
+                                                                      0xE15BD85B),
                                                             ),
                                                           );
                                                         }

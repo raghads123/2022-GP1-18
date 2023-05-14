@@ -484,7 +484,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                                 SnackBar(
                                                   content: Text(
                                                     'كلمة المرور لا تتطابق',
+                                                    style: TextStyle(
+                                                      color: Color(0xE1FFFFFF),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
                                                   ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      Color(0xE1FF2323),
                                                 ),
                                               );
                                               return;

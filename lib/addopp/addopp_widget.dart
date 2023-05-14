@@ -673,13 +673,15 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                                       'لا يمكنك طلب أكثر من ٥ وظائف',
                                                       style: TextStyle(
                                                         color:
-                                                            Color(0xFFF4F3F9),
+                                                            Color(0xE1FFFFFF),
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     duration: Duration(
                                                         milliseconds: 4000),
                                                     backgroundColor:
-                                                        Color(0xFF579BB1),
+                                                        Color(0xE1FF2323),
                                                   ),
                                                 );
                                               } else {
@@ -1191,15 +1193,13 @@ class _AddoppWidgetState extends State<AddoppWidget> {
                                 SnackBar(
                                   content: Text(
                                     'تم إرسال طلب الإضافة بنجاح',
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Colors.white,
-                                        ),
+                                    style: TextStyle(
+                                      color: Color(0xE1FFFFFF),
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                   duration: Duration(milliseconds: 4000),
-                                  backgroundColor: Color(0xFF22C11C),
+                                  backgroundColor: Color(0xE15BD85B),
                                 ),
                               );
 

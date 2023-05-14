@@ -152,12 +152,13 @@ class _EmailauthCopyWidgetState extends State<EmailauthCopyWidget> {
                                             content: Text(
                                               'الرجاء تأكيد البريد الإلكتروني أولاً!',
                                               style: TextStyle(
-                                                color: Color(0xFFF4F3F9),
+                                                color: Color(0xE1FFFFFF),
+                                                fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                             duration:
                                                 Duration(milliseconds: 4000),
-                                            backgroundColor: Color(0xFFB72F31),
+                                            backgroundColor: Color(0xE1FF2323),
                                           ),
                                         );
                                       }

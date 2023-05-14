@@ -189,8 +189,7 @@ class _EditInterestsComponentWidgetState
                                   content: Text(
                                     'تم تحديث إهتماماتك بنجاح',
                                     style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
+                                      color: Color(0xE1FFFFFF),
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

@@ -267,6 +267,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 opportunityID:
                     params.getParam('opportunityID', ParamType.String),
               ),
+            ),
+            FFRoute(
+              name: 'passwordreset',
+              path: 'passwordreset',
+              builder: (context, params) => PasswordresetWidget(),
+            ),
+            FFRoute(
+              name: 'passwordresetCopy',
+              path: 'passwordresetCopy',
+              builder: (context, params) => PasswordresetCopyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

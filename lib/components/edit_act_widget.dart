@@ -843,13 +843,12 @@ class _EditActWidgetState extends State<EditActWidget> {
                                   content: Text(
                                     'لقد تم التعديل بنجاح',
                                     style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
+                                      color: Color(0xE1FFFFFF),
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   duration: Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).success,
+                                  backgroundColor: Color(0xE15BD85B),
                                 ),
                               );
                               Navigator.pop(context);

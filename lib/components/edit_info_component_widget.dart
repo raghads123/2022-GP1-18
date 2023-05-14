@@ -446,8 +446,7 @@ class _EditInfoComponentWidgetState extends State<EditInfoComponentWidget> {
                                     content: Text(
                                       'تم تحديث معلوماتك بنجاح',
                                       style: TextStyle(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBtnText,
+                                        color: Color(0xE1FFFFFF),
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

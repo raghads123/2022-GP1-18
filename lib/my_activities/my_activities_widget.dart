@@ -1026,7 +1026,7 @@ class _MyActivitiesWidgetState extends State<MyActivitiesWidget> {
                                                                                       content: Text(
                                                                                         'تم إلغاء إلتحاقك بنجاح!',
                                                                                         style: TextStyle(
-                                                                                          color: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                          color: Color(0xE1FFFFFF),
                                                                                           fontWeight: FontWeight.bold,
                                                                                         ),
                                                                                       ),

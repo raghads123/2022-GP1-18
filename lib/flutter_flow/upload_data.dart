@@ -224,7 +224,15 @@ bool validateFileFormat(String filePath, BuildContext context) {
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(SnackBar(
-      content: Text('صيغة الملف غير صالحة'),
+      content: Text(
+        'صيغة الملف غير صالحة',
+        style: TextStyle(
+          color: Color(0xE1FFFFFF),
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      duration: Duration(milliseconds: 4000),
+      backgroundColor: Color(0xE1FF2323),
     ));
   return false;
 }

@@ -58,13 +58,13 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 52.0,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 52,
             icon: Icon(
               Icons.chevron_left_rounded,
               color: Color(0xFF7EAEBD),
-              size: 30.0,
+              size: 30,
             ),
             onPressed: () async {
               context.safePop();
@@ -75,12 +75,12 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
             style: FlutterFlowTheme.of(context).displaySmall.override(
                   fontFamily: 'Poppins',
                   color: Color(0xFF7EAEBD),
-                  fontSize: 22.0,
+                  fontSize: 22,
                 ),
           ),
           actions: [],
           centerTitle: true,
-          elevation: 2.0,
+          elevation: 2,
         ),
         body: Stack(
           children: [
@@ -99,8 +99,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                       if (!snapshot.hasData) {
                         return Center(
                           child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 50,
+                            height: 50,
                             child: CircularProgressIndicator(
                               color: Color(0xFF0184BD),
                             ),
@@ -109,13 +109,14 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                       }
                       List<OpportunitiesRecord>
                           containerOpportunitiesRecordList = snapshot.data!;
+
                       final containerOpportunitiesRecord =
                           containerOpportunitiesRecordList.isNotEmpty
                               ? containerOpportunitiesRecordList.first
                               : null;
                       return Container(
                         width: double.infinity,
-                        height: 100.0,
+                        height: 100,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBtnText,
                         ),
@@ -125,8 +126,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                                 child: StreamBuilder<List<UsersRecord>>(
                                   stream: queryUsersRecord(
                                     queryBuilder: (usersRecord) =>
@@ -139,8 +140,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                     if (!snapshot.hasData) {
                                       return Center(
                                         child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
+                                          width: 50,
+                                          height: 50,
                                           child: CircularProgressIndicator(
                                             color: Color(0xFF0184BD),
                                           ),
@@ -149,6 +150,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                     }
                                     List<UsersRecord> columnUsersRecordList =
                                         snapshot.data!;
+
                                     final columnUsersRecord =
                                         columnUsersRecordList.isNotEmpty
                                             ? columnUsersRecordList.first
@@ -161,17 +163,17 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 40.0),
+                                                  0, 0, 0, 40),
                                           child: ClipRRect(
                                             borderRadius:
-                                                BorderRadius.circular(25.0),
+                                                BorderRadius.circular(25),
                                             child: Image.network(
                                               valueOrDefault<String>(
                                                 containerOpportunitiesRecord!
                                                     .opProviderLogo,
                                                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS95ie8G-8S3i_QsaD4Gjs1HQHIxBMPcoVLA&usqp=CAU',
                                               ),
-                                              width: 130.0,
+                                              width: 130,
                                               fit: BoxFit.contain,
                                             ),
                                           ),
@@ -181,26 +183,28 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              1.0,
+                                              1,
                                           decoration: BoxDecoration(
                                             color: Color(0xFFF4F3F0),
                                             boxShadow: [
                                               BoxShadow(
-                                                blurRadius: 4.0,
+                                                blurRadius: 4,
                                                 color: Color(0x33000000),
                                               )
                                             ],
                                             borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(0.0),
-                                              bottomRight: Radius.circular(0.0),
-                                              topLeft: Radius.circular(50.0),
-                                              topRight: Radius.circular(50.0),
+                                              bottomLeft: Radius.circular(0),
+                                              bottomRight: Radius.circular(0),
+                                              topLeft: Radius.circular(50),
+                                              topRight: Radius.circular(50),
                                             ),
                                           ),
-                                          child: Padding(
+                                          child:
+                                              // copy this column
+                                              Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 30.0, 20.0, 30.0),
+                                                    20, 30, 20, 30),
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -216,11 +220,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      15.0),
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 15),
                                                           child: SelectionArea(
                                                               child: Text(
                                                             containerOpportunitiesRecord!
@@ -251,10 +252,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    5.0),
+                                                                    0, 0, 0, 5),
                                                         child: SelectionArea(
                                                             child: Text(
                                                           'تفاصيل الفرصة:',
@@ -270,8 +268,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 15.0),
+                                                            .fromSTEB(
+                                                                0, 0, 0, 15),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -282,26 +280,20 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0),
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 4),
                                                           child: Icon(
                                                             Icons.schedule,
                                                             color: Color(
                                                                 0xFF0184BD),
-                                                            size: 20.0,
+                                                            size: 20,
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0),
+                                                                  .fromSTEB(0,
+                                                                      0, 4, 0),
                                                           child: Text(
                                                             dateTimeFormat(
                                                               'M/d h:mm a',
@@ -328,16 +320,13 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0),
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 4),
                                                           child: Icon(
                                                             Icons.schedule,
                                                             color: Color(
                                                                 0xFF0184BD),
-                                                            size: 20.0,
+                                                            size: 20,
                                                           ),
                                                         ),
                                                         Text(
@@ -375,10 +364,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    5.0),
+                                                                    0, 0, 0, 5),
                                                         child: SelectionArea(
                                                             child: Text(
                                                           'وصف الفرصة:',
@@ -394,8 +380,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 5.0,
-                                                                0.0, 15.0),
+                                                            .fromSTEB(
+                                                                0, 5, 0, 15),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -418,8 +404,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .black600,
-                                                                  fontSize:
-                                                                      16.0,
+                                                                  fontSize: 16,
                                                                 ),
                                                           ),
                                                         ),
@@ -437,14 +422,15 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         'طلبات المتقدمين:',
                                                         textAlign:
                                                             TextAlign.start,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodySmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 14,
+                                                                ),
                                                       )),
                                                     ],
                                                   ),
@@ -468,8 +454,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                       if (!snapshot.hasData) {
                                                         return Center(
                                                           child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
+                                                            width: 50,
+                                                            height: 50,
                                                             child:
                                                                 CircularProgressIndicator(
                                                               color: Color(
@@ -501,17 +487,20 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                 MainAxisSize
                                                                     .max,
                                                             children: [
+                                                              // copy this
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        15.0,
-                                                                        15.0,
-                                                                        15.0,
-                                                                        15.0),
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            15,
+                                                                            15,
+                                                                            15,
+                                                                            15),
                                                                 child:
                                                                     Container(
                                                                   width: double
                                                                       .infinity,
+                                                                  height: 210,
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: Colors
@@ -519,26 +508,26 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                     boxShadow: [
                                                                       BoxShadow(
                                                                         blurRadius:
-                                                                            4.0,
+                                                                            4,
                                                                         color: Color(
                                                                             0x33000000),
                                                                         offset: Offset(
-                                                                            0.0,
-                                                                            2.0),
+                                                                            0,
+                                                                            2),
                                                                       )
                                                                     ],
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            25.0),
+                                                                            25),
                                                                   ),
                                                                   child:
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            15.0,
-                                                                            15.0,
-                                                                            15.0,
-                                                                            15.0),
+                                                                            15,
+                                                                            15,
+                                                                            15,
+                                                                            15),
                                                                     child:
                                                                         Column(
                                                                       mainAxisSize:
@@ -548,66 +537,71 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                           MainAxisAlignment
                                                                               .center,
                                                                       children: [
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                // fix direction
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                                                                                  child: Text(
-                                                                                    listViewOppApplicationsRecord.appEmail!,
-                                                                                    textDirection: ui.TextDirection.ltr,
-                                                                                    textAlign: TextAlign.justify,
-                                                                                    style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                          fontFamily: 'Outfit',
-                                                                                          color: Color(0xFF1C8EC1),
-                                                                                          fontSize: 20.0,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                                                                                  child: Text(
-                                                                                    listViewOppApplicationsRecord.appSkills!,
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Poppins',
-                                                                                          color: Color(0xFF57636C),
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
+                                                                        // fix direction
+                                                                        Expanded(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                5),
+                                                                            child:
                                                                                 Text(
-                                                                                  listViewOppApplicationsRecord.appBio!,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Poppins',
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
+                                                                              listViewOppApplicationsRecord.appEmail!,
+                                                                              textDirection: ui.TextDirection.ltr,
+                                                                              textAlign: TextAlign.justify,
+                                                                              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                    fontFamily: 'Outfit',
+                                                                                    color: Color(0xFF1C8EC1),
+                                                                                    fontSize: 20,
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                  ),
                                                                             ),
-                                                                          ],
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              Text(
+                                                                            listViewOppApplicationsRecord.appSkills!,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  color: Color(0xFF57636C),
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            listViewOppApplicationsRecord.appBio!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
                                                                         ),
                                                                         if (listViewOppApplicationsRecord.status ==
                                                                             'معلق')
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                15.0,
-                                                                                0.0,
-                                                                                0.0),
+                                                                                0,
+                                                                                15,
+                                                                                0,
+                                                                                0),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                                                                                   child: FFButtonWidget(
                                                                                     onPressed: () async {
                                                                                       var confirmDialogResponse = await showDialog<bool>(
@@ -640,19 +634,19 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                     text: 'موافقة',
                                                                                     options: FFButtonOptions(
                                                                                       width: double.infinity,
-                                                                                      height: 30.0,
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                      height: 30,
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                                                       color: FlutterFlowTheme.of(context).success,
                                                                                       textStyle: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                             fontFamily: 'Poppins',
                                                                                             color: Colors.white,
                                                                                           ),
-                                                                                      elevation: 2.0,
+                                                                                      elevation: 2,
                                                                                       borderSide: BorderSide(
                                                                                         color: Colors.transparent,
                                                                                       ),
-                                                                                      borderRadius: BorderRadius.circular(25.0),
+                                                                                      borderRadius: BorderRadius.circular(25),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -680,7 +674,7 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                         false;
                                                                                     if (confirmDialogResponse) {
                                                                                       final oppApplicationsUpdateData = createOppApplicationsRecordData(
-                                                                                        status: 'تم رفض الطلب',
+                                                                                        status: 'تم رفض الطلب ',
                                                                                       );
                                                                                       await listViewOppApplicationsRecord.reference.update(oppApplicationsUpdateData);
                                                                                     }
@@ -688,19 +682,19 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                                   text: 'رفض',
                                                                                   options: FFButtonOptions(
                                                                                     width: double.infinity,
-                                                                                    height: 30.0,
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                    iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                    height: 30,
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                                                     color: Color(0xFFB72F31),
                                                                                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                                                                                           fontFamily: 'Poppins',
                                                                                           color: Colors.white,
                                                                                         ),
-                                                                                    elevation: 2.0,
+                                                                                    elevation: 2,
                                                                                     borderSide: BorderSide(
                                                                                       color: Colors.transparent,
                                                                                     ),
-                                                                                    borderRadius: BorderRadius.circular(25.0),
+                                                                                    borderRadius: BorderRadius.circular(25),
                                                                                   ),
                                                                                 ),
                                                                               ],
@@ -728,14 +722,15 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                         'طلبات سابقة:',
                                                         textAlign:
                                                             TextAlign.start,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodySmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Poppins',
-                                                              fontSize: 14.0,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Poppins',
+                                                                  fontSize: 14,
+                                                                ),
                                                       )),
                                                     ],
                                                   ),
@@ -762,8 +757,8 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                       if (!snapshot.hasData) {
                                                         return Center(
                                                           child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
+                                                            width: 50,
+                                                            height: 50,
                                                             child:
                                                                 CircularProgressIndicator(
                                                               color: Color(
@@ -796,16 +791,18 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                     .max,
                                                             children: [
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        15.0,
-                                                                        15.0,
-                                                                        15.0,
-                                                                        15.0),
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            15,
+                                                                            15,
+                                                                            15,
+                                                                            15),
                                                                 child:
                                                                     Container(
                                                                   width: double
                                                                       .infinity,
+                                                                  height: 200,
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     color: Colors
@@ -813,26 +810,26 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                     boxShadow: [
                                                                       BoxShadow(
                                                                         blurRadius:
-                                                                            4.0,
+                                                                            4,
                                                                         color: Color(
                                                                             0x33000000),
                                                                         offset: Offset(
-                                                                            0.0,
-                                                                            2.0),
+                                                                            0,
+                                                                            2),
                                                                       )
                                                                     ],
                                                                     borderRadius:
                                                                         BorderRadius.circular(
-                                                                            25.0),
+                                                                            25),
                                                                   ),
                                                                   child:
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            15.0,
-                                                                            15.0,
-                                                                            15.0,
-                                                                            15.0),
+                                                                            15,
+                                                                            15,
+                                                                            15,
+                                                                            15),
                                                                     child:
                                                                         Column(
                                                                       mainAxisSize:
@@ -842,57 +839,65 @@ class _MyOppDetailsWidgetState extends State<MyOppDetailsWidget> {
                                                                           MainAxisAlignment
                                                                               .center,
                                                                       children: [
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.center,
-                                                                          children: [
-                                                                            Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                                                                                  child: Text(
-                                                                                    listViewOppApplicationsRecord.appEmail!,
-                                                                                    textDirection: ui.TextDirection.ltr,
-                                                                                    textAlign: TextAlign.justify,
-                                                                                    style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                          fontFamily: 'Outfit',
-                                                                                          color: Color(0xFF1C8EC1),
-                                                                                          fontSize: 20.0,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                                                                                  child: Text(
-                                                                                    listViewOppApplicationsRecord.appSkills!,
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Poppins',
-                                                                                          color: Color(0xFF57636C),
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                5),
+                                                                            child:
                                                                                 Text(
-                                                                                  listViewOppApplicationsRecord.appBio!,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Poppins',
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                                Text(
-                                                                                  listViewOppApplicationsRecord.status!,
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Poppins',
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
+                                                                              listViewOppApplicationsRecord.appEmail!,
+                                                                              textDirection: ui.TextDirection.ltr,
+                                                                              textAlign: TextAlign.center,
+                                                                              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                    fontFamily: 'Outfit',
+                                                                                    color: Color(0xFF1C8EC1),
+                                                                                    fontSize: 20,
+                                                                                    fontWeight: FontWeight.w500,
+                                                                                  ),
                                                                             ),
-                                                                          ],
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              Text(
+                                                                            listViewOppApplicationsRecord.appSkills!,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  color: Color(0xFF57636C),
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Text(
+                                                                            listViewOppApplicationsRecord.appBio!,
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Poppins',
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          listViewOppApplicationsRecord
+                                                                              .status!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Poppins',
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
                                                                         ),
                                                                       ],
                                                                     ),

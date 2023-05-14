@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/incremental/mergeReleaseResources/merged.dir/values-da/values-da.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "469",
+                        "endColumns": "100",
+                        "endOffsets": "565"
+                    }
+                },
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/c767b257c3e202bc35875130a507d511/transformed/browser-1.2.0/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,167,266,373",
+                        "endColumns": "111,98,106,95",
+                        "endOffsets": "162,261,368,464"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/values-da/values-da.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "469",
+                        "endColumns": "100",
+                        "endOffsets": "565"
+                    }
+                },
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/c767b257c3e202bc35875130a507d511/transformed/browser-1.2.0/res/values-da/values-da.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,167,266,373",
+                        "endColumns": "111,98,106,95",
+                        "endOffsets": "162,261,368,464"
+                    }
+                }
+            ]
+        }
+    ]
+}

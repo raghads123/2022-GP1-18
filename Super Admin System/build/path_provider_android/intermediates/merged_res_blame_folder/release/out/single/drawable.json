@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/path_provider_android/intermediates/res/merged/release/drawable/notification_bg_low.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/path_provider_android/intermediates/res/merged/release/drawable/notification_icon_background.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/path_provider_android/intermediates/res/merged/release/drawable/notification_bg.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/path_provider_android/intermediates/res/merged/release/drawable/notification_tile_bg.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/drawable/notification_tile_bg.xml"
+    }
+]

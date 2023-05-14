@@ -1,0 +1,68 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/c767b257c3e202bc35875130a507d511/transformed/browser-1.2.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,166,266,379",
+                        "endColumns": "110,99,112,96",
+                        "endOffsets": "161,261,374,471"
+                    }
+                },
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "476",
+                        "endColumns": "100",
+                        "endOffsets": "572"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/incremental/mergeReleaseResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/c767b257c3e202bc35875130a507d511/transformed/browser-1.2.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,166,266,379",
+                        "endColumns": "110,99,112,96",
+                        "endOffsets": "161,261,374,471"
+                    }
+                },
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "476",
+                        "endColumns": "100",
+                        "endOffsets": "572"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/image_picker_android/intermediates/res/merged/debug/values-cs/values-cs.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/f0003f8f6b9030840457ac3b138d65d7/transformed/core-1.8.0/res/values-cs/values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/image_picker_android/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
+            "map": [
+                {
+                    "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/f0003f8f6b9030840457ac3b138d65d7/transformed/core-1.8.0/res/values-cs/values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

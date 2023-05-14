@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/raghadalshamrani/Desktop/GP Super Admin System/build/sign_in_with_apple/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/raghadalshamrani/.gradle/caches/transforms-3/6edb26cd3b1d1c74caeb088525ff5e36/transformed/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    }
+]

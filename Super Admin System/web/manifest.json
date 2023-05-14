@@ -1,0 +1,23 @@
+{
+    "name": "CountMeInSuperAdmin",
+    "short_name": "CountMeInSuperAdmin",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/app_launcher_icon.JPG",
+            "sizes": "192x192",
+            "type": "image/JPG"
+        },
+        {
+            "src": "icons/app_launcher_icon.JPG",
+            "sizes": "512x512",
+            "type": "image/JPG"
+        }
+    ]
+}

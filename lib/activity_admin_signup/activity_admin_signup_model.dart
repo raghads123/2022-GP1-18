@@ -20,7 +20,11 @@ class ActivityAdminSignupModel extends FlutterFlowModel {
     if (val == null || val.isEmpty) {
       return 'يجب تعبئة الحقل';
     }
-
+    //if (!RegExp('^([0-9]{9})+@student\\.ksu\\.edu\\.sa\$').hasMatch(val)||!RegExp('^([A-z])+@student\\.ksu\\.edu\\.sa\$').hasMatch(val)) {
+    // return 'الرجاء التأكد من صيغة البريد الجامعي';
+    // }
+    // return null;
+    //}
     if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
       return 'الرجاء التأكد من صيغة البريد الإلكتروني';
     }
